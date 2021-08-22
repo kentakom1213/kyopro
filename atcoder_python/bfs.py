@@ -1,4 +1,4 @@
-#           breadth first search
+#              C - 幅優先探索
 # ----------------------------------------
 # 問題
 # https://atcoder.jp/contests/abc007/tasks/abc007_3
