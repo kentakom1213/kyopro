@@ -1,3 +1,4 @@
 # 各種設定ファイルは無視
 .kyopuro/
 .vscode/
+.DS_Store
