@@ -5,69 +5,67 @@
 
 # 参考
 # https://img.atcoder.jp/abc054/editorial.pdf
+# https://qiita.com/greenteabiscuit/items/31c46ab3ceac07e749d2
 
-# WA
+# AC
 # ----------------------------------------
-
-
-def mapl(func, iter): return list(map(func, iter))
-def filterl(func, iter): return list(filter(func, iter))
 
 # input
 N, M = map(int, input().split())
-adj = [[] for _ in range(M)]
+
+# adj = [[] for _ in range(M)]  # グラフの隣接リスト -> ダメみたい
+# for _ in range(M):
+#     a, b = map(int, input().split())
+#     adj[a - 1].append(b - 1)
+#     adj[b - 1].append(a - 1)
+
+path_matrix = [[False] * N for _ in range(N)]
 for _ in range(M):
     a, b = map(int, input().split())
-    adj[a - 1].append(b - 1)
-    adj[b - 1].append(a - 1)
+    path_matrix[a - 1][b - 1] = True
+    path_matrix[b - 1][a - 1] = True
 
-# solve
-counter = 0
-def search_graph(adj, rest, depth=0):
-    global counter
+visited = [False] * N  # 探索済みかどうか
 
-    print()  # test
-    print(adj, rest)  # test
+# dfs
+def dfs(now):
+    # 終了条件J
+    if visited[now]:
+        return 0
 
-    # when the graph has some isolated vertex
-    if any(len(edge) == 0 for edge in adj) and len(rest) > 1:
-        return
+    # visited[now] = True <- こっちに持ってくるとダメ
+    if sum(visited) == N - 1:
+        return 1
 
-    if len(rest) == 1:
-        # print("  "*depth, rest[0])  # test
-        counter += 1
-        return
+    visited[now] = True
+    counter = 0
+    for i in range(N):
+        if path_matrix[now][i]:
+            counter += dfs(i)
 
-    if 0 in rest:
-        print("START")  # test
-        for i in rest:
-            # print("  "*depth, i)  # test
+    visited[now] = False  # ここなんでFalseに戻すんだろうか
 
-            adj[i].clear()
-            adj = [filterl((lambda k: k != i), v) for v in adj]
-            rest = filterl((lambda k: k != i), rest)
-            print(f"DEPTH:{depth} POP:{i} REST:{rest}")  # test
-            search_graph(adj, rest, depth+1)
+    return counter
 
-    # when the graph has some end vertex
-    # elif any(len(edge) == 1 for edge in adj):
-    else:
-        print("NOT START")  # test
-        end = [i for i in range(N) if len(adj[i]) == 1]
-        print("END", end)  # test
+print(dfs(0))
 
-        if len(end) != 2:
-            return
+### 参考サイトから引用
+# def dfs(now, depth):
+#     if visited[now]:
+#         return 0
 
-        for i in end:
-            # print("  "*depth, i)  # test
+#     if depth == N - 1:
+#         return 1
 
-            adj[i].clear()
-            adj = [filterl((lambda k: k != i), v) for v in adj]
-            rest = filterl((lambda k: k != i), rest)
-            print(f"DEPTH:{depth} POP:{i} REST:{rest}")  # test
-            search_graph(adj, rest, depth+1)
+#     visited[now] = True
+#     total_paths = 0
 
+#     for v in adj[now]:
+#         total_paths += dfs(v, depth + 1)
 
-search_graph(adj, list(range(N)))
-print(counter)
+#     visited[now] = False
+
+#     return total_paths
+
+# print(dfs(0, 0))
+
