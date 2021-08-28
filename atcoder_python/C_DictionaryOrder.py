@@ -3,6 +3,7 @@
 # 問題
 # https://atcoder.jp/contests/abc009/tasks/abc009_3
 
+# これむずいのでパス
 # ----------------------------------------
 
 from string import ascii_lowercase
@@ -16,8 +17,10 @@ S = input()
 # solve
 def can_put_top(K, string, top):
     chars = get_chars(string)
-    chars.remove(top)
-    print(chars)
+
+    for s in string:
+        pass
+
 
 
 print(can_put_top(K, S, S[1]))
