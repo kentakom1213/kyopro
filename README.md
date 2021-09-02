@@ -1,7 +1,14 @@
 # kyopuro
 競プロ用リポジトリ
 
+## 環境
+- Python3, PyPy3 (メイン)
+- C++ (たまに)
+
 ## スニペット
+<details><summary>使用しているコードスニペット</summary>
+<div>
+
 **input 高速化**
 ```python
 input = sys.stdin.readline
@@ -43,3 +50,5 @@ print(DP)  # test
 1. コードのテスト部分の最後に `# test` を追加する
 2. エディタの置換で `(\s*)(.+# test) -> $1# $2` を実行 (正規表現を有効化する)
 3. 戻すときは `(\s*)# (.+# test) -> $1$2`
+
+</div></details>
