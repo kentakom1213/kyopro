@@ -6,8 +6,9 @@
 # 参考
 # https://oretano.com/dynamic-programming
 # DPがよく分かっていないので、その練習として。
+# めちゃくちゃ苦戦した。要領を得ない
 
-# むずいのでとりあえずパス
+# AC
 # ----------------------------------------
 
 def init_array(i, j, val=0): return [[val]*j for _ in range(i)]
@@ -25,27 +26,19 @@ def knapsack(N, W):
     DP = init_array(N+1, W+1)
 
     for i in range(N):
-        for sum_w in range(W+1):
+        for sum_w in range(1, W+1):
 
-            # この荷物を追加する場合
             if sum_w - weight[i] >= 0:
                 DP[i+1][sum_w] = max(
                     DP[i+1][sum_w],
-                    DP[i+1][sum_w - weight[i]] + value[i]
+                    DP[i][sum_w - weight[i]] + value[i]
                 )
 
-            # 荷物を追加しない場合
             DP[i+1][sum_w] = max(
                 DP[i+1][sum_w],
                 DP[i][sum_w]
             )
 
-        print(*DP, sep="\n")  # test
-        print()
+    return DP[-1][-1]
 
-    # print(*DP, sep="\n")  # test
-    print(DP[-1][-1])
-
-
-if __name__ == "__main__":
-    knapsack(N, W)
+print(knapsack(N, W))
