@@ -9,11 +9,6 @@
 <details><summary>使用しているコードスニペット</summary>
 <div>
 
-**input 高速化**
-```python
-input = sys.stdin.readline
-```
-
 **input -> int**
 ```python
 int(input())
@@ -33,6 +28,38 @@ list(map(int, input().split()))
 ```python
 def init_array(i, j, val=0):
     return [[val]*j for _ in range(i)]
+```
+
+**素因数分解**\
+素因数のリストにする
+```python
+def factoring(n):
+    result = [n]
+    while result[-1] != 0:
+        f = result.pop()
+        for i in range(2, int(f ** 0.5 + 1)):
+            if f % i == 0:
+                result += [i, f//i]
+                break
+        else:
+            result += [f, 0]
+    return result[:-1]
+```
+
+素因数とその数のタプルのリストにする
+```python
+def fac_count(n):
+    result = []
+    for i in range(2, int(n ** 0.5 + 1)):
+        if n % i != 0: continue
+        counter = 0
+        while n % i == 0:
+            n //= i
+            counter += 1
+        result.append((i, counter))
+    if n != 1:
+        result.append((n, 1))
+    return result
 ```
 
 **テストコードの一括コメントアウト**
