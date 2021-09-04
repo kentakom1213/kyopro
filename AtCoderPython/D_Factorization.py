@@ -30,6 +30,7 @@ def fac_count(n):
 
 # 二項係数の生成
 # https://drken1215.hatenablog.com/entry/2018/06/08/210000
+
 MAX = 210000  # 何を根拠に？
 MOD = 1000000007
 fac, finv, inv = [0]*MAX, [0]*MAX, [0]*MAX
