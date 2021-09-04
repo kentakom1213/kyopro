@@ -1,7 +1,7 @@
 # Atcoder Beginner Contest
 
-<details>
-<summary><h3>ABC 216  (2021/08/29)</summary>
+### ABC 216  (2021/08/29)
+<details><summary>詳細</summary>
 <div>
 初参戦
 
@@ -11,13 +11,13 @@
 | 100 | 200 | 300 | -   | -   | -   | -   | -   |
 </div></details>
 
-<details>
-<summary><h3>ABC 217  (2021/09/04)</summary>
+### ABC 217  (2021/09/04)
+<details><summary>詳細</summary>
 <div>
 目標：Cまでは完璧に
 
 |  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| -   | -   | -   | -   | -   | -   | -   | -   |
-| -   | -   | -   | -   | -   | -   | -   | -   |
+| AC  | AC  | AC  | AC  | -   | -   | -   | -   |
+| 100 | 200 | 300 | 400 | -   | -   | -   | -   |
 </div></details>
