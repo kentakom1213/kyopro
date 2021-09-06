@@ -55,6 +55,8 @@ if __name__ == "__main__":
 
     COMinit()
 
+    # print(inv[:20])  # test
+
     Mfactors = fac_count(M)
 
     res = 1
