@@ -39,6 +39,17 @@ def modInv(a, p):
 
 # 高速 mod_inverse
 # ax + py = 1
-MOD = 1000000007
-inv = []
+MOD = int(1e9 + 7)
 
+def init_inv(max, mod):
+    inv = [0] * (max % mod)
+    inv[1] = 1
+    for i in range(2, max % mod):
+        inv[i] = mod - inv[mod % i] * (mod // i) % mod
+        print(inv[i])
+    return inv
+
+
+if __name__ == "__main__":
+    inv = init_inv(210000, MOD)
+    print(inv[:100])

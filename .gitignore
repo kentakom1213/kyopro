@@ -1,4 +1,7 @@
-# 各種設定ファイルは無視
+# 各種設定ファイル
 .kyopuro/
 .vscode/
 .DS_Store
+
+# pycache
+__pycache__/
