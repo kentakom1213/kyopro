@@ -1,5 +1,5 @@
 # 参考
-# https://drken1215.hatenablog.com/entry/2018/09/23/224100
+# https://drken1215.hatenablog.com/entry/2018/09/23/224100d
 
 def factoring(n):
     result = [n]
