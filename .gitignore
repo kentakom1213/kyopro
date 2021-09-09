@@ -1,6 +1,6 @@
 # 各種設定ファイル
-.kyopuro/
-.vscode/
+# .kyopuro/ 
+# .vscode/
 .DS_Store
 
 # pycache
