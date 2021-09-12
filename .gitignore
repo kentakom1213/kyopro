@@ -1,8 +1,10 @@
 # 各種設定ファイル
-!.kyopuro/requirements.txt
 .kyopuro/
 .vscode/
 .DS_Store
 
 # pycache
 __pycache__/
+
+# requiements.txtは残す
+!.kyopuro/requirements.txt
