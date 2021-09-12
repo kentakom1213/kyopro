@@ -14,14 +14,19 @@
 int(input())
 ```
 
-**input -> int (map)**
+**input -> map (int)**
 ```python
 map(int, input().split())
 ```
 
-**input -> int (list)**
+**input -> list (list (int))**
 ```python
-list(map(int, input().split()))
+[list(map(int, input().split())) for _ in range(N)]
+```
+
+**input -> list, list (int)**
+```python
+A, B = zip( *(map(int, input().split()) for _ in range(M)) )
 ```
 
 **initialize array**
