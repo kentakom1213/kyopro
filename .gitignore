@@ -5,6 +5,5 @@
 
 # pycache
 __pycache__/
+.ipynb_checkpoints/
 
-# requiements.txtは残す
-!.kyopuro/requirements.txt
