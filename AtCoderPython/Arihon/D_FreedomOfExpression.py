@@ -3,6 +3,9 @@
 # 問題
 # https://atcoder.jp/contests/arc004/tasks/arc004_4
 
+# 参考
+# https://drken1215.hatenablog.com/entry/2018/09/29/180900
+
 # MLE -> pypyでは厳しい？ -> Pythonにしたら解決
 # AC
 # ----------------------------------------
