@@ -21,6 +21,18 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
+
+			// 隠すファイルを設定
+			"files.exclude": {
+				".local/": true,
+				".vscode/": true,
+				"**/.git": true,
+				"**/.svn": true,
+				"**/.hg": true,
+				"**/CVS": true,
+				"**/.DS_Store": true
+			},
+
 			// ファイル保存を簡素に
 			"files.simpleDialog.enable": true,
 		

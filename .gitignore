@@ -1,4 +1,5 @@
 # 各種設定ファイル
+.local/
 .kyopuro/
 .vscode/
 .DS_Store
