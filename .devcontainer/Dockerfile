@@ -16,3 +16,8 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
     && python3 /tmp/get-pip.py \
     && rm -f /tmp/get-pip.py \
     && pip3 install online-judge-verify-helper
+
+# make venv
+# RUN apt update \
+#     && apt install -y python3-venv \
+#     && python3 -m venv .kyopuro
