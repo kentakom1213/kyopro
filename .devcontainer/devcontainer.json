@@ -1,0 +1,90 @@
+{
+	"name": "C++",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Debian / Ubuntu OS version: debian-10, debian-9, ubuntu-20.04, ubuntu-18.04
+		"args": { "VARIANT": "debian-10" }
+	},
+	"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.cpptools",
+        "EditorConfig.EditorConfig",
+
+		"ms-python.python",
+		"ms-toolsai.jupyter",
+		"ms-toolsai.jupyter-keymap",
+		"ms-python.vscode-pylance",
+
+    ],
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+
+			// 隠すファイルを設定
+			"files.exclude": {
+				".local/": true,
+				".vscode/": true,
+				"**/.git": true,
+				"**/.svn": true,
+				"**/.hg": true,
+				"**/CVS": true,
+				"**/.DS_Store": true
+			},
+
+			// ファイル保存を簡素に
+			"files.simpleDialog.enable": true,
+		
+			"files.defaultLanguage": "python",
+		
+			"files.autoSaveDelay": 1000,
+			// ファイルの終了時に行末のスペース削除
+			// "files.trimTrailingWhitespace": true,
+			// "files.insertFinalNewline": true,
+			// "python.linting.lintOnSave": true,
+		
+			//Tabをスペースキーとして変換
+			"[python]": {
+				"editor.insertSpaces": true,
+				"editor.detectIndentation": true,
+				"editor.tabSize": 4
+			},
+			"python.defaultInterpreterPath": ".kyopuro/bin/python",
+			// "python.venvPath": ".kyopuro",
+			// "python.pipenvPath": "/usr/local/bin/pipenv",
+			"python.linting.pylintEnabled": true,
+			"python.linting.pycodestyleEnabled": false,
+			"python.linting.mypyEnabled": true,
+			"python.linting.flake8Enabled": false,
+			"python.linting.flake8Args": [
+				"--max-line-length=120",
+				"--max-complexity","20"
+			],
+			// "python.formatting.provider": "autopep8",
+			// "python.formatting.autopep8Args": [
+			//     "--aggressive",
+			//     "--aggressive",
+			// ],
+			"python.testing.unittestArgs": [
+				"-v",
+				"-s",
+				".",
+				"-p",
+				"*test.py"
+			],
+			"python.testing.pytestEnabled": false,
+			"python.testing.nosetestsEnabled": false,
+			"python.testing.unittestEnabled": true,
+			// windowsの場合："terminal.integrated.shell.windows": "C:\\WINDOWS\\system32\\cmd.exe",		
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "gcc -v",
+
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "vscode"
+}
