@@ -1,11 +1,12 @@
-{
 
+// コンテナ作成後、devcontainerのsettingに移す。(/root/.vscode-server/data/Machine/settings.json)
+{
     // 隠すファイルを設定
     "files.exclude": {
         ".local/": true,
         ".kyopuro/": true,
-        ".devcontainer/": true,
-        ".vscode/": true,
+        ".devcontainer/": false,
+        ".vscode/": false,
         
         "**/.git": true,
         "**/.svn": true,
@@ -17,7 +18,7 @@
     // ファイル保存を簡素に
     "files.simpleDialog.enable": true,
 
-    "files.defaultLanguage": "python",
+    // "files.defaultLanguage": "python",
 
     "files.autoSaveDelay": 1000,
     // ファイルの終了時に行末のスペース削除
