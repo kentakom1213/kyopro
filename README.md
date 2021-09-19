@@ -1,12 +1,21 @@
 # kyopuro
 競プロ用リポジトリ
 
-## 環境
+## 言語
 - Python3, PyPy3 (メイン)
-- C++ (たまに)
+- C++ (練習中)
+
+## 環境
+DockerコンテナでC++の環境を用意。
+コンテナ内でPython3.7の環境を構築。
+詳細は `/kyopuro/.devcontainer/` を参照。
+
+こちらを使用させていただいています。
+
+https://mycode.rip/how-to-prepare-competitive-programming
 
 ## スニペット
-<details><summary>使用しているコードスニペット</summary>
+<details><summary>Python</summary>
 <div>
 
 **input -> int**
@@ -67,20 +76,54 @@ def fac_count(n):
     return result
 ```
 
-<!-- **テストコードの一括コメントアウト**
+</div></details>
 
-```re
-print(DP)  # test
-```
-```re
-(\s*)(.+# test) -> $1# $2
-```
-```re
-(\s*)# (.+# test) -> $1$2
+<details><summary>C++</summary>
+<div>
+
+**rep**
+```cpp
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
 ```
 
-1. コードのテスト部分の最後に `# test` を追加する
-2. エディタの置換で `(\s*)(.+# test) -> $1# $2` を実行 (正規表現を有効化する)
-3. 戻すときは `(\s*)# (.+# test) -> $1$2` -->
+**C++環境**
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+```
+
+**print_vector**
+```cpp
+template <typename T>
+void print_vector(vector<T>& vec) {
+  cout << "[ ";
+  for (int i = 0; i < vec.size(); i++) {
+    if (i < vec.size() - 1) cout << vec.at(i) << " ";
+    else cout << vec.at(i);
+  }
+  cout << " ]" << endl;
+}
+```
+
+**print_array**
+```cpp
+template <typename T>
+void print_array(vector<vector<T>>& array) {
+  int H = array.size();
+  int W = array.at(0).size();
+  
+  cout << "{" << endl;
+  for (int i = 0; i < H; i++) {
+
+    cout << "  {";
+    for (int j = 0; j < W; j++) {
+      if (j < W - 1) cout << array.at(i).at(j) << ", ";
+      else cout << array.at(i).at(j);
+    }
+    cout << "}," << endl;
+  }
+  cout << "}" << endl;
+}
+```
 
 </div></details>
