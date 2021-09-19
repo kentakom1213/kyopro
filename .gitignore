@@ -1,6 +1,8 @@
 # 各種設定ファイル
+.local/
 .kyopuro/
-.vscode/
+# .devcontainer.json
+# .vscode/
 .DS_Store
 
 # pycache
