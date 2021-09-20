@@ -5,10 +5,11 @@
             "label": "C/C++: clang++ build active file",
             "command": "/usr/bin/clang++",
             "args": [
+                "-std=c++17", // C++17の構文を追加
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
             ],
             "options": {
                 "cwd": "${fileDirname}"
