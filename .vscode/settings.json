@@ -61,7 +61,8 @@
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "iosfwd": "cpp"
     },
     // windowsの場合："terminal.integrated.shell.windows": "C:\\WINDOWS\\system32\\cmd.exe",
 }
