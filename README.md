@@ -126,4 +126,22 @@ void print_array(vector<vector<T>>& array) {
 }
 ```
 
+**factoring**
+```cpp
+typedef long long ll;
+vector<pair<int, int>> factoring_pair(ll n) {
+    vector<pair<int, int>> res;
+    for (int i = 2; i*i <= n; i++) {
+        int count = 0;
+        while (n % i == 0) {
+            count++;
+            n /= i;
+        }
+        res.push_back({i, count});
+    }
+    if (n != 1) res.push_back({n, 1});
+    return res;
+}
+```
+
 </div></details>
