@@ -96,12 +96,12 @@ using namespace std;
 ```cpp
 template <typename T>
 void print_vector(vector<T>& vec) {
-  cout << "[ ";
+  cerr << "[ ";
   for (int i = 0; i < vec.size(); i++) {
-    if (i < vec.size() - 1) cout << vec.at(i) << " ";
-    else cout << vec.at(i);
+    if (i < vec.size() - 1) cerr << vec.at(i) << " ";
+    else cerr << vec.at(i);
   }
-  cout << " ]" << endl;
+  cerr << " ]" << endl;
 }
 ```
 
@@ -109,20 +109,19 @@ void print_vector(vector<T>& vec) {
 ```cpp
 template <typename T>
 void print_array(vector<vector<T>>& array) {
-  int H = array.size();
-  int W = array.at(0).size();
-  
-  cout << "{" << endl;
-  for (int i = 0; i < H; i++) {
+    int H = array.size();
 
-    cout << "  {";
-    for (int j = 0; j < W; j++) {
-      if (j < W - 1) cout << array.at(i).at(j) << ", ";
-      else cout << array.at(i).at(j);
+    cerr << "{" << endl;
+    for (int i = 0; i < H; i++) {
+        int W = array.at(i).size();
+        cerr << "  {";
+        for (int j = 0; j < W; j++) {
+            if (j < W - 1) cerr << array.at(i).at(j) << ", ";
+            else cerr << array.at(i).at(j);
+        }
+        cerr << "}," << endl;
     }
-    cout << "}," << endl;
-  }
-  cout << "}" << endl;
+    cerr << "}" << endl;
 }
 ```
 
