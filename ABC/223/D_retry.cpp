@@ -43,7 +43,7 @@ int main() {
     // トポロジカルソート？？？
     // N: 頂点, M: 辺
     vector<vector<int>> G(N);
-    vector<int> indegree(M, 0);
+    vector<int> indegree(N, 0);
 
     for (int i = 0; i < M; i++) {
         int a, b; cin >> a >> b;
