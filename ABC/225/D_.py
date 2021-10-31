@@ -14,15 +14,14 @@ if __name__ == "__main__":
 
         elif q == 2:
             x, y = val[0]-1, val[1]-1
-            trains[y] = x
+            trains[x] = x
         
         else:
-            is_visited = [False] * N
-
             ptr = val[0]-1
             print(ptr+1, end=" ")
-            while trains[ptr] != ptr and not is_visited[ptr]:
-                is_visited[ptr] = True
+            while trains[ptr] != ptr:
                 ptr = trains[ptr]
                 print(ptr+1, end=" ")
             print()
+
+        print(trains)
