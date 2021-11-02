@@ -15,6 +15,9 @@ DockerコンテナでC++の環境を用意。
 
 https://mycode.rip/how-to-prepare-competitive-programming
 
+## メモ
+C++デバッグ用コマンド：`gdb -f {ファイル名} --> r`
+
 ## スニペット
 <details><summary>Python</summary>
 <div>
