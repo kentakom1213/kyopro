@@ -19,4 +19,4 @@ color[0] = K
 dp[0] = K
 
 for i in range(1, N):
-    color[i] = color[i-1] - 1 
+    color[i] = color[i-1] - 1
