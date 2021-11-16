@@ -9,7 +9,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends curl python3-distutils
+    && apt-get -y install --no-install-recommends curl python3-distutils vim
 
 # Install pip3 and tools
 RUN curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
@@ -21,3 +21,6 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
 # RUN apt update \
 #     && apt install -y python3-venv \
 #     && python3 -m venv .kyopuro
+
+# install Miniconda
+# https://qiita.com/Gushi_maru/items/be7b5124a382e699e79d
