@@ -14,7 +14,7 @@
 # 全ての文字に割り当てて調べてみる (10! = 3628800通り)
 
 gResult = [0, 0, 0]  # 解を保存
-def dfs(s1: str, s2: str, s3: str, nums: list[int], rest_letters: list[str]):
+def dfs(s1, s2, s3, nums, rest_letters):
     # 全ての文字を代入し終えた場合
     if len(rest_letters) == 0:
         if int(s1) + int(s2) == int(s3):
