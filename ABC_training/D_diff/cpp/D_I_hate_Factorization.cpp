@@ -43,3 +43,9 @@ int main() {
         }
     }
 }
+
+
+// 解説
+// https://blog.hamayanhamayan.com/entry/2020/05/03/224316
+
+// 頭悪いな自分
