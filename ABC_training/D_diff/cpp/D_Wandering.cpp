@@ -4,8 +4,12 @@
 // https://atcoder.jp/contests/abc182/tasks/abc182_d
 
 // 実装ミス、これが多いと話にならない
+
+// AC (解説)
 // ----------------------------------------
 
+
+// 以下 WA
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -14,33 +18,44 @@ typedef long long ll;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 
+template <typename T>
+void print_vector(vector<T>& vec) {
+  cerr << "[ ";
+  for (int i = 0; i < vec.size(); i++) {
+    if (i < vec.size() - 1) cerr << vec.at(i) << " ";
+    else cerr << vec.at(i);
+  }
+  cerr << " ]" << endl;
+}
+
 int main() {
     int N; cin >> N;
     vector<ll> A(N);
     rep(i, N) cin >> A[i];
 
-    vector<ll> S(N, A[0]);
-    rep(i, N-1) {
-        S[i+1] = S[i] + A[i+1];
+    vector<ll> S(N+1, 0);
+    rep(i, N) {
+        S[i+1] = S[i] + A[i];
     }
 
-    vector<ll> triangle(N);  // 三角の頂点を求めていく
-    triangle[0] = A[0];
-    rep(i, N-1) {
-        triangle[i+1] = triangle[i] + S[i+1];
+    vector<ll> triangle(N+1, 0);  // 三角の頂点を求めていく
+    rep(i, N) {
+        triangle[i+1] = triangle[i] + S[i];
     }
 
     ll max_triangle_index = max_element(ALL(triangle)) - triangle.begin();
     ll max_S = *max_element(S.begin(), S.begin()+max_triangle_index);
 
     ll res = 0;
-    if (max_triangle_index < N-1) {
-        chmax(res, triangle[max_triangle_index]);
+    if (max_triangle_index < N) {
         chmax(res, triangle[max_triangle_index] + max_S);
     }
     else {
         chmax(res, triangle[max_triangle_index]);
     }
+
+    print_vector(S);
+    print_vector(triangle);
 
     cout << res << endl;
 }
