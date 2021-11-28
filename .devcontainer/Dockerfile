@@ -16,6 +16,10 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
     && python3 /tmp/get-pip.py \
     && rm -f /tmp/get-pip.py \
     && pip3 install online-judge-verify-helper
+    && pip3 install online-judge-tools
+
+RUN apt -y install npm
+    && npm install -g atcoder-cli
 
 # make venv
 # RUN apt update \

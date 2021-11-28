@@ -16,3 +16,7 @@ __pycache__/
 
 # 公開しちゃダメなやつ
 paiza/
+
+# atcoder-cli / online-judge-tools
+test/
+node_modules/
