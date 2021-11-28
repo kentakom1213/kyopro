@@ -19,7 +19,11 @@
       "id": "arc130_b",
       "label": "B",
       "title": "Colorful Lines",
-      "url": "https://atcoder.jp/contests/arc130/tasks/arc130_b"
+      "url": "https://atcoder.jp/contests/arc130/tasks/arc130_b",
+      "directory": {
+        "path": "b",
+        "testdir": "test"
+      }
     },
     {
       "id": "arc130_c",
