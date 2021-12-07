@@ -2,6 +2,9 @@
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/code-festival-2016-qualc/tasks/codefestival_2016_qualC_b
+
+// これでいいのか
+// AC
 // ----------------------------------------
 
 // 貪欲にいけそう
@@ -21,22 +24,9 @@ int main() {
     int k, t; cin >> k >> t;
     vector<int> A(t);
     rep(i, t) cin >> A[i];
+
     sort(ALL(A), greater<int>());
-    queue<vec2> cakes;
-    rep(i, t) {
-        cakes.push(make_pair(i, A[i]));
-    }
+    int res = A[0] - accumulate(A.begin()+1, A.end(), 0);
 
-    int now = -1, res = 0;
-    while (!cakes.empty()) {
-        auto [cake, num] = cakes.front();
-        // printf("<%d, %d>\n",cake, num);
-        cakes.pop();
-
-        if (now == cake) res++;
-        now = cake;
-        if (num > 1) cakes.push(make_pair(cake, num-1));
-    }
-
-    cout << res << endl;
+    cout << max(res-1, 0) << endl;
 }
