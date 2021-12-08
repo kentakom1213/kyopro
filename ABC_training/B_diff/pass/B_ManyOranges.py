@@ -3,24 +3,29 @@
 # 問題
 # https://atcoder.jp/contests/abc195/tasks/abc195_b
 
-# WA
+# 参考
+# https://blog.hamayanhamayan.com/entry/2021/03/14/001917
+
+# B問題最強難度では?
+
+# AC (解説)
 # ----------------------------------------
 
-# A, B, W = map(int, input().split())
-# W *= 1000
+# 全探索してみよう
 
-# div_B, mod_B = W // B, W % B
-# if A <= mod_B <= B:
-#     min_num = div_B + 1
-# elif mod_B == 0:
-#     min_num = div_B
-# else:
-#     min_num = None
+A, B, W = map(int, input().split())
+W *= 1000
 
-# div_A, mod_A = W // A, W % A
-# if mod_A <= B - A:
-#     max_num = div_A
-# else:
-#     max_num = div_A + 1
+min_mikan, max_mikan = 1e10, -1
 
-# print(min_num, max_num)
+for choose in range(1, W+1):
+    L = choose * A
+    R = choose * B
+    if L <= W <= R:
+        min_mikan = min(min_mikan, choose)
+        max_mikan = max(max_mikan, choose)
+
+if min_mikan == 1e10:
+    print("UNSATISFIABLE")
+else:
+    print(min_mikan, max_mikan)
