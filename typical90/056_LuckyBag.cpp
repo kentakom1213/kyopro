@@ -23,34 +23,27 @@ int main() {
     vector<ll> A(N), B(N);
     rep(i, N) cin >> A[i] >> B[i];
 
-    initArray(dp, N+1, S+1, 0);
-    dp[0][0] = 1;
+    vector<vector<string>> dp(N+1, vector<string>(S+1, ""));
+    dp[0][0] = "X";
 
     for (ll i = 0; i < N; i++) {
         for (ll j = 0; j < S; j++) {
-            if (!dp[i][j]) continue;
+            if (dp[i][j] == "") continue;
 
             // Aを追加
             if (j + A[i] <= S) {
-                dp[i+1][j+A[i]] = dp[i][j];  // Aのときは足さない
+                dp[i+1][j+A[i]] = dp[i][j] + 'A';  // Aのときは足さない
             }
             // Bを追加
             if (j + B[i] <= S) {
-                dp[i+1][j+B[i]] = dp[i][j] + (1 << (i+1));  // Bのときは2^iを足す
+                dp[i+1][j+B[i]] = dp[i][j] + 'B';  // Bのときは2^iを足す
             }
         }
     }
 
-    ll res = dp[N][S];
-    if (res) {
-        string combi;
-
-        printf("res:%lld, S:%lld\n", res, S);
-
-        for (int i = 1; i <= N; i++) {
-            combi.push_back( ((res >> i) & 1) ? 'B' : 'A' );
-        }
-        cout << combi << endl;
+    string res = dp[N][S];
+    if (res != "") {
+        cout << res.substr(1, N) << endl;;
     }
     else {
         cout << "Impossible" << endl;
