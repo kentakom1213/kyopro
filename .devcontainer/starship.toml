@@ -1,0 +1,20 @@
+# 表示される項目の順序の設定(基本デフォルトで良い)
+format = """\
+    $directory\
+    $conda\
+    $git_status\
+    $character\
+"""
+
+# テキストが入力される場所を示す文字の設定
+[character]
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
+
+# 改行自体の設定
+[line_break]
+disabled = false # 非表示に設定
+
+# 時間の設定
+[time]
+disabled = true # 非表示に設定すると、必ず一行になる

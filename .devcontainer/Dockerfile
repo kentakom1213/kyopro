@@ -21,6 +21,13 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
 RUN apt -y install npm
     && npm install -g atcoder-cli
 
+# starshipの導入
+RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" \
+    && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
+# configの配置
+RUN mkdir ~/.config
+COPY starship.toml ~/.config/
+
 # make venv
 # RUN apt update \
 #     && apt install -y python3-venv \
