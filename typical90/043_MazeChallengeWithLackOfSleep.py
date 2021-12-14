@@ -4,11 +4,14 @@
 # https://atcoder.jp/contests/typical90/tasks/typical90_aq
 # ----------------------------------------
 
-# bfsで曲がり角に関してDPを行う
+# 拡張bfsを使う
+
+# 1. 向いている方向に進む　 : コスト0
+# 2. 向いている方向を変える : コスト1
 
 H, W = map(int, input().split())
-S = (rs, cs) = [int(i)-1 for i in input().split()]
-T = (tt, ct) = [int(i)-1 for i in input().split()]
-field = [input() for _ in range(H)]
+S = rs, cs = [int(v)-1 for v in input().split()]
+T = rt, ct = [int(v)-1 for v in input().split()]
+field = [list(map(int, input().split())) for _ in range(H)]
 
-is_visited = [[1e9]*W for _ in range(H)]
+
