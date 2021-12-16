@@ -41,3 +41,4 @@ for l in range(N):
         r += 1
 
 print(res)
+
