@@ -1,0 +1,49 @@
+{
+  "contest": {
+    "id": "abc084",
+    "title": "AtCoder Beginner Contest 084",
+    "url": "https://atcoder.jp/contests/abc084"
+  },
+  "tasks": [
+    {
+      "id": "abc084_a",
+      "label": "A",
+      "title": "New Year",
+      "url": "https://atcoder.jp/contests/abc084/tasks/abc084_a",
+      "directory": {
+        "path": "a",
+        "testdir": "test"
+      }
+    },
+    {
+      "id": "abc084_b",
+      "label": "B",
+      "title": "Postal Code",
+      "url": "https://atcoder.jp/contests/abc084/tasks/abc084_b",
+      "directory": {
+        "path": "b",
+        "testdir": "test"
+      }
+    },
+    {
+      "id": "abc084_c",
+      "label": "C",
+      "title": "Special Trains",
+      "url": "https://atcoder.jp/contests/abc084/tasks/abc084_c",
+      "directory": {
+        "path": "c",
+        "testdir": "test"
+      }
+    },
+    {
+      "id": "abc084_d",
+      "label": "D",
+      "title": "2017-like Number",
+      "url": "https://atcoder.jp/contests/abc084/tasks/abc084_d",
+      "directory": {
+        "path": "d",
+        "testdir": "test"
+      }
+    }
+  ]
+}
