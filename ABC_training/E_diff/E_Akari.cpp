@@ -4,6 +4,9 @@
 // https://atcoder.jp/contests/abc182/tasks/abc182_e
 // ---------
 
+// 愚直にシミュレートすると、O(NHW);
+// シミュレートの仕方を工夫してみよう
+
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
