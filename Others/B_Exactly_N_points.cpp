@@ -30,5 +30,4 @@ int main() {
             cout << i << endl;
         }
     }
-
 }
