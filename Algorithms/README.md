@@ -43,6 +43,7 @@
 
 ### 文字列
 - [ ] Z-Algorithm
+- [ ] Suffix-Array
 
 
 ### その他
