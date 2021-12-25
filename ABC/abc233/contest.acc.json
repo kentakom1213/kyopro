@@ -1,0 +1,85 @@
+{
+  "contest": {
+    "id": "abc233",
+    "title": "AtCoder Beginner Contest 233",
+    "url": "https://atcoder.jp/contests/abc233"
+  },
+  "tasks": [
+    {
+      "id": "abc233_a",
+      "label": "A",
+      "title": "10yen Stamp",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_b",
+      "label": "B",
+      "title": "A Reverse",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_c",
+      "label": "C",
+      "title": "Product",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_d",
+      "label": "D",
+      "title": "Count Interval",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_e",
+      "label": "E",
+      "title": "Σ[k=0..10^100]floor(X／10^k)",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_f",
+      "label": "F",
+      "title": "Swap and Sort",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_g",
+      "label": "G",
+      "title": "Strongest Takahashi",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests"
+      }
+    },
+    {
+      "id": "abc233_h",
+      "label": "Ex",
+      "title": "Manhattan Christmas Tree ",
+      "url": "https://atcoder.jp/contests/abc233/tasks/abc233_h"
+    }
+  ]
+}
