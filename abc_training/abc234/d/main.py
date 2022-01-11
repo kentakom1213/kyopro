@@ -1,13 +1,16 @@
-from bisect import bisect_left
+from heapq import *
+import heapq
 
 N, K = map(int, input().split())
 P = list(map(int, input().split()))
 
-# 先頭K項をソート
-top = sorted(P[:K])
-print(top[-K])
+heap = sorted(P[:K])
+print(heap[0])
 
-# 挿入しつつ出力
 for i in range(K, N):
-    top.insert(bisect_left(top, P[i]), P[i])
-    print(top[-K])
+    if P[i] > heap[0]:  # 右側に追加されるので、順位が変わる
+        heappush(heap, P[i])
+        heappop(heap)
+
+    print(heap[0])
+
