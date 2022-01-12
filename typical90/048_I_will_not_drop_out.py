@@ -12,8 +12,13 @@
 
 N, K = map(int, input().split())
 
-points = [tuple(map(int, input().split())) for _ in range(N)]
+points = [0] * (2*N)
+for i in range(N):
+    a, b = map(int, input().split())
+    points[2*i] = b
+    points[2*i+1] = a - b  # 残りの方の点数を取る
+    
+points.sort(reverse=True)
 
-points.sort()
-res = 0
-while K:
+# 貪欲に取る
+print(sum(points[:K]))
