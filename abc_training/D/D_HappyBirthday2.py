@@ -3,11 +3,13 @@
 # 問題
 # https://atcoder.jp/contests/abc200/tasks/abc200_d
 
-# AC (コンテスト後WA)
+# AC
 # ----------------------------------------
 
 # 部分和問題と考えるとDPが使える
 # dp復元を使って、配列を復元する
+
+# こうして世紀のゴミコードが生まれた...
 
 import sys
 def err(*args, **kwargs): print(*args, **kwargs, file=sys.stderr)
@@ -16,6 +18,38 @@ def init_array(i, j, val=0): return [[val]*j for _ in range(i)]
 N = int(input())
 A = [int(x)%200 for x in input().split()]
 
+### 非dpで解ける部分
+## 0 or 200があるとき
+if 0 in A:
+    zero = A.index(0)
+    not_zero = (zero + 1) % N
+    print("Yes")
+    print(1, not_zero+1)
+    if zero < not_zero:
+        print(2, zero+1, not_zero+1)
+    else:
+        print(2, not_zero+1, zero+1)
+    exit()
+
+## 重複を調べる
+A_sorted = sorted(A)
+dup = None
+pre = None
+for n in A_sorted:
+    if pre == n:
+        dup = n
+        break
+    pre = n
+
+if dup != None:
+    err("DUP")
+    print("Yes")
+    print(1, (fst:=A.index(dup))+1)
+    A[fst] = -1
+    print(1, A.index(dup)+1)
+    exit()
+
+### dpによる解法
 dp = init_array(N+1, 201)
 dp[0][0] = 1
 
@@ -49,9 +83,9 @@ def dp_recover(last):
             C.append(c)
         else:
             C.append((c-A[i])%200)
-
+    
     B.reverse()
-    C.reverse()    
+    C.reverse()
 
     # 差分をとる
     B_diff = [(B[i+1]-B[i])%200 for i in range(N)]
