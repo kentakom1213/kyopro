@@ -1,84 +1,76 @@
 # SplayTreeで解く
 
-class SplayNode:
-    """スプレー木のノード
-    Attributes:
-        left, right, parent (SplayNode): 親と子のノード
-        size (int): 部分木のサイズ
-        value: 値
-    """
-    def __init__(self):
-        self.left = self.right = None
-        self.parent = None
-        self.size = 1
-        self.value = None
+# node: [left, right, parent, size, value]
+
+import sys
+def err(*args, **kwargs): print(*args, **kwargs, file=sys.stderr)
+
+def rotate(node):
+    p = node[2]
+    pp = p[2]
+
+    if p[0] == node:
+        c = node[1]
+        node[1] = p
+        p[0] = c
+    else:
+        c = node[0]
+        node[0] = p
+        p[1] = c
+
+    if pp and pp[0] == p:
+        pp[0] = node
+    if pp and pp[1] == p:
+        pp[1] = node
     
-    def rotate(self):
-        p = self.parent
-        pp = p.parent
+    node[2] = pp
+    p[2] = node
+    if c:
+        c[2] = p
+    
+    # 下から順にupdate
+    update(p)
+    update(node)
 
-        if p.left == self:
-            c = self.right
-            self.right = p
-            p.left = c
-        else:
-            c = self.left
-            self.left = p
-            p.right = c
-
-        if pp and pp.left == p:
-            pp.left = self
-        if pp and pp.right == p:
-            pp.right = self
-        
-        self.parent = pp
-        p.parent = self
-        if c:
-            c.parent = p
-        
-        # 下から順にupdate
-        p.update()
-        self.update()
-
-    def state(self):
-        if self.parent == None:
-            return 0
-        if self.parent.left == self:
-            return 1
-        if self.parent.right == self:
-            return -1
+def state(node):
+    if node[2] == None:
         return 0
+    if node[2][0] == node:
+        return 1
+    if node[2][1] == node:
+        return -1
+    return 0
 
-    def splay(self):
-        while self.state() != 0:
-            if self.parent.state() == 0:
-                self.rotate()
-            elif self.state() == self.parent.state():
-                self.parent.rotate()
-                self.rotate()
-            else:
-                self.rotate()
-                self.rotate()
+def splay(node):
+    while state(node) != 0:
+        if state(node[2]) == 0:
+            rotate(node)
+        elif state(node) == state(node[2]):
+            rotate(node[2])
+            rotate(node)
+        else:
+            rotate(node)
+            rotate(node)
 
-    def update(self):
-        self.size = 1
-        if self.left:
-            self.size += self.left.size
-        if self.right:
-            self.size += self.right.size
+def update(node):
+    node[3] = 1
+    if node[0]:
+        node[3] += node[0][3]
+    if node[1]:
+        node[3] += node[1][3]
 
 
 def get(ind, root):
     while True:
-        lsize = root.left.size if root.left else 0
+        lsize = root[0][3] if root[0] else 0
         if ind < lsize:
-            root = root.left
+            root = root[0]
         if ind == lsize:
-            root.splay()
+            splay(root)
             return root
         if ind > lsize:
-            root = root.right
-            ind = ind - lsize - 1
+            root = root[1]
+            ind -= lsize + 1
 
 
 if __name__ == "__main__":
@@ -88,23 +80,24 @@ if __name__ == "__main__":
     vecsize = 0
 
     # ノード作成
-    node = [SplayNode() for _ in range(220000)]
+    nodes = [[None, None, None, 1, None] for _ in range(200100)]
 
     # ノードをつなげる
     for i in range(Q):
-        node[i].parent = node[i+1]
-        node[i+1].left = node[i]
-        node[i+1].update()
+        nodes[i][2] = nodes[i+1]
+        nodes[i+1][0] = nodes[i]
+        update(nodes[i+1])
 
-    root = node[Q]
+    root = nodes[Q]
+    err(*nodes[:10], sep="\n")
 
     for q in queries:
         if q[0] == 0:
             root = get(vecsize, root)
             vecsize += 1
-            root.value = q[1]
+            root[4] = q[1]
         elif q[0] == 1:
             root = get(q[1], root)
-            print(root.value)
+            print(root[4])
         else:
             vecsize -= 1
