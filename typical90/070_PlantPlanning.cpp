@@ -12,5 +12,5 @@ int main() {
     int N; cin >> N;
     vector<pair<int, int>> plant(N);
 
-
+    
 }

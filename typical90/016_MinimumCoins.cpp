@@ -4,60 +4,23 @@
 // https://atcoder.jp/contests/typical90/tasks/typical90_p
 // ----------------------------------------
 
-// 硬貨はだいたい貪欲法
-// --> 騙された
-
-// #include <bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-
-// int main() {
-    // int N; cin >> N;
-    // vector<int> coins(3);
-    // for (int i = 0; i < 3; i++) cin >> coins[i];
-    // sort(coins.begin(), coins.end());
-
-//     int res = 0;
-    
-//     for (int i = 2; i >= 0; i--) {
-//         while (N >= coins[i]) {
-//             N -= coins[i];
-//             res++;
-//             printf("coin:%d, rest:%d\n", coins[i], N);
-//         }
-//     }
-//     printf("rest:%d\n", N);
-
-//     cout << res << endl;
-// }
-
-
-// 貪欲法 + 部分和 ?
-// コインが3つしかないのには意味がある
+// 選び方の総数
+// 9999個を3つの仕切りを用いて4分割する組合せの数に等しい
+// (9999+3)! / (9999! * 3!) =~ 10^12
 
 #include <bits/stdc++.h>
 using namespace std;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define ALL(A) A.begin(), A.end()
+#define initArray(name, h, w, v) vector<vector<long long>> name(h, vector<long long>(w, v));
 typedef long long ll;
+typedef pair<long long, long long> vec2;
+typedef vector<vector<int>> Array;
+template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
+template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 
 int main() {
-    int n, a, b, c; cin >> n >> a >> b >> c;
+    ll N; cin >> N;
+    ll A, B, C; cin >> A >> B >> C;
 
-    // N = Ax + By + Cz
-    // z = (N - Ax - By) / C
-
-    int P = 9999;
-    int res = P + 1;
-    for (int x = 0; x < P+1; x++) {
-        for (int y = 0; y < P+1; y++) {
-            int tmp = x * a + y * b;
-            if (tmp % c != 0 || tmp > n) {
-                continue;
-            }
-
-            int z = (n - tmp) / c;
-            res = min(res, x+y+z);
-        }
-    }
-
-    cout << res << endl;
 }
