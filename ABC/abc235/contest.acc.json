@@ -1,0 +1,82 @@
+{
+  "contest": {
+    "id": "abc235",
+    "title": "HHKB Programming Contest 2022（AtCoder Beginner Contest 235）",
+    "url": "https://atcoder.jp/contests/abc235"
+  },
+  "tasks": [
+    {
+      "id": "abc235_a",
+      "label": "A",
+      "title": "Rotate",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_a",
+      "directory": {
+        "path": "a",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_b",
+      "label": "B",
+      "title": "Climbing Takahashi",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_b",
+      "directory": {
+        "path": "b",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_c",
+      "label": "C",
+      "title": "The Kth Time Query",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_c",
+      "directory": {
+        "path": "c",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_d",
+      "label": "D",
+      "title": "Multiply and Rotate",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_d",
+      "directory": {
+        "path": "d",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_e",
+      "label": "E",
+      "title": "MST + 1",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_e",
+      "directory": {
+        "path": "e",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_f",
+      "label": "F",
+      "title": "Variety of Digits",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_f"
+    },
+    {
+      "id": "abc235_g",
+      "label": "G",
+      "title": "Gardens",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_g"
+    },
+    {
+      "id": "abc235_h",
+      "label": "Ex",
+      "title": "Painting Weighted Graph",
+      "url": "https://atcoder.jp/contests/abc235/tasks/abc235_h"
+    }
+  ]
+}
