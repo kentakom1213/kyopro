@@ -22,5 +22,5 @@ int main() {
     vector<vec2> points(n);
     rep(i, n) cin >> points[i].first >> points[i].second;
 
-
+    
 }
