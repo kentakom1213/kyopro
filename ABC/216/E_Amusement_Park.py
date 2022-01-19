@@ -1,33 +1,49 @@
-# E - Amusement Park
-# TLE
+#        E - Amusement Park
+# ----------------------------------------
+# 問題
+# https://atcoder.jp/contests/abc216/tasks/abc216_e
+# ----------------------------------------
 
-from bisect import bisect_left
-def mapl(func, iter): return list(map(func, iter))
+# 大きい方から貪欲に追加していく
+# 操作はN回以内に終了する
 
-# input
+from collections import defaultdict
+
 N, K = map(int, input().split())
-A = sorted(mapl(int, input().split()), reverse=True)
+A_vals = defaultdict(int)
+for i in input().split():
+    A_vals[int(i)] += 1
 
-result = 0
-while K > 0:
-    diff = A[0] - A[1]
-    if diff == 0:
-        result += A[0] * diff - diff * (diff + 1) / 2
-        K -= diff
+A = list(A_vals.items())
+A.sort()
+
+res = 0
+while len(A) >= 2 and K:
+    print(A)
+    cur, cnt = A.pop()
+    nxt, ncnt = A.pop()  # 次に大きい値
+
+    # curからnxtになるまでresを追加
+    # 追加する回数
+    n = (cur - nxt + 1) * cnt
+
+    if n <= K:
+        res += (cur + nxt) * (cur - nxt + 1) // 2
+        A.append((nxt, ncnt + cnt))
+        K -= n
     else:
-        pass
+        A = [(nxt, ncnt), (cur, cnt)]
+        break
 
+# Aは必ず要素を持つ
+cur, cnt = A.pop()
+n = cnt // K  # 加算できる回数
+res += (2 * cur - n) * n // 2
+K -= n
+cur -= n
 
-print(result)
+print(res)
+res += cur * K
 
-# # solve
-# result = 0
-# while K > 0 and A[-1] > 0:
-#     result += A[-1]
-#     A[-1] -= 1
-#     # A.insert(bisect_left(A, a), a)
-#     A.append(A.pop(-2))
-
-#     K -= 1
-#     # print(K, A, "->", result)  # test
-
+print(K)
+print(res)
