@@ -2,11 +2,9 @@
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/typical90/tasks/typical90_p
-// ----------------------------------------
 
-// 選び方の総数
-// 9999個を3つの仕切りを用いて4分割する組合せの数に等しい
-// (9999+3)! / (9999! * 3!) =~ 10^12
+// AC (解説)
+// ----------------------------------------
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,5 +20,16 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 int main() {
     ll N; cin >> N;
     ll A, B, C; cin >> A >> B >> C;
+    int MAX = 10000;
 
+    int ans = MAX;
+    rep(x, MAX) {
+        rep(y, MAX) {
+            ll Cz = N - A*x - B*y;
+            if (Cz % C != 0 || Cz < 0) continue;
+            int z = Cz / C;
+            ans = min(ans, x + y + z);
+        }
+    }
+    cout << ans << endl;
 }
