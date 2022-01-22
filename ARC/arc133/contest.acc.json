@@ -1,0 +1,65 @@
+{
+  "contest": {
+    "id": "arc133",
+    "title": "AtCoder Regular Contest 133",
+    "url": "https://atcoder.jp/contests/arc133"
+  },
+  "tasks": [
+    {
+      "id": "arc133_a",
+      "label": "A",
+      "title": "Erase by Value",
+      "url": "https://atcoder.jp/contests/arc133/tasks/arc133_a",
+      "directory": {
+        "path": "a",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc133_b",
+      "label": "B",
+      "title": "Dividing Subsequence",
+      "url": "https://atcoder.jp/contests/arc133/tasks/arc133_b",
+      "directory": {
+        "path": "b",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc133_c",
+      "label": "C",
+      "title": "Row Column Sums",
+      "url": "https://atcoder.jp/contests/arc133/tasks/arc133_c",
+      "directory": {
+        "path": "c",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc133_d",
+      "label": "D",
+      "title": "Range XOR",
+      "url": "https://atcoder.jp/contests/arc133/tasks/arc133_d",
+      "directory": {
+        "path": "d",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc133_e",
+      "label": "E",
+      "title": "Cyclic Medians",
+      "url": "https://atcoder.jp/contests/arc133/tasks/arc133_e"
+    },
+    {
+      "id": "arc133_f",
+      "label": "F",
+      "title": "Random Transition",
+      "url": "https://atcoder.jp/contests/arc133/tasks/arc133_f"
+    }
+  ]
+}
