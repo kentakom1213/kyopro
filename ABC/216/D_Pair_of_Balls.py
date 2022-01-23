@@ -1,15 +1,41 @@
-# D - Pair of Balls
+#          D - Pair of Balls
+# ----------------------------------------
+# 問題
+# https://atcoder.jp/contests/abc216/tasks/abc216_d
 
-from collections import deque
-def mapl(func, iter): return list(map(func, iter))
+# AC
+# ----------------------------------------
 
-# input
+# stackのtopをdictで管理する
+# どのスタックを選ぶかをqueueで管理
+
+from collections import deque, defaultdict
+
 N, M = map(int, input().split())
-K = []
-for _ in range(M):
+stacks = [[] for _ in range(M)]
+for i in range(M):
     input()
-    K.append( mapl(int, input().split()) )
+    stacks[i] = list(map(int, input().split()))
 
-# solve
+balls = [-1] * (N+1)
+q = deque(list(range(M)))
 
-## わからん
+
+while q:
+    stack_num = q.popleft()
+
+    top_ball = stacks[stack_num].pop()
+
+    # ballがtopに存在しているとき
+    if balls[top_ball] != -1:
+        N -= 1  # ボールが消える
+        # stackにまだボールがあるなら、queueに追加
+        poped = balls[top_ball]
+        if stacks[poped]:
+            q.append(poped)
+        if stacks[stack_num]:
+            q.append(stack_num)
+    else:
+        balls[top_ball] = stack_num
+    
+print("No" if N else "Yes")
