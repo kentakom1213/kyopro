@@ -2,8 +2,11 @@
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/arc103/tasks/arc103_a
+// 解説
+// https://blog.hamayanhamayan.com/entry/2018/09/30/002021
 
-// WA
+// 方針はあってたけど、ミスなく実装するのが至難の業
+// AC (解説)
 // ----------------------------------------
 
 // 奇数、偶数のインデックスについて調べる
@@ -19,6 +22,7 @@ typedef pair<int, int> vec2;
 typedef vector<vector<long long>> Array;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
+constexpr int INF = 1 << 30;
 
 int main() {
     int n; cin >> n;
@@ -32,20 +36,29 @@ int main() {
     }
 
     // それぞれのmapについて、(個数, 値)のペアを作成しソート
-    vector<vec2> nums;
-    for (auto [k, v] : even) nums.push_back(make_pair(v, k));
-    for (auto [k, v] : odd) nums.push_back(make_pair(v, -k));
+    vector<vec2> evenp, oddp;
+    for (auto [k, v] : even) evenp.push_back(make_pair(v, k));
+    for (auto [k, v] : odd) oddp.push_back(make_pair(v, k));
 
-    sort(ALL(nums), greater<vec2>());
+    sort(ALL(evenp), greater<vec2>());
+    sort(ALL(oddp), greater<vec2>());
 
-    // kが異なるものを異なるものを貪欲に選ぶ
-    // kはoddのものを負にしてある
-    vec2 evens = make_pair(-1, 0), odds = make_pair(-1, 0);
-    for (auto [v, k] : nums) {
-        if (k > 0 && k != odds.first) evens = make_pair(k, v);
-        if (k < 0 && -k != evens.first) odds = make_pair(-k, v);
+    // どちらも最適
+    if (evenp[0].second != oddp[0].second) {
+        int ans = n - evenp[0].first - oddp[0].first;
+        cout << ans << endl;
+        return 0;
     }
 
-    // 良い感じに処理
-    cout << n - evens.second - odds.second << endl;
+    // すべて同じ数
+    if (evenp.size() == 1 && oddp.size() == 1) {
+        int ans = n / 2;
+        cout << ans << endl;
+        return 0;
+    }
+
+    int ans = INF;
+    if (2 <= evenp.size()) chmin(ans, n - evenp[1].first - oddp[0].first);
+    if (2 <= oddp.size()) chmin(ans, n - evenp[0].first - oddp[1].first);
+    cout << ans << endl;
 }
