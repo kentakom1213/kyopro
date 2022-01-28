@@ -21,14 +21,14 @@ template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; r
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 constexpr int MOD = 998244353;
 
-template <typename T>
-void print_vector(vector<T>& vec) {
-  cerr << "[ ";
-  for (int i = 0; i < vec.size(); i++) {
-    if (i < vec.size() - 1) cerr << vec.at(i) << " ";
-    else cerr << vec.at(i);
-  }
-  cerr << " ]" << endl;
+ll pow_mod(ll a, ll n, ll mod) {
+    ll res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a % mod;
+        a = a * a % mod;
+        n >>= 1;
+    }
+    return res;
 }
 
 int main() {
@@ -36,18 +36,27 @@ int main() {
     vector<ll> D(N);
     rep(i, N) cin >> D[i];
 
-    // カウントしておく
+    // あらかじめカウントしておく
     map<ll, ll> cnt_V;
     rep(i, N) cnt_V[D[i]]++;
-
     ll max_depth = cnt_V.rbegin()->first;
 
-    // depth[i] := 高さNの辺の数 (% MOD)
-    vector<ll> depth(max_depth+1, 0);
-    depth[0] = 1;
-
-    range(i, 1, max_depth+1) {
-        depth[i] = depth[i-1] * cnt_V[i] % MOD;
-        print_vector(depth);
+    if (D[0] != 0 || cnt_V[0] != 1) {
+        cout << 0 << endl;
+        return 0;
     }
+
+    ll ans = 1;
+    range(i, 1, max_depth+1) {
+        if (cnt_V[i] == 0) {
+            cout << 0 << endl;
+            return 0;
+        }
+
+        ans *= pow_mod(cnt_V[i-1], cnt_V[i], MOD);
+        ans %= MOD;
+    }
+
+    cout << ans << endl;
+    return 0;
 }
