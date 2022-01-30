@@ -1,4 +1,5 @@
 
+# 隣接リストの実装
 class Cell:
     def __init__(self, val):
         self.val = val
@@ -6,7 +7,7 @@ class Cell:
         self.next = None
 
     def __repr__(self):
-        return f"Cell({self.val} {self.prev.val} {self.next.val})"
+        return f"Cell({self.val}, prev:{self.prev.val if self.prev else None}, next:{self.next.val if self.next else None})"
 
 class LinkedList:
     def __init__(self, head):
@@ -14,9 +15,10 @@ class LinkedList:
     
     def insert_left(self, next, item):
         if self.head == next:
-            self.head == item
-        if next.prev:
+            self.head = item
+        else:
             item.prev = next.prev
+            next.prev.next = item
         next.prev = item
         item.next = next
     
@@ -28,8 +30,9 @@ class LinkedList:
     
     def traverse(self):
         now = self.head
-        while now.val:
-            print(now.val)
+        while now != None:
+            print(now.val, end=" ")
+            # print(now)
             now = now.next
 
 if __name__ == "__main__":
@@ -46,6 +49,5 @@ if __name__ == "__main__":
         else:
             linked_list.insert_right(now, item)
         now = item
-        print(now)
-    
+
     linked_list.traverse()
