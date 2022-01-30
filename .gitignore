@@ -20,3 +20,4 @@ paiza/
 # atcoder-cli / online-judge-tools
 test/
 node_modules/
+contest.acc.json
