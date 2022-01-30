@@ -1,0 +1,82 @@
+{
+  "contest": {
+    "id": "abc237",
+    "title": "AtCoder Beginner Contest 237",
+    "url": "https://atcoder.jp/contests/abc237"
+  },
+  "tasks": [
+    {
+      "id": "abc237_a",
+      "label": "A",
+      "title": "Not Overflow",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_a",
+      "directory": {
+        "path": "a",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc237_b",
+      "label": "B",
+      "title": "Matrix Transposition",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_b",
+      "directory": {
+        "path": "b",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc237_c",
+      "label": "C",
+      "title": "kasaka",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_c",
+      "directory": {
+        "path": "c",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc237_d",
+      "label": "D",
+      "title": "LR insertion",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_d",
+      "directory": {
+        "path": "d",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc237_e",
+      "label": "E",
+      "title": "Skiing",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_e",
+      "directory": {
+        "path": "e",
+        "testdir": "test",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc237_f",
+      "label": "F",
+      "title": "|LIS| = 3",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_f"
+    },
+    {
+      "id": "abc237_g",
+      "label": "G",
+      "title": "Range Sort Query",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_g"
+    },
+    {
+      "id": "abc237_h",
+      "label": "Ex",
+      "title": "Hakata",
+      "url": "https://atcoder.jp/contests/abc237/tasks/abc237_h"
+    }
+  ]
+}
