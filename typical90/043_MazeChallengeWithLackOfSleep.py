@@ -14,4 +14,5 @@ S = rs, cs = [int(v)-1 for v in input().split()]
 T = rt, ct = [int(v)-1 for v in input().split()]
 field = [list(map(int, input().split())) for _ in range(H)]
 
-
+def dijkstra(s):
+    
