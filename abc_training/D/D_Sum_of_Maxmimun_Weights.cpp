@@ -14,33 +14,52 @@ typedef pair<int, ll> vec2;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 
-ll ans = 0;
-vector<int> is_visited;
-vector<vector<vec2>> G;
+// Union-Find  (引用元: https://drken1215.hatenablog.com/entry/2021/07/28/014400)
+struct UnionFind {
+    vector<int> par;
 
-void dfs(int cur, ll max_w, int depth) {
-    is_visited[cur] = 1;
-    for (auto [nxt, w] : G[cur]) {
-        if (is_visited[nxt]) continue;
-        chmax(max_w, w);
-        ans += max_w * depth;
-        dfs(nxt, max_w, depth+1);
-        cerr << cur << " -> " << nxt << ": " << max_w << " * " << depth << endl;
+    UnionFind() { }
+    UnionFind(int n) : par(n, -1) { }
+    void init(int n) { par.assign(n, -1); }
+    
+    int root(int x) {
+        if (par[x] < 0) return x;
+        else return par[x] = root(par[x]);
     }
-}
+    
+    bool issame(int x, int y) {
+        return root(x) == root(y);
+    }
+    
+    bool merge(int x, int y) {
+        x = root(x); y = root(y);
+        if (x == y) return false;
+        if (par[x] > par[y]) swap(x, y); // merge technique
+        par[x] += par[y];
+        par[y] = x;
+        return true;
+    }
+    
+    int size(int x) {
+        return -par[root(x)];
+    }
+};
 
 int main() {
     int N; cin >> N;
-    G.assign(N, vector<vec2>());
-    rep(i, N-1) {
-        int u, v; cin >> u >> v;
+    vector<tuple<int, int, int>> edge(N-1);
+    for (auto& [w, u, v] : edge) {
+        cin >> u >> v >> w;
         u--, v--;
-        ll w; cin >> w;
-        G[u].push_back(make_pair(v, w));
-        G[v].push_back(make_pair(u, w));
     }
 
-    is_visited.assign(N, 0);
-    dfs(0, 0, 1);
+    sort(ALL(edge));
+    UnionFind uf(N);
+    ll ans = 0;
+    for (auto [w, u, v] : edge) {
+        ans += w * uf.size(u) * uf.size(v);
+        uf.merge(u, v);
+    }
+
     cout << ans << endl;
 }
