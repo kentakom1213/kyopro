@@ -4,7 +4,10 @@
 # https://atcoder.jp/contests/typical90/tasks/typical90_aq
 # ----------------------------------------
 
-from heapq import heappush, heappop
+# 01-BFS
+
+from collections import deque
+
 INF = 1e20
 AROUND = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # [right, down, left, up]
 
@@ -13,23 +16,23 @@ sr, sc = map(int, input().split()); sr-=1; sc-=1
 tr, tc = map(int, input().split()); tr-=1; tc-=1
 field = [input() for _ in range(H)]
 
-# dijkstra
+
 dist = [[INF]*W for _ in range(H)]
 dist[sr][sc] = 0
 
-pq = [(0, sr, sc, 0), (0, sr, sc, 1), (0, sr, sc, 2), (0, sr, sc, 3)]  # priority_queue
-while pq:
-    w, r, c, direct = heappop(pq)
-
-    if dist[r][c] < w:
-        continue
-
-    for nxt_direct, (dr, dc) in enumerate(AROUND):
+# bfs
+q = deque([(sr, sc)])
+while q:
+    r, c = q.popleft()
+    nd = dist[r][c] + 1
+    for i, (dr, dc) in enumerate(AROUND):
         nr, nc = r+dr, c+dc
-        cost = 1 if direct != nxt_direct else 0
-        if 0 <= nr < H and 0 <= nc < W and field[nr][nc] == ".":
-            if dist[nr][nc] > dist[r][c] + cost:
-                dist[nr][nc] = dist[r][c] + cost
-                heappush(pq, (dist[nr][nc], nr, nc, nxt_direct))
+        while 0 <= nr < H and 0 <= nc < W and field[nr][nc] == "." and dist[nr][nc] >= nd:
+            dist[nr][nc] = nd
+            q.append((nr, nc))
+            nr += dr
+            nc += dc
 
-print(dist[tr][tc])
+    # print(*dist, sep="\n", end="\n\n")
+
+print(dist[tr][tc]-1)
