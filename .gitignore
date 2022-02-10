@@ -21,3 +21,12 @@ paiza/
 test/
 node_modules/
 contest.acc.json
+
+# ヒューリスティック
+*.dSYM/
+# tools/
+in/
+Cargo.lock
+debug/
+target/
+**/*.rs.bk
