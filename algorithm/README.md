@@ -72,6 +72,8 @@
 - [x] UnionFind木
 - [x] 二分探索木
 - [ ] セグメント木
+    - [x] RangeSumQuery
+    - [ ] RangeMinimumQuery
 - [ ] BinaryIndexedTree (BIT)
 - [ ] 平衡二分探索木
     - [ ] Splay木
