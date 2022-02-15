@@ -4,13 +4,9 @@
 // https://atcoder.jp/contests/arc126/tasks/arc126_a
 // ----------------------------------------
 
-// 2, 3, 4の和から10をつくる組合せ
-// 10 = 2+2+2+2+2
-//    = 2+2+2+4
-//    = 2+2+3+3
-//    = 2+4+4
-//    = 3+3+4
+// T <= 100
 
+// 3は必ずペアにして使う必要がある
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -23,17 +19,17 @@ typedef vector<vector<int>> Array;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 
-ll make10(ll n2, ll n3, ll n4) {
-
-}
-
 int main() {
     int T; cin >> T;
-    vector<ll> res(T);
-    rep(i, T) {
-        ll n2, n3, n4; cin >> n2 >> n3 >> n4;
-        res[i] = make10(n2, n3, n4);
+    while(T--) {
+        ll n2, n3, n4, ans; cin >> n2 >> n3 >> n4;
+        ll rem_n4 = n4 - n3/2;
+        ll rem_n2 = n2 + rem_n4;
+        if (rem_n2 <= 0 || rem_n4 <= 0) {
+            cout << n4 + n2/2 << endl;
+        } else {
+            
+        }
     }
 
-    rep(i, T) cout << res[i] << endl;
 }
