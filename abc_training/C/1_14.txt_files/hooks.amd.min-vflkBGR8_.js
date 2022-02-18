@@ -1,0 +1,2 @@
+define(["require","exports","typescript/component_libraries/files_components/src/right-rail/context","react"],(function(e,t,n,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useIsExpanded=void 0,t.useIsExpanded=e=>{const{expandedBlade:t}=r.useContext(n.ExpandedRightRailContext);return e===t}}));
+//# sourceMappingURL=hooks.amd.min.js-vflpervpJ.map

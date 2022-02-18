@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.transformFileViewerSdkUrlToDownloadUrl=void 0,r.transformFileViewerSdkUrlToDownloadUrl=e=>{const r=new URL(e);return r.searchParams.set("dl","1"),r.href}}));
+//# sourceMappingURL=shared_link_url.min.js-vflKscdOa.map

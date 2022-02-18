@@ -1,0 +1,2 @@
+define(["require","exports","typescript/libraries/file-viewer/src/sidebar_v2/right_rail"],(function(e,i,r){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.PreviewRightRail=void 0,Object.defineProperty(i,"PreviewRightRail",{enumerable:!0,get:function(){return r.PreviewRightRail}})}));
+//# sourceMappingURL=index.amd.min.js-vflTrLwjT.map

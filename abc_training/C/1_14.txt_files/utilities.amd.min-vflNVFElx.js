@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.COMPONENT_CLASS_NAME=void 0,t.COMPONENT_CLASS_NAME="sc-annotation-instructional-tooltip-pane"}));
+//# sourceMappingURL=utilities.amd.min.js-vflJ9_Lam.map

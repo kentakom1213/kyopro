@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react","typescript/libraries/file-viewer/src/plugins/index"],(function(e,r,t,a,i){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.WatermarkingControl=void 0,a=t.__importDefault(a),r.WatermarkingControl=e=>{const{platform:{intl:r}}=e;return a.default.createElement(i.BasePluginSidebarControl,Object.assign({iconId:"watermarking",label:r.formatMessage({id:"zeypAU",defaultMessage:"Watermark"})},e))},r.WatermarkingControl.displayName="WatermarkingControl"}));
+//# sourceMappingURL=watermarking_control.amd.min.js-vflcu1RF7.map

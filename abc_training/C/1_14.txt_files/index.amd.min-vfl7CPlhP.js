@@ -1,0 +1,2 @@
+define(["require","exports","typescript/libraries/file-viewer/src/zoom/plugin/loader","typescript/libraries/file-viewer/src/zoom/plugin/plugin"],(function(e,r,i,o){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.ZOOM_PLUGIN_ID=r.makeZoomPluginLoader=void 0,Object.defineProperty(r,"makeZoomPluginLoader",{enumerable:!0,get:function(){return i.makeZoomPluginLoader}}),Object.defineProperty(r,"ZOOM_PLUGIN_ID",{enumerable:!0,get:function(){return o.ZOOM_PLUGIN_ID}})}));
+//# sourceMappingURL=index.amd.min.js-vflsPrfGm.map

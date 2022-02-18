@@ -1,0 +1,2 @@
+define(["require","exports","tslib"],(function(e,i,r){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.makeLoader=void 0,i.makeLoader=function(i,t={}){const n=(()=>{let n=null;return()=>r.__awaiter(this,void 0,void 0,(function*(){if(null==n){const{makeLoader:o}=yield new Promise((i,r)=>{e(["typescript/libraries/file-viewer/src/comments2/plugin/loader/eager"],i,r)}).then(r.__importStar);n=o(i,t)}return n}))})();return e=>r.__awaiter(this,void 0,void 0,(function*(){return(yield n())(e)}))}}));
+//# sourceMappingURL=lazy.amd.min.js-vflh697Yw.map

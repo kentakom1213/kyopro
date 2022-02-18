@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react"],(function(e,t,r,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.LeaveActiveModeWrapper=t.LeaveActiveModeWrapperContext=void 0,a=r.__importStar(a),t.LeaveActiveModeWrapperContext=a.createContext({signalClick:()=>{}}),t.LeaveActiveModeWrapper=({children:e})=>a.createElement(t.LeaveActiveModeWrapperContext.Consumer,null,({signalClick:t})=>a.createElement("span",{onClick:t},e)),t.LeaveActiveModeWrapper.displayName="LeaveActiveModeWrapper"}));
+//# sourceMappingURL=leave_active_mode_wrapper.amd.min.js-vflzp470G.map

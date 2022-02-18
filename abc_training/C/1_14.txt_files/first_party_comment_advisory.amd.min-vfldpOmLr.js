@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react"],(function(t,e,r,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.FirstPartyCommentAdvisory=void 0,o=r.__importStar(o),e.FirstPartyCommentAdvisory=({thirdPartySource:t,intl:e})=>t?o.createElement(o.Fragment,null,e.formatMessage({id:"62pp19",defaultMessage:"Comment will only post to Dropbox."})):null,e.FirstPartyCommentAdvisory.displayName="FirstPartyCommentAdvisory"}));
+//# sourceMappingURL=first_party_comment_advisory.amd.min.js-vfl2F5k-W.map

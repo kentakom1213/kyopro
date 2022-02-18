@@ -1,0 +1,2 @@
+define(["require","exports","typescript/component_libraries/files_components/src/blades/info_blade/data/store"],(function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.getFileUploadInfoForId=t.getFileContentMetadataForId=t.getInfoBladeState=void 0,t.getInfoBladeState=e=>e[o.INFO_BLADE_NAMESPACE_KEY],t.getFileContentMetadataForId=(e,t)=>{var o;return(null===(o=e.fileContentMetadata[t])||void 0===o?void 0:o.metadata)||null},t.getFileUploadInfoForId=(e,t)=>e.uploadInfo[t]||null}));
+//# sourceMappingURL=selectors.amd.min.js-vflbnjaJe.map

@@ -1,0 +1,2 @@
+define(["require","exports","tslib","dig-experimental/accordion/accordion"],(function(e,r,i,t){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),i.__exportStar(t,r)}));
+//# sourceMappingURL=index.amd.min.js-vflzNzlUC.map

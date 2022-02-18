@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.COMMENTS_PLUGIN_ID=void 0,t.COMMENTS_PLUGIN_ID="comments"}));
+//# sourceMappingURL=types.amd.min.js-vflVinOAw.map

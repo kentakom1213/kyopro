@@ -1,0 +1,2 @@
+define(["require","exports"],(function(E,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.PageRotation=void 0,(function(E){E[E.NINETY_DEGREES=0]="NINETY_DEGREES",E[E.ONE_EIGHTY_DEGREES=1]="ONE_EIGHTY_DEGREES",E[E.TWO_SEVENTY_DEGREES=2]="TWO_SEVENTY_DEGREES"})(e.PageRotation||(e.PageRotation={}))}));
+//# sourceMappingURL=document_actions.min.js-vflxHpAXW.map

@@ -1,0 +1,2 @@
+define(["require","exports","api_v2/redux/files","typescript/component_libraries/files_components/src/blades/info_blade/data/selectors","react","react-redux"],(function(e,t,o,r,s,i){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useUploadInfo=void 0,t.useUploadInfo=({fileId:e,sharedLinkURL:t})=>{const a=i.useSelector(t=>r.getFileUploadInfoForId(r.getInfoBladeState(t),e)),d=i.useDispatch();return s.useEffect(()=>{d(o.getUploadInfoAction({arg:{file_path_or_id:e,url:t}}))},[e,d,t]),a}}));
+//# sourceMappingURL=hooks.amd.min.js-vflZNTt_l.map

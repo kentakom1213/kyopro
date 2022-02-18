@@ -1,0 +1,2 @@
+define(["require","exports","spectrum-sharing/utils/sharing_constants","modules/clean/cloud_docs/shared_components/routing","modules/clean/file_store/utils"],(function(e,i,n,o,t){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.makeCloudDocsClient=void 0,i.makeCloudDocsClient=function(e,i,l){const s=!!l&&l.linkType===n.SharedLinkType.Shmodel;return{triggerDynamicRoutingModalCheck:()=>{const n=i();n.file.file_id&&!s&&o.maybeShowDynamicRoutingModal(e,n.file,t.getExtension(n.file))}}}}));
+//# sourceMappingURL=cloud_docs.min.js-vfl3jVS8T.map

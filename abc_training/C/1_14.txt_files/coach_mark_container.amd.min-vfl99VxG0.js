@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react","classnames"],(function(e,t,a,r,c){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CoachMarkContainer=void 0,r=a.__importStar(r),c=a.__importDefault(c),t.CoachMarkContainer=function(e){const t=c.default("sc-comment-editor-coach-mark-container",e.className);return r.createElement("div",{className:t},e.children)}}));
+//# sourceMappingURL=coach_mark_container.amd.min.js-vflZ1bznH.map

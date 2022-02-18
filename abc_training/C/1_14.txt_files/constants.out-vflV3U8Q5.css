@@ -1,0 +1,2 @@
+:root{--paneStackWidth:336px;--paneStackWidthRightRail:329px;--controlListWidth:56px;--controlListWidthRightRail:57px;--controlListExpandedWidth:172px;--sidebarBorderWidth:1px;--totalWidthClosed:calc(var(--controlListWidth) + var(--sidebarBorderWidth));--totalWidthOpen:calc(var(--controlListWidth) + var(--paneStackWidth) + var(--sidebarBorderWidth));--controlIconSize:32px;--controlButtonSize:32px;--titleBarHeight:63px;--sidebarResponsiveBreakpoint:600px;--rightRailResponsiveBreakpoint:768px}
+/*# sourceMappingURL=constants.out.css.map */

@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react","typescript/libraries/comments2/src/components/annotation_utils"],(function(t,e,n,i,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.renderAnnotationHighlightDraft=void 0,i=n.__importStar(i),e.renderAnnotationHighlightDraft=function(t){return t.highlight.map((t,e)=>i.createElement("div",{key:`sc-annotation-highlight-draft-${e}`,style:r.toRectangleStyle(t),className:"sc-annotation-highlight-segment-draft"}))}}));
+//# sourceMappingURL=index.amd.min.js-vfl6sV6Bp.map

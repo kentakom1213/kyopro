@@ -1,0 +1,2 @@
+define(["require","exports","typescript/libraries/file-viewer/src/core/data/selectors","typescript/libraries/file-viewer/src/core/utils/support"],(function(e,r,i,t){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.getCurrentPreviewType=void 0,r.getCurrentPreviewType=(e,{fileViewerId:r})=>{const l=i.getCurrentFile(e,r);return null==l||null==l.file_id?null:t.resolvePreviewType(e.previewData[l.previewKey.serialized])}}));
+//# sourceMappingURL=preview_type.amd.min.js-vfl0b4o9p.map

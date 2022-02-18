@@ -1,0 +1,2 @@
+define(["require","exports","dig-experimental/accordion/wrapper","dig-experimental/accordion/item","dig-experimental/accordion/panel","dig-experimental/accordion/header"],(function(e,r,i,a,d,n){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.Accordion=void 0,r.Accordion={Wrapper:i.Wrapper,Item:a.Item,Header:n.Header,Panel:d.Panel}}));
+//# sourceMappingURL=accordion.amd.min.js-vflhLINcK.map

@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.setApprovalForm=r.approvalReducer=r.Action=void 0,(r.Action||(r.Action={})).SetApprovalForm="@@approval/setApprovalForm",r.approvalReducer=(e={},{type:o,payload:t})=>{switch(o){case r.Action.SetApprovalForm:return Object.assign(Object.assign({},e),t);default:return e}},r.setApprovalForm=function(e){return{type:r.Action.SetApprovalForm,payload:e}}}));
+//# sourceMappingURL=reducer.amd.min.js-vflzNXtog.map

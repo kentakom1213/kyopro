@@ -1,0 +1,8 @@
+/** @generated -- This file is automatically synced from dig-illustrations@1.6.0. DO NOT MODIFY! **/
+
+/**
+  This file should not be imported into your CSS or SASS files - the CSS variables will be available on the page for you to use.
+  DO NOT USE THIS FILE OR THE CSS VARIABLE TOKENS WITHOUT FIRST TALKING TO THE DESIGN SYSTEMS ON-CALL (SEE #design-systems ON SLACK)
+**/
+
+:root{--color__illustration__dynamicline:#1e1919;--color__illustration__lightline:#f7f5f2}.dig-Theme--dark{--color__illustration__dynamicline:#f7f5f2}.dig-Illustration{color:var(--color__illustration__dynamicline);height:100%;width:100%}.dig-Illustration.dig-Illustration--inverse{color:var(--color__illustration__lightline)}.dig-Illustration-spot{min-height:200px}.dig-Illustration-hero{min-height:338px}

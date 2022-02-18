@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,o){"use strict";var r,a;Object.defineProperty(o,"__esModule",{value:!0}),o.SizeClass=o.DisplayMode=o.MAX_FACES=o.OVERFLOW=void 0,o.OVERFLOW="overflow",o.MAX_FACES=5,(r=o.DisplayMode||(o.DisplayMode={}))[r.Auto=1]="Auto",r[r.ForceShow=2]="ForceShow",r[r.ForceHide=3]="ForceHide",r[r.Hover=4]="Hover",(a=o.SizeClass||(o.SizeClass={}))[a.Small=0]="Small",a[a.Medium=1]="Medium",a[a.Large=2]="Large",a[a.ExtraLarge=3]="ExtraLarge"}));
+//# sourceMappingURL=types.amd.min.js-vflKr8nLC.map

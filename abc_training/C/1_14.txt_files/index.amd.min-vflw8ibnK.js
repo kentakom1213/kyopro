@@ -1,0 +1,2 @@
+define(["require","exports","tslib","typescript/component_libraries/files_components/src/blades/file_activity/data/store","typescript/component_libraries/files_components/src/blades/file_activity/component/file_activity_blade"],(function(e,t,i,r,s){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),i.__exportStar(r,t),i.__exportStar(s,t)}));
+//# sourceMappingURL=index.amd.min.js-vflAsD6uN.map

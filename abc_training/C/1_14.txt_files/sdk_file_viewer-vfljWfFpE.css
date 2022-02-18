@@ -1,0 +1,52 @@
+:root {
+    /* Matching $file_viewer_z_index in legacy file-viewer */
+    --file_viewer_z_index: 500;
+    --file_viewer_modal_overlay_z_index: 501;
+}
+
+.fvsdk-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--file_viewer_z_index);
+}
+
+.fvsdk-embed-viewport {
+    position: relative;
+}
+
+.fvsdk-mount-point {
+    flex: 1;
+    overflow: hidden;
+}
+
+.file-viewer-modal-overlay.mc-modal-overlay {
+    z-index: var(--file_viewer_modal_overlay_z_index);
+}
+
+.close-comment-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.maestro .snackbar-title__link-url input {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--color__inverse__standard__text);
+}
+
+.maestro .snackbar-title__link-url input,
+.maestro .snackbar-title__link-url input:focus {
+    border: none;
+    outline: none;
+}

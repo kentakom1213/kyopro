@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react"],(function(e,t,o,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useBasicCommentsBladeContext=t.BasicCommentsBladeContext=void 0,n=o.__importStar(n),t.BasicCommentsBladeContext=n.default.createContext(void 0),t.useBasicCommentsBladeContext=function(){const e=n.useContext(t.BasicCommentsBladeContext);if(!e)throw new Error("BasicCommentsBladeContext should be provided");return e}}));
+//# sourceMappingURL=context.amd.min.js-vfl0smeUm.map

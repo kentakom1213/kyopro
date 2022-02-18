@@ -1,0 +1,2 @@
+define(["require","exports","tslib","typescript/libraries/file-viewer/src/comments2/plugin/index"],(function(e,i,r,t){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.makeLoader=void 0,i.makeLoader=function(e,i={}){return n=>r.__awaiter(this,void 0,void 0,(function*(){return class extends t.Comments2Plugin{constructor(r){super(n,r,i,e)}}}))}}));
+//# sourceMappingURL=eager.amd.min.js-vfleGM3dY.map

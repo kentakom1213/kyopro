@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react"],(function(e,t,d,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CollapsedRightRailContext=t.ExpandedRightRailContext=t.defaultExpandedContext=void 0,a=d.__importStar(a),t.defaultExpandedContext={expandedBlade:""},t.ExpandedRightRailContext=a.createContext(t.defaultExpandedContext),t.CollapsedRightRailContext=a.createContext({})}));
+//# sourceMappingURL=context.amd.min.js-vflrGneJW.map

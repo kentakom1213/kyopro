@@ -1,0 +1,2 @@
+define("spectrum/util/uuid_generator",["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.generateUUID=void 0,t.generateUUID=function(e){const t=()=>Math.floor(65536*(1+Math.random())).toString(16).substring(1);return`${e}-${t()+t()+t()+t()}`}}));
+//# sourceMappingURL=pkg-spectrum-uuid.min.js-vflD8G1hh.map

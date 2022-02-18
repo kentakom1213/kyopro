@@ -1,0 +1,2 @@
+define(["require","exports","tslib","modules/core/browser","modules/core/uri"],(function(e,n,t,r,i){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.getSignInAndContinueUrl=void 0,r=t.__importStar(r),n.getSignInAndContinueUrl=function(e={}){const n=Object.assign(Object.assign({},e.additionalQuery),{cont:e.cont?e.cont:r.get_href()});return e.register_cont&&(n.register_cont=e.register_cont),e.signupTag&&(n.signup_tag=e.signupTag),new i.URI({path:"/login",query:n}).toString()}}));
+//# sourceMappingURL=utils.min.js-vfl6ChI2U.map

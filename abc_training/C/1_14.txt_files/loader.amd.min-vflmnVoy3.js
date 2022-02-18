@@ -1,0 +1,2 @@
+define(["require","exports","tslib","api_v2/redux/users","typescript/libraries/file-viewer/src/zoom/plugin/plugin","typescript/libraries/file-viewer/src/zoom/plugin/store"],(function(e,i,r,o,t,s){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.makeZoomPluginLoader=void 0,i.makeZoomPluginLoader=function(e){const i=s.makeStore(e);return i.dispatch(o.getCurrentAccountAction({arg:void 0})),e=>r.__awaiter(this,void 0,void 0,(function*(){return class extends t.ZoomPluginBase{constructor(r){super(e,i,r)}}}))}}));
+//# sourceMappingURL=loader.amd.min.js-vflYP3gVT.map

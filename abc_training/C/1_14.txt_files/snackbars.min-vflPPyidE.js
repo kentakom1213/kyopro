@@ -1,0 +1,2 @@
+define(["require","exports","modules/core/i18n","modules/clean/react/files_view/file_actions/snackbars","modules/clean/react/snackbar"],(function(e,a,r,s,o){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.saveCopyFailedSnackBar=a.saveCopySnackBarInProgress=void 0,a.saveCopySnackBarInProgress=e=>o.Snackbar.sync(r.intl.formatMessage({id:"Adz4fH",defaultMessage:"Saving to your personal Dropbox..."}),!1,e,!0),a.saveCopyFailedSnackBar=(e,a,r)=>o.Snackbar.fail(s.renameError(e.error,a),r)}));
+//# sourceMappingURL=snackbars.min.js-vflpw31Gc.map

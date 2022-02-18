@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react"],(function(e,t,n,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useTooltipPlacement=void 0,o=n.__importStar(o),t.useTooltipPlacement=function(){const[e,t]=o.useState("top");return{placement:e,onChangePlacement:o.useCallback(e=>{t(e)},[t])}}}));
+//# sourceMappingURL=hooks.amd.min.js-vflgaH0ea.map

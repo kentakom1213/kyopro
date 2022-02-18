@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,i){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.getImageDefaultSizes=i.DEFAULT_SIZES=void 0,i.DEFAULT_SIZES={size:1,minSize:.2,maxSize:5},i.getImageDefaultSizes=function(e,t){if(!e||!t)return i.DEFAULT_SIZES;const S=e.width/t.width,n=e.height/t.height,r=Math.max(S,n);if(r*i.DEFAULT_SIZES.maxSize<=.9)return i.DEFAULT_SIZES;const u=.9/r;return{size:u/5,minSize:u/25,maxSize:u}}}));
+//# sourceMappingURL=getImageDefaultSizes.amd.min.js-vfllCD3JQ.map

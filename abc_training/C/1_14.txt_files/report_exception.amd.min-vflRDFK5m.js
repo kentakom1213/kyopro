@@ -1,0 +1,2 @@
+define(["require","exports","tslib","typescript/libraries/file-viewer/src/core/data/actions"],(function(e,r,i,t){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.reportExceptionMiddleware=void 0,r.reportExceptionMiddleware=function(e){return()=>r=>o=>i.__awaiter(this,void 0,void 0,(function*(){return o.type===t.Action.ReportException&&e.reportException(o.payload.error,o.payload.fileType),r(o)}))}}));
+//# sourceMappingURL=report_exception.amd.min.js-vfll7kBht.map

@@ -1,0 +1,2 @@
+define(["require","exports","typescript/libraries/file-viewer/src/core/utils/index"],(function(e,r,i){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.isPreviewTypeSupported=void 0,Object.defineProperty(r,"isPreviewTypeSupported",{enumerable:!0,get:function(){return i.isPreviewTypeSupported}})}));
+//# sourceMappingURL=public_api.amd.min.js-vflHURfxC.map

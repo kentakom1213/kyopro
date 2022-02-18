@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ABOUT_PLUGIN_ID=void 0,t.ABOUT_PLUGIN_ID="documentation"}));
+//# sourceMappingURL=index.amd.min.js-vflwrzv4V.map

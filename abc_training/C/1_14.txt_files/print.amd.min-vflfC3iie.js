@@ -1,0 +1,2 @@
+define(["require","exports","tslib","typescript/libraries/file-viewer/src/core/data/actions","typescript/libraries/file-viewer/src/core/data/selectors"],(function(e,i,r,t,n){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.middleware=void 0,i.middleware=function(e){return({getState:i})=>o=>s=>r.__awaiter(this,void 0,void 0,(function*(){const r=o(s);if(s.type===t.Action.Print){const{fileViewerId:r,previewType:t}=s.payload,o=n.getPrintUrl(i(),{fileViewerId:r});e.print(o,t)}return r}))}}));
+//# sourceMappingURL=print.amd.min.js-vflQFDxg1.map
