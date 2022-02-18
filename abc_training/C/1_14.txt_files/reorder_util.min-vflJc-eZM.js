@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.reorder=void 0,r.reorder=(e,r,t,n)=>{const i=Array.from(e),l=[];for(let e=i.length-1;e>=0;e--)r.includes(e)&&l.unshift(i.splice(e,1)[0]);const o=Array.from(new Set(r)),s=o.filter(e=>e<t),f=+n,c=Math.max(s.length-f,0),d=Array.from({length:o.length},(e,r)=>r+t-c);return i.splice(d[0],0,...l),{result:i,indicesAfterDrag:d,afterIndex:(s.length>0?t+f:t)-1}}}));
-//# sourceMappingURL=reorder_util.min.js-vfl70L5IZ.map

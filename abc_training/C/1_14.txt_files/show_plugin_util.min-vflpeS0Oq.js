@@ -1,2 +1,0 @@
-define(["require","exports","modules/core/browser_detection","modules/clean/file_store/utils"],(function(e,t,i,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.showEditPlugin=void 0,t.showEditPlugin=e=>!!e&&((!e||"pdf"===o.getExtension(e))&&!i.is_tablet())}));
-//# sourceMappingURL=show_plugin_util.min.js-vflS5QsgO.map

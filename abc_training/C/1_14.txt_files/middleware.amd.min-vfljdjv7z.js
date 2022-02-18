@@ -1,2 +1,0 @@
-define(["require","exports","tslib","typescript/libraries/comments2/src/mentions/actions"],(function(e,t,r,i){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.middleware=void 0,t.middleware=function(e){return t=>t=>n=>r.__awaiter(this,void 0,void 0,(function*(){let r=t(n);if((function(e){return e.type===i.MentionsAction.SearchContacts})(n)){let o;try{o=i.searchContactsResult({query:n.payload,result:(yield e.search(n.payload))[n.payload]})}catch(e){return r}r=t(o)}return r}))}}));
-//# sourceMappingURL=middleware.amd.min.js-vflcQrtcH.map

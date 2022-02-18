@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,s){"use strict";Object.defineProperty(s,"__esModule",{value:!0}),s.ApprovalsFeedbackLoggingTableRow=void 0;s.ApprovalsFeedbackLoggingTableRow=class{constructor(e){this.category="web-approvals_feedback",this.user_id=null,this.is_feature_helpful=e.is_feature_helpful,this.feedback=e.feedback,this.timestamp=Date.now(),Object.seal(this)}}}));
-//# sourceMappingURL=web-approvals_feedback.min.js-vfl4kJ0Ar.map

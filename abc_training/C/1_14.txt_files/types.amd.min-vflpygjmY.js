@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,a){"use strict";var r;Object.defineProperty(a,"__esModule",{value:!0}),a.WorkflowsEvent=void 0,(r=a.WorkflowsEvent||(a.WorkflowsEvent={})).WatermarkApplySaveAsCopy="watermark_apply_save_as_copy",r.WatermarkCancel="watermark_cancel",r.WatermarkEnable="watermark_enable"}));
-//# sourceMappingURL=types.amd.min.js-vfl2OymaE.map

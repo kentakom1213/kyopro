@@ -1,2 +1,0 @@
-define(["require","exports","tslib","api_v2/user_client"],(function(e,i,t,n){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.getPageInfos=void 0,i.getPageInfos=function(e,i){return t.__awaiter(this,void 0,void 0,(function*(){const t=(new n.UserApiV2Client).ns("app_directory").rpc("list_page_info",{app_identifiers:e},{subjectUserId:i});return(yield t).page_infos}))}}));
-//# sourceMappingURL=client.min.js-vflSFOUNF.map

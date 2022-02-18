@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react","typescript/libraries/file-viewer/src/css/modes/sidebar/pane.css","classnames"],(function(e,a,s,r,t,i){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.Pane=void 0,r=s.__importStar(r),t=s.__importStar(t),i=s.__importDefault(i),a.Pane=e=>r.createElement("div",{role:"tabpanel",className:i.default(t.pane,e.className)},e.children),a.Pane.displayName="Pane"}));
-//# sourceMappingURL=pane.amd.min.js-vfl0HIT2x.map

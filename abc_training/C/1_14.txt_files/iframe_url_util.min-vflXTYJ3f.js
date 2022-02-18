@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.generateIframeUrl=r.generateIframeOrigin=void 0;r.generateIframeOrigin=e=>`https://${e}.processing.dropboxusercontent.com`,r.generateIframeUrl=e=>`${e}/c6c42fa07eaf9db544d8a631be2cf94342539ce011746533c2168b2edc654036/index.html`}));
-//# sourceMappingURL=iframe_url_util.min.js-vflF5_pnO.map

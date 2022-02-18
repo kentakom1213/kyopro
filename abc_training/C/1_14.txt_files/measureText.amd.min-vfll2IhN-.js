@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.measureText=void 0,t.measureText=(e,t,n,o,i=!1)=>{e.save(),e.font=`${n}px ${o}`;const u=e.measureText(t);return e.restore(),i?{width:u.width,height:u.actualBoundingBoxAscent+u.actualBoundingBoxDescent||n}:{width:u.width,height:u.fontBoundingBoxAscent+u.fontBoundingBoxDescent||n}}}));
-//# sourceMappingURL=measureText.amd.min.js-vflIGdMdO.map

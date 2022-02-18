@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react"],(function(e,t,i,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CoachmarkTarget=void 0,r=i.__importStar(r),t.CoachmarkTarget=e=>e.target===e.name?r.createElement("div",{ref:t=>{if(t&&!e.positions.target){const i=t.getBoundingClientRect();e.updatePosition({width:i.width,height:i.height,x:i.left,y:i.top})}}},e.children):r.Children.count(e.children)>0?r.createElement("div",null,e.children):null}));
-//# sourceMappingURL=coachmark_target.amd.min.js-vfllnmfBM.map

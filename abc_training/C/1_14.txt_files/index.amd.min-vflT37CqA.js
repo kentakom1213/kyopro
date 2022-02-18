@@ -1,2 +1,0 @@
-define(["require","exports","typescript/libraries/file-viewer/src/zoom/plugin/components/ZoomSidebar","typescript/libraries/file-viewer/src/zoom/plugin/components/ZoomControl"],(function(e,o,r,i){"use strict";Object.defineProperty(o,"__esModule",{value:!0}),o.ZoomControl=o.ZoomSidebar=void 0,Object.defineProperty(o,"ZoomSidebar",{enumerable:!0,get:function(){return r.ZoomSidebar}}),Object.defineProperty(o,"ZoomControl",{enumerable:!0,get:function(){return i.ZoomControl}})}));
-//# sourceMappingURL=index.amd.min.js-vflZJ1TQy.map

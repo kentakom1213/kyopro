@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,i){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.MAX_FILE_SIZE=void 0,i.MAX_FILE_SIZE=111e6}));
-//# sourceMappingURL=size_limit_constants.min.js-vflH44EkN.map

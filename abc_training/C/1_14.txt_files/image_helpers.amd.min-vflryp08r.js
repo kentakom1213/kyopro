@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,s){"use strict";Object.defineProperty(s,"__esModule",{value:!0}),s.preloadImage=void 0,s.preloadImage=function(e,s){return new Promise((r,t)=>{const o=Date.now(),n=new Image;n.onload=()=>{r({started:o,completed:Date.now()})},n.onerror=()=>{t({started:o,failed:Date.now()})},s&&(s.srcset&&(n.srcset=s.srcset),s.sizes&&(n.sizes=s.sizes)),n.src=e})}}));
-//# sourceMappingURL=image_helpers.amd.min.js-vflCe-tts.map

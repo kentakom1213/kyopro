@@ -1,2 +1,0 @@
-define(["require","exports","typescript/libraries/file-viewer/src/core/data/actions"],(function(e,i,r){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.middleware=void 0,i.middleware=function(e){return()=>i=>t=>(t.type===r.Action.TriggerDynamicRoutingModalCheck&&e.triggerDynamicRoutingModalCheck(),i(t))}}));
-//# sourceMappingURL=cloud_docs.amd.min.js-vfl5GgEmP.map

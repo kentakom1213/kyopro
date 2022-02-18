@@ -1,2 +1,0 @@
-define(["require","exports","typescript/libraries/file-viewer/src/plugins/index"],(function(e,r,i){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.getWatermarkScale=void 0;r.getWatermarkScale=e=>e===i.PreviewType.SsrDoc?300/72:1}));
-//# sourceMappingURL=getWatermarkScale.amd.min.js-vflznITcp.map

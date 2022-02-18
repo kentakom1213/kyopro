@@ -1,2 +1,0 @@
-define(["require","exports"],(function(t,n){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.getFrameRateFromMetadata=n.isEditingAnnotation=n.isAnnotating=void 0,n.isAnnotating=function(t){return"annotating"===t||"annotating-ax"===t},n.isEditingAnnotation=function(t){return"annotating"===t||"annotating-ax"===t||"commenting"===t},n.getFrameRateFromMetadata=function(t){if(null!=t)switch(t[".tag"]){case"video":return t.frame_rate;default:return}}}));
-//# sourceMappingURL=utils.amd.min.js-vflEcMt6c.map

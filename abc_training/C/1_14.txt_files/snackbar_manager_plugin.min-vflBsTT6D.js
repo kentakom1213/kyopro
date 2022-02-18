@@ -1,2 +1,0 @@
-define(["require","exports","modules/clean/react/snackbar"],(function(e,a,r){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.makeSnackbarManagerLoader=a.SNACKBAR_MANAGER_PLUGIN_ID=void 0,a.SNACKBAR_MANAGER_PLUGIN_ID="SNACKBAR_MANAGER",a.makeSnackbarManagerLoader=()=>()=>Promise.resolve(class{constructor(){this.isSnackbarVisible=()=>{var e;return!!(null===(e=r.Snackbar.manager)||void 0===e?void 0:e.state.displayedSnackbar)},this.lifecycle={}}})}));
-//# sourceMappingURL=snackbar_manager_plugin.min.js-vfleifY4Q.map

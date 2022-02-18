@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.getCurrentWatermarkOptions=t.isSupportedPreviewType=void 0;const r=[".pdf",".jpg",".jpeg",".png",".bmp"];t.isSupportedPreviewType=e=>r.includes(e),t.getCurrentWatermarkOptions=(e,t)=>{const{mode:r,textWatermarkOptions:i,imageWatermarkOptions:p}=t;return"image"===r[e]?p[e]:i[e]}}));
-//# sourceMappingURL=selectors.amd.min.js-vflMAg9Gn.map

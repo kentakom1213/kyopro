@@ -1,2 +1,0 @@
-define(["require","exports","tslib","classnames","react"],(function(e,a,r,t,d){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.Header=void 0,t=r.__importDefault(t),d=r.__importStar(d),a.Header=({className:e,children:a})=>d.createElement("div",{className:t.default("rc-right-rail-header-container",e)},a),a.Header.displayName="Header",a.Header.displayName="Header"}));
-//# sourceMappingURL=header.amd.min.js-vflngR2KS.map

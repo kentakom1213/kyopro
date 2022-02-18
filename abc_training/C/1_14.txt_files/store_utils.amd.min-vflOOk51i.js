@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.observeStore=void 0,t.observeStore=function(e,t,r,o){let s=o;const n=()=>{const o=t(e.getState());o!==s&&(r(s,o),s=o)},i=e.subscribe(n);return n(),i}}));
-//# sourceMappingURL=store_utils.amd.min.js-vfl_EvfMT.map

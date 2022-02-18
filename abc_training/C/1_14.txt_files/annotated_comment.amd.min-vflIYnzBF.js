@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react","typescript/libraries/comments2/src/components/comment/comment","typescript/libraries/comments2/src/components/comment/numbered_comment"],(function(e,t,n,m,o,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.AnnotatedComment=void 0,m=n.__importStar(m),t.AnnotatedComment=e=>{const t=e.annotation;return t&&"document"===t.type?m.createElement(r.NumberedComment,Object.assign({},e)):m.createElement(o.Comment,Object.assign({},e))}}));
-//# sourceMappingURL=annotated_comment.amd.min.js-vflYPtZrQ.map

@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react"],(function(e,t,o,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.AccordionItemContext=t.AccordionContext=void 0,n=o.__importStar(n);const r={expandedPanels:new Set([]),variant:"standard"};t.AccordionContext=n.createContext(r);t.AccordionItemContext=n.createContext({id:"",isActive:!1})}));
-//# sourceMappingURL=context.amd.min.js-vflvKlHDs.map

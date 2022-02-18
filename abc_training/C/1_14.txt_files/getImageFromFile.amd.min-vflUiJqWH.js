@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.getImageFromFile=void 0,r.getImageFromFile=e=>new Promise((r,n)=>{const o=new FileReader;o.addEventListener("load",()=>{if(null!=o.result){const e=new Image;e.onload=()=>{r(e)},e.onerror=e=>{n(e)},e.crossOrigin="anonymous",e.src=o.result}else n(new Error("File reader result was null"))}),o.addEventListener("error",e=>{n(e)}),o.readAsDataURL(e)})}));
-//# sourceMappingURL=getImageFromFile.amd.min.js-vflneRj_x.map

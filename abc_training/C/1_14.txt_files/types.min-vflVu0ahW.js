@@ -1,2 +1,0 @@
-define(["require","exports"],(function(O,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.TooltipState=void 0,(function(O){O[O.NO_TOOLTIP=0]="NO_TOOLTIP",O[O.BIG_ONBOARDING_TOOLTIP=1]="BIG_ONBOARDING_TOOLTIP",O[O.SMALL_TOOLTIP=2]="SMALL_TOOLTIP"})(e.TooltipState||(e.TooltipState={}))}));
-//# sourceMappingURL=types.min.js-vflCwwy78.map

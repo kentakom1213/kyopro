@@ -1,2 +1,0 @@
-define(["require","exports","modules/clean/unity/features"],(function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.portableOpenInDesktop=void 0,n.portableOpenInDesktop=function({nsId:e,nsPath:n,user:r},{onSuccess:s,onError:l}){t.UnityFeatures.open_file(e||null,n||"/",r.id,e=>(null==s||s(e),t.UnityFeatures.standard_open_file_handler(e)),e=>{null==l||l(e),t.UnityFeatures.standard_open_file_handler(!1)},!0)}}));
-//# sourceMappingURL=open_desktop.min.js-vfls7ZK3I.map

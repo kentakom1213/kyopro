@@ -1,2 +1,0 @@
-define(["require","exports"],(function(t,e){"use strict";var n;Object.defineProperty(e,"__esModule",{value:!0}),e.searchContactsResult=e.searchContacts=e.MentionsAction=void 0,(n=e.MentionsAction||(e.MentionsAction={})).SearchContacts="@@contacts/search",n.SearchContactsResult="@@contacts/searchResult",e.searchContacts=function(t){return{type:e.MentionsAction.SearchContacts,payload:t}},e.searchContactsResult=function(t){return{type:e.MentionsAction.SearchContactsResult,payload:t}}}));
-//# sourceMappingURL=actions.amd.min.js-vflyBgbv6.map

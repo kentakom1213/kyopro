@@ -1,2 +1,0 @@
-define(["require","exports","css!metaserver/static/js/typescript/libraries/file-viewer/src/css/layer.out.css"],(function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.interactable=r.layer=void 0,r.layer="_layer_1p757_1",r.interactable="_interactable_1p757_10";r.default={layer:"_layer_1p757_1",interactable:"_interactable_1p757_10"}}));
-//# sourceMappingURL=layer.css.min.js-vflqprkea.map

@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.toRadAngle=void 0,t.toRadAngle=e=>e/180*Math.PI}));
-//# sourceMappingURL=toRadAngle.amd.min.js-vflEv8nHN.map

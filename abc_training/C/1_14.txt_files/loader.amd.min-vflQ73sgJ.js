@@ -1,2 +1,0 @@
-define(["require","exports","tslib","typescript/libraries/file-viewer/src/watermarking/edit_plugin/plugin","typescript/libraries/file-viewer/src/watermarking/plugin/redux/index"],(function(e,r,i,t,a){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.makeWatermarkLoader=void 0,r.makeWatermarkLoader=(e,r)=>n=>i.__awaiter(void 0,void 0,void 0,(function*(){const i=a.makeStore({platformAdapter:n,logger:e,onWatermarkingSuccessHandler:r});return class extends t.WatermarkingPlugin{constructor(e){super(n,e,i)}}}))}));
-//# sourceMappingURL=loader.amd.min.js-vfl9EBwJI.map

@@ -1,2 +1,0 @@
-define(["require","exports","tslib","modules/core/exception"],(function(e,t,r,i){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.makeReportExceptionClient=void 0,i=r.__importStar(i),t.makeReportExceptionClient=function(){return{reportException:(e,t)=>i.reportException({err:e,severity:"critical",tags:["file-viewer",t]})}}}));
-//# sourceMappingURL=report_exception.min.js-vflFTka33.map

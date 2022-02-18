@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react"],(function(e,t,o,a){"use strict";var n;Object.defineProperty(t,"__esModule",{value:!0}),t.CommentStreamContext=t.CollapsedInteraction=void 0,a=o.__importDefault(a),(n=t.CollapsedInteraction||(t.CollapsedInteraction={})).LEAVE_COMMENT_CLICK="leave_comment_click",n.AVATAR_CLICK="avatar_click",t.CommentStreamContext=a.default.createContext({useV2Design:!1,showApproval:!1})}));
-//# sourceMappingURL=index.amd.min.js-vfln1Vr87.map

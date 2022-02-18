@@ -1,2 +1,0 @@
-define(["require","exports","modules/clean/previews/actions","typescript/libraries/file-viewer/src/plugins/types"],(function(e,i,r,t){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.makePrintClient=void 0,i.makePrintClient=function(){return{print:(e,i)=>{i===t.PreviewType.SsrDoc?r.docPrint(e):i===t.PreviewType.Image&&r.imagePrint(e)}}}}));
-//# sourceMappingURL=print.min.js-vflAJWfxo.map

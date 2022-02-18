@@ -1,2 +1,0 @@
-define(["require","exports","typescript/libraries/file-viewer/src/libraries/frame_messenger/index"],(function(e,s,r){"use strict";Object.defineProperty(s,"__esModule",{value:!0}),s.PreviewFrameMessengerHost=void 0;class t extends r.FrameMessengerHost{constructor(e){const s=e.map(e=>`https://${e}`);s.push("null"),s.push(RegExp(".*previews.*.dropboxusercontent.com")),super(s)}}s.PreviewFrameMessengerHost=t}));
-//# sourceMappingURL=frame_messenger_host.amd.min.js-vflVUesRZ.map

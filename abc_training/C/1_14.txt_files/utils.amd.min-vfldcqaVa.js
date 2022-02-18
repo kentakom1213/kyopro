@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,i){"use strict";function n(e){return void 0!==e&&("audio"===e.type||"video"===e.type)}Object.defineProperty(i,"__esModule",{value:!0}),i.isThreadWithTimecodeAnnotation=i.isTimecodeAnnotation=void 0,i.isTimecodeAnnotation=n,i.isThreadWithTimecodeAnnotation=function(e){const{annotation:i}=e;return!!i&&n(i)}}));
-//# sourceMappingURL=utils.amd.min.js-vfl6tAK70.map

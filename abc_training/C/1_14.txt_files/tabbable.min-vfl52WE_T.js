@@ -1,2 +1,0 @@
-define(["require","exports","tslib","jquery"],(function(e,i,t,n){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.initialize_module=void 0,n=t.__importDefault(n);class d{constructor(){d.initialized||this.listen()}listen(){d.initialized=!0,n.default(document).on("keydown",e=>{if(9===e.keyCode)return n.default(document.body).addClass("tabbing")}),n.default(document).on("mousedown",e=>n.default(document.body).removeClass("tabbing"))}}i.default=d,d.initialized=!1,i.initialize_module=function(){return new d}}));
-//# sourceMappingURL=tabbable.min.js-vfl4Vdkk-.map

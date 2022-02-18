@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react","typescript/libraries/file-viewer/src/pass/index"],(function(e,r,i,t,n){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.renderSidebarPASSFn=void 0,t=i.__importStar(t),r.renderSidebarPASSFn=(e,r)=>i=>{if(r.enable_pass&&!e.preview_page_revamp)return t.createElement(n.PASSModeButton,Object.assign({},i,{fileViewerId:i.fileViewerId,newUx:e.new_pass_ux}))}}));
-//# sourceMappingURL=render_sidebar_pass.amd.min.js-vfl6yxz07.map

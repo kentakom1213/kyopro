@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react","dig-components/buttons"],(function(t,e,o,s,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.PostButton=void 0,s=o.__importStar(s),e.PostButton=s.memo(({label:t,disabled:e,onClick:o,size:a,className:n})=>s.createElement(i.Button,{className:n,disabled:e,onClick:o,variant:"primary",size:a},t)),e.PostButton.displayName="PostButton"}));
-//# sourceMappingURL=post_button.amd.min.js-vflo2dMS3.map

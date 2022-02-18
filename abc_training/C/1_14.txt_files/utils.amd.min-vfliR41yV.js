@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react"],(function(e,t,o,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useLogComponentTTI=void 0,n=o.__importDefault(n),t.useLogComponentTTI=e=>{const t=n.default.useRef(performance.now()),[o,u]=n.default.useState(!1);n.default.useEffect(()=>{if(!o){const o=performance.now()-t.current;null==e||e(o),u(!0)}},[e,o])}}));
-//# sourceMappingURL=utils.amd.min.js-vflp6wJcC.map

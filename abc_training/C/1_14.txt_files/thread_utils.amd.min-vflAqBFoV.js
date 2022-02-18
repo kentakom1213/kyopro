@@ -1,2 +1,0 @@
-define(["require","exports"],(function(e,n){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.findCommentThread=void 0,n.findCommentThread=function(e,n){for(const o of e){const e=o.comments;for(const t of e)if(t.id===n)return{comment:t,thread:o}}return null}}));
-//# sourceMappingURL=thread_utils.amd.min.js-vflVU4Imc.map

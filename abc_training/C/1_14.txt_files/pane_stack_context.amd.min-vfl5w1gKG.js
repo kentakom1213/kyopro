@@ -1,2 +1,0 @@
-define(["require","exports","tslib","react"],(function(e,t,n,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.PluginPaneStackContext=void 0,a=n.__importDefault(a),t.PluginPaneStackContext=a.default.createContext({paneStack:[],popPane:function(){}})}));
-//# sourceMappingURL=pane_stack_context.amd.min.js-vflAFfdgu.map

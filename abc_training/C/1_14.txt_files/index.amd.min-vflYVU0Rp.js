@@ -1,2 +1,0 @@
-define(["require","exports","typescript/libraries/file-viewer/src/preview_html/preview_html"],(function(e,r,i){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.PreviewHTML=void 0,Object.defineProperty(r,"PreviewHTML",{enumerable:!0,get:function(){return i.PreviewHTML}})}));
-//# sourceMappingURL=index.amd.min.js-vflqP758k.map
