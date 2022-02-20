@@ -16,41 +16,22 @@ template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; r
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 constexpr ll MOD = 998244353;
 
-template <typename T>
-void print_vector(vector<T>& vec) {
-  cerr << "[ ";
-  for (int i = 0; i < vec.size(); i++) {
-    if (i < vec.size() - 1) cerr << vec.at(i) << " ";
-    else cerr << vec.at(i);
-  }
-  cerr << " ]" << endl;
-}
-
 int main() {
     int N, K; cin >> N >> K;
-    vector<ll> imos(N, 0), ok(N, 0);
+    vector<ll> cnt(N, 0), filled(N, 0);
 
     rep(i, K) {
         char c; int k; cin >> c >> k;
-        ok[k-1] = 1;
+        k--;
+        filled[k] = 1;
         if (c == 'L') {
-            if (k < N) imos[k+1]++;
+            range(j, k+1, N) cnt[j]++;
         } else {
-            imos[0]++;
-            if (k+1 < N) imos[k]--;
+            range(j, 0, k) cnt[j]++;
         }
     }
 
     ll ans = 1LL;
-    ll sum = 0;
-    rep(i, N) {
-        if (ok[i]) sum += imos[i];
-        else {
-            sum += imos[i];
-            ans = ans * sum % MOD;
-        }
-        cout << sum << " ";
-    }
-    cout << endl;
+    rep(i, N) if (!filled[i]) ans = ans * cnt[i] % MOD;
     cout << ans << endl;
 }
