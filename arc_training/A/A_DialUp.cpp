@@ -2,6 +2,8 @@
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/arc125/tasks/arc125_a
+
+// arc...
 // ----------------------------------------
 
 // S <= T でない場合は -1
@@ -26,27 +28,33 @@ int main() {
     rep(i, N) cin >> S[i];
     rep(i, M) cin >> T[i];
 
-    bool isOK = true;
+    int top = S[0];
+    int l=-1, r=-1;  // 左/右シフトして値を変えるときの最小操作回数
+    rep(i, N) {
+        if (S[i] != top) {
+            if (l == -1) l = i;
+            r = i;
+        }
+    }
+    r = N - r;
 
-    // Tの先頭から検索
     int ans = 0;
-    int p = 0;  // a[0]を表すポインタ
-    int shortest = N;  // 0<->1を行う最小の操作回数
+    int now = S[0];
     for (int t : T) {
-        if (S[p] != t)  {
-            isOK = false;
-            rep(i, shortest) {
-                if (S[(p+i)%N] == t) {
-                    chmin(shortest, min(p+i, N-(p+i)));
-                    p = (i+p) % N;
-                    isOK = true;
-                    break;
-                }
-            } 
-            ans += shortest;
+        if (t != now)  {
+            if (l == -1) {
+                cout << -1 << endl;
+                return 0;
+            }
+            if (l != 0) {
+                ans += min(l, r);
+                l = 0;
+            } else {
+                ans++;
+            }
+            now ^= 1;
         }
         ans++;
     }
-
-    cout << (isOK ? ans : -1) << endl;
+    cout << ans << endl;
 }
