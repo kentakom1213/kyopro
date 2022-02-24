@@ -26,26 +26,36 @@ void print_map(map<T, U> dict) {
 
 
 int main() {
-    int N; cin >> N;
-    vector<int> S(N);
-    rep(i, N) cin >> S[i];
-    int Q; cin >> Q;
-    vector<int> queries(Q);
-    rep(i, Q) cin >> queries[i];
+    int n, N; cin >> n;
+    vector<int> S;
+    rep(i, n) {
+        int s; cin >> s;
+        if (s) {
+            S.push_back(s);
+            N++;
+        }
+    };
 
     // ソートし、点数ごとに累積和(ランレングス圧縮)
-    sort(ALL(S));
+    sort(ALL(S), greater<int>());
     map<int, int> border;
-    int now=S[0], sum=N;
+    int now=S[0], sum=0;
     range(i, 1, N) {
         int s = S[i];
-        if (now == s) sum--;
+        if (now == s) sum++;
         else {
-            border[--sum] = s;
+            border[++sum] = now;
             now = s;
         }
     }
-    border[N] = 0;
+    border[N] = S[N-1];
 
     print_map(border);
+
+    int Q; cin >> Q;
+    while(Q--) {
+        int q; cin >> q;
+        auto ans = border.lower_bound(q);
+        cout << ans->first << " " << ans->second << endl;
+    }
 }
