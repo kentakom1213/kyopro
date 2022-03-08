@@ -17,8 +17,17 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 
 int main() {
     int N; cin >> N;
-    vector<ll> X(N);
-    rep(i, N) cin >> X[i];
+    vector<ll> X(N), sorted(N);
+    rep(i, N) {
+        cin >> X[i];
+        sorted[i] = X[i];
+    }
+    sort(ALL(sorted));
 
-    
+    ll center = sorted[N/2-1];
+
+    for (auto x : X) {
+        if (x <= center) cout << sorted[N/2] << endl;
+        else cout << sorted[N/2-1] << endl;
+    }
 }
