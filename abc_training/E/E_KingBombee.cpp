@@ -2,6 +2,8 @@
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc244/tasks/abc244_e
+
+// 解説AC
 // ----------------------------------------
 
 /* comment
@@ -39,21 +41,9 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
 
-template <typename T>
-void print_array(vector<vector<T>>& array) {
-    int H = array.size();
-
-    cerr << "{" << endl;
-    for (int i = 0; i < H; i++) {
-        int W = array.at(i).size();
-        cerr << "  {";
-        for (int j = 0; j < W; j++) {
-            if (j < W - 1) cerr << array.at(i).at(j) << ", ";
-            else cerr << array.at(i).at(j);
-        }
-        cerr << "}," << endl;
-    }
-    cerr << "}" << endl;
+void addMod(int &a, const int b, int mod) {
+    a += b;
+    a %= mod;
 }
 
 int main() {
@@ -68,16 +58,17 @@ int main() {
     }
 
     // dp
-    // 頂点Sから辺をK回通って頂点Tへ行く方法は何通り？
-    initArray(dp, K+1, N, 0);
-    rep(j, N) dp[0][j] = j == S;
+    vector dp(K+1, vector(N, vector(2, 0)));
+    dp[0][S][0] = 1;
 
     rep(i, K) {
         for (auto [u, v] : edges) {
-            dp[i+1][v] = (dp[i+1][v] + dp[i][u]) % mod;
-            dp[i+1][u] = (dp[i+1][u] + dp[i][v]) % mod;
+            for (int s : {0, 1}) {
+                addMod(dp[i+1][v][s^(v==X)], dp[i][u][s], mod);
+                addMod(dp[i+1][u][s^(u==X)], dp[i][v][s], mod);
+            }
         }
     }
 
-    print_array(dp);
+    cout << dp[K][T][0] << endl;
 }
