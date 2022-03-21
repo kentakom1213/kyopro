@@ -2,6 +2,8 @@
 # ----------------------------------------
 # 問題
 # https://atcoder.jp/contests/abc157/tasks/abc157_d
+
+# AC
 # ----------------------------------------
 
 """comment
@@ -55,9 +57,9 @@ class UnionFind():
         return len(self.roots())
 
     def all_group_members(self):
-        group_members = defaultdict(list)
+        group_members = defaultdict(set)
         for member in range(self.n):
-            group_members[self.find(member)].append(member)
+            group_members[self.find(member)].add(member)
         return group_members
 
     def __str__(self):
@@ -68,7 +70,7 @@ class UnionFind():
 N, M, K = map(int, input().split())
 
 friend = [0] * N
-block = [set() for _ in range(N)]
+block = [0] * N
 
 uf = UnionFind(N)
 
@@ -82,10 +84,12 @@ for _ in range(M):
 for _ in range(K):
     c, d = map(int, input().split())
     c-=1; d-=1
-    block[c].add(d)
-    block[d].add(c)
+
+    if uf.same(c, d):
+        block[c] += 1
+        block[d] += 1
 
 for i in range(N):
-    suggest = set(uf.members(i)) - block[i]
-    ans = len(suggest) - friend[i] - 1
-    print(ans)
+    ans = uf.size(i) - friend[i] - block[i] - 1
+    print(ans, end=" ")
+print()
