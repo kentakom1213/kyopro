@@ -56,32 +56,34 @@ int main() {
     }
     P[8] = rem-1;
 
+    if (P == OK) {
+        cout << 0 << endl;
+        return 0;
+    }
+
     // mapで管理
-    map<state, int> is_visited;
+    map<state, int> dist;
 
     // bfs
-    queue<pair<state, vec2>> q;
-    q.push(make_pair(P, make_pair(8, 0)));
+    queue<pair<state, int>> q;
+    q.push(make_pair(P, 8));
     while (!q.empty()) {
-        auto [cur, data] = q.front(); q.pop();
-        auto [branc, dist] = data;
-
-        // 記録
-        is_visited[cur] = 1;
-
-        if (cur == OK) {
-            cout << dist << endl;
-            return 0;
-        }
+        auto [cur, branc] = q.front(); q.pop();
 
         for (int nxt : G[branc]) {
             state nxt_state = swap_state(cur, branc, nxt);
-            if (is_visited[nxt_state]) continue;
+            if (dist[nxt_state]) continue;
+
+            dist[nxt_state] = dist[cur] + 1;
 
             // キューに追加
-            q.push(make_pair(nxt_state, make_pair(nxt, dist+1)));
+            q.push(make_pair(nxt_state, nxt));
         }
     }
 
-    cout << -1 << endl;
+    if (dist[OK] == 0) {
+        cout << -1 << endl;
+    } else {
+        cout << dist[OK] << endl;
+    }
 }
