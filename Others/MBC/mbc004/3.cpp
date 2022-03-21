@@ -9,7 +9,7 @@ typedef pair<int, int> vec2;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 constexpr int MOD = 1000000007;
-constexpr int mod = 998244353;
+constexpr ll mod = 998244353;
 
 ll powmod(ll a, ll n, ll mod) {
     ll res = 1;
@@ -18,18 +18,19 @@ ll powmod(ll a, ll n, ll mod) {
         res = res * res % mod;
         n >>= 1;
     }
-    return res;
+    return res % mod;
 }
 
 int main() {
     int T; cin >> T;
     while (T--) {
         ll a, b, c, n; cin >> a >> b >> c >> n;
-        if (a == 1) {
+        if (a == 1 || a == mod+1) {
             cout << (c + b * n) % mod << endl;
         } else {
-            ll x = (c - b * powmod(1-a, mod-2, mod)) % mod * powmod(a, n, mod) % mod + b * powmod(1-a, mod-2, mod);
-            cout << x % mod << endl;
+            ll a0 = b * powmod(1-a, mod-2, mod) % mod;
+            ll x = (c - a0) * powmod(a, n, mod) % mod + a0;
+            cout << x%mod << endl;
         }
     }
 }
