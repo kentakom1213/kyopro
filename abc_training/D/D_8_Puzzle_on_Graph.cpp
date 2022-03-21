@@ -24,14 +24,22 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
 
+#define state array<int, 9>
+
 int M;
 vector<vector<int>> G;
-vector<int> P;
+state P;
+
+state OK = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+
+state swap_state(state s, int branc, int nxt) {
+    swap(s[branc], s[nxt]);
+    return s;
+}
 
 int main() {
     cin >> M;
     G.assign(9, vector<int>());
-    P.assign(8, 0);
 
     rep(i, M) {
         int a, b; cin >> a >> b;
@@ -39,8 +47,41 @@ int main() {
         G[a].push_back(b);
         G[b].push_back(a);
     }
+
+    int rem = 45;
     rep(i, 8) {
-        cin >> P[i];
-        P[i]--;
+        int p; cin >> p;
+        rem -= p;
+        P[i] = p-1;
     }
+    P[8] = rem-1;
+
+    // mapで管理
+    map<state, int> is_visited;
+
+    // bfs
+    queue<pair<state, vec2>> q;
+    q.push(make_pair(P, make_pair(8, 0)));
+    while (!q.empty()) {
+        auto [cur, data] = q.front(); q.pop();
+        auto [branc, dist] = data;
+
+        // 記録
+        is_visited[cur] = 1;
+
+        if (cur == OK) {
+            cout << dist << endl;
+            return 0;
+        }
+
+        for (int nxt : G[branc]) {
+            state nxt_state = swap_state(cur, branc, nxt);
+            if (is_visited[nxt_state]) continue;
+
+            // キューに追加
+            q.push(make_pair(nxt_state, make_pair(nxt, dist+1)));
+        }
+    }
+
+    cout << -1 << endl;
 }
