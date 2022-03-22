@@ -30,7 +30,7 @@ kyopuro
 ## 準備
 `~/.bashrc`に
 ```
-alias mkfile="/root/miniconda3/bin/python /workspaces/kyopuro/Organizer/make_file.py" 
+alias mkfile="python /workspaces/kyopuro/Organizer/make_file.py" 
 ```
 を追加。
 
