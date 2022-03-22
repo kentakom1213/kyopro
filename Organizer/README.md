@@ -30,7 +30,7 @@ kyopuro
 ## 準備
 `~/.bashrc`に
 ```
-alias mkfile="python /workspaces/kyopuro/Organizer/make_file.py" 
+alias mkfile="python <このディレクトリのパス>/Organizer/make_file.py" 
 ```
 を追加。
 
