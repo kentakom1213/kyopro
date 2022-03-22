@@ -5,6 +5,7 @@
 3. テンプレートをもとにファイルを作成
 """
 
+import sys
 import re
 import scrape
 from pathlib import Path
@@ -77,14 +78,14 @@ def make_header(data: dict, lang: str):
 
 
 def main():
-    print("Let's solve!")
-    url = input("url: ")
+    _, url, lang, *_ = sys.argv + ["py"]
+    
     lang = {
         "py": "py",
         "python": "py",
         "cpp": "cpp",
         "c++": "cpp",
-    }[input("lang: ") or "py"]  # デフォルトは"py"
+    }[lang]  # デフォルトは"py"
 
     data = scrape.get_problem_info(url)
     filename = make_filename(data, lang)
@@ -94,11 +95,16 @@ def main():
     filename.parent.mkdir(exist_ok=True)
 
     # ファイルの作成
-    filename.touch()
+    try:
+        filename.touch(exist_ok=False)
 
-    # ヘッダーの埋め込み
-    with open(filename, "w") as f:
-        f.write(header)
+        # ヘッダーの埋め込み
+        with open(filename, "w") as f:
+            f.write(header)
+    except:
+        print("This file already exists.")
+    
+    print(">", filename)
 
 
 if __name__ == "__main__":
