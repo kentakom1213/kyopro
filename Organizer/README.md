@@ -1,5 +1,32 @@
 # ファイル管理システム
 
+- AtCoder, AOJに対応
+
+- ディレクトリ構成
+```
+kyopuro
+  |- abc_training
+  |   |- A
+  |   |  |_ A_HogeHoge.py
+  |   |
+  |   |_ B
+  |      |_ B_HugaHuga.cpp
+  |
+  |- arc_training
+  |   |_ A
+  |      |_ ...
+  |
+  |- agc_training
+  |
+  |- AOJ
+  |   |_ piyopiyo.py
+  |
+  |_ Others
+      |_ others
+         |_ poyapoya.py
+
+```
+
 ## 準備
 `~/.bashrc`に
 ```
