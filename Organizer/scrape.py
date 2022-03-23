@@ -8,6 +8,7 @@
 - 問題タイトル
 - url
 - コンテストの種類
+    - [abc, arc, agc, typical90, other]
 - コンテスト名 / 問題番号
 - 点数
 
@@ -58,9 +59,12 @@ def scrape_atcoder(url: str):
     # urlの解析
     tail = url.split("/")[-1]
 
-    contest_type = tail[:3]
-    if contest_type not in ("abc", "arc", "agc"):
-        contest_type = "other"
+    if "typical90" in url:
+        contest_type = "typical90"
+    else:
+        contest_type = tail[:3]
+        if contest_type not in ("abc", "arc", "agc"):
+            contest_type = "other"
 
     problem_type = tail.split("_")[-1]
     if re.match(r"\d+", problem_type):

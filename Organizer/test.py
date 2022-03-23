@@ -15,6 +15,7 @@ atcoder_url = [
     "https://atcoder.jp/contests/agc004/tasks/agc004_e",
     "https://atcoder.jp/contests/tokiomarine2020/tasks/tokiomarine2020_a",
     "https://atcoder.jp/contests/aising2020/tasks/aising2020_a",
+    "https://atcoder.jp/contests/typical90/tasks/typical90_aw",
 ]
 
 aoj_url = [

@@ -14,6 +14,7 @@ problem_dir = {
     "abc": "abc_training",
     "arc": "arc_training",
     "agc": "agc_training",
+    "typical90": "typical90",
     "other": "Others/others",
     "aoj": "AOJ",
 }
@@ -45,6 +46,13 @@ def make_filename(data: dict, lang: str="py") -> Path:
     filename = re.sub(
         r" +",
         "_",
+        filename
+    )
+
+    # typical90に対応
+    filename = re.sub(
+        r"（.+）",
+        "",
         filename
     )
 
