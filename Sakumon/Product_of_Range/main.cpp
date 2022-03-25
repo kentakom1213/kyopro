@@ -18,16 +18,6 @@ long long inv(long long n) {
     return powmod(n, MOD-2);
 }
 
-template <typename T>
-void print_vector(vector<T>& vec) {
-  cerr << "[ ";
-  for (int i = 0; i < vec.size(); i++) {
-    if (i < vec.size() - 1) cerr << vec.at(i) << " ";
-    else cerr << vec.at(i);
-  }
-  cerr << " ]" << endl;
-}
-
 int main() {
     int N, Q; cin >> N >> Q;
     vector<long long> A(N);

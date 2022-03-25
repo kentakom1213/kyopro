@@ -1,4 +1,7 @@
 
+import sys
+input = sys.stdin.readline
+
 MOD = 998244353
 
 def inv(n):

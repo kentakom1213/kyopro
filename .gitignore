@@ -26,6 +26,7 @@ contest.acc.json
 *.dSYM/
 # tools/
 in/
+out/
 Cargo.lock
 debug/
 target/
