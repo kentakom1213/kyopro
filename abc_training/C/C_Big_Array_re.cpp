@@ -17,22 +17,7 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
 
-int A_MAX = 101010;
-
 int main() {
-    ll N, K; cin >> N >> K;
-    ll arr[A_MAX];
-
-    while (N--) {
-        ll a, b; cin >> a >> b;
-        arr[a] += b;
-    }
-
-    rep(i, A_MAX) {
-        if (K <= arr[i]) {
-            cout << i << endl;
-            return 0;
-        }
-        K -= arr[i];
-    }
+    int N, K; cin >> N >> K;
+    
 }
