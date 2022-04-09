@@ -86,7 +86,7 @@ def make_header(data: dict, lang: str):
 
 
 def main():
-    _, url, lang, *_ = sys.argv + ["py"]
+    _, url, lang, *_ = sys.argv + ["cpp"]
     
     lang = {
         "py": "py",
