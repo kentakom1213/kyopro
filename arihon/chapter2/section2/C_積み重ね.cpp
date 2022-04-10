@@ -1,13 +1,11 @@
-//             D - Islands War             
+//                 C - 積み重ね                
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc103/tasks/abc103_d
-
-// AC
+// https://atcoder.jp/contests/arc006/tasks/arc006_3
 // ----------------------------------------
 
 /*
-区間スケジューリングって言われないとわかんないかも
+- LIS
 */
 
 #include <bits/stdc++.h>
@@ -19,27 +17,20 @@ template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; r
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
-typedef pair<int, int> P;
+const int INF = 1 << 28;
 
 int main() {
-    int N, M; cin >> N >> M;
-    vector<P> wars(M);
-    rep(i, M) {
-        int l, r; cin >> l >> r;
-        wars[i] = {r-1, l-1};
+    int N; cin >> N;
+    vector<int> dp(N+10, INF);
+    
+    rep(i, N) {
+        int b; cin >> b;
+        auto ind = lower_bound(ALL(dp), b);
+        *ind = b;
     }
 
-    // 終端についてソート
-    sort(ALL(wars));
-
-    // 貪欲にとる
-    int ans=0, now=0;
-    for (auto [r, l] : wars) {
-        if (now <= l) {
-            ans++;
-            now = r;
-        }
+    rep(i, N+1) if (dp[i]==INF) {
+        cout << i << endl;
+        return 0;
     }
-
-    cout << ans << endl;
 }
