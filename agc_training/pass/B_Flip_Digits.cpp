@@ -14,12 +14,19 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
 
+const int MAX_SIZE = 505050;
+
 int N;
 string S, T;
+bool Sxor[MAX_SIZE];
 
 int main() {
     cin >> N >> S >> T;
 
     // 累積xorを取る
-    
+    Sxor[0] = 0;
+    rep(i, N) Sxor[i+1] = Sxor[i] ^ (S[i] - '0');
+
+    rep(i, N+1) cerr << Sxor[i];
+    cerr << endl;
 }
