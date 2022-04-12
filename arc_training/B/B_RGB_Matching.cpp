@@ -21,57 +21,56 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
 
-typedef pair<ll, char> P;
-int N, rcnt, gcnt, bcnt;
+int N;
+
+ll min_diff(vector<ll> fst, vector<ll> sec) {
+    ll ans = 1LL << 50;
+    int f=0, s=0;
+    while (f < fst.size() && s < sec.size()) {
+        chmin(ans, abs(fst[f] - sec[s]));
+        if (f<fst.size() && fst[f] <= sec[s]) f++;
+        else if (fst[f] > sec[s]) s++;
+    }
+    return ans;
+}
 
 int main() {
     cin >> N;
-    set<ll> r, g, b;
+    vector<ll> r, g, b;
     rep(i, 2*N) {
-        int a; cin >> a;
+        ll a; cin >> a;
         char c; cin >> c;
-        if (c=='R') {
-            r.insert(a);
-            rcnt++;
-        }
-        if (c=='G') {
-            g.insert(a);
-            gcnt++;
-        }
-        if (c=='B') {
-            b.insert(a);
-            bcnt++;
+        switch (c) {
+            break; case 'R':
+                r.push_back(a);
+            break; case 'G':
+                g.push_back(a);
+            break; case 'B':
+                b.push_back(a);
         }
     }
+    sort(ALL(r));
+    sort(ALL(g));
+    sort(ALL(b));
 
-    if (rcnt%2==0 && gcnt%2==0 && bcnt%2==0) {  // すべて偶数
+    ll gb = min_diff(g, b);
+    ll rg = min_diff(r, g);
+    ll rb = min_diff(r, b);
+
+    if (r.size()%2==0 && g.size()%2==0 && b.size()%2==0) {
         cout << 0 << endl;
         return 0;
     }
-
-    ll min_diff = 1LL << 50;
-    auto r_itr=r.begin(), g_itr=g.begin(), b_itr=b.begin();
-    if (rcnt % 2 == 0) {  // G, Bでマッチ
-        while (g_itr!=g.end() && b_itr!=b.end()) {
-            if (g_itr!=g.end() && *g_itr <= *b_itr) g_itr++;
-            else if (b_itr!=b.end()) b_itr++;
-            chmin(min_diff, abs(*g_itr - *b_itr));
-        }
+    if (r.size()%2 == 0) {
+        cout << min(gb, rg+rb) << endl;
+        return 0;
     }
-    if (gcnt % 2 == 0) {  // R, Bでマッチ
-        while (r_itr!=r.end() && b_itr!=b.end()) {
-            if (r_itr!=r.end() && *r_itr <= *b_itr) r_itr++;
-            else if (b_itr!=b.end()) b_itr++;
-            chmin(min_diff, abs(*r_itr - *b_itr));
-        }
+    if (g.size()%2 == 0) {
+        cout << min(rb, gb+rg) << endl;
+        return 0;
     }
-    if (bcnt % 2 == 0) {  // R, Gでマッチ
-        while (g_itr!=g.end() && r_itr!=r.end()) {
-            if (g_itr!=g.end() && *g_itr <= *r_itr) g_itr++;
-            else if (r_itr!=r.end()) r_itr++;
-            chmin(min_diff, abs(*g_itr - *r_itr));
-        }
+    if (b.size()%2 == 0) {
+        cout << min(rg, gb+rb) << endl;
+        return 0;
     }
-
-    cout << min_diff << endl;
 }
