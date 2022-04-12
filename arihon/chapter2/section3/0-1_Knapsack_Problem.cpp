@@ -12,6 +12,7 @@ using namespace std;
 typedef long long ll;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
+template <typename A, size_t N, typename T> void FILL(A (&array)[N], const T &val) { fill( (T*)array, (T*)(array+N), val); }
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
 
@@ -34,7 +35,7 @@ int pack(int i, int rem) {
 }
 
 int main() {
-    memset(memo, -1, sizeof(memo));
+    FILL(memo, -1);
     cin >> N >> W;
     rep(i, N) cin >> v[i] >> w[i];
 
