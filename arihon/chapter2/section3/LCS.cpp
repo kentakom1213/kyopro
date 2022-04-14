@@ -1,5 +1,7 @@
 /*
 # [Longest Common Subsequence](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=jp)
+
+# AC
 */
 
 #include <bits/stdc++.h>
@@ -19,8 +21,15 @@ int main() {
     int q; cin >> q;
     while (q--) {
         string x, y; cin >> x >> y;
-        FILL(dp, -1);
-        dp[0][0] = 0;
-        
+        FILL(dp, 0);
+        rep(i, x.size()) {
+            rep(j, y.size()) {
+                dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1]);
+                if (x[i] == y[j]) {
+                    dp[i+1][j+1] = dp[i][j] + 1;
+                }
+            }
+        }
+        cout << dp[x.size()][y.size()] << endl;
     }
 }
