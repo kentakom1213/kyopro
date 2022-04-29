@@ -64,7 +64,7 @@ def make_filename(data: dict, lang: str="py") -> Path:
 def make_header(data: dict, lang: str):
     """C++ / Python用のヘッダーを作成"""
 
-    comment = {"py": "#", "cpp": "//"}
+    comment = {"py": "#", "cpp": "//", "hs": "--"}
     line = "-" * 40
 
     template = [
@@ -93,6 +93,8 @@ def main():
         "python": "py",
         "cpp": "cpp",
         "c++": "cpp",
+        "hs": "hs",
+        "haskell": "hs",
     }[lang]  # デフォルトは"py"
 
     data = scrape.get_problem_info(url)
