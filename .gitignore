@@ -24,7 +24,7 @@ contest.acc.json
 
 # ヒューリスティック
 *.dSYM/
-# tools/
+tools/
 in/
 out/
 Cargo.lock
