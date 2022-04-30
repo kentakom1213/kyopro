@@ -14,7 +14,7 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 template <typename A, size_t N, typename T> void FILL(A (&array)[N], const T &val) { fill( (T*)array, (T*)(array+N), val); }
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
-typedef pair<int, int> P;
+typedef pair<ll, ll> P;
 
 int main() {
     int N; cin >> N;
@@ -24,29 +24,18 @@ int main() {
     }
     string dir; cin >> dir;
 
-    bool is_in_collision = false;
-
-    // y: (x, dir) のmapを作成
-    map<int, P> mp;
+    // yで分類
+    map<ll, vector<ll>> mp;
     rep(i, 0, N) {
         auto [x, y] = points[i];
-        int d = dir[i] == 'R' ? 1 : 0;  // R->1, L->0
-        if (mp.find(y) == mp.end()) {
-            mp[y] = {x, d};
-        } else {
-            auto [xx, dd] = mp[y];
-            // 方向が同じとき
-            if (dd == d) {
-                if (d) mp[y] = {min(xx, x), d};
-                else mp[y] = {max(xx, x), d};
-            }
-            // 方向が逆のとき
-            else {
-                if (d) is_in_collision |= dd <= d;
-                else is_in_collision |= d <= dd;
-            }
-        }
+        mp[y].push_back(i);
     }
 
-    printf("%s\n", is_in_collision ? "Yes" : "No");
+    // 順に取り出して処理
+    bool isInCollision = false;
+    for (auto [_, i_s] : mp) {
+        for (ll i : i_s) {
+            
+        }
+    }
 }
