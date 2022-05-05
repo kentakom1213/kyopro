@@ -10,7 +10,7 @@ main = do
 
 solve :: RealFrac a => a -> [Char]
 solve n
-  | price < 206 = "Yey!"
+  | price < 206 = "Yay!"
   | price == 206 = "so-so"
   | otherwise = ":("
   where price = floor $ 1.08 * n
