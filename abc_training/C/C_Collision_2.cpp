@@ -14,28 +14,32 @@ template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; r
 template <typename A, size_t N, typename T> void FILL(A (&array)[N], const T &val) { fill( (T*)array, (T*)(array+N), val); }
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
-typedef pair<ll, ll> P;
+constexpr int INF = 1 << 30;
+using pll = pair<ll, ll>;
 
 int main() {
     int N; cin >> N;
-    P points[N];
+    pll points[N];
     for (auto &[x, y] : points) {
-        scanf("%d %d", &x, &y);
+        scanf("%lld %lld", &x, &y);
     }
     string dir; cin >> dir;
 
     // yで分類
-    map<ll, vector<ll>> mp;
+    map<ll, pll> mp;  // {y: [L, R]}
     rep(i, 0, N) {
         auto [x, y] = points[i];
-        mp[y].push_back(i);
-    }
-
-    // 順に取り出して処理
-    bool isInCollision = false;
-    for (auto [_, i_s] : mp) {
-        for (ll i : i_s) {
-            
+        if (mp.find(y) == mp.end()) mp[y] = {-INF, INF};
+        if (dir[i] == 'L') {
+            mp[y].first = max(x, mp[y].first);
+        } else {
+            mp[y].second = min(x, mp[y].second);
         }
     }
+
+    for (auto [_, p] : mp) {
+        auto [l, r] = p;
+        if (r <= l) {cout << "Yes" << endl; return 0;}
+    }
+    cout << "No" << endl;
 }
