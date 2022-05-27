@@ -11,7 +11,6 @@
 	"extensions": [
 		"ms-vscode.cpptools",
         "EditorConfig.EditorConfig",
-
 		"ms-python.python",
 		"ms-toolsai.jupyter",
 		"ms-toolsai.jupyter-keymap",
