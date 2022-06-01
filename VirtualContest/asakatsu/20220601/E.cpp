@@ -74,19 +74,10 @@ using mint = modint<mod>;
 int main() {
     ll N; cin >> N;
 
-    mint ans = 0;
-    for (ll k=0; k*k<=N; k++) {
-        // i*i - k*k <= N を満たす最大のiを求める
-        ll l=0, r=N;
-        while (r-l > 1) {
-            ll mid = (l+r)/2;
-            if (mid*mid - k*k <= N) {
-                l = mid;
-            } else {
-                r = mid;
-            }
-        }
-        cout << l << endl;
+    mint ans(0);
+    for (ll q=1; q*q<=N; q++) {
+        ll span = N/q - q;
+        ans += span / 2 + 1;
     }
     cout << ans << endl;
 }
