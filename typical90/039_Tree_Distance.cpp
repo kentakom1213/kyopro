@@ -27,8 +27,8 @@ constexpr int mod = 998244353;
 
 int N;                // グラフの頂点数
 Graph G;              // グラフ
-vector<ll> subtree;  // 部分木のサイズ
-vector<ll> dp;       // 頂点iを通る最短経路
+vector<ll> subtree;   // 部分木のサイズ
+vector<ll> dp;        // 頂点iを通る最短経路
 
 // 部分木をカウントする
 void count_subtree(int cur, int prev) {
