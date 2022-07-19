@@ -4,6 +4,11 @@
 // https://atcoder.jp/contests/abc259/tasks/abc259_e
 // ----------------------------------------
 
+/*
+## 参考
+- https://atcoder.jp/contests/abc259/editorial/4271
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)
