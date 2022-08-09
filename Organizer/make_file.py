@@ -38,7 +38,7 @@ def make_filename(data: dict, lang: str="py") -> Path:
 
     # ファイル名
     filename = re.sub(
-        r"-|:|/",
+        r"-|:|/|,|\.|\(|\)|!|'",
         "",
         data["title"]
     )
