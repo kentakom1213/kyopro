@@ -16,21 +16,20 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 constexpr int MOD = 1000000007;
 constexpr int mod = 998244353;
-constexpr ll INF = 1010101010101;
+constexpr ll INF = numeric_limits<long long>::max();
 
 int main() {
     int N, X; cin >> N >> X;
     vector<ll> A(N), B(N);
     rep(i, 0, N) cin >> A[i] >> B[i];
 
-    ll sum=0, mini=INF, ans=INF;
-    rep(i, 0, min(X, N)) {
-        ll tmp = sum + mini * (X-i);
-        if (tmp > 0 && ans > tmp) {
-            ans = tmp;
-        }
+    ll sum=0, ans=INF;
+    rep(i, 0, N) {
+        if (i+1 > X) break;
         sum += A[i] + B[i];
-        chmin(mini, B[i]);
+
+        ll tmp = sum + (ll)B[i] * (X-i-1);
+        chmin(ans, tmp);
     }
 
     cout << ans << endl;
