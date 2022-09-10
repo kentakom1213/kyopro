@@ -4,18 +4,7 @@
 // https://atcoder.jp/contests/arc144/tasks/arc144_b
 // ----------------------------------------
 
-/*
-## 方針
-A <- 入力
-
-while:
-    x <- min(A)
-    y <- max(A)
-    if x+a > y-b:
-        print x
-        break
-
-*/
+// 解の存在を考えて二分探索
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -26,6 +15,7 @@ template<typename T> using Array = vector<vector<T>>;
 template <typename T> inline bool chmax(T &a, const T b) { if (a < b) { a = b; return true; } return false; }
 template <typename T> inline bool chmin(T &a, const T b) { if (a > b) { a = b; return true; } return false; }
 template <typename A, size_t N, typename T> void FILL(A (&array)[N], const T &val) { fill( (T*)array, (T*)(array+N), val); }
+template <typename T, typename U> inline T div_ceil(T x, U y) {return (x + y - 1) / y;}
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 constexpr int MOD = 1000000007;
@@ -34,24 +24,27 @@ constexpr int mod = 998244353;
 int main() {
     ll N, a, b;
     cin >> N >> a >> b;
-    set<ll> A;
-    rep(i, 0, N) {
-        ll a; cin >> a;
-        A.insert(a);
-    }
+    vector<ll> A(N);
+    rep(i, 0, N) cin >> A[i];
 
-    // 貪欲に処理
-    while (true) {
-        ll x=*A.begin(), y=*A.end();
-        A.erase(x);
-        A.erase(y);
-        
-        if (x+a > y-b) {
-            cout << max(x+a, y-b) << endl;
-            return 0;
+    auto isOK = [&](ll x) -> bool {
+        ll cnt = 0;
+        for (ll v : A) {
+            if (v < x) { // vをx以上にするために何回aを足す必要があるか
+                cnt -= div_ceil(x-v, a);
+            } else if (v > x) {  // 何回までならbを引いてもx以上であるか
+                cnt += (v-x) / b;
+            }
         }
+        return cnt >= 0;
+    };
 
-        A.insert(x+a);
-        A.insert(y-b);
+    ll ok=1, ng=1001001001;
+    while (ng - ok > 1) {
+        ll mid = (ok + ng) / 2;
+        if (isOK(mid)) ok = mid;
+        else ng = mid;
     }
+
+    cout << ok << endl;
 }
