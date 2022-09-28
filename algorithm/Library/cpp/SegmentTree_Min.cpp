@@ -84,12 +84,9 @@ int main() {
         cin >> com >> x >> y;
         if (com == 0) {
             seg.update(x, y);
-            // seg.show();  // test
-            // cout << "\n";   // test
         }
         else if (com == 1) {
             long long v = seg.get_min(x, y+1);
-            // cout << "ans: ";  // test
             cout << v << endl;
         }
     }
