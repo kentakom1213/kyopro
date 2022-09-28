@@ -19,23 +19,23 @@ struct SegTree {
         tree.assign(tree_size, ex);
     }
 
-    // template<class T>
-    // SegTree(vector<T> vec) {
-    //     // arrayの初期化
-    //     _set_size(vec.size());
-    //     tree.assign(tree_size, ex);
+    template<class T>
+    SegTree(vector<T> vec, FX fx_, X ex_) : offset(), tree_size(), fx(fx_), ex(ex_), tree() {
+        // arrayの初期化
+        _set_size(vec.size());
+        tree.assign(tree_size, ex);
 
-    //     // vecを代入
-    //     for (int i = 0; i < vec.size(); i++) {
-    //         tree[i + offset] = vec[i];
-    //     }
+        // vecを代入
+        for (int i = 0; i < vec.size(); i++) {
+            tree[i + offset] = vec[i];
+        }
 
-    //     // 親要素を初期化
-    //     for (int i = offset-1; i > 0; i--) {
-    //         int prev = i << 1;
-    //         tree[i] = fx(tree[prev], tree[prev + 1]);
-    //     }
-    // }
+        // 親要素を初期化
+        for (int i = offset-1; i > 0; i--) {
+            int prev = i << 1;
+            tree[i] = fx(tree[prev], tree[prev + 1]);
+        }
+    }
 
     void _set_size(int n) {
         /* tree_size, offset を初期化する */
@@ -61,6 +61,11 @@ struct SegTree {
             int prev = i << 1;
             tree[i] = fx(tree[prev], tree[prev + 1]);
         }
+    }
+
+    X get_point(int i) {
+        /* 一点を取得 */
+        return tree[offset + i];
     }
 
     X get_range(int l, int r) {
@@ -100,27 +105,41 @@ struct SegTree {
 
 // test
 // [Range Minimum Query (RMQ)](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A)
-int main() {
-    int N, Q;
-    cin >> N >> Q;
+// int main() {
+//     int N, Q;
+//     cin >> N >> Q;
 
+//     SegTree<long long> seg(
+//         N,  // データ数
+//         [=](long long a, long long b){  // 写像
+//             return (a > b ? b : a);
+//         },
+//         (1LL << 31) - 1  // 単位元
+//     );
+
+//     while (Q--) {
+//         int com, x, y;
+//         cin >> com >> x >> y;
+//         if (com == 0) {
+//             seg.update(x, y);
+//         }
+//         else if (com == 1) {
+//             long long v = seg.get_range(x, y+1);
+//             cout << v << endl;
+//         }
+//     }
+// }
+
+int main() {
+    vector<int> A = {1, 2, 3, 4, 5, 6, 7, 8};
     SegTree<long long> seg(
-        N,  // データ数
-        [=](long long a, long long b){  // 写像
-            return (a > b ? b : a);
+        A,
+        [](long long a, long long b){
+            return a + b;
         },
-        (1LL << 31) - 1  // 単位元
+        0
     );
 
-    while (Q--) {
-        int com, x, y;
-        cin >> com >> x >> y;
-        if (com == 0) {
-            seg.update(x, y);
-        }
-        else if (com == 1) {
-            long long v = seg.get_range(x, y+1);
-            cout << v << endl;
-        }
-    }
+    // テスト
+    seg.show();
 }
