@@ -1,54 +1,56 @@
 #include <iostream>
 #include <vector>
+#include <functional>
 using namespace std;
 
+template<class X>
 struct SegTree {
-    long long inf = (1LL << 31) - 1;
+    using FX = function<X(X, X)>;  // X*X -> X となる関数
     int offset;
     int tree_size;
-    vector<long long> tree;
+    FX fx;  // 写像
+    const X ex;  // 単位元
+    vector<X> tree;
 
-    SegTree(int N) {
-        // Nより大きい2の冪数
-        int n2 = 0;
-        N--;
-        while (N) {
-            n2++;
-            N >>= 1;
-        }
-
-        // arrayの初期化
-        offset = 1 << n2;
-        tree_size = offset << 1;
-        tree.assign(tree_size, inf);
+    SegTree(int n, FX fx_, X ex_) : offset(), tree_size(), fx(fx_), ex(ex_), tree() {
+        // offset, tree_size の初期化
+        _set_size(n);
+        // tree の初期化
+        tree.assign(tree_size, ex);
     }
 
-    SegTree(vector<long long> vec) {
-        int N = vec.size() - 1;
-        int n2 = 0;
-        while (N) {
-            n2++;
-            N >>= 1;
-        }
+    // template<class T>
+    // SegTree(vector<T> vec) {
+    //     // arrayの初期化
+    //     _set_size(vec.size());
+    //     tree.assign(tree_size, ex);
 
-        // arrayの初期化
+    //     // vecを代入
+    //     for (int i = 0; i < vec.size(); i++) {
+    //         tree[i + offset] = vec[i];
+    //     }
+
+    //     // 親要素を初期化
+    //     for (int i = offset-1; i > 0; i--) {
+    //         int prev = i << 1;
+    //         tree[i] = fx(tree[prev], tree[prev + 1]);
+    //     }
+    // }
+
+    void _set_size(int n) {
+        /* tree_size, offset を初期化する */
+        // nより大きい2の冪数
+        int n2 = 0;
+        n--;
+        while (n) {
+            n2++;
+            n >>= 1;
+        }
         offset = 1 << n2;
         tree_size = offset << 1;
-        tree.assign(tree_size, inf);
-
-        // vecを代入
-        for (int i = 0; i < vec.size(); i++) {
-            tree[i + offset] = vec[i];
-        }
-
-        // 親要素を初期化
-        for (int i = offset-1; i > 0; i--) {
-            int prev = i << 1;
-            tree[i] = min(tree[prev], tree[prev + 1]);
-        }
     }
 
-    void update(int i, long long x) {
+    void update(int i, X x) {
         /* tree[i] を x で置き換える */
         i += offset;  // 1-indexed に変換
         tree[i] = x;
@@ -57,22 +59,22 @@ struct SegTree {
         while (i > 1) {
             i >>= 1;
             int prev = i << 1;
-            tree[i] = min(tree[prev], tree[prev + 1]);
+            tree[i] = fx(tree[prev], tree[prev + 1]);
         }
     }
 
-    long long get_min(int l, int r) {
+    X get_range(int l, int r) {
         /* [l,r) の範囲を検索 */
-        long long res = inf;
+        X res = ex;
 
         l += offset;
         r += offset;
         while (l < r) {
             if (r & 1) {
-                res = min(res, tree[r-1]);
+                res = fx(res, tree[r-1]);
             }
             if (l & 1) {
-                res = min(res, tree[l]);
+                res = fx(res, tree[l]);
                 l += 1;
             }
             l >>= 1;
@@ -96,11 +98,29 @@ struct SegTree {
     }
 };
 
-// テスト
+// test
+// [Range Minimum Query (RMQ)](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A)
 int main() {
-    int N; cin >> N;
-    vector<long long> A(N);
-    for(auto &v : A) cin >> v;
-    SegTree seg(A);
-    seg.show();
+    int N, Q;
+    cin >> N >> Q;
+
+    SegTree<long long> seg(
+        N,  // データ数
+        [=](long long a, long long b){  // 写像
+            return (a > b ? b : a);
+        },
+        (1LL << 31) - 1  // 単位元
+    );
+
+    while (Q--) {
+        int com, x, y;
+        cin >> com >> x >> y;
+        if (com == 0) {
+            seg.update(x, y);
+        }
+        else if (com == 1) {
+            long long v = seg.get_range(x, y+1);
+            cout << v << endl;
+        }
+    }
 }
