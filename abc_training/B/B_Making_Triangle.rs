@@ -1,7 +1,7 @@
-//     B - Painting Balls with AtCoDeer    
+//           B - Making Triangle           
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc046/tasks/abc046_b
+// https://atcoder.jp/contests/abc175/tasks/abc175_b
 // ----------------------------------------
 
 // [Rustで競技プログラミングの入力をスッキリ記述するマクロ](https://qiita.com/tanakh/items/0ba42c7ca36cd29d0ac8)
@@ -58,17 +58,29 @@ macro_rules! read_value {
     };
 }
 
-
-// solve
 fn main() {
     input! {
         n: usize,
-        k: usize,
+        l: [usize; n],
     }
 
-    let mut ans: usize = k;
-    for i in 0..n-1 {
-        ans *= k-1;
+    let mut l: Vec<usize> = l.iter().cloned().collect();
+    l.sort();
+
+    let mut ans = 0;
+    for i in 0..n {
+        for j in i+1..n {
+            for k in j+1..n {
+                let (a, b, c) = (l[i], l[j], l[k]);
+                let is_different = a != b && b != c;
+                let is_a = a < b + c;
+                let is_b = b < a + c;
+                let is_c = c < a + b;
+                if is_different && is_a && is_b && is_c {
+                    ans += 1;
+                }
+            }
+        }
     }
 
     println!("{}", ans);
