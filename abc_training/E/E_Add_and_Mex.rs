@@ -59,4 +59,12 @@ macro_rules! read_value {
 }
 
 // solve
+fn main() {
+    input! {
+        n: usize,
+        m: usize,
+        a: [isize; n],
+    }
 
+    
+}
