@@ -1,7 +1,7 @@
-//                  B - dp                 
+//           C - Sqrt Inequality           
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/arc148/tasks/arc148_b
+// https://atcoder.jp/contests/panasonic2020/tasks/panasonic2020_c
 // ----------------------------------------
 
 // [Rustで競技プログラミングの入力をスッキリ記述するマクロ](https://qiita.com/tanakh/items/0ba42c7ca36cd29d0ac8)
@@ -58,11 +58,18 @@ macro_rules! read_value {
     };
 }
 
+
 fn main() {
     input! {
-        n: u32,
-        s: String,
+        a: i64,
+        b: i64,
+        c: i64,
     }
-
-    
+    let ok = a+b-c<0 && (a+b-c).pow(2) > 4*a*b;
+    if ok {
+        println!("Yes");
+    } else {
+        println!("No");
+    }
 }
+
