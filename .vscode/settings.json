@@ -129,7 +129,8 @@
         "streambuf": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     // windowsの場合："terminal.integrated.shell.windows": "C:\\WINDOWS\\system32\\cmd.exe",
