@@ -10,6 +10,9 @@
 # .vscode/
 .DS_Store
 
+# ac-library
+ac-library/
+
 # pycache
 __pycache__/
 .ipynb_checkpoints/
