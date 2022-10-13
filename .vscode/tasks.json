@@ -7,6 +7,8 @@
             "command": "/usr/bin/clang++",
             "args": [
                 "-std=c++17",
+                "-I",
+                "~/Docker/kyopuro/ac-library",
                 "-g",
                 "${file}",
                 "-o",
