@@ -9,7 +9,7 @@ from collections import deque
 N, K = map(int, input().split())
 S = input()
 
-# ランレングス圧縮
+# 
 comp = []
 now = S[0]
 cnt = 0
