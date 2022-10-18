@@ -1,7 +1,7 @@
-//        C - Cat Snuke and a Voyage       
+//                 D - Wall                
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc068/tasks/arc079_a
+// https://atcoder.jp/contests/abc079/tasks/abc079_d
 // ----------------------------------------
 
 // attributes
@@ -58,36 +58,34 @@ macro_rules! get {
     };
 }
 
+/* 
+ * ## 実装メモ
+ * - ワーシャルフロイド法でi->jの最小コストを探索
+ */
+
 // solve
 fn main() {
-    let (N, M) = get!(usize, usize);
-    let mut G = vec![vec![]; N];
-    for i in 0..M {
-        let (a, b) = get!(usize, usize);
-        G[a-1].push(b-1);
-        G[b-1].push(a-1)
-    }
+    let (H, W) = get!(usize, usize);
+    let mut C = get!(isize ;; 10);
+    let A = get!(isize ;; H);
 
-    // bfs
-    let mut dist = vec![-1; N];
-    dist[0] = 0;
-
-    let mut que = VecDeque::new();
-    que.push_back(0);
-
-    while !que.is_empty() {
-        let cur = que.pop_front().unwrap();
-        for &nxt in &G[cur] {
-            if dist[nxt] == -1 {
-                dist[nxt] = dist[cur] + 1;
-                que.push_back(nxt);
+    // ワーシャルフロイド法
+    for k in 0..10 {
+        for i in 0..10 {
+            for j in 0..10 {
+                C[i][j] = C[i][j].min(
+                    C[i][k] + C[k][j]
+                )
             }
         }
     }
 
-    if 1 <= dist[N-1] && dist[N-1] <= 2 {
-        println!("POSSIBLE");
-    } else {
-        println!("IMPOSSIBLE");
+    let mut ans = 0;
+    for i in 0..H {
+        for j in 0..W {
+            let wall = if A[i][j] >= 0 { A[i][j] as usize } else { 1 };
+            ans += C[wall][1];
+        }
     }
+    println!("{}", ans);
 }
