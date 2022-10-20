@@ -1,4 +1,8 @@
+//                 D - 食塩水                 
+// ----------------------------------------
+// 問題
 // https://atcoder.jp/contests/abc034/tasks/abc034_d
+// ----------------------------------------
 
 // attributes
 #![allow(unused_imports)]
@@ -55,12 +59,11 @@ macro_rules! get {
 }
 
 /*
- * ## 方針
- * - N <= 1000 だからdpっぽい？
+ * # 方針
+ * - 平均の最大化 → 2分探索
  * 
- * ## 更新
- * dp[i][j] := i個までの容器でj個使ったときの濃度の最大値
- * dp[i+1][j+1] = 
+ * ## 参考
+ * - https://tutuz.hateblo.jp/entry/2018/07/20/232347
  */
 
 // solve
@@ -68,27 +71,33 @@ fn main() {
     let (N, K) = get!(usize, usize);
     let wp = get!(f64, f64; N);
 
-    let mut vol = vec![vec![0.0; K+1]; N+1];  // 容量を管理
-    let mut dp = vec![vec![0.0; K+1]; N+1];  // 濃度を管理
+    let isOK = |m: f64| -> bool {
+        let mut calc = vec![0.0; N];
+        for i in 0..N {
+            let (w, p) = wp[i];
+            calc[i] = w * (p - m);
+        }
+        calc.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let mut res = 0.0;
+        for i in N-K..N {
+            res += calc[i];
+        }
+        res >= 0.0
+    };
 
-    for i in 0..N {
-        for j in 0..K {
-            if dp[i][j] > dp[i+1][j] {
-                dp[i+1][j] = dp[i][j];
-                vol[i+1][j] = vol[i][j];
-            }
-            // 新しい濃度
-            let new_vol = vol[i][j] + wp[i].0;
-            let new_p = (vol[i][j] * dp[i][j] + wp[i].0 * wp[i].1) / new_vol;
-            if new_p > dp[i+1][j+1] {
-                dp[i+1][j+1] = new_p;
-                vol[i+1][j+1] = new_vol;
-            }
+    // 2分探索
+    const EPS: f64 = 0.000_000_000_1;
+    let mut ok = 0.0;
+    let mut ng = 100.0;
+    while ng - ok > EPS {
+        let mid = (ok + ng) / 2.0;
+        if isOK(mid) {
+            ok = mid;
+        } else {
+            ng = mid
         }
     }
 
-    // println!("{:?}", dp);
-    // println!("{:?}", vol);
-    println!("{}", dp[N][K]);
+    println!("{}", ok);
 }
 
