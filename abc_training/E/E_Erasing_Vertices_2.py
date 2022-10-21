@@ -25,6 +25,7 @@ def can(m):
     que = deque()
     for u in range(N):
         if cost[u] <= m:
+            is_delete[u] = True
             que.append(u)
 
     while que:

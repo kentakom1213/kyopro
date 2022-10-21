@@ -10,7 +10,8 @@
 #![allow(non_snake_case)]
 
 // imports
-use std::collections::{HashMap, BTreeMap, VecDeque};
+use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
+use std::cmp::Reverse;
 
 // input macro
 // [Rustで競技プログラミング スターターキット](https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e)
@@ -64,57 +65,39 @@ fn main() {
     let (N, M) = get!(usize, usize);
     let A = get!(isize;;);
     let mut G = vec![vec![]; N];
+    let mut cost = vec![0; N];
     for _ in 0..M {
         let (mut u, mut v) = get!(usize, usize);
         u -= 1; v -= 1;
         G[u].push(v);
         G[v].push(u);
+        cost[u] += A[v];
+        cost[v] += A[u];
     }
 
-    let can = |m: isize| -> bool {
-        let mut cost = vec![0; N];
-        for u in 0..N {
-            for &v in &G[u] {
-                cost[u] += A[v];
-            }
-        }
-        let mut is_delete = vec![false; N];
-        let mut que = VecDeque::new();
-        for i in 0..N {
-            if cost[i] <= m {
-                que.push_back(i);
-                is_delete[i] = true;
-            }
-        }
-        while !que.is_empty() {
-            let u = que.pop_front().unwrap();
-            for &v in &G[u] {
-                if !is_delete[v] {
-                    cost[v] = if cost[v] <= A[u] { 0 } else { cost[v] - A[u] };
-                    if cost[v] <= m {
-                        que.push_back(v);
-                        is_delete[v] = true;
-                    }
-                }
-            }
-        }
+    let mut heapq = BinaryHeap::new();
+    for (i, &c) in cost.iter().enumerate() {
+        heapq.push(Reverse((c, i)));
+    }
 
-        is_delete
-            .iter()
-            .fold(true, |acc, x| acc & x)
-    };
+    let mut erased = vec![false; N];
+    let mut ans = 0;
 
-    let mut left = -1;
-    let mut right = 1001001001001;
-    while (right - left) > 1 {
-        let mid = (left + right) / 2;
-        if can(mid) {
-            right = mid;
-        } else {
-            left = mid;
+    while !heapq.is_empty() {
+        let Reverse((c, u)) = heapq.pop().unwrap();
+        if erased[u] {
+            continue;
+        }
+        erased[u] = true;
+        ans = ans.max(c);
+        for &v in &G[u] {
+            if !erased[v] {
+                cost[v] -= A[u];
+                heapq.push(Reverse((cost[v], v)));
+            }
         }
     }
 
-    println!("{}", right);
+    println!("{}", ans);
 }
 
