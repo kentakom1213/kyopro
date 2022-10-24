@@ -1,7 +1,7 @@
-//              D - Widespread             
+//            D - Digits Parade            
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc063/tasks/arc075_b
+// https://atcoder.jp/contests/abc135/tasks/abc135_d
 // ----------------------------------------
 
 // attributes
@@ -62,8 +62,35 @@ macro_rules! get {
 
 // solve
 fn main() {
-    let (N, A, B) = get!(usize, usize, usize);
-    let H = get!(usize; N);
+    let S = get!(String);
+    let digits = S.chars().map(|s| s.to_digit(10).unwrap_or(10) as usize).collect::<Vec<usize>>();
+    let N = S.len();  // 桁数
 
+    const MOD: usize = 1_000_000_007;
+
+    // 桁dp
+    // dp[i][j] := 数Sの桁数iまでを13で割ったあまりがjになる個数
+    let mut dp = vec![vec![0; 13]; N+1];
+    dp[0][0] = 1;
+
+    for i in 0..N {
+        let c = digits[i];
+        for j in 0..10 {
+            // cが?ではなく、jでもないときに無視
+            if c != 10 && c != j {
+                continue;
+            }
+            // c == '?' or c == j
+            for ki in 0..13 {
+                dp[i+1][(ki * 10 + j) % 13] += dp[i][ki];
+            }
+        }
+        for j in 0..13 {
+            dp[i+1][j] %= MOD;
+        }
+    }
+
+    let ans = dp[N][5];
+    println!("{}", ans);
 }
 
