@@ -1,7 +1,7 @@
-//                  C - 座圧                 
+//          C - 2D Plane 2N Points         
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc036/tasks/abc036_c
+// https://atcoder.jp/contests/abc091/tasks/arc092_a
 // ----------------------------------------
 
 // attributes
@@ -10,8 +10,7 @@
 #![allow(non_snake_case)]
 
 // imports
-// use proconio::{input, fastout};
-use std::collections::{HashSet, BTreeMap, VecDeque, BinaryHeap};
+use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
 use std::cmp::Reverse;
 
 // input macro
@@ -60,33 +59,17 @@ macro_rules! get {
     };
 }
 
+/*
+ * # 方針
+ * - 左下から貪欲に処理
+ */
 
 // solve
-// #[fastout]
 fn main() {
     let N = get!(usize);
-    let A = get!(usize; N);
+    let R = get!(usize, usize; N);
+    let B = get!(usize, usize; N);
 
-    // 重複要素を削除
-    let unique_A = {
-        let mut set = HashSet::new();
-        for &a in &A {
-            set.insert(a);
-        }
-        set
-    };
     
-    // ソート
-    let comp_A = {
-        let mut a: Vec<usize> = unique_A.into_iter().collect();
-        a.sort();
-        a
-    };
-
-    // Aの要素について二分探索
-    for &a in &A {
-        let res = comp_A.binary_search(&a).unwrap();
-        println!("{}", res);
-    }
 }
 
