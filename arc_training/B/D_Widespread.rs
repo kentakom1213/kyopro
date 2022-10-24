@@ -59,11 +59,41 @@ macro_rules! get {
     };
 }
 
+/* # 方針
+ * - 2分探索
+ * - 1回あたりの回数をどうやって減らすか
+ */
 
 // solve
 fn main() {
-    let (N, A, B) = get!(usize, usize, usize);
-    let H = get!(usize; N);
+    let (N, A, B) = get!(usize, isize, isize);
+    let H = get!(isize; N);
 
+    // n回の攻撃で殲滅できるかを判定する
+    let isOK = |n: isize| -> bool {
+        // Aから一律にn*Bを引く、もし足りない場合は(A-B)を何回引けばいいか求める
+        let mut additional = 0;
+        for &h in &H {
+            if h > B * n {
+                // div_ceil(h - B*n, A-B)
+                additional += (h - B*n + (A-B-1)) / (A-B);
+            }
+        }
+        
+        additional <= n
+    };
+
+    let mut l = -1;
+    let mut r = 1001001001;
+    while (r - l) > 1 {
+        let mid = (l + r) / 2;
+        if isOK(mid) {
+            r = mid;
+        } else {
+            l = mid;
+        }
+    }
+
+    println!("{}", r);
 }
 
