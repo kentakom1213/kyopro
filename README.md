@@ -5,7 +5,7 @@
 C++をメインで練習していますが、提出は主にPythonです。
 - C++
 - Python3, PyPy3
-- Haskell <- New!!
+- Rust
 
 ## 環境
 DockerコンテナでC++の環境を用意。
