@@ -1,7 +1,7 @@
-//           D - Summer Vacation           
+//               B - One Clue              
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc137/tasks/abc137_d
+// https://atcoder.jp/contests/abc137/tasks/abc137_b
 // ----------------------------------------
 
 // attributes
@@ -59,30 +59,13 @@ macro_rules! get {
     };
 }
 
-/* # 方針
- * - 2分探索
- */
 
 // solve
 fn main() {
-    let (N, M) = get!(usize, usize);
-    let mut AB = get!(usize, usize; N);
-    AB.sort();
-
-    let mut ans = 0;
-    let mut works = BinaryHeap::new();
-    let mut n = 0;
-    for i in 1..=M {
-        while n < N && AB[n].0 <= i {
-            let (a, b) = AB[n];
-            works.push((b, a));
-            n += 1;
-        }
-        if let Some((b, a)) = works.pop() {
-            ans += b;
-        }
+    let (K, X) = get!(isize, isize);
+    for i in X-K+1..X+K {
+        print!("{} ", i);
     }
-
-    println!("{}", ans);
+    println!();
 }
 
