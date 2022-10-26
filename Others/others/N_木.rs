@@ -1,25 +1,14 @@
-//      073 - We Need Both a and b（★5）     
+//                  N - 木                  
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/typical90/tasks/typical90_bu
+// https://atcoder.jp/contests/tdpc/tasks/tdpc_tree
 // ----------------------------------------
 
 /*
 
 ## 方針
-- 木DP
-
-dp[pos][今の連結成分にどれがあるか] := 頂点`pos`の部分木を考えたときに何通りあるか
-
-今の連結成分にどれがあるか = {
-    0: {'a',},
-    1: {'b',},
-    2: {'a', 'b'},
-}
-
-## 参考
-- https://github.com/E869120/kyopro_educational_90/blob/main/sol/073.cpp
-- https://atcoder.jp/contests/typical90/submissions/23811534
+- 木dp
+- 辺から書いていく場合であるので、子から総和を取っていく
 
 */
 
@@ -83,10 +72,10 @@ macro_rules! get {
 static MOD1: usize = 1_000_000_007;
 static MOD9: usize = 998_244_353;
 
+
 // solve
 fn main() {
     let N = get!(usize);
-    let C = get!(char;;);
     let mut G = vec![vec![]; N];
     for _ in 0..N-1 {
         let (a, b) = get!(usize, usize);
@@ -94,42 +83,27 @@ fn main() {
         G[b-1].push(a-1);
     }
 
-    // dp[pos][今の連結成分にどれがあるか] := 頂点`pos`の部分木を考えたときに何通りあるか
-    let mut dp = vec![vec![0; 3]; N];
+    let mut used = vec![false; N];
+    let mut dp = vec![0; N];
 
     // 木dp
-    dfs(0, 0, &G, &C, &mut dp);
+    dfs(0, &mut used, &mut dp, &G);
 
-    // 答え
-    println!("{}", dp[0][2]);
+    println!("{:?}", dp);
+    println!("{}", dp[0]);
 }
 
-fn dfs(prev: usize, cur: usize, graph: &Vec<Vec<usize>>, color: &Vec<char>, dp: &mut Vec<Vec<usize>>) {
-    let (mut val1, mut val2) = (1, 1);
+fn dfs(cur: usize, used: &mut Vec<bool>, dp: &mut Vec<usize>, graph: &Vec<Vec<usize>>) {
+    used[cur] = true;  // 完了済みとしてマーク
+
     for &nxt in &graph[cur] {
-        if nxt == prev { continue; }
+        if used[nxt] { continue; }
+        dfs(nxt, used, dp, graph);
 
-        // 子について呼び出し
-        dfs(cur, nxt, &graph, color, dp);  // ← 既にmutだから宣言しなくても良い？
-
-        if color[cur] == 'a' {
-            val1 *= dp[nxt][0] + dp[nxt][2];
-            val2 *= dp[nxt][0] + dp[nxt][1] + 2 * dp[nxt][2];
-        }
-        if color[cur] == 'b' {
-            val1 *= dp[nxt][1] + dp[nxt][2];
-            val2 *= dp[nxt][0] + dp[nxt][1] + 2 * dp[nxt][2];
-        }
-        val1 %= MOD1;
-        val2 %= MOD1;
+        dp[cur] += dp[nxt];
+        dp[cur] %= MOD1;
     }
 
-    if color[cur] == 'a' {
-        dp[cur][0] = val1;
-        dp[cur][2] = (val2 - val1 + MOD1) % MOD1;
-    }
-    if color[cur] == 'b' {
-        dp[cur][1] = val1;
-        dp[cur][2] = (val2 - val1 + MOD1) % MOD1;
-    }
+    // 初期値を設定
+    dp[cur] += 1;
 }
