@@ -69,20 +69,20 @@ static MOD9: usize = 998_244_353;
 fn main() {
     let N = get!(usize);
     let A = get!(usize;;);
+    let mut is_ng = A.iter().enumerate().map(|(i, &v)| i+1 == v).collect::<VecDeque<bool>>();
+    let mut ans = 0;
 
-    let mut cnt = 0;
-    let mut swapped = false;
-    for (i, &a) in A[..N-1].iter().enumerate() {
-        if i == a {
-            if swapped {
-                continue;
-            } else {
-                cnt += 1;
-                swapped = true;
+    while let Some(fst) = is_ng.pop_front() {
+        if fst {
+            ans += 1;
+            if let Some(&snd) = is_ng.front() {
+                if snd {
+                    is_ng.pop_front();
+                }
             }
         }
     }
 
-    println!("{}", cnt);
+    println!("{}", ans);
 }
 
