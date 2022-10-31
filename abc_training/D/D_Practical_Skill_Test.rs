@@ -1,4 +1,8 @@
-// https://atcoder.jp/contests/abc110/tasks/abc110_c
+//         D - Practical Skill Test        
+// ----------------------------------------
+// 問題
+// https://atcoder.jp/contests/abc089/tasks/abc089_d
+// ----------------------------------------
 
 // attributes
 #![allow(unused_imports)]
@@ -60,38 +64,39 @@ macro_rules! get {
 static MOD1: usize = 1_000_000_007;
 static MOD9: usize = 998_244_353;
 
-/*
-
-1対1対応しているかどうかを判定
-
-*/
 
 // solve
 fn main() {
-    let S = get!(String);
-    let T = get!(String);
+    let (H, W, D) = get!(usize, usize, usize);
+    let A = get!(usize;; H);
 
-    let mut mp1 = HashMap::new();
-    let mut mp2 = HashMap::new();
-
-    let mut isOK = true;
-    for (s, t) in S.chars().zip(T.chars()) {
-        if let Some(&x) = mp1.get(&s) {
-            isOK &= x == t;
-        } else {
-            mp1.insert(s, t);
-        }
-
-        if let Some(&x) = mp2.get(&t) {
-            isOK &= x == s;
-        } else {
-            mp2.insert(t, s);
+    let mut pos = vec![(0, 0); H*W+1];
+    for i in 0..H {
+        for j in 0..W {
+            let a = A[i][j];
+            pos[a] = (i as isize, j as isize);
         }
     }
 
-    if isOK {
-        println!("Yes");
-    } else {
-        println!("No");
+    // 距離の累積
+    let S = {
+        let mut v = vec![0; H*W+1];
+        for i in 0..=D {
+            for j in 1.. {
+                if i+D*j > H*W { break; }
+                let (cur, prev) = (i+D*j, i+D*(j-1));
+                let (cx, cy) = pos[cur];
+                let (px, py) = pos[prev];
+                v[cur] = v[prev] + (cx - px).abs() + (cy - py).abs();
+            }
+        }
+        v
+    };
+
+    let Q = get!(usize);
+    for q in 0..Q {
+        let (l, r) = get!(usize, usize);
+        println!("{}", S[r] - S[l]);
     }
 }
+

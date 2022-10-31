@@ -1,8 +1,13 @@
-//        C - String Transformation        
+//                 E - Warp                
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc110/tasks/abc110_c
+// https://atcoder.jp/contests/abc265/tasks/abc265_e
 // ----------------------------------------
+
+/*
+# 解説
+dp[n][x][y] := n回の移動後に(x, y)にいるような移動経路の個数
+*/
 
 // attributes
 #![allow(unused_imports)]
@@ -11,7 +16,7 @@
 #![allow(dead_code)]
 
 // imports
-use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
+use std::collections::{BTreeMap, VecDeque, BinaryHeap, BTreeSet};
 use std::cmp::Reverse;
 
 // input macro
@@ -64,38 +69,34 @@ macro_rules! get {
 static MOD1: usize = 1_000_000_007;
 static MOD9: usize = 998_244_353;
 
-/*
-
-1対1対応しているかどうかを判定
-
-*/
-
 // solve
 fn main() {
-    let S = get!(String);
-    let T = get!(String);
+    let (N, M) = get!(usize, usize);
+    let A = get!(isize;;);
+    let mov = [(A[0], A[1]), (A[2], A[3]), (A[4], A[5])];
+    let obs: BTreeSet<(isize, isize)> = get!(isize, isize; M).into_iter().collect();
 
-    let mut mp1 = HashMap::new();
-    let mut mp2 = HashMap::new();
+    let mut dp = BTreeMap::new();
+    dp.insert((0, 0), 1);
 
-    let mut isOK = true;
-    for (s, t) in S.chars().zip(T.chars()) {
-        if let Some(&x) = mp1.get(&s) {
-            isOK &= x == t;
-        } else {
-            mp1.insert(s, t);
+    for i in 0..N {
+        let mut new_dp = BTreeMap::new();
+        for (&(x, y), &val) in &dp {
+            for &(dx, dy) in &mov {
+                let new_pos = (x+dx, y+dy);
+                if !obs.contains(&new_pos) {
+                    let &old_val = new_dp.get(&new_pos).unwrap_or(&0);
+                    new_dp.insert(new_pos, (old_val + val)%MOD9);
+                }
+            }
         }
-
-        if let Some(&x) = mp2.get(&t) {
-            isOK &= x == s;
-        } else {
-            mp2.insert(t, s);
-        }
+        std::mem::swap(&mut dp, &mut new_dp);
     }
 
-    if isOK {
-        println!("Yes");
-    } else {
-        println!("No");
+    let mut ans = 0;
+    for (_, &val) in &dp {
+        ans = (ans + val) % MOD9;
     }
+
+    println!("{}", ans);
 }
