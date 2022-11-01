@@ -60,6 +60,11 @@ where
         *self = to;
     }
 
+    /// selfの`Node`または`Nil`を`Nil`に置き換える
+    pub fn remove(&mut self) {
+        self.replace(BinaryTree::Nil);
+    }
+
     /// 深さ優先探索を用いて`tree`を表示する
     pub fn print(&self, depth: usize) {
         let (v, l, r) = if let BinaryTree::Node { val: v, left: l, right: r } = self { (v, l, r) } else { unreachable!(); };
@@ -122,5 +127,13 @@ fn main() {
     }
 
     println!("\n[tree1 + tree2]");
+    tree1.print(0);
+
+    println!("\nRemove Node:1");
+    
+    if let BinaryTree::Node { val: _, left: _, right: node8 } = &mut tree1 {
+        node8.remove();
+    }
+
     tree1.print(0);
 }
