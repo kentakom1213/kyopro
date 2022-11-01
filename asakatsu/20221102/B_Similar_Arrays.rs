@@ -1,7 +1,7 @@
-//          E - LCM on Whiteboard          
+//            B - Similar Arrays           
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc259/tasks/abc259_e
+// https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_b
 // ----------------------------------------
 
 // attributes
@@ -69,20 +69,16 @@ static INF: usize = 1_000_000_000_000_000_000;
 // solve
 fn main() {
     let N = get!(usize);
-    let mut nums = vec![];
-    let mut common_divs = BTreeMap::new();
+    let A = get!(usize;;);
 
-    for i in 0..N {
-        let mut num = vec![];
-        let m = get!(usize);
-        for j in 0..m {
-            let (p, e) = get!(usize, usize);
-            
-            num.push((p, e));
+    let all = (0..N).fold(1, |i, x| i * 3);
+    let mut exclude = 1;
+    for &a in &A {
+        if a % 2 == 0 {
+            exclude *= 2;
         }
-        nums.push(num);
     }
 
-    (&nums).into_iter().for_each(|v| println!("{:?}", v));
+    println!("{}", all - exclude);
 }
 

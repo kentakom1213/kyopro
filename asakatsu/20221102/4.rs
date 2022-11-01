@@ -1,8 +1,4 @@
-//          E - LCM on Whiteboard          
-// ----------------------------------------
-// 問題
-// https://atcoder.jp/contests/abc259/tasks/abc259_e
-// ----------------------------------------
+// https://atcoder.jp/contests/abc080/tasks/abc080_c
 
 // attributes
 #![allow(unused_imports)]
@@ -69,20 +65,20 @@ static INF: usize = 1_000_000_000_000_000_000;
 // solve
 fn main() {
     let N = get!(usize);
-    let mut nums = vec![];
-    let mut common_divs = BTreeMap::new();
+    let F = get!(usize;; N);
+    let P = get!(isize;; N);
 
-    for i in 0..N {
-        let mut num = vec![];
-        let m = get!(usize);
-        for j in 0..m {
-            let (p, e) = get!(usize, usize);
-            
-            num.push((p, e));
+    let mut ans = -1_000_000_000_000_000_000;
+    for i in 0..1<<10 {
+        let cnt = vec![0; N];
+        for j in 0..10 {
+            if (i >> j) & 1 == 1 {
+
+            }
         }
-        nums.push(num);
+        ans = ans.max(tmp);
     }
 
-    (&nums).into_iter().for_each(|v| println!("{:?}", v));
+    println!("{}", ans);
 }
 
