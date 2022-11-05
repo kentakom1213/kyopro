@@ -53,35 +53,71 @@ macro_rules! get {
 // static vales
 static MOD1: usize = 1_000_000_007;
 static MOD9: usize = 998_244_353;
-static INF: usize = 1_000_000_000_000_000_000;
+static INF: usize = 1001001001001001001;
 
 
 // solve
 fn main() {
     let (N, M) = get!(usize, usize);
-    let mut dp = vec![vec![INF; N]; N];
+    // あらかじめ辺を圧縮する
+    let mut edges: HashMap<(usize, usize), usize> = HashMap::new();
     for i in 0..M {
-        let (a, b, c) = get!(usize, usize, usize);
-        dp[a-1][b-1] = dp[a-1][b-1].min(c);
+        let (mut a, mut b, c) = get!(usize, usize, usize);
+        a -= 1; b -=1;
+        edges.entry((a, b)).and_modify(|x| *x = c.min(*x)).or_insert(c);
     }
 
-    // ワーシャルフロイド
-    for k in 0..N {
-        for i in 0..N {
-            for j in 0..N {
-                dp[i][j] = dp[i][j].min(
-                    dp[i][k] + dp[k][j]
-                )
+    let mut G1 = vec![vec![]; N];
+    let mut G2 = vec![vec![]; N];
+    for ((a, b), c) in &edges {
+        G1[*a].push((*b, *c));
+        G2[*b].push((*a, *c));
+    }
+
+    // 全頂点間ダイクストラ
+    for i in 0..N {
+        let mut res = INF;
+
+        // 自己ループを検証
+        if let Some(c) = edges.get(&(i, i)) {
+            res = *c;
+        }
+
+        // ダイクストラ
+        let go = dijkstra(&G1, i);
+        let back = dijkstra(&G2, i);
+
+        for j in 0..N {
+            if i == j { continue; }
+            res = res.min(go[j] + back[j]);
+        }
+        if res == INF {
+            println!("-1");
+        } else {
+            println!("{}", res);
+        }
+    }
+}
+
+// Dijkstra法
+fn dijkstra(graph: &Vec<Vec<(usize, usize)>>, s: usize) -> Vec<usize> {
+    const INF: usize = 1001001001001001001;
+    let n: usize = graph.len();
+    let mut dist: Vec<usize> = vec![INF; n];
+    let mut pq: BinaryHeap<Reverse<(usize, usize)>> = BinaryHeap::new();
+    // 初期化
+    dist[s] = 0;
+    pq.push(Reverse((dist[s], s)));
+    // 更新
+    while let Some(Reverse((cost, u))) = pq.pop() {
+        if dist[u] < cost { continue; }
+        for &(v, weight) in &graph[u] {
+            if dist[v] > dist[u] + weight {
+                dist[v] = dist[u] + weight;
+                pq.push(Reverse((dist[v], v)));
             }
         }
     }
-
-    for i in 0..N {
-        if dp[i][i] == INF {
-            println!("-1");
-        } else {
-            println!("{}", dp[i][i]);
-        }
-    }
+    dist
 }
 
