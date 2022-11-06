@@ -85,50 +85,35 @@ fn main() {
         idx.entry(c).or_insert(Vec::new()).push(i+1);
     }
 
-    eprintln!("{:?}", idx);
-
     // 文字`c`の位置のうち、`n`より大きい最小のものを取得する
     let get_pos = |c: char, n: usize| {
         let vec = &idx[&c];
-        let (mut l, mut r) = (0, vec.len());
+        let (mut l, mut r) = (-1_isize, vec.len() as isize);
         while (r - l) > 1 {
-            let m = ((l + r) / 2) as usize;
-            if vec[m] > n {
-                r = n;
+            let m = (l + r) / 2;
+            if vec[m as usize] >= n {
+                r = m;
             } else {
-                l = n;
+                l = m;
             }
         }
-        r
+        r as usize
     };
 
     // 貪欲に部分列を探索
     let mut cnt = 0;
     let mut cur = INF;
     for c in T.chars() {
-        eprintln!("{} {}", c, cur);
         let p = get_pos(c, cur+1);
         if p < idx[&c].len() {
-            cur = p;
+            cur = idx[&c][p];
         } else {
             cur = idx[&c][0];
             cnt += 1;
         }
     }
 
-    // Tの最後の文字が最初に現れる位置を特定
-    let rem = {
-        let mut x = 0;
-        for (i, c) in T.chars().enumerate() {
-            if c == T.chars().last().unwrap() {
-                x = i;
-                break;
-            }
-        }
-        x
-    };
-
-    let ans = S.len() * (cnt - 1) + rem;
+    let ans = S.len() * (cnt - 1) + cur;
     println!("{}", ans);
 }
 

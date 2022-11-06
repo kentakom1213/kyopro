@@ -1,5 +1,11 @@
+#![allow(non_snake_case)]
+
 fn main() {
     let vec = vec![1, 5, 5, 10, 11, 11, 15];
+
+    let isOK = |n: isize, m: isize| {
+        n <= vec[m as usize]
+    };
 
     // 条件を満たす最大を求める
     let lower_bound = |n: isize| {
@@ -7,13 +13,13 @@ fn main() {
         let mut r = vec.len() as isize;
         while (r - l) > 1 {
             let mid = (l + r) / 2;
-            if n <= vec[mid as usize] {
+            if isOK(n, mid) {
                 r = mid;
             } else {
                 l = mid;
             }
         }
-        r
+        l
     };
 
     // 条件を満たさない最小を求める
