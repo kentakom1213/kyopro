@@ -1,32 +1,28 @@
-//            Q3-1. 行きがけ順
+//            Q2-1. 頂点を塗る
 // ----------------------------------------
 // 問題
-// https://algo-method.com/tasks/525
+// https://algo-method.com/tasks/414
 // ----------------------------------------
 
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
+typedef long long ll;
+typedef vector<vector<int>> Graph;
 
 int main() {
-    int N; cin >> N;
-    vector<vector<int>> G(N, vector<int>());
-    for (int i = 1; i < N; i++) {
-        int p; cin >> p;
-        G[p].push_back(i);
+    int N, M;
+    cin >> N >> M;
+
+    Graph G(N);
+    rep(i, N) {
+        int a, b; cin >> a >> b;
+        a--, b--;
+        G[a].push_back(b);
+        G[b].push_back(a);
     }
 
-    // 最近のトレンドは非再帰DFS
-    stack<int> points;
-    points.push(0);
-    while (!points.empty()) {
-        int next_point = points.top();
-        points.pop();
-        cout << next_point << endl;
-        
-        while (!G[next_point].empty()) {
-            points.push(G[next_point].back());
-            G[next_point].pop_back();
-        }
-    }
+    // bfs
+    
 }
