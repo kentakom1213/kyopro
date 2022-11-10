@@ -82,6 +82,8 @@ def make_header(data: dict, lang: str):
         )
     )
 
+    result += "\n"  # 最後に空行を追加
+
     return result
 
 
