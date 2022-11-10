@@ -14,7 +14,6 @@
 
 // imports
 use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
-use itertools::Itertools;
 use std::cmp::Reverse;
 
 // input macro
@@ -73,17 +72,39 @@ static MOD1: usize = 1_000_000_007;
 static MOD9: usize = 998_244_353;
 static INF: usize = 1001001001001001001;
 
-fn combinations_with_replacement(vec: Vec<usize>, res: Vec<usize>) -> Vec<Vec<usize>> {
-    
+type Qs = Vec<(usize, usize, usize, usize)>;
+
+fn rec(n: usize, m: usize, vec: &mut Vec<usize>, queries: &Qs, ans: &mut usize) {
+    // 列挙が完了したとき
+    if vec.len() >= n {
+        // println!("{:?}", vec);
+        let mut score = 0;
+        for (a, b, c, d) in queries {
+            if vec[b-1] - vec[a-1] == *c {
+                score += d;
+            }
+        }
+        *ans = (*ans).max(score);
+    } else {
+        let len = vec.len();
+        let cur = if len > 0 {vec[len-1]} else {1};
+        for nxt in cur..=m {
+            vec.push(nxt);
+            rec(n, m, vec, &queries, ans);
+            vec.pop();
+        }
+    }
 }
 
 // solve
 fn main() {
     let (N, M, Q) = get!(usize, usize, usize);
-    let mut queries = get!(usize, usize, usize, usize; Q);
+    let queries: Qs = get!(usize, usize, usize, usize; Q);
     
     // 数列の列挙
-    for comb in (1..=M).combinations_with_replacement(N) {
-        println!("{:?}", comb);
-    }
+    let mut ans = 0;
+    let mut vec = vec![];
+    rec(N, M, &mut vec, &queries, &mut ans);
+
+    println!("{}", ans);
 }
