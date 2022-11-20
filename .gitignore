@@ -35,8 +35,5 @@ debug/
 target/
 **/*.rs.bk
 
-## ahc016（コンテスト期間中のみ）
-ahc016/
-
 # テスト用ファイル
 test.txt
