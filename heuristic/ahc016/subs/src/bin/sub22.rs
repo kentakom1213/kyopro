@@ -269,7 +269,7 @@ fn main() {
         }
         
         // 生成したグラフを出力
-        // eprintln!("{:?}", graph.deg_list());
+        eprintln!("{:?}", graph.deg_list());
         println!("{}", graph.to_string());
 
         // `SHUFFLE_COUNT`回行う
