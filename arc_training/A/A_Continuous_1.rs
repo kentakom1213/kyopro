@@ -3,8 +3,17 @@
 // 問題
 // https://atcoder.jp/contests/arc150/tasks/arc150_a
 
-// WA
+// AC
 // ----------------------------------------
+
+/*
+# 方針
+## 1. 判定問題に帰着
+S_i, S_i+1, S_i+2, ... S_i+K-1 を全て1に、それ以外を0にできるか？
+
+## 2. 尺取り法で計算量を落とす
+区間の差分を管理
+*/
 
 // attributes
 #![allow(unused_imports)]
@@ -73,34 +82,45 @@ fn main() {
     }
 }
 
-// クエリの処理: O(N)
+// クエリの処理
 fn solve() {
     let (N, K) = get!(usize, usize);
-    let S = get!(String);
+    let S = get!(String).chars().collect::<Vec<char>>();
+    let M = S.iter().filter(|c| **c == '1').count();  // '1'の数
 
-    let mut acc = vec![0; N];
-    let (mut l, mut r) = (INF, 0);
-    for (i, c) in S.chars().enumerate() {
-        if c == '1' {
-            // 左右を更新
-            if l == INF {
-                l = i;
-            }
-            r = i;
+    // 区間の初期化
+    let mut cnt = (0, 0);
+    for i in 0..K {
+        if S[i] == '1' {
+            cnt.1 += 1;
         }
-        if c == '1' || c == '?' {
-            acc[i] = if i > 0 {acc[i-1]} else {0} + 1;
+        if S[i] == '0' {
+            cnt.0 += 1;
+        }
+    }
+    // 条件を満たす区間をカウント
+    let mut res = 0;
+    for i in 0..=N-K {
+        if cnt == (0, M) {
+            res += 1;
+        }
+        if i < N-K {
+            if S[i] == '0' {
+                cnt.0 -= 1;
+            }
+            if S[i] == '1' {
+                cnt.1 -= 1;
+            }
+            if S[i+K] == '0' {
+                cnt.0 += 1;
+            }
+            if S[i+K] == '1' {
+                cnt.1 += 1;
+            }
         }
     }
 
-    let span = r - l;
-    let cont_len = *acc.iter().max().unwrap();
-
-    let is_ok = 
-            span == K && cont_len >= K
-         || span < K && cont_len <= K;
-    
-    if is_ok {
+    if res == 1 {
         println!("Yes");
     } else {
         println!("No");
