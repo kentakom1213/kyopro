@@ -36,6 +36,6 @@ if __name__ == "__main__":
         com, x, y = map(int, input().split())
         if com == 0:
             bit.add(x-1, y)
-            # print(bit.arr)
         elif com == 1:
             print(bit.sum_range(x-1, y))
+        print(bit.arr)
