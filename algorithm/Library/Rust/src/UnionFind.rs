@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 struct UnionFind {
     par: Vec<usize>,
     siz: Vec<usize>,
@@ -50,5 +52,26 @@ impl UnionFind {
         let root = self.root(x);
         self.siz[root]
     }
+}
 
+#[test]
+fn test_unionfind() {
+    let mut uf = UnionFind::new(8);
+
+    uf.unite(1, 2);
+    uf.unite(3, 2);
+
+    assert!(uf.issame(1, 3) == true);
+    assert!(uf.issame(1, 4) == false);
+    assert_eq!(uf.size(1), 3);
+
+    uf.unite(2, 4);
+
+    assert!(uf.issame(4, 1) == true);
+    assert_eq!(uf.size(4), 4);
+
+    uf.unite(4, 2);
+    uf.unite(0, 0);
+
+    assert!(uf.issame(0, 0) == true);
 }

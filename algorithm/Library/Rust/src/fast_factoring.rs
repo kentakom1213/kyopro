@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 struct Factors {
     n: usize,
     sieve: Vec<usize>,
@@ -30,4 +32,14 @@ impl Factors {
         }
         factors
     }
+}
+
+#[test]
+fn test_factoring() {
+    let f = Factors::new(200_000);
+
+    assert_eq!(f.factor(200), vec![2, 2, 2, 5, 5]);
+    assert_eq!(f.factor(123450), vec![2, 3, 5, 5, 823]);
+    assert_eq!(f.factor(107311), vec![239, 449]);
+    assert_eq!(f.factor(199999), vec![199999]);
 }
