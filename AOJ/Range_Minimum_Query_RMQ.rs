@@ -1,7 +1,7 @@
-//             Range Sum Query             
+//        Range Minimum Query (RMQ)        
 // ----------------------------------------
 // 問題
-// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
+// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
 // ----------------------------------------
 
 // attributes
@@ -64,7 +64,6 @@ macro_rules! get {
     };
 }
 
-/// SegmentTree (Monoid)
 struct SegmentTree<F, T> {
     offset: usize,
     data: Vec<T>,
@@ -156,15 +155,16 @@ const INF: usize = 1001001001001001001;
 // solve
 fn main() {
     let (N, Q) = get!(usize, usize);
-    let mut segtree = SegmentTree::new(N, 0, |a, b| a + b);
+
+    const INF: usize = (1 << 31) - 1;
+    let mut segtree = SegmentTree::new(N, INF, |a, b| a.min(b));
 
     for _ in 0..Q {
         let (com, x, y) = get!(usize, usize, usize);
         if com == 0 {
-            let v = segtree.get_point(x-1);
-            segtree.update(x-1, v + y);
+            segtree.update(x, y);
         } else {
-            let ans = segtree.get_range(x-1, y);
+            let ans = segtree.get_range(x, y+1);
             println!("{}", ans);
         }
     }

@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-// 余りをとる累乗
+/// 余りをとる累乗
 fn powmod(mut a: usize, mut b: usize, m: usize) -> usize {
     let mut res = 1;
     while b > 0 {

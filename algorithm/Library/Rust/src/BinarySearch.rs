@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+/// # BinarySearch
+/// 二分探索の実装
 trait BinarySearch<T> {
     fn lower_bound(&self, x: T) -> usize;
     fn upper_bound(&self, x: T) -> usize;
