@@ -1,40 +1,26 @@
 // # 参考
 // - https://makandat.wordpress.com/2022/02/08/rust-%E3%81%AE%E5%8B%89%E5%BC%B7-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%B8%80%E8%A6%A7/
 // - https://qiita.com/benki/items/70ad2ee44cff9efde778
+
+#![allow(dead_code)]
+
 use std::env;
-use std::io;
-use std::fs;
-use std::vec;
 use std::path;
 use colored::*;
- 
-/* ファイル一覧を取得する。 (ディレクトリを除く) */
-fn get_files(target_dir: &str) -> io::Result<vec::Vec<path::PathBuf>> {
-    // 対象のファイル一覧(io::Result<ReadDir>)を取得する。ReadDir は DirEntry を返す反復子。
-    Ok(fs::read_dir(target_dir)?
-        .map(|res|
-            res.map(|e| e.path())
-        )
-        .collect::<Result<Vec<_>, io::Error>>()?
-    )
-}
 
-fn crawl_dir(root_dir: &str) {
-    // ファイル一覧を取得して表示する。
-    match get_files(root_dir) {
-        Ok(v) => {
-            for x in v {
-                let s = x.as_path().to_str().unwrap();
-                if path::Path::new(s).is_file() {
-                    if s.ends_with(".rs") {
-                        println!("{}", s.blue());
-                    }
-                } else {
-                    crawl_dir(s);  // 再帰的に検索
-                }
+fn traverse_dir(path: &path::PathBuf) {
+    for entry in path.read_dir().unwrap() {
+        let next_path = entry.unwrap().path();
+        let obj_name = next_path.to_str().unwrap();
+        if next_path.is_file() {
+            // Rustファイルだけを抽出
+            if obj_name.ends_with(".rs") {
+                println!("{}", obj_name.blue());
             }
-        },
-        Err(_) => (),
+        } else {
+            println!("{}", obj_name.green());
+            traverse_dir(&next_path);
+        }
     }
 }
  
@@ -61,5 +47,7 @@ fn main() {
         target_dir = argv[1].as_str();
     }
  
-    crawl_dir(target_dir);
+    // crawl_dir(target_dir);
+    let target_path = path::PathBuf::from(&target_dir);
+    traverse_dir(&target_path);
 }
