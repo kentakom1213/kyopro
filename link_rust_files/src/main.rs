@@ -4,12 +4,28 @@
 
 use std::path;
 use colored::*;
+use link_rust_files::{
+    traverse_dir,
+    make_lib,
+};
 
 const ROOT_DIR: &str = "..";
 
 fn main() {
     let root = path::PathBuf::from(ROOT_DIR);
-    link_rust_file::traverse_dir(&root);
+    // traverse_dir(&root);
+    let mut lib: Vec<(usize, String)> = vec![];
+    make_lib(&root, &mut lib, 0);
+
+    // 表示
+    println!("{}", "kyopuro".green());
+    for (d, s) in &lib {
+        if s.ends_with(".rs") {
+            println!("{} ├─ {}", " │ ".repeat(*d), s.blue());
+        } else {
+            println!("{} ├─ {}", " │ ".repeat(*d), s.green());
+        }
+    }
 
     println!("{}", "Complete!".green().bold());
 }
