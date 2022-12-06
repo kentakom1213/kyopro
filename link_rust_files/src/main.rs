@@ -7,20 +7,34 @@ use colored::*;
 
 const ROOT_DIR: &str = "..";
 
-fn traverse_dir(path: &path::PathBuf) {
+/// # traverse_dir
+/// 
+/// ## Args
+/// - `path` : ルートとなるディレクトリ
+/// 
+/// ## Return
+/// - そのディレクトリ以下にRustファイルが含まれれば`true`、含まれなければ`false`
+fn traverse_dir(path: &path::PathBuf) -> bool {
+    let mut is_contains_rs = false;
+
     for entry in path.read_dir().unwrap() {
         let next_path = entry.unwrap().path();
         let obj_name = next_path.to_str().unwrap();
-        if next_path.is_file() {
+        if next_path.is_dir() {
+            let tmp_contains = traverse_dir(&next_path);
+            if tmp_contains {
+                println!("{}", obj_name.green());
+            }
+            is_contains_rs |= tmp_contains;
+        } else {
             // Rustファイルだけを抽出
             if obj_name.ends_with(".rs") {
                 println!("{}", obj_name.blue());
+                is_contains_rs = true;
             }
-        } else {
-            println!("{}", obj_name.green());
-            traverse_dir(&next_path);
         }
     }
+    is_contains_rs
 }
  
 fn main() {
