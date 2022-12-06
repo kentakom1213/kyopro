@@ -5,15 +5,11 @@
 use std::path;
 use colored::*;
 
-// module
-mod traverse_dir;
-use traverse_dir::traverse_dir;
-
 const ROOT_DIR: &str = "..";
 
 fn main() {
     let root = path::PathBuf::from(ROOT_DIR);
-    traverse_dir(&root);
+    link_rust_file::traverse_dir(&root);
 
     println!("{}", "Complete!".green().bold());
 }
