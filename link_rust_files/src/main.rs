@@ -4,10 +4,7 @@
 
 use std::path;
 use colored::*;
-use link_rust_files::{
-    traverse_dir,
-    make_lib,
-};
+use link_rust_files::make_tree;
 
 const ROOT_DIR: &str = "..";
 
@@ -15,7 +12,7 @@ fn main() {
     let root = path::PathBuf::from(ROOT_DIR);
     // traverse_dir(&root);
     let mut lib: Vec<(usize, String)> = vec![];
-    make_lib(&root, &mut lib, 0);
+    make_tree(&root, &mut lib, 0);
 
     // 表示
     println!("{}", "kyopuro".green());
@@ -27,5 +24,5 @@ fn main() {
         }
     }
 
-    println!("{}", "Complete!".green().bold());
+    println!("\n{}", "Complete!".green().bold());
 }

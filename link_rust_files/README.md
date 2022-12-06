@@ -6,5 +6,8 @@
 
 rootの`lib.rs`に全てのファイルの情報を記録する
 
+## TODO
+- [ ] `iterator`で実装
+
 ## 参考
 - [Rustのmodule完全に理解した。 - zenn](https://zenn.dev/newgyu/articles/3b4677b4086768)

@@ -1,6 +1,3 @@
 
-mod traverse_dir;
-pub use traverse_dir::traverse_dir;
-
-mod make_lib;
-pub use make_lib::make_lib;
+mod make_tree;
+pub use make_tree::make_tree;
