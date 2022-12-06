@@ -134,4 +134,15 @@
     },
     "C_Cpp.errorSquiggles": "Disabled",
     // windowsの場合："terminal.integrated.shell.windows": "C:\\WINDOWS\\system32\\cmd.exe",
+
+    // font
+    "editor.fontFamily": "Cica",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 18,
+    "editor.letterSpacing": 0.3,
+
+    // Rust
+    "rust-analyzer.linkedProjects": [
+        ".vscode/rust-project.json",
+    ],
 }
