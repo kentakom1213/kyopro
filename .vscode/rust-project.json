@@ -2,7 +2,7 @@
     "sysroot_src": "/Users/komotokenta/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/library",
     "crates": [
         {
-            "root_module": "../mod.rs",
+            "root_module": "../lib.rs",
             "edition": "2021",
             "deps": []
         }
