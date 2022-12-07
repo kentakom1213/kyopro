@@ -11,6 +11,7 @@ mod abc_training {
     mod A {
         mod A_Slot;
         mod A_A_C;
+        mod A_Air_Conditioner;
         mod A_twiblr;
         mod A_テスト評価;
         mod A_New_Generation_ABC;
@@ -154,6 +155,16 @@ mod abc_training {
 }
 mod lib;
 mod heuristic {
+    mod ahc001 {
+        mod tools {
+            mod src {
+                mod bin {
+                    mod vis;
+                    mod gen;
+                }
+            }
+        }
+    }
     mod ahc015 {
         mod after02 {
             mod src {
@@ -185,6 +196,15 @@ mod heuristic {
         }
     }
     mod ahc016 {
+        mod tools {
+            mod src {
+                mod bin {
+                    mod gen;
+                    mod tester;
+                }
+                mod lib;
+            }
+        }
         mod subs {
             mod src {
                 mod bin {

@@ -25,6 +25,7 @@ mod dir1 {
 ```
 
 ## TODO
+- [ ] ignoreを追加
 - [ ] `iterator`で実装
 
 ## 参考
