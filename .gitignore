@@ -37,3 +37,6 @@ target/
 
 # テスト用ファイル
 test.txt
+
+# 環境変数
+.env
