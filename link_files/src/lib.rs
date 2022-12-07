@@ -1,4 +1,7 @@
 
+/// (深さ, パス) のベクタ
+pub type FileTree = Vec<(usize, String)>;
+
 mod make_tree;
 pub use make_tree::make_tree;
 

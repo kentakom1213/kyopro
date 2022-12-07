@@ -1,5 +1,7 @@
 use std::path;
 
+use crate::FileTree;
+
 /// # make_tree
 /// ファイルを再帰的に探索する
 /// 
@@ -8,7 +10,7 @@ use std::path;
 /// 
 /// ## Return
 /// - そのディレクトリ以下にRustファイルが含まれれば`true`、含まれなければ`false`
-pub fn make_tree(path: &path::PathBuf, lib: &mut Vec<(usize, String)>, depth: usize) -> bool {
+pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool {
     let mut is_contain = false;
     
     for entry in path.read_dir().unwrap() {
