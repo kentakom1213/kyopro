@@ -6,13 +6,14 @@ use link_files::{
     // display_tree,
     write_lib,
 };
-
-const ROOT_DIR: &str = "..";
-const LIB_PATH: &str = "../lib.rs";
+use dotenv::dotenv;
+use std::env;
 
 fn main() {
-    let root = path::PathBuf::from(ROOT_DIR);
-    let lib_path = path::PathBuf::from(LIB_PATH);
+    dotenv().ok();
+
+    let root = path::PathBuf::from(env::var("ROOT_DIR").unwrap());
+    let lib_path = path::PathBuf::from(env::var("LIB_PATH").unwrap());
 
     print!("{}", "Rendering `lib.rs` ... ".blue());
 

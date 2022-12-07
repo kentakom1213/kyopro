@@ -15,6 +15,7 @@ mod abc_training {
         mod A_テスト評価;
         mod A_New_Generation_ABC;
         mod A_Very_Very_Primitive_Game;
+        mod A_Dont_be_late;
         mod A_Vanishing_Pitch;
         mod A_Five_Variables;
         mod A_Brick;
