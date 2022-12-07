@@ -14,6 +14,8 @@ fn main() {
     let root = path::PathBuf::from(ROOT_DIR);
     let lib_path = path::PathBuf::from(LIB_PATH);
 
+    print!("{}", "Rendering `lib.rs` ... ".blue());
+
     // `lib.rs`のベースとなるリストを取得
     let mut lib: FileTree = vec![];
     make_tree(&root, &mut lib, 0);
@@ -24,5 +26,5 @@ fn main() {
     // ファイルに書き出し
     write_lib(&lib, &lib_path);
 
-    println!("\n{}", "Complete!".green().bold());
+    println!("{}", "Complete!".green().bold());
 }
