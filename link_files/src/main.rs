@@ -6,14 +6,11 @@ use link_files::{
     // display_tree,
     write_lib,
 };
-use dotenv::dotenv;
 use std::env;
 
 fn main() {
-    dotenv().ok();
-
-    let root = path::PathBuf::from(env::var("ROOT_DIR").unwrap());
-    let lib_path = path::PathBuf::from(env::var("LIB_PATH").unwrap());
+    let root = path::PathBuf::from(env::var("KYOPURO_ROOT_DIR").unwrap());
+    let lib_path = path::PathBuf::from(env::var("KYOPURO_LIB_PATH").unwrap());
 
     print!("{}", "Rendering `lib.rs` ... ".blue());
 
