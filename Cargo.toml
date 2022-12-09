@@ -1,0 +1,11 @@
+[package]
+name = "kyopuro"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "lib.rs"
+crate-type = ["cdylib"]
+bench = false
+
+[dependencies]

@@ -11,6 +11,7 @@ mod abc_training {
     mod A {
         mod A_Slot;
         mod A_A_C;
+        mod A_Air_Conditioner;
         mod A_twiblr;
         mod A_テスト評価;
         mod A_New_Generation_ABC;
@@ -35,6 +36,7 @@ mod abc_training {
     mod F {
         mod F_Range_Xor_Query_Segtree;
         mod F_Range_Xor_Query;
+        mod F_Distance_Sums_2;
     }
     mod C {
         mod C_management;
