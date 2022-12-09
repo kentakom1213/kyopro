@@ -36,6 +36,7 @@ mod abc_training {
     mod F {
         mod F_Range_Xor_Query_Segtree;
         mod F_Range_Xor_Query;
+        mod F_Distance_Sums_2;
     }
     mod C {
         mod C_management;
@@ -382,8 +383,8 @@ mod asakatsu {
         mod _3;
     }
     mod asa20221126 {
-        mod 5_Xor_Sum_4;
-        mod 4_E_Coprime;
+        mod _5_Xor_Sum_4;
+        mod _4_E_Coprime;
     }
     mod asa20221119 {
         mod C_SecretNumber;
