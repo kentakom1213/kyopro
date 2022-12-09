@@ -147,74 +147,6 @@ mod abc_training {
         mod B_Gentle_Pairs;
         mod B_Quizzes;
         mod B_Mix_Juice;
-        mod B_Orthogonality;
-        mod B_Smartphone_Addiction;
-        mod B_Trapezoid_Sum;
-    }
-}
-mod lib;
-mod heuristic {
-    mod ahc015 {
-        mod after02 {
-            mod src {
-                mod main;
-            }
-        }
-        mod after03 {
-            mod main;
-        }
-        mod sub03 {
-            mod src {
-                mod main;
-            }
-        }
-        mod sub02 {
-            mod src {
-                mod main;
-            }
-        }
-        mod after01 {
-            mod src {
-                mod main;
-            }
-        }
-        mod sub01 {
-            mod src {
-                mod main;
-            }
-        }
-    }
-    mod ahc016 {
-        mod subs {
-            mod src {
-                mod bin {
-                    mod sub02;
-                    mod sub12;
-                    mod sub06;
-                    mod sub22;
-                    mod sub16;
-                    mod sub07;
-                    mod sub23;
-                    mod sub17;
-                    mod sub03;
-                    mod sub13;
-                    mod sub08;
-                    mod sub18;
-                    mod sub09;
-                    mod sub19;
-                    mod sub04;
-                    mod sub20;
-                    mod sub14;
-                    mod sub10;
-                    mod sub01;
-                    mod sub11;
-                    mod sub05;
-                    mod after01;
-                    mod sub21;
-                    mod sub15;
-                }
-            }
-        }
     }
 }
 mod AOJ {
@@ -235,23 +167,6 @@ mod Others {
         mod C_Inserting_x;
         mod C_Sqrt_Inequality;
     }
-}
-mod algorithm {
-    mod Library {
-        mod Rust {
-            mod src {
-                mod factors_all;
-                mod powmod;
-                mod Factors;
-                mod lib;
-                mod SegmentTree;
-                mod dijkstra;
-                mod UnionFind;
-                mod BinarySearch;
-                mod BIT;
-            }
-        }
-    }
     mod rust_binary_tree {
         mod tree_node;
         mod gen_tree_macro;
@@ -265,17 +180,6 @@ mod typical90 {
     mod _004_Cross_Sum;
     mod _066_Various_Arrays;
     mod _073_We_Need_Both_a_and_b;
-    mod _036_Max_Manhattan_Distance;
-}
-mod AGC {
-    mod agc059 {
-        mod src {
-            mod bin {
-                mod A;
-            }
-            mod main;
-        }
-    }
 }
 mod AlgoMethod {
     mod Graph {
@@ -362,8 +266,8 @@ mod asakatsu {
         mod _3;
     }
     mod asa20221126 {
-        mod 5_Xor_Sum_4;
-        mod 4_E_Coprime;
+        mod _5_Xor_Sum_4;
+        mod _4_E_Coprime;
     }
     mod asa20221119 {
         mod C_SecretNumber;
@@ -402,15 +306,4 @@ mod VirtualContest {
 }
 mod ARC {
     mod arc151 {
-        mod A;
-    }
-}
-mod link_files {
-    mod src {
-        mod make_tree;
-        mod lib;
-        mod write_lib;
-        mod main;
-        mod display_tree;
-    }
 }

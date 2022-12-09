@@ -30,6 +30,14 @@ pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool
                 lib.push((depth, obj_name));
                 is_contain = true;
             }
+            // cargoプロジェクトを無視する
+            else if obj_name == "Cargo.toml" {
+                // ディレクトリを削除
+                while let Some((i, _)) = lib.pop() {
+                    if i != depth { break; }
+                }
+                return false;
+            }
         }
     }
     is_contain
