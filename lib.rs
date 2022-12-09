@@ -149,6 +149,17 @@ mod abc_training {
         mod B_Gentle_Pairs;
         mod B_Quizzes;
         mod B_Mix_Juice;
+        mod B_Orthogonality;
+        mod B_Smartphone_Addiction;
+        mod B_Trapezoid_Sum;
+    }
+}
+mod lib;
+mod heuristic {
+    mod ahc015 {
+        mod after03 {
+            mod main;
+        }
     }
 }
 mod AOJ {
@@ -169,6 +180,8 @@ mod Others {
         mod C_Inserting_x;
         mod C_Sqrt_Inequality;
     }
+}
+mod algorithm {
     mod rust_binary_tree {
         mod tree_node;
         mod gen_tree_macro;
@@ -182,6 +195,7 @@ mod typical90 {
     mod _004_Cross_Sum;
     mod _066_Various_Arrays;
     mod _073_We_Need_Both_a_and_b;
+    mod _036_Max_Manhattan_Distance;
 }
 mod AlgoMethod {
     mod Graph {
@@ -308,4 +322,6 @@ mod VirtualContest {
 }
 mod ARC {
     mod arc151 {
+        mod A;
+    }
 }

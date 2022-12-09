@@ -12,6 +12,16 @@ use crate::FileTree;
 /// - そのディレクトリ以下にRustファイルが含まれれば`true`、含まれなければ`false`
 pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool {
     let mut is_contain = false;
+
+    // `Cargo.toml`が含まれる場合は処理しない
+    for entry in path.read_dir().unwrap() {
+        let next_path = entry.unwrap().path();
+        let obj_name = next_path.file_name().unwrap().to_string_lossy().to_owned().to_string();
+        
+        if obj_name == "Cargo.toml" {
+            return false;
+        }
+    }
     
     for entry in path.read_dir().unwrap() {
         let next_path = entry.unwrap().path();
@@ -29,14 +39,6 @@ pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool
             if obj_name.ends_with(".rs") {
                 lib.push((depth, obj_name));
                 is_contain = true;
-            }
-            // cargoプロジェクトを無視する
-            else if obj_name == "Cargo.toml" {
-                // ディレクトリを削除
-                while let Some((i, _)) = lib.pop() {
-                    if i != depth { break; }
-                }
-                return false;
             }
         }
     }
