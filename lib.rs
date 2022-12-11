@@ -101,6 +101,7 @@ mod abc_training {
         mod E_Bomber_ans;
         mod E_Erasing_Vertices_2_binaryheap;
         mod E_Notebook_input;
+        mod E_Sorting_Queries;
         mod E_Bomber;
         mod E_Cheating_Amidakuji;
         mod E_Notebook;

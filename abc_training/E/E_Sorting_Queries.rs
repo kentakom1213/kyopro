@@ -1,7 +1,7 @@
-//           F - Distance Sums 2           
+//           E - Sorting Queries           
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc220/tasks/abc220_f
+// https://atcoder.jp/contests/abc217/tasks/abc217_e
 // ----------------------------------------
 
 // attributes
@@ -71,23 +71,37 @@ const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
 
 /// # 方針
-/// - 頂点0からの距離を求め、それを元に
+/// - queueとheapqを併用する
 fn main() {
-    let N = get!(usize);
-    let G = {
-        let mut G = vec![vec![]; N];
-        for _ in 0..N-1 {
-            let (u, v) = get!(usize, usize);
-            G[u-1].push(v-1);
-            G[v-1].push(u-1);
+    let Q = get!(usize);
+
+    // データ構造を用意
+    let mut que: VecDeque<usize> = VecDeque::new();
+    let mut pq: BinaryHeap<Reverse<usize>> = BinaryHeap::new();
+
+    for _ in 0..Q {
+        let q = get!(String);
+        let parse = q.split_whitespace()
+                                 .map(|x| x.parse::<usize>().unwrap())
+                                 .collect::<Vec<usize>>();
+        
+        match &parse[..] {
+            [_, x] => {
+                que.push_back(*x);
+            },
+            [2] => {
+                if let Some(Reverse(top)) = pq.pop() {
+                    println!("{}", top);
+                } else {
+                    println!("{}", que.pop_front().unwrap());
+                }
+            },
+            [3] => {
+                while let Some(top) = que.pop_front() {
+                    pq.push(Reverse(top));
+                }
+            },
+            _ => unreachable!(),
         }
-        G
-    };
-
-    let mut dist = vec![0; N];
-    let mut sub = vec![0; N];
-    dfs(0, INF, d, &mut dist, &mut sub, )
+    }
 }
-
-
-
