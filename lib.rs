@@ -242,6 +242,7 @@ mod arc_training {
         mod B_赤と黒の木;
         mod D_Equals;
         mod B_dp;
+        mod B_回文分割;
     }
 }
 mod asakatsu {
