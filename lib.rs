@@ -177,6 +177,7 @@ mod Others {
     }
     mod others {
         mod N_木;
+        mod C_N進数;
         mod B_fLIP;
         mod B_Interactive_Sorting_partial;
         mod C_Inserting_x;
