@@ -41,6 +41,7 @@ mod abc_training {
     mod C {
         mod C_management;
         mod C_入れ替え;
+        mod C_AtColor;
         mod C_String_Transformation;
         mod C_Dice_and_Coin;
         mod C_Submask;
@@ -72,6 +73,7 @@ mod abc_training {
         mod D_Moves_on_Binary_Tree;
         mod D_Teleporter;
         mod D_LR_insertion;
+        mod D_Yet_Another_Recursive_Function;
         mod D_Snuke_Prime;
         mod D_Stones;
         mod D_Index_Trio;
