@@ -14,7 +14,7 @@
 // imports
 // https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e
 use std::cmp::{max, min, Reverse};
-use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
+use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashSet, VecDeque};
 
 // input macro
 macro_rules! get {
@@ -79,7 +79,7 @@ macro_rules! chmax {
 }
 
 // constant
-type Factors = HashMap<usize, usize>;
+type Factors = BTreeMap<usize, usize>;
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
@@ -89,7 +89,7 @@ fn main() {
     let N = get!(usize);
     let A = get!(usize;;);
 
-    let mut lcm: Factors = HashMap::new();
+    let mut lcm: Factors = BTreeMap::new();
     let facts: Vec<Factors> = A
         .iter()
         .map(|&v| factor(v))
@@ -119,8 +119,8 @@ fn main() {
 }
 
 /// ## 素因数分解
-fn factor(mut n: usize) -> HashMap<usize, usize> {
-    let mut res = HashMap::new();
+fn factor(mut n: usize) -> BTreeMap<usize, usize> {
+    let mut res = BTreeMap::new();
     for i in 2..n {
         if i*i > n { break; }
         while n % i == 0 {
