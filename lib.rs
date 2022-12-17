@@ -119,6 +119,7 @@ mod abc_training {
         mod E_LCM_on_Whiteboard;
         mod E_Road_Reduction;
         mod E_Add_and_Mex;
+        mod E_Flatten;
         mod E_Come_Back_Quickly;
         mod E_Critical_Hit;
         mod E_Putting_Candies;
