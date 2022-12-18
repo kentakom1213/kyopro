@@ -222,6 +222,9 @@ mod agc_training {
     mod C {
         mod C_Knot_Puzzle;
     }
+    mod B {
+        mod B_Reversi;
+    }
 }
 mod arc_training {
     mod A {
@@ -255,6 +258,7 @@ mod arc_training {
         mod B_赤と黒の木;
         mod D_Equals;
         mod B_dp;
+        mod B_Many_110;
         mod B_AtCoderでじゃんけんを;
         mod B_Special_Subsets;
         mod B_回文分割;
