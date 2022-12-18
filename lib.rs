@@ -253,6 +253,7 @@ mod arc_training {
         mod pass {
             mod B_Village_of_M_People;
         }
+        mod B_Many_110_re;
         mod D_Widespread;
         mod B_ツリーグラフ;
         mod B_赤と黒の木;
