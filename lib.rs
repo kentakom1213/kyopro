@@ -237,6 +237,7 @@ mod arc_training {
         mod C_Candles;
         mod C_2D_Plane_2N_Points;
         mod A_B_eq_C;
+        mod C_Be_Together;
         mod A_ゾロ目数;
         mod A_Fourtune_Cookies;
         mod A_Two_Choices;
