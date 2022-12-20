@@ -82,6 +82,7 @@ mod abc_training {
         mod D_Game_in_Momotetsu_World;
         mod D_食塩水;
         mod D_Practical_Skill_Test;
+        mod D_Lunlun_Number;
         mod D_AtCoder_Express_2;
         mod D_Line;
         mod D_Digits_Parade;
