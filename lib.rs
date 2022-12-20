@@ -60,6 +60,7 @@ mod abc_training {
         mod C_GCD_on_Blackboard;
         mod C_ピアニスト高橋君;
         mod C_Counting_Squares;
+        mod C_Traveling_Salesman_around_Lake;
         mod C_ABC_Tournament;
         mod C_座圧;
         mod C_Many_Requirements;
@@ -182,6 +183,8 @@ mod Others {
     mod others {
         mod N_木;
         mod C_N進数;
+        mod D_ヘイホー君と削除;
+        mod A_ヘイホー君と加算;
         mod B_fLIP;
         mod B_Interactive_Sorting_partial;
         mod C_Inserting_x;
