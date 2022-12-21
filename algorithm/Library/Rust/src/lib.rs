@@ -8,3 +8,4 @@ pub mod powmod;
 pub mod UnionFind;
 pub mod Factors;
 pub mod SegmentTree;
+pub mod LCS;
