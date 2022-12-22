@@ -56,35 +56,40 @@ impl BIT {
     }
 }
 
-#[test]
-fn test_new() {
-    let mut bit = BIT::new(5);
-    
-    bit.add(0, 20);
-    bit.add(2, -5);
+#[cfg(test)]
+mod test {
+    use super::*;
 
-    let sum_5 = bit.sum(5);
-    assert_eq!(sum_5, 15);
+    #[test]
+    fn test_new() {
+        let mut bit = BIT::new(5);
+        
+        bit.add(0, 20);
+        bit.add(2, -5);
 
-    bit.add(4, 10);
-    bit.add(1, -20);
+        let sum_5 = bit.sum(5);
+        assert_eq!(sum_5, 15);
 
-    let sum_2 = bit.sum(2);
-    assert_eq!(sum_2, 0);
+        bit.add(4, 10);
+        bit.add(1, -20);
 
-    let sum_all = bit.sum(5);
-    assert_eq!(sum_all, 5);
-}
+        let sum_2 = bit.sum(2);
+        assert_eq!(sum_2, 0);
 
-#[test]
-fn test_build() {
-    let mut bit = BIT::build(&vec![1, 2, 3, 4, 5]);
+        let sum_all = bit.sum(5);
+        assert_eq!(sum_all, 5);
+    }
 
-    assert_eq!(bit.sum_range(1, 4), 9);
-    assert_eq!(bit.sum(5), 15);
+    #[test]
+    fn test_build() {
+        let mut bit = BIT::build(&vec![1, 2, 3, 4, 5]);
 
-    bit.add(2, -3);
-    bit.add(3, -4);
+        assert_eq!(bit.sum_range(1, 4), 9);
+        assert_eq!(bit.sum(5), 15);
 
-    assert_eq!(bit.sum(5), 8);
+        bit.add(2, -3);
+        bit.add(3, -4);
+
+        assert_eq!(bit.sum(5), 8);
+    }
 }
