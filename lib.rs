@@ -250,6 +250,7 @@ mod arc_training {
         mod A_Two_Choices;
         mod A_mod_M;
         mod A_Continuous_1;
+        mod C_Reconciled;
         mod A_Three_Integers;
     }
     mod C {
