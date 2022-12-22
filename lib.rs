@@ -192,6 +192,9 @@ mod Others {
         mod C_Inserting_x;
         mod C_Sqrt_Inequality;
     }
+    mod MojaCoder {
+        mod Product_of_Ranges;
+    }
 }
 mod algorithm {
     mod rust_binary_tree {
