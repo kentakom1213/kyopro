@@ -127,6 +127,7 @@ mod abc_training {
         mod E_Putting_Candies;
         mod E_Small_d_and_k;
         mod E_Sugoroku_4;
+        mod E_Sugoroku_4_modint;
         mod E_AxA;
         mod E_King_Bombee;
     }
@@ -145,6 +146,7 @@ mod abc_training {
         mod B_Various_distances_for;
         mod B_One_Clue;
         mod B_Distance_;
+        mod B_Modulo_Number;
         mod B_Play_Snuke;
         mod B_Rectangle_Detection;
         mod B_Job_Assignment;
@@ -232,6 +234,7 @@ mod agc_training {
 }
 mod arc_training {
     mod A {
+        mod A_Simple_Math;
         mod A_Max_Mod_Min;
         mod C_Cat_Snuke_and_a_Voyage;
         mod A_God_Sequence;

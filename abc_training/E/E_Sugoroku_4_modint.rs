@@ -70,45 +70,85 @@ static MOD1: usize = 1_000_000_007;
 static MOD9: usize = 998_244_353;
 static INF: usize = 1001001001001001001;
 
-// 余りをとる累乗
-fn powmod(mut a: usize, mut b: usize, m: usize) -> usize {
-    let mut res = 1;
-    while b > 0 {
-        if b & 1 == 1 {
-            res = (res * a) % m;
-        }
-        a = (a * a) % m;
-        b >>= 1;
+const MOD: usize = 998_244_353;
+// const MOD: usize = 1_000_000_007;
+
+trait Modint {
+    fn val(&self) -> usize;
+    fn madd(&self, other: usize) -> usize;
+    fn mneg(&self) -> usize;
+    fn msub(&self, other: usize) -> usize;
+    fn mmul(&self, other: usize) -> usize;
+    fn minv(&self) -> usize;
+    fn mdiv(&self, other: usize) -> usize;
+    fn mpow(&self, other: usize) -> usize;
+}
+
+impl Modint for usize {
+    fn val(&self) -> usize {
+        self % MOD
     }
-    res
+
+    fn madd(&self, other: usize) -> usize {
+        (self.val() + other.val()).val()
+    }
+
+    fn mneg(&self) -> usize {
+        (MOD - self.val()).val()
+    }
+
+    fn msub(&self, other: usize) -> usize {
+        self.madd(other.mneg())
+    }
+
+    fn mmul(&self, other: usize) -> usize {
+        (self.val() * other.val()).val()
+    }
+
+    fn mpow(&self, other: usize) -> usize {
+        let (mut a, mut b) = (self.val(), other);
+        let mut res = 1;
+        while b > 0 {
+            if b & 1 == 1 {
+                res = res.mmul(a);
+            }
+            a = a.mmul(a);
+            b >>= 1;
+        }
+        res
+    }
+
+    fn minv(&self) -> usize{
+        assert!(*self != 0);
+        self.mpow(MOD - 2)
+    }
+
+    fn mdiv(&self, other: usize) -> usize {
+        self.mmul(other.minv())
+    }
 }
 
 // solve
 fn main() {
     let (N, M, K) = get!(usize, usize, usize);
+    let invM = M.minv();
 
-    // 逆元の前計算
-    let invM = powmod(M, MOD9-2, MOD9);
-
-    // dp[i][j] := iターン目にマスjにいる確率
     let mut dp = vec![vec![0; N+1]; K+1];
     dp[0][0] = 1_usize;
 
-    // 更新
-    for i in 0..K {
-        for j in 0..N {
-            for k in 1..=M {
-                let nxt = if j+k <= N {
-                    j+k
-                } else {
-                    2*N - j - k  // j - (k - 2 * (N - j))
-                };
-                dp[i+1][nxt] += dp[i][j] * invM;
-                dp[i+1][nxt] %= MOD9;
+    for k in 0..K {
+        for i in 0..N {
+            for j in 1..=M {
+                if i + j <= N {  // 跳ね返らない
+                    dp[k+1][i+j] = dp[k+1][i+j].madd(dp[k][i].mmul(invM));
+                } else {  // 跳ね返る
+                    let idx = 2*N - i - j;
+                    dp[k+1][idx] = dp[k+1][idx].madd(dp[k][i].mmul(invM));
+                }
             }
         }
-        dp[i+1][N] += dp[i][N];
-        dp[i+1][N] %= MOD9;
+        // ゴール済みの場合
+        dp[k+1][N] = dp[k+1][N].madd(dp[k][N]);
     }
 
     println!("{}", dp[K][N]);
