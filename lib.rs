@@ -192,7 +192,12 @@ mod Others {
         mod C_Inserting_x;
         mod C_Sqrt_Inequality;
     }
+    mod ACL_Contest {
+        mod E_Replace_Digits;
+        mod C_Connect_Cities;
+    }
     mod MojaCoder {
+        mod Product_of_Ranges_seg;
         mod Product_of_Ranges;
     }
 }
