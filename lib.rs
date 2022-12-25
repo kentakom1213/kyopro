@@ -70,6 +70,7 @@ mod abc_training {
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Robot_Arms_2;
         mod D_Do_use_hexagon_grid;
+        mod D_Knight;
         mod D_Root_M_Leaper;
         mod D_Snuke_Panic_1D;
         mod D_Moves_on_Binary_Tree;
@@ -186,6 +187,7 @@ mod Others {
     mod others {
         mod N_木;
         mod C_N進数;
+        mod A_Reachable_Towns;
         mod D_ヘイホー君と削除;
         mod A_ヘイホー君と加算;
         mod B_fLIP;
