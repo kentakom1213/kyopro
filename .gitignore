@@ -35,6 +35,9 @@ debug/
 target/
 **/*.rs.bk
 
+## コンテスト期間中のみ
+hitachihokudai2022/
+
 # テスト用ファイル
 test.txt
 

@@ -343,6 +343,13 @@ mod asakatsu {
         mod _2;
         mod _4;
     }
+    mod asa20221226 {
+        mod D;
+        mod A;
+        mod E;
+        mod B;
+        mod C;
+    }
     mod asa20221024 {
         mod _3;
         mod _2;
