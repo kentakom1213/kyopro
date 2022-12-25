@@ -57,6 +57,7 @@ mod abc_training {
         mod C_民族大移動;
         mod C_March;
         mod C_Distinct_or_Not;
+        mod C_正直者の高橋くん;
         mod C_GCD_on_Blackboard;
         mod C_ピアニスト高橋君;
         mod C_Counting_Squares;
