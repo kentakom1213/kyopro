@@ -3,6 +3,8 @@
 const MOD: usize = 998_244_353;
 // const MOD: usize = 1_000_000_007;
 
+/// ## Modint
+/// 有限体の実装
 trait Modint {
     fn val(&self) -> usize;
     fn madd(&self, other: usize) -> usize;
@@ -12,6 +14,7 @@ trait Modint {
     fn minv(&self) -> usize;
     fn mdiv(&self, other: usize) -> usize;
     fn mpow(&self, other: usize) -> usize;
+    fn factorial(&self) -> usize;
 }
 
 impl Modint for usize {
@@ -55,6 +58,10 @@ impl Modint for usize {
 
     fn mdiv(&self, other: usize) -> usize {
         self.mmul(other.minv())
+    }
+
+    fn factorial(&self) -> usize {
+        (1..=*self).fold(1, |acc, v| acc.mmul(v))
     }
 }
 
@@ -118,5 +125,12 @@ mod test {
     #[should_panic]
     fn test_mdiv_err() {
         1.mdiv(0);
+    }
+
+    #[test]
+    fn test_factorial() {
+        assert_eq!(20021213.factorial(), 666935530);
+        assert_eq!(10.factorial(), 3628800);
+        assert_eq!(999999.factorial(), 595392237);
     }
 }
