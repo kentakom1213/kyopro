@@ -48,6 +48,7 @@ mod abc_training {
         mod C_Max_Even;
         mod C_背の順;
         mod C_The_Kth_Time_Query;
+        mod C_Many_Segments;
         mod C_Buy_an_Integer;
         mod C_Shopping_Street;
         mod C_Five_Transportations;
@@ -192,6 +193,7 @@ mod Others {
         mod A_ヘイホー君と加算;
         mod B_fLIP;
         mod B_Interactive_Sorting_partial;
+        mod D_Anything_Goes_to_Zero;
         mod C_Inserting_x;
         mod C_Sqrt_Inequality;
     }
