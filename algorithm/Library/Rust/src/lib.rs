@@ -10,3 +10,4 @@ pub mod Factors;
 pub mod SegmentTree;
 pub mod LCS;
 pub mod modint;
+pub mod factoring;
