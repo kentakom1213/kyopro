@@ -84,6 +84,7 @@ mod abc_training {
         mod D_Summer_Vacation;
         mod D_2017like_Number;
         mod D_Game_in_Momotetsu_World;
+        mod D_多重ループ_modint;
         mod D_食塩水;
         mod D_Practical_Skill_Test;
         mod D_Lunlun_Number;
@@ -96,6 +97,7 @@ mod abc_training {
         mod D_トレジャーハント;
         mod D_250like_Number;
         mod D_Wall;
+        mod D_多重ループ;
         mod D_Coloring_Edges_on_Tree;
     }
     mod E {
