@@ -70,9 +70,36 @@ macro_rules! get {
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
+const BASE: usize = 9;
 
 // solve
 fn main() {
     let K = get!(usize);
     
+    let mut all: Vec<usize> = vec![];
+    for i in 1..=9 {
+        dfs(10, i, &mut all);
+    }
+
+    all.sort();
+
+    let ans = all[K-1];
+    println!("{}", ans);
+}
+
+/// ## DFS
+/// Lunlun数を列挙
+fn dfs(lim: usize, val: usize, all: &mut Vec<usize>) {
+    all.push(val);
+
+    // limがなくなったら打ち切り
+    if lim == 0 { return; }
+
+    // 次の桁に進む
+    let tail = val % 10;  // 末尾の数
+    for i in tail.saturating_sub(1)..=(tail+1).min(9) {
+        let nxt = val * 10 + i;
+        // 再帰呼び出し
+        dfs(lim-1, nxt, all);
+    }
 }
