@@ -86,6 +86,7 @@ mod abc_training {
         mod D_Game_in_Momotetsu_World;
         mod D_食塩水;
         mod D_Practical_Skill_Test;
+        mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
         mod D_AtCoder_Express_2;
         mod D_Line;
@@ -213,6 +214,7 @@ mod algorithm {
         mod gen_tree_macro;
         mod replace;
     }
+    mod ext_gcd;
     mod binary_search_rust {
         mod binary_search;
     }
