@@ -282,6 +282,7 @@ mod arc_training {
         }
         mod B_Many_110_re;
         mod D_Widespread;
+        mod B_円錐;
         mod B_ツリーグラフ;
         mod B_赤と黒の木;
         mod D_Equals;
@@ -356,6 +357,12 @@ mod asakatsu {
         mod E;
         mod B;
         mod C;
+    }
+    mod asa20221229 {
+        mod _3;
+        mod _2;
+        mod _1;
+        mod _4;
     }
     mod asa20221024 {
         mod _3;
