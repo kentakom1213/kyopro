@@ -7,14 +7,14 @@ fn minv(mut a: usize, m: usize) -> usize {
     let (mut u, mut v) = (1, 0);
     while b > 0 {
         let t = a / b;
-        a -= t * b;
-        u -= t * v;
+        // a -= t * b;
+        a = (m + a - t * b % m) % m;
+        // u -= t * v;
+        u = (m + u - t * v % m) % m;
         std::mem::swap(&mut a, &mut b);
         std::mem::swap(&mut u, &mut v);
     }
-    u %= m;
-    if u < 0 { u += m };
-    u
+    u % m
 }
 
 fn main() {

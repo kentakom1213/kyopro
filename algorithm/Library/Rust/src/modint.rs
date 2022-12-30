@@ -51,9 +51,19 @@ impl Modint for usize {
         res
     }
 
-    fn minv(&self) -> usize{
+    fn minv(&self) -> usize {
         assert!(*self != 0);
-        self.mpow(MOD - 2)
+
+        let (mut a, mut b) = (*self, MOD);
+        let (mut u, mut v) = (1, 0);
+        while b > 0 {
+            let t = a / b;
+            a = a.msub(t.mmul(b));
+            u = u.msub(t.mmul(v));
+            std::mem::swap(&mut a, &mut b);
+            std::mem::swap(&mut u, &mut v);
+        }
+        u
     }
 
     fn mdiv(&self, other: usize) -> usize {
@@ -113,6 +123,9 @@ mod test {
     #[test]
     fn test_minv() {
         assert_eq!(1.minv(), 1);
+        assert_eq!(2.minv(), 499122177);
+        assert_eq!(1000.minv(), 981274199);
+        assert_eq!((MOD-1).minv(), 998244352);
     }
 
     #[test]
