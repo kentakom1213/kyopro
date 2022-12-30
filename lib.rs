@@ -111,6 +111,7 @@ mod abc_training {
         mod E_Through_Path;
         mod E_Bomber_ans;
         mod E_Erasing_Vertices_2_binaryheap;
+        mod E_Logs;
         mod E_Notebook_input;
         mod E_Sorting_Queries;
         mod E_Bomber;
@@ -195,6 +196,7 @@ mod Others {
         mod A_Reachable_Towns;
         mod D_ヘイホー君と削除;
         mod A_ヘイホー君と加算;
+        mod C_一次元オセロ;
         mod B_fLIP;
         mod B_Interactive_Sorting_partial;
         mod D_Anything_Goes_to_Zero;
@@ -362,6 +364,7 @@ mod asakatsu {
         mod _3;
         mod _2;
         mod _1;
+        mod _5;
         mod _4;
     }
     mod asa20221024 {
