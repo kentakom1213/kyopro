@@ -213,14 +213,14 @@ mod Others {
     }
 }
 mod algorithm {
+    mod ext_gcd {
+        mod modinv_non_rec;
+        mod ext_gcd;
+    }
     mod rust_binary_tree {
         mod tree_node;
         mod gen_tree_macro;
         mod replace;
-    }
-    mod ext_gcd;
-    mod binary_search_rust {
-        mod binary_search;
     }
 }
 mod typical90 {
