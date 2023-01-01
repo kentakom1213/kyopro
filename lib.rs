@@ -68,8 +68,10 @@ mod abc_training {
         mod C_Many_Requirements;
     }
     mod D {
+        mod D_Triangles;
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Robot_Arms_2;
+        mod D_Pairs;
         mod D_Do_use_hexagon_grid;
         mod D_Knight;
         mod D_Root_M_Leaper;
@@ -286,9 +288,11 @@ mod arc_training {
         mod B_Many_110_re;
         mod D_Widespread;
         mod B_円錐;
+        mod B_格子点と整数;
         mod B_ツリーグラフ;
         mod B_赤と黒の木;
         mod D_Equals;
+        mod B_Your_Numbers_are_XORed;
         mod B_dp;
         mod B_Many_110;
         mod B_AtCoderでじゃんけんを;
