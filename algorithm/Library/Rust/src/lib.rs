@@ -13,3 +13,4 @@ pub mod modint;
 pub mod factoring;
 pub mod combination;
 pub mod Vec2;
+pub mod ord_chr;

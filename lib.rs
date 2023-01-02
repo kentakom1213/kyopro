@@ -139,6 +139,7 @@ mod abc_training {
         mod E_Moat;
         mod E_Sugoroku_4_modint;
         mod E_AxA;
+        mod E_Chain_Contestant;
         mod E_King_Bombee;
     }
     mod B {
