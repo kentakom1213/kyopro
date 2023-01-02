@@ -136,6 +136,7 @@ mod abc_training {
         mod E_Putting_Candies;
         mod E_Small_d_and_k;
         mod E_Sugoroku_4;
+        mod E_Moat;
         mod E_Sugoroku_4_modint;
         mod E_AxA;
         mod E_King_Bombee;
