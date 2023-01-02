@@ -263,6 +263,7 @@ mod arc_training {
         mod A_Two_Choices;
         mod A_mod_M;
         mod A_ゾロ目数;
+        mod A_週末;
         mod C_2D_Plane_2N_Points;
         mod C_Be_Together;
         mod C_Candles;
