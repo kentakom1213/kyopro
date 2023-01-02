@@ -84,39 +84,44 @@ where
     }
 }
 
-#[test]
-fn test_RSQ() {
-    let mut segtree = SegmentTree::new(3, 0, |a, b| a ^ b);
+#[cfg(test)]
+mod test {
+    use super::*;
 
-    segtree.update(0, 1);
-    segtree.update(1, 2);
-    segtree.update(2, 3);
+    #[test]
+    fn test_RSQ() {
+        let mut segtree = SegmentTree::new(3, 0, |a, b| a ^ b);
 
-    assert_eq!(segtree.get_range(0, 2), 3);
-    assert_eq!(segtree.get_range(1, 2), 2);
-}
+        segtree.update(0, 1);
+        segtree.update(1, 2);
+        segtree.update(2, 3);
 
-#[test]
-fn test_RMQ() {
-    const INF: usize = (1 << 31) - 1;
-    let mut segtree = SegmentTree::new(3, INF, |a, b| a.min(b));
+        assert_eq!(segtree.get_range(0, 2), 3);
+        assert_eq!(segtree.get_range(1, 2), 2);
+    }
 
-    assert_eq!(segtree.get_range(0, 1), (1 << 31) - 1);
-    segtree.update(0, 5);
-    assert_eq!(segtree.get_range(0, 1), 5);
-}
+    #[test]
+    fn test_RMQ() {
+        const INF: usize = (1 << 31) - 1;
+        let mut segtree = SegmentTree::new(3, INF, |a, b| a.min(b));
 
-#[test]
-fn test_from_slice() {
-    const INF: isize = - (1 << 31) + 1;
-    let arr = vec![20, 4, 5, 6, 8, 9, 100];
-    let mut segtree = SegmentTree::from(&arr, INF, |a, b| a.max(b));
+        assert_eq!(segtree.get_range(0, 1), (1 << 31) - 1);
+        segtree.update(0, 5);
+        assert_eq!(segtree.get_range(0, 1), 5);
+    }
 
-    assert_eq!(segtree.get_range(0, 7), 100);
-    assert_eq!(segtree.get_range(2, 5), 8);
+    #[test]
+    fn test_from_slice() {
+        const INF: isize = - (1 << 31) + 1;
+        let arr = vec![20, 4, 5, 6, 8, 9, 100];
+        let mut segtree = SegmentTree::from(&arr, INF, |a, b| a.max(b));
 
-    segtree.update(0, 200);
+        assert_eq!(segtree.get_range(0, 7), 100);
+        assert_eq!(segtree.get_range(2, 5), 8);
 
-    assert_eq!(segtree.get_range(0, 7), 200);
-    assert_eq!(segtree.get_range(2, 5), 8);
+        segtree.update(0, 200);
+
+        assert_eq!(segtree.get_range(0, 7), 200);
+        assert_eq!(segtree.get_range(2, 5), 8);
+    }
 }
