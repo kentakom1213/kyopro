@@ -22,9 +22,14 @@ pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool
             return false;
         }
     }
+
+    let mut paths: Vec<_> = path.read_dir()
+        .unwrap()
+        .map(|r| r.unwrap().path())
+        .collect();
+    paths.sort();
     
-    for entry in path.read_dir().unwrap() {
-        let next_path = entry.unwrap().path();
+    for next_path in paths {
         let obj_name = next_path.file_name().unwrap().to_string_lossy().to_owned().to_string();
 
         if next_path.is_dir() {
