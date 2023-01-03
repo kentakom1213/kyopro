@@ -172,6 +172,7 @@ mod abc_training {
         mod D_Coloring_Edges_on_Tree;
         mod D_Cylinder;
         mod D_Digits_Parade;
+        mod D_Disjoint_Set_of_Common_Divisors;
         mod D_Do_use_hexagon_grid;
         mod D_Game_in_Momotetsu_World;
         mod D_Index_Trio;
