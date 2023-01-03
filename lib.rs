@@ -248,6 +248,7 @@ mod abc_training {
 }
 mod agc_training {
     mod A {
+        mod A_Colorful_Slimes_2;
         mod A_Getting_Difference;
     }
     mod B {
