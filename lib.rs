@@ -279,6 +279,7 @@ mod arc_training {
         mod C_Reconciled;
     }
     mod B {
+        mod B_A_lt_AP;
         mod B_AtCoderでじゃんけんを;
         mod B_Many_110;
         mod B_Many_110_re;
