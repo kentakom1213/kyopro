@@ -66,17 +66,17 @@ where T: Ord + Copy
         self.multiset.len()
     }
 
-    fn first(&self) -> T {
+    fn first(&self) -> Option<T> {
         match self.multiset.iter().next() {
-            Some(&(key, _)) => key,
-            None => panic!("No elements in this multiset."),
+            Some(&(key, _)) => Some(key),
+            None => None,
         }
     }
 
-    fn last(&self) -> T {
+    fn last(&self) -> Option<T> {
         match self.multiset.iter().next_back() {
-            Some(&(key, _)) => key,
-            None => panic!("No elements in this multiset."),
+            Some(&(key, _)) => Some(key),
+            None => None,
         }
     }
 
@@ -153,14 +153,14 @@ mod test {
         assert_eq!(mset.is_contain(1000), false);
 
         // first element
-        assert_eq!(mset.first(), 3);
+        assert_eq!(mset.first(), Some(3));
 
         assert_eq!(mset.remove(3), true);
-        assert_eq!(mset.first(), 5);
+        assert_eq!(mset.first(), Some(5));
         assert_eq!(mset.is_contain(3), false);
 
         // last element
-        assert_eq!(mset.last(), 10);
+        assert_eq!(mset.last(), Some(10));
 
         // count values
         mset.insert(20);
