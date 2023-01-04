@@ -5,7 +5,7 @@ use std::ops::Bound::{Included, Excluded, Unbounded};
 
 /// # MultiSet
 /// 多重集合
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct MultiSet<T> {
     counter: BTreeMap<T, usize>,
     multiset: BTreeSet<(T, usize)>,
@@ -237,7 +237,7 @@ mod test {
          * MultiSet { 1, 2, 2, 3, 3, 3, 100, 1000 }
          */
     
-        let mut itr = mset.into_iter();
+        let mut itr = mset.clone().into_iter();
 
         assert_eq!(itr.next(), Some((1, 0)));
         assert_eq!(itr.next(), Some((2, 0)));
