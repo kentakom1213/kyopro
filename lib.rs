@@ -156,6 +156,7 @@ mod abc_training {
         mod C_Submask;
         mod C_The_Kth_Time_Query;
         mod C_Traveling_Salesman_around_Lake;
+        mod C_Ubiquity;
         mod C_management;
         mod C_ピアニスト高橋君;
         mod C_入れ替え;
@@ -219,6 +220,7 @@ mod abc_training {
         mod E_Graph_Destruction;
         mod E_King_Bombee;
         mod E_LCM_on_Whiteboard;
+        mod E_Least_Elements_;
         mod E_Logs;
         mod E_Moat;
         mod E_Notebook;
