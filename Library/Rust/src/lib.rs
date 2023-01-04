@@ -14,3 +14,4 @@ pub mod Comb;
 pub mod Vec2;
 pub mod ord_chr;
 pub mod run_length;
+pub mod MultiSet;
