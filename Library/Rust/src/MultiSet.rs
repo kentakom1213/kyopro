@@ -1,11 +1,7 @@
 #![allow(dead_code)]
 
 use std::collections::{BTreeSet, BTreeMap};
-use std::ops::Bound::{
-    Included,
-    Excluded,
-    Unbounded,
-};
+use std::ops::Bound::{Included, Excluded, Unbounded};
 
 /// # MultiSet
 /// 多重集合
@@ -118,6 +114,16 @@ where T: Ord + Copy
     }
 }
 
+impl<T> IntoIterator for MultiSet<T> {
+    type Item = (T, usize);
+    type IntoIter = std::collections::btree_set::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.multiset
+            .into_iter()
+    }
+}
+
 
 #[cfg(test)]
 mod test {
@@ -213,5 +219,34 @@ mod test {
          */
 
         mset.upper_bound(1000);
+    }
+
+    #[test]
+    fn test_into_iter() {
+        let mut mset = MultiSet::new();
+
+        mset.insert(1);
+        mset.insert(2);
+        mset.insert(2);
+        mset.insert(5);
+        mset.insert(5);
+        mset.insert(5);
+        mset.insert(100);
+        mset.insert(1000);
+        /*
+         * MultiSet { 1, 2, 2, 3, 3, 3, 100, 1000 }
+         */
+    
+        let mut itr = mset.into_iter();
+
+        assert_eq!(itr.next(), Some((1, 0)));
+        assert_eq!(itr.next(), Some((2, 0)));
+        assert_eq!(itr.next(), Some((2, 1)));
+        assert_eq!(itr.next(), Some((5, 0)));
+        assert_eq!(itr.next(), Some((5, 1)));
+        assert_eq!(itr.next(), Some((5, 2)));
+        assert_eq!(itr.next(), Some((100, 0)));
+        assert_eq!(itr.next(), Some((1000, 0)));
+        assert_eq!(itr.next(), None);
     }
 }
