@@ -10,32 +10,32 @@ trait BinarySearch<T> {
 impl<T: Ord> BinarySearch<T> for [T] {
     /// ソート済み配列において、`v`以上の最小のインデックスを取得
     fn lower_bound(&self, v: T) -> usize {
-        let mut ng = -1;
-        let mut ok = self.len() as isize;
-        while (ok - ng) > 1 {
-            let mid = ((ng + ok) as usize) / 2;
+        let mut ng = 1_usize.wrapping_neg();
+        let mut ok = self.len();
+        while ok.wrapping_sub(ng) > 1 {
+            let mid = ng.wrapping_add(ok) / 2;
             if v <= self[mid] {
-                ok = mid as isize;
+                ok = mid;
             } else {
-                ng = mid as isize;
+                ng = mid;
             }
         }
-        ok as usize
+        ok
     }
 
     /// ソート済み配列において、`v`より大きい最小のインデックスを取得
     fn upper_bound(&self, v: T) -> usize {
-        let mut ng = -1;
-        let mut ok = self.len() as isize;
-        while (ok - ng) > 1 {
-            let mid = ((ng + ok) as usize) / 2;
+        let mut ng = 1_usize.wrapping_neg();
+        let mut ok = self.len();
+        while ok.wrapping_sub(ng) > 1 {
+            let mid = ng.wrapping_add(ok) / 2;
             if v < self[mid] {
-                ok = mid as isize;
+                ok = mid;
             } else {
-                ng = mid as isize;
+                ng = mid;
             }
         }
-        ok as usize
+        ok
     }
 }
 
