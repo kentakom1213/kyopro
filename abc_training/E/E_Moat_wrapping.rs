@@ -139,8 +139,8 @@ fn is_connected(field: &Vec<Vec<usize>>, allV: usize) -> bool {
     let mut cntV = 1;  // 領域に含まれる村の数
     while let Some((cr, cc)) = st.pop() {
         for &(dr, dc) in &MOVE {
-            let nr = (cr as usize).wrapping_add(dr);
-            let nc = (cc as usize).wrapping_add(dc);
+            let nr = dr.wrapping_add(cr);
+            let nc = dc.wrapping_add(cc);
             if 4 <= nr || 4 <= nc { continue; }
 
             if visited[nr][nc] == 0 && field[nr][nc] == 1 {
@@ -176,8 +176,8 @@ fn has_no_self_crossing(field: &Vec<Vec<usize>>) -> bool {
     visited[0][0] = 1;
     while let Some((cr, cc)) = st.pop() {
         for &(dr, dc) in &MOVE {
-            let nr = (cr as usize).wrapping_add(dr);
-            let nc = (cc as usize).wrapping_add(dc);
+            let nr = dr.wrapping_add(cr);
+            let nc = dc.wrapping_add(cc);
             if 6 <= nr || 6 <= nc { continue; }
 
             if visited[nr][nc] == 0 && extended[nr][nc] == 0 {

@@ -222,7 +222,7 @@ mod abc_training {
         mod E_Graph_Destruction;
         mod E_King_Bombee;
         mod E_LCM_on_Whiteboard;
-        mod E_Least_Elements_;
+        mod E_Least_Elements_SegTree;
         mod E_Logs;
         mod E_Moat;
         mod E_Moat_wrapping;
