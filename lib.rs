@@ -185,6 +185,7 @@ mod abc_training {
         mod D_Lunlun_Number_DFS;
         mod D_Moves_on_Binary_Tree;
         mod D_Pairs;
+        mod D_Patisserie_ABC;
         mod D_Practical_Skill_Test;
         mod D_Robot_Arms_2;
         mod D_Root_M_Leaper;
