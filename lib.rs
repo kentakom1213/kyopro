@@ -195,6 +195,7 @@ mod abc_training {
         mod D_Summer_Vacation;
         mod D_Teleporter;
         mod D_Triangles;
+        mod D_Triangles_new;
         mod D_Wall;
         mod D_Yet_Another_Recursive_Function;
         mod D_トレジャーハント;
@@ -224,6 +225,7 @@ mod abc_training {
         mod E_Least_Elements_;
         mod E_Logs;
         mod E_Moat;
+        mod E_Moat_wrapping;
         mod E_Notebook;
         mod E_Notebook_input;
         mod E_Putting_Candies;
