@@ -183,6 +183,7 @@ mod abc_training {
         mod D_Line;
         mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
+        mod D_Max_Multiple;
         mod D_Moves_on_Binary_Tree;
         mod D_Pairs;
         mod D_Patisserie_ABC;
