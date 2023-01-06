@@ -291,6 +291,8 @@ mod arc_training {
         mod B_AtCoderでじゃんけんを;
         mod B_Many_110;
         mod B_Many_110_re;
+        mod B_Reversible_Cards;
+        mod B_Reversible_Cards_ans;
         mod B_Special_Subsets;
         mod B_Your_Numbers_are_XORed;
         mod B_dp;
