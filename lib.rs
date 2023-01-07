@@ -306,6 +306,7 @@ mod arc_training {
         mod B_Your_Numbers_are_XORed;
         mod B_dp;
         mod B_ツリーグラフ;
+        mod B_ムーアの法則;
         mod B_円錐;
         mod B_回文分割;
         mod B_格子点と整数;
