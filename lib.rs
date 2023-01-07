@@ -77,6 +77,13 @@ mod VirtualContest {
         mod _4;
         mod _5;
     }
+    mod mosoon20230107 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+    }
 }
 mod abc_training {
     mod A {
