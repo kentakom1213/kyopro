@@ -45,6 +45,7 @@ mod Others {
         mod B_Interactive_Sorting_partial;
         mod B_fLIP;
         mod C_Inserting_x;
+        mod C_Lamps;
         mod C_N進数;
         mod C_Sqrt_Inequality;
         mod C_一次元オセロ;
@@ -91,6 +92,7 @@ mod abc_training {
         mod A_A_C;
         mod A_Air_Conditioner;
         mod A_Anyway_Takahashi;
+        mod A_AtCoder社の給料;
         mod A_Brick;
         mod A_Circle_Pond;
         mod A_Coffee;
