@@ -15,3 +15,5 @@ pub mod Vec2;
 pub mod ord_chr;
 pub mod run_length;
 pub mod MultiSet;
+pub mod Miller_Rabin_test;
+pub mod powmod;

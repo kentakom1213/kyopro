@@ -1,11 +1,11 @@
 #![allow(dead_code)]
 
-const MOD: usize = 998_244_353;
+pub const MOD: usize = 998_244_353;
 // const MOD: usize = 1_000_000_007;
 
 /// ## Modint
 /// 有限体の実装
-trait Modint {
+pub trait Modint {
     fn val(&self) -> usize;
     fn madd(&self, other: usize) -> usize;
     fn mneg(&self) -> usize;

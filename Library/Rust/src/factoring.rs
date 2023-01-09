@@ -23,25 +23,31 @@ fn factoring(mut n: usize) -> Vec<(usize, usize)> {
     res
 }
 
-#[test]
-fn test_factoring() {
-    assert_eq!(
-        factoring(1024),
-        vec![(2, 10)]
-    );
 
-    assert_eq!(
-        factoring(123456789),
-        vec![(3, 2), (3607, 1), (3803, 1)]
-    );
+#[cfg(test)]
+mod test {
+    use super::*;
 
-    assert_eq!(
-        factoring(20021213),
-        vec![(20021213, 1)]
-    );
+    #[test]
+    fn test_factoring() {
+        assert_eq!(
+            factoring(1024),
+            vec![(2, 10)]
+        );
 
-    assert_eq!(
-        factoring(1234567891234567),
-        vec![(47, 1), (167, 1), (167953, 1), (936511, 1)]
-    );
+        assert_eq!(
+            factoring(123456789),
+            vec![(3, 2), (3607, 1), (3803, 1)]
+        );
+
+        assert_eq!(
+            factoring(20021213),
+            vec![(20021213, 1)]
+        );
+
+        assert_eq!(
+            factoring(1234567891234567),
+            vec![(47, 1), (167, 1), (167953, 1), (936511, 1)]
+        );
+    }
 }
