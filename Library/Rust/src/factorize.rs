@@ -1,8 +1,8 @@
 #[allow(dead_code)]
 
-/// ## factoring
+/// ## factorize
 /// - 素因数分解し、`(素因数,指数)`のペアを返す
-fn factoring(mut n: usize) -> Vec<(usize, usize)> {
+fn factorize(mut n: usize) -> Vec<(usize, usize)> {
     let mut res = Vec::new();
     for i in 2.. {
         if i*i > n {
@@ -29,24 +29,24 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_factoring() {
+    fn test_factorize() {
         assert_eq!(
-            factoring(1024),
+            factorize(1024),
             vec![(2, 10)]
         );
 
         assert_eq!(
-            factoring(123456789),
+            factorize(123456789),
             vec![(3, 2), (3607, 1), (3803, 1)]
         );
 
         assert_eq!(
-            factoring(20021213),
+            factorize(20021213),
             vec![(20021213, 1)]
         );
 
         assert_eq!(
-            factoring(1234567891234567),
+            factorize(1234567891234567),
             vec![(47, 1), (167, 1), (167953, 1), (936511, 1)]
         );
     }

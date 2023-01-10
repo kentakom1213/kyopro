@@ -9,7 +9,7 @@ pub mod Factors;
 pub mod SegmentTree;
 pub mod LCS;
 pub mod Modint;
-pub mod factoring;
+pub mod factorize;
 pub mod Comb;
 pub mod Vec2;
 pub mod ord_chr;

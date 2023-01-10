@@ -23,7 +23,7 @@ impl Factors {
     }
 
     /// 素因数分解を高速（`O(logn)`）で行う
-    fn factor(&self, mut x: usize) -> Vec<usize> {
+    fn factorize(&self, mut x: usize) -> Vec<usize> {
         assert!(1 <= x && x <= self.n);
         let mut factors = vec![];
         while x > 1 {
@@ -40,12 +40,12 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_factoring() {
+    fn test_factorize() {
         let f = Factors::new(200_000);
 
-        assert_eq!(f.factor(200), vec![2, 2, 2, 5, 5]);
-        assert_eq!(f.factor(123450), vec![2, 3, 5, 5, 823]);
-        assert_eq!(f.factor(107311), vec![239, 449]);
-        assert_eq!(f.factor(199999), vec![199999]);
+        assert_eq!(f.factorize(200), vec![2, 2, 2, 5, 5]);
+        assert_eq!(f.factorize(123450), vec![2, 3, 5, 5, 823]);
+        assert_eq!(f.factorize(107311), vec![239, 449]);
+        assert_eq!(f.factorize(199999), vec![199999]);
     }
 }
