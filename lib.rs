@@ -28,6 +28,10 @@ mod AlgoMethod {
     mod Graph {
         mod Q3_1;
     }
+    mod NumberTheory {
+        mod Miller_Rabin_method;
+        mod Pollard_Pho_method;
+    }
 }
 mod Others {
     mod ACL_Contest {
@@ -104,6 +108,7 @@ mod abc_training {
         mod A_New_Generation_ABC;
         mod A_Plural_Form;
         mod A_Rainy_Season;
+        mod A_Sequence_of_Strings;
         mod A_Slot;
         mod A_Takoyaki;
         mod A_Therefore;
@@ -127,6 +132,7 @@ mod abc_training {
         mod B_Making_Triangle;
         mod B_Mix_Juice;
         mod B_Modulo_Number;
+        mod B_Multi_Test_Cases;
         mod B_Multiple_of_9;
         mod B_One_Clue;
         mod B_Orthogonality;
@@ -150,6 +156,7 @@ mod abc_training {
         mod C_AtColor;
         mod C_Blue_Bird;
         mod C_Buy_an_Integer;
+        mod C_Count_Connected_Components;
         mod C_Counting_Squares;
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
@@ -185,6 +192,7 @@ mod abc_training {
         mod D_Disjoint_Set_of_Common_Divisors;
         mod D_Do_use_hexagon_grid;
         mod D_Game_in_Momotetsu_World;
+        mod D_Happy_New_Year_2023_;
         mod D_Index_Trio;
         mod D_Jumping_Takahashi_2;
         mod D_Knight;
@@ -225,6 +233,7 @@ mod abc_training {
         mod E_Chain_Contestant;
         mod E_Cheating_Amidakuji;
         mod E_Come_Back_Quickly;
+        mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
         mod E_Erasing_Vertices_2;
         mod E_Erasing_Vertices_2_binaryheap;
