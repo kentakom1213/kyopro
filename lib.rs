@@ -48,6 +48,7 @@ mod Others {
         mod A_ヘイホー君と加算;
         mod B_Interactive_Sorting_partial;
         mod B_fLIP;
+        mod B_天下一リテラル;
         mod C_Inserting_x;
         mod C_Lamps;
         mod C_N進数;
