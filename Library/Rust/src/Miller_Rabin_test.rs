@@ -1,7 +1,7 @@
 #[allow(dead_code)]
 
 /// 余りをとる累乗
-fn powmod(a: usize, b: usize, m: usize) -> usize {
+pub fn powmod(a: usize, b: usize, m: usize) -> usize {
     let (mut a, mut  b, m) = (a as u128, b as u128, m as u128);
     let mut res = 1;
     while b > 0 {
@@ -16,7 +16,7 @@ fn powmod(a: usize, b: usize, m: usize) -> usize {
 
 /// ## ミラーラビン素数判定法
 /// 参考: https://zenn.dev/kaki_xxx/articles/40a92b43200215
-fn is_prime_MR(N: usize) -> bool {
+pub fn is_prime_MR(N: usize) -> bool {
     if N <= 2 {
         return N == 2;
     }

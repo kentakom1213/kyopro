@@ -17,3 +17,4 @@ pub mod run_length;
 pub mod MultiSet;
 pub mod Miller_Rabin_test;
 pub mod powmod;
+pub mod Pollard_Rho_method;
