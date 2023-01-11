@@ -31,6 +31,8 @@ mod AlgoMethod {
     mod NumberTheory {
         mod Miller_Rabin_method;
         mod Pollard_Pho_method;
+        mod Q6_あまりが等しい;
+        mod あまりが等しい2;
     }
 }
 mod Others {
