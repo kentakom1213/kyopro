@@ -66,10 +66,47 @@ const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
 
-// solve
+fn gcd(a: usize, b: usize) -> usize {
+    if b == 0 {
+        a
+    } else {
+        gcd(b, a % b)
+    }
+}
+
+/// ## 素因数分解
+fn factor(mut n: usize) -> HashMap<usize, usize> {
+    let mut res = HashMap::new();
+    for i in 2..n {
+        if i*i > n { break; }
+        while n % i == 0 {
+            *res.entry(i).or_insert(0) += 1;
+            n /= i;
+        }
+    }
+    if n > 1 {
+        *res.entry(n).or_insert(0) += 1;
+    }
+    res
+}
+
+/// ## 方針
+/// - すべての要素をA_0からの差分で表す
+/// - それらのGCDを素因数分解
 fn main() {
     let N = get!(usize);
-    let A = get!(usize;;);
+    let A = get!(isize;;);
 
-    
+    let GCD = A.iter()
+        .map(|&a| (a - A[0]).abs() as usize)
+        .fold(0, gcd);
+
+    let fact = factor(GCD);
+
+    let mut ans = 1;
+    for (_, &v) in &fact {
+        ans *= v + 1;
+    }
+
+    println!("{}", ans);
 }
