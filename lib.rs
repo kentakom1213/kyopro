@@ -415,6 +415,11 @@ mod asakatsu {
         mod _4;
         mod _5;
     }
+    mod asa20230112 {
+        mod _2;
+        mod _3;
+        mod _4;
+    }
 }
 mod heuristic {
     mod ahc015 {
