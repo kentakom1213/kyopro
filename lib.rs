@@ -281,6 +281,7 @@ mod agc_training {
         mod A_Getting_Difference;
     }
     mod B {
+        mod B_Find_Symmetries;
         mod B_Reversi;
     }
     mod C {
@@ -419,6 +420,7 @@ mod asakatsu {
         mod _2;
         mod _3;
         mod _4;
+        mod _5;
     }
 }
 mod heuristic {
