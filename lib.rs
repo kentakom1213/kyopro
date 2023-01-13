@@ -259,6 +259,7 @@ mod abc_training {
         mod E_Small_d_and_k;
         mod E_Sorting_Queries;
         mod E_Strings_of_Impurity;
+        mod E_Stronger_Takahashi;
         mod E_Sugoroku_4;
         mod E_Sugoroku_4_modint;
         mod E_Takahashi_and_Animals;
