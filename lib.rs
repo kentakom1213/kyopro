@@ -276,6 +276,7 @@ mod abc_training {
         mod E_Traveling_Salesman_among_Aerial_Cities;
         mod E_Warp;
         mod E_Warp_new;
+        mod E_Work_or_Rest;
     }
     mod F {
         mod F_Distance_Sums_2;
