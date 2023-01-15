@@ -139,17 +139,14 @@ fn main() {
         // コスト1でいける範囲
         for &dr in &DIFF {
             for &dc in &DIFF {
-                match (dr, dc) {
-                    (NEG2,  NEG2) | (NEG2, 2) | (2, NEG2) | (2, 2) | (0, 0) => {},
-                    _ => {
-                        let nr = dr.wrapping_add(cr);
-                        let nc = dc.wrapping_add(cc);
-                        if nr >= H || nc >= W { continue; }
-                        if dist[nr][nc] == INF {
-                            dist[nr][nc] = dist[cr][cc] + 1;
-                            deq.push_back((nr, nc));
-                        }
-                    }
+                // マンハッタン距離=4のときは移動しない
+                if dr.wrapping_neg().min(dr) + dc.wrapping_neg().min(dc) == 4 { continue; }
+                let nr = dr.wrapping_add(cr);
+                let nc = dc.wrapping_add(cc);
+                if nr >= H || nc >= W { continue; }
+                if dist[nr][nc] == INF {
+                    dist[nr][nc] = dist[cr][cc] + 1;
+                    deq.push_back((nr, nc));
                 }
             }
         }

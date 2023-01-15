@@ -108,6 +108,7 @@ mod abc_training {
         mod A_Find_Takahashi;
         mod A_Five_Variables;
         mod A_Large_Digits;
+        mod A_Multiplication_1;
         mod A_New_Generation_ABC;
         mod A_Plural_Form;
         mod A_Rainy_Season;
@@ -137,6 +138,7 @@ mod abc_training {
         mod B_Modulo_Number;
         mod B_Multi_Test_Cases;
         mod B_Multiple_of_9;
+        mod B_Multiplication_2;
         mod B_One_Clue;
         mod B_Orthogonality;
         mod B_Painting_Balls_with_AtCoDeer;
@@ -169,6 +171,7 @@ mod abc_training {
         mod C_Many_Segments;
         mod C_March;
         mod C_Max_Even;
+        mod C_Multiplication_3;
         mod C_Shopping_Street;
         mod C_Step;
         mod C_String_Transformation;
