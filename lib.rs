@@ -6,6 +6,9 @@ mod ABC {
         mod D;
         mod E;
     }
+    mod abc285 {
+        mod E;
+    }
 }
 mod AOJ {
     mod Range_Minimum_Query_RMQ;
@@ -239,6 +242,7 @@ mod abc_training {
         mod E_Chain_Contestant;
         mod E_Cheating_Amidakuji;
         mod E_Come_Back_Quickly;
+        mod E_Count_Median;
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
         mod E_Erasing_Vertices_2;
