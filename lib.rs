@@ -282,6 +282,7 @@ mod abc_training {
         mod F_Distance_Sums_2;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_Segtree;
+        mod F_Substring_of_Sorted_String;
     }
 }
 mod agc_training {
