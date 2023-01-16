@@ -221,6 +221,7 @@ mod abc_training {
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
         mod D_Stones;
+        mod D_Strange_Lunchbox;
         mod D_Summer_Vacation;
         mod D_Teleporter;
         mod D_Triangles;
