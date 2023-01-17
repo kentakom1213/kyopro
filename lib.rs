@@ -292,6 +292,7 @@ mod agc_training {
         mod A_Getting_Difference;
     }
     mod B {
+        mod B_Bowling;
         mod B_Find_Symmetries;
         mod B_Reversi;
     }
@@ -326,6 +327,7 @@ mod arc_training {
         mod B_AtCoderでじゃんけんを;
         mod B_Many_110;
         mod B_Many_110_re;
+        mod B_Plus_and_AND;
         mod B_Reversible_Cards;
         mod B_Reversible_Cards_ans;
         mod B_Special_Subsets;
