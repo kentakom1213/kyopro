@@ -256,6 +256,7 @@ mod abc_training {
         mod E_LCM_on_Whiteboard;
         mod E_Least_Elements_SegTree;
         mod E_Logs;
+        mod E_MaxMin_Sums;
         mod E_Moat;
         mod E_Moat_wrapping;
         mod E_Notebook;
@@ -335,6 +336,7 @@ mod arc_training {
         mod B_dp;
         mod B_ツリーグラフ;
         mod B_ムーアの法則;
+        mod B_互除法;
         mod B_円錐;
         mod B_回文分割;
         mod B_格子点と整数;
