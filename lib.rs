@@ -121,6 +121,7 @@ mod abc_training {
         mod A_Therefore;
         mod A_Vanishing_Pitch;
         mod A_Very_Very_Primitive_Game;
+        mod A_pow_neg1;
         mod A_twiblr;
         mod A_αlphabet;
         mod A_テスト評価;
@@ -206,6 +207,7 @@ mod abc_training {
         mod D_Jumping_Takahashi_2;
         mod D_Knight;
         mod D_LR_insertion;
+        mod D_Lazy_Faith;
         mod D_Line;
         mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
@@ -257,6 +259,7 @@ mod abc_training {
         mod E_Least_Elements_SegTree;
         mod E_Logs;
         mod E_MaxMin_Sums;
+        mod E_MaxMin_Sums_inv;
         mod E_Moat;
         mod E_Moat_wrapping;
         mod E_Notebook;
