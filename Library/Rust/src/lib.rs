@@ -6,6 +6,7 @@ pub mod BinarySearch4slice;
 pub mod Comb;
 pub mod Factors;
 pub mod LCS;
+pub mod max_min;
 pub mod Miller_Rabin_test;
 pub mod MultiSet;
 pub mod Pollard_Rho_method;
