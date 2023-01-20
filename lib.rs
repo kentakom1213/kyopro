@@ -258,6 +258,7 @@ mod abc_training {
         mod E_LCM_on_Whiteboard;
         mod E_Least_Elements_SegTree;
         mod E_Logs;
+        mod E_Lucky_Numbers;
         mod E_MaxMin_Sums;
         mod E_MaxMin_Sums_inv;
         mod E_Moat;
