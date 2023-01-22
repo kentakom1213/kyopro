@@ -265,6 +265,7 @@ mod abc_training {
         mod E_Moat_wrapping;
         mod E_Notebook;
         mod E_Notebook_input;
+        mod E_Prefix_Equality;
         mod E_Putting_Candies;
         mod E_Queen_on_Grid;
         mod E_Road_Reduction;
@@ -326,6 +327,7 @@ mod arc_training {
         mod C_Cat_Snuke_and_a_Voyage;
         mod C_Many_Formulas;
         mod C_Reconciled;
+        mod C_Splitting_Pile;
     }
     mod B {
         mod B_A_lt_AP;
@@ -353,6 +355,7 @@ mod arc_training {
         }
     }
     mod C {
+        mod C_Tree_Queries;
         mod C_Z塗り;
         mod C_ℕ_Coloring;
     }
