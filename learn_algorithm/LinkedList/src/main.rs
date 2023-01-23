@@ -45,6 +45,26 @@ where
         *self = LinkedList::Null;
     }
 
+    /// ## get_next
+    /// 次のノードを返す
+    fn get_next(&mut self) -> Option<&mut LinkedList<T>> {
+        match self {
+            LinkedList::Null => None,
+            LinkedList::Node { val: _, next } => {
+                match **next {
+                    LinkedList::Null => None,
+                    _ => Some( &mut **next )
+                }
+            },
+        }
+    }
+
+    // /// ## nth
+    // /// 与えられたノードから数えてn番目のノードを返す
+    // fn nth(&mut self, n: usize) -> &mut Option<LinkedList<T>> {
+
+    // }
+
     // fn insert(&mut self, x: T) {
     //     // 新しく追加するノード
     //     let mut new_node = Box::new(
@@ -57,6 +77,14 @@ where
 
 fn main() {
     let mut list = linked_list!(1, 2, 3, 4);
+    println!("{:?}", list);
+
+    let third_elem = list.get_next().unwrap().get_next().unwrap();
+    println!("{:?}", third_elem);
+
+    third_elem.remove();
+    println!("{:?}", third_elem);
+
     println!("{:?}", list);
 
     if let LinkedList::Node{ val, next } = &mut list {
@@ -84,4 +112,6 @@ fn main() {
     list.remove();
 
     println!("{:?}", list);
+
+
 }
