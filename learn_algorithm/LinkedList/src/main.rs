@@ -34,7 +34,7 @@ where
     T: std::cmp::Eq
 {
     /// ## replace
-    /// `next`を引数で置き換える。
+    /// `self`を引数で置き換える。
     fn replace(&mut self, node: Self) {
         *self = node;
     }
@@ -90,13 +90,10 @@ where
         None
     }
 
-    // fn insert(&mut self, x: T) {
-    //     // 新しく追加するノード
-    //     let mut new_node = Box::new(
-    //         LinkedList::Node { val: x, next: Box::new(LinkedList::Null) }
-    //     );
-
-    // }
+    /// ## insert
+    /// 与えられたノードの後ろに新しい要素を追加する
+    fn insert(&mut self, node: Self) {
+    }
 }
 
 
