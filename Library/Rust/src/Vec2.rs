@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use std::ops::{Add, Sub, Mul};
+use std::ops::{Add, Sub, Mul, Neg};
 
 /// Vector2D
 /// - 二次元ベクトル
@@ -12,9 +12,10 @@ struct Vec2<T> {
 
 impl<T> Vec2<T>
 where T: Copy
-       + Add<Output = T>
-       + Sub<Output = T>
-       + Mul<Output = T>
+    + Add<Output = T>
+    + Sub<Output = T>
+    + Mul<Output = T>
+    + Neg
 {
     fn new(x: T, y: T) -> Self {
         Vec2 { x, y }
@@ -45,6 +46,12 @@ where T: Copy
         self.x * other.x + self.y * other.y
     }
 
+    /// ## cross
+    /// ベクトルのクロス積
+    fn cross(&self, other: Self) -> T {
+        (self.x * other.y) - (other.x * self.y)
+    }
+
     /// ## dist2
     /// 距離の2乗の値を返す
     fn dist2(&self, other: Self) -> T {
@@ -53,6 +60,31 @@ where T: Copy
     }
 }
 
+/// ## is_collided
+/// 線分abと線分xyが衝突しているかどうか
+fn is_collided(ab: Linei, xy: Linei) -> bool {
+    let (a, b) = ab;
+    let (x, y) = xy;
+
+    // Aから見たとき
+    let AX = x.sub(a);
+    let AY = y.sub(a);
+    let AB = b.sub(a);
+
+    // Xから見たとき
+    let XA = a.sub(x);
+    let XB = b.sub(x);
+    let XY = y.sub(x);
+
+    AB.cross(AX) * AB.cross(AY) < 0 && XY.cross(XA) * XY.cross(XB) < 0
+}
+
+type Line<T> = (
+    Vec2<T>,
+    Vec2<T>
+);
+
+type Linei = Line<i32>;
 
 #[cfg(test)]
 mod test {
@@ -91,5 +123,26 @@ mod test {
 
         let dist_a_b = a.dist2(b);
         assert_eq!(dist_a_b, 2);
+    }
+
+    #[test]
+    fn test_collision_line() {
+        let ab: Linei = (
+            Vec2::new(3, 1),
+            Vec2::new(-3, 1)
+        );
+
+        let line1: Linei = (
+            Vec2::new(1, 2),
+            Vec2::new(2, 2)
+        );
+
+        let line2: Linei = (
+            Vec2::new(1, 2),
+            Vec2::new(1, 0)
+        );
+
+        assert_eq!(is_collided(ab, line1), false);
+        assert_eq!(is_collided(ab, line2), true);
     }
 }

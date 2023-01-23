@@ -1,4 +1,5 @@
 #[allow(dead_code)]
+#[allow(unused_macros)]
 
 /// # min!マクロ
 macro_rules! min {
