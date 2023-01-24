@@ -15,7 +15,7 @@
             "label": "build rust file",
             "command": "cargo",
             "args": [
-                "run",
+                "build",
                 "--bin",
                 "${fileBasenameNoExtension}",
             ],
@@ -23,6 +23,15 @@
                 "cwd": "builder",
             },
             "problemMatcher": [],
+        },
+        {
+            "type": "shell",
+            "label": "copy exec file",
+            "command": "cp",
+            "args": [
+                "~/Docker/kyopuro/builder/target/debug/${fileBasenameNoExtension}",
+                "${fileDirname}/${fileBasenameNoExtension}",
+            ],
         },
         {
             "type": "shell",
@@ -40,6 +49,7 @@
             "dependsOn": [
                 "copy file",
                 "build rust file",
+                "copy exec file",
                 "remove bin and target",
             ],
             "group": {
