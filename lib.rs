@@ -61,6 +61,7 @@ mod Others {
         mod C_一次元オセロ;
         mod D_Anything_Goes_to_Zero;
         mod D_Anything_Goes_to_Zero_popcount;
+        mod D_Crossing;
         mod D_ヘイホー君と削除;
         mod N_木;
     }
@@ -231,6 +232,7 @@ mod abc_training {
         mod D_Wall;
         mod D_Yet_Another_Recursive_Function;
         mod D_トレジャーハント;
+        mod D_一刀両断;
         mod D_多重ループ;
         mod D_多重ループ_modint;
         mod D_食塩水;
@@ -238,6 +240,7 @@ mod abc_training {
     mod E {
         mod E_Add_and_Mex;
         mod E_Apple_Baskets_on_Circle;
+        mod E_At_Least_One;
         mod E_AxA;
         mod E_Blackout_2;
         mod E_Bomber;
