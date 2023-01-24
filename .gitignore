@@ -6,8 +6,6 @@
 # 各種設定ファイル
 .local/
 .kyopuro/
-# .devcontainer.json
-# .vscode/
 .DS_Store
 
 # ac-library
@@ -34,6 +32,9 @@ Cargo.lock
 debug/
 target/
 **/*.rs.bk
+
+# rustビルド用プロジェクト
+builder/
 
 ## コンテスト期間中のみ
 hitachihokudai2022/

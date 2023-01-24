@@ -150,6 +150,7 @@ mod abc_training {
         mod B_Play_Snuke;
         mod B_Quizzes;
         mod B_Rectangle_Detection;
+        mod B_Sandwich_Number;
         mod B_Savings;
         mod B_Smartphone_Addiction;
         mod B_Trapezoid_Sum;

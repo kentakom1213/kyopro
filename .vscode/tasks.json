@@ -3,21 +3,49 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "build Rust file",
-            "command": "rustc",
+            "label": "copy file",
+            "command": "cp",
             "args": [
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
                 "${file}",
+                "~/Docker/kyopuro/builder/src/bin/${fileBasename}"
+            ],
+        },
+        {
+            "type": "shell",
+            "label": "build rust file",
+            "command": "cargo",
+            "args": [
+                "run",
+                "--bin",
+                "${fileBasenameNoExtension}",
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "builder",
             },
             "problemMatcher": [],
+        },
+        {
+            "type": "shell",
+            "label": "remove bin and target",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "~/Docker/kyopuro/builder/src/bin/*",
+                "~/Docker/kyopuro/builder/target",
+            ],
+        },
+        {
+            "label": "Task Sequence",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "copy file",
+                "build rust file",
+                "remove bin and target",
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
-        },
+        }
     ],
 }

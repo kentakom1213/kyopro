@@ -93,6 +93,7 @@ where
     /// ## insert
     /// 与えられたノードの後ろに新しい要素を追加する
     fn insert(&mut self, node: Self) {
+        
     }
 }
 
