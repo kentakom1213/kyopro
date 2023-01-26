@@ -1,8 +1,9 @@
-#[allow(dead_code)]
+#![allow(dead_code)]
 
 /// # RollingHash
 #[derive(Debug)]
 struct RollingHash {
+    size: usize,
     power: Vec<usize>,
     hash: Vec<usize>,
     base: usize,
@@ -31,7 +32,7 @@ impl RollingHash {
             power[i+1] = v;
         }
 
-        Self { power, hash, base }
+        Self { size, power, hash, base }
     }
 
     /// 文字列から生成
@@ -45,11 +46,18 @@ impl RollingHash {
     }
 
     /// `l..r`のハッシュを取得
+    /// - 計算量: `O(1)`
     fn get(&self, l: usize, r: usize) -> usize {
         Self::msub(
             self.hash[r],
             Self::mmul(self.hash[l], self.power[r-l])
         )
+    }
+
+    /// `0..size`のハッシュを取得
+    /// - 計算量: `O(1)`
+    fn full(&self) -> usize {
+        self.hash[self.size]
     }
 
     /// `A`を`0`とするascii文字(`A~Za~z`)のインデックスを返す
@@ -98,7 +106,7 @@ mod test {
         // "sumomo"を検索
         let mut res1 = vec![];
         for i in 0..tlen-p1len {
-            if target.get(i, i + p1len) == ptn1.get(0, p1len) {
+            if target.get(i, i + p1len) == ptn1.full() {
                 res1.push(i);
             }
         }
@@ -108,7 +116,7 @@ mod test {
         // "momo"を検索
         let mut res2 = vec![];
         for i in 0..tlen-p2len {
-            if target.get(i, i + p2len) == ptn2.get(0, p2len) {
+            if target.get(i, i + p2len) == ptn2.full() {
                 res2.push(i);
             }
         }
