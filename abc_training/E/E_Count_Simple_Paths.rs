@@ -12,61 +12,54 @@
 #![allow(unused_macros)]
 
 // imports
-// https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e
 use std::cmp::{max, min, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
-
-// input macro
-macro_rules! get {
-    ($t:ty) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.trim().parse::<$t>().unwrap()
-        }
-    };
-    ($($t:ty),*) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            let mut iter = line.split_whitespace();
-            (
-                $(iter.next().unwrap().parse::<$t>().unwrap(),)*
-            )
-        }
-    };
-    ($t:ty ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t)
-        ).collect::<Vec<_>>()
-    };
-    ($($t:ty),* ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($($t),*)
-        ).collect::<Vec<_>>()
-    };
-    ($t:ty ;;) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.split_whitespace()
-                .map(|t| t.parse::<$t>().unwrap())
-                .collect::<Vec<_>>()
-        }
-    };
-    ($t:ty ;; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t ;;)
-        ).collect::<Vec<_>>()
-    };
-}
+use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
 
 // constant
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
+const LIMIT: usize = 1_000_000;
 
 // solve
 fn main() {
-    
+    input! {
+        (N, M): (usize, usize),
+        edges: [(Usize1, Usize1); M],
+    }
+
+    let mut G = vec![vec![]; N];
+    for &(u, v) in &edges {
+        G[u].push(v);
+        G[v].push(u);
+    }
+
+    // dfsで数え上げ
+    let mut ans = 1;
+    let mut is_visited = vec![false; N];
+    let mut path = vec![];
+
+    dfs(0, &mut ans, &mut is_visited, &mut path, &G);
+
+    println!("{}", ans.min(LIMIT));
+}
+
+fn dfs(cur: usize, ans: &mut usize, is_visited: &mut Vec<bool>, path: &mut Vec<usize>, G: &Vec<Vec<usize>>) {
+    if *ans > LIMIT { return; }
+
+    // println!("{:?}", path);
+    is_visited[cur] = true;
+    path.push(cur);
+
+    for &nxt in &G[cur] {
+        if !is_visited[nxt] {
+            *ans += 1;
+            dfs(nxt, ans, is_visited, path, G);
+        }
+    }
+
+    is_visited[cur] = false;
+    path.pop();
 }

@@ -10,6 +10,7 @@ pub mod max_min;
 pub mod Miller_Rabin_test;
 pub mod MultiSet;
 pub mod Pollard_Rho_method;
+pub mod RollingHash;
 pub mod SegmentTree;
 pub mod UnionFind;
 pub mod Vec2;

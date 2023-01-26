@@ -14,6 +14,7 @@ mod AOJ {
     mod Range_Minimum_Query_RMQ;
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;
+    mod 文字列検索;
 }
 mod ARC {
     mod arc151 {
@@ -294,6 +295,7 @@ mod abc_training {
         mod E_Work_or_Rest;
     }
     mod F {
+        mod F_ABCBAC;
         mod F_Distance_Sums_2;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_Segtree;
