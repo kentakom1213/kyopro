@@ -1,6 +1,28 @@
 #![allow(dead_code)]
 
+/// # Modint
+trait Modint {
+    fn madd(&self, other: usize) -> usize;
+    fn msub(&self, other: usize) -> usize;
+    fn mmul(&self, other: usize) -> usize;
+}
+
+impl Modint for usize {
+    fn madd(&self, other: usize) -> usize {
+        (*self + other) % MOD
+    }
+    fn msub(&self, other: usize) -> usize {
+        (MOD + *self - other) % MOD
+    }
+    fn mmul(&self, other: usize) -> usize {
+        let res: u128 = (*self as u128) * (other as u128);
+        (res % MOD as u128) as usize
+    }
+}
+
 /// # RollingHash
+/// 文字列の比較を高速に行う
+/// - 計算量: `O(n+m)`
 #[derive(Debug)]
 struct RollingHash {
     size: usize,
@@ -19,17 +41,12 @@ impl RollingHash {
         let mut hash = vec![0; size + 1];
 
         // hashを初期化
-        let mut v = 0;
+        let (mut h, mut p) = (0, 1);
         for i in 0..size {
-            v = Self::madd( Self::mmul(v, base), arr[i]);
-            hash[i+1] = v;
-        }
-
-        // powerを初期化
-        let mut v = 1;
-        for i in 0..size {
-            v = Self::mmul(v, base);
-            power[i+1] = v;
+            h = arr[i].madd(h.mmul(base));
+            p = p.mmul(base);
+            hash[i+1] = h;
+            power[i+1] = p;
         }
 
         Self { size, power, hash, base }
@@ -48,9 +65,8 @@ impl RollingHash {
     /// `l..r`のハッシュを取得
     /// - 計算量: `O(1)`
     fn get(&self, l: usize, r: usize) -> usize {
-        Self::msub(
-            self.hash[r],
-            Self::mmul(self.hash[l], self.power[r-l])
+        self.hash[r].msub(
+            self.hash[l].mmul(self.power[r-l])
         )
     }
 
@@ -60,34 +76,23 @@ impl RollingHash {
         self.hash[self.size]
     }
 
+    /// ハッシュ同士を連結
+    /// - 計算量: `O(1)`
+    fn connect(&self, h1: usize, h2:usize, h2_len: usize) -> usize {
+        h1.mmul(self.power[h2_len]).madd(h2)
+    }
+
     /// `A`を`0`とするascii文字(`A~Za~z`)のインデックスを返す
     fn ord(c: char) -> usize {
         let a = 'A' as u32;
         let c = c as u32;
         (c - a) as usize
     }
-
-    /// 足し算
-    fn madd(mut a: usize, b: usize) -> usize {
-        a += b;
-        if a >= Self::MOD { a -= Self::MOD; }
-        a
-    }
-
-    /// 引き算
-    fn msub(mut a: usize, b: usize) -> usize {
-        a += Self::MOD;
-        a -= b;
-        while a >= Self::MOD { a -= Self::MOD }
-        a
-    }
-
-    /// 掛け算
-    fn mmul(a: usize, b: usize) -> usize {
-        let c: u128 = (a as u128) * (b as u128);
-        (c % Self::MOD as u128) as usize
-    }
 }
+
+// constant
+const MOD: usize = 998244353;
+// const MOD: usize = (1 << 61) - 1;
 
 
 #[cfg(test)]
