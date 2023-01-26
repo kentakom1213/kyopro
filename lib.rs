@@ -125,6 +125,7 @@ mod abc_training {
         mod A_pow_neg1;
         mod A_twiblr;
         mod A_αlphabet;
+        mod A_ゲーム;
         mod A_テスト評価;
     }
     mod B {
@@ -158,6 +159,7 @@ mod abc_training {
         mod B_Various_distances;
         mod B_Various_distances_for;
         mod B_uNrEaDaBlE_sTrInG;
+        mod B_回転;
         mod B_投票;
         mod B_文字数カウント;
     }
@@ -167,6 +169,7 @@ mod abc_training {
         mod C_AtColor;
         mod C_Blue_Bird;
         mod C_Buy_an_Integer;
+        mod C_Circular_Playlist;
         mod C_Count_Connected_Components;
         mod C_Counting_Squares;
         mod C_Dice_and_Coin;
@@ -194,6 +197,7 @@ mod abc_training {
         mod C_背の順;
     }
     mod D {
+        mod D_1;
         mod D_2017like_Number;
         mod D_250like_Number;
         mod D_AtCoder_Express_2;

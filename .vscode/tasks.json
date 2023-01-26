@@ -7,7 +7,7 @@
             "command": "cp",
             "args": [
                 "${file}",
-                "~/Docker/kyopuro/builder/src/bin/${fileBasename}"
+                "~/Docker/kyopuro/builder/src/main.rs"
             ],
         },
         {
@@ -16,8 +16,6 @@
             "command": "cargo",
             "args": [
                 "build",
-                "--bin",
-                "${fileBasenameNoExtension}",
             ],
             "options": {
                 "cwd": "builder",
@@ -29,18 +27,8 @@
             "label": "copy exec file",
             "command": "cp",
             "args": [
-                "~/Docker/kyopuro/builder/target/debug/${fileBasenameNoExtension}",
+                "~/Docker/kyopuro/builder/target/debug/builder",
                 "${fileDirname}/${fileBasenameNoExtension}",
-            ],
-        },
-        {
-            "type": "shell",
-            "label": "remove bin and target",
-            "command": "rm",
-            "args": [
-                "-rf",
-                "~/Docker/kyopuro/builder/src/bin/*",
-                "~/Docker/kyopuro/builder/target",
             ],
         },
         {
@@ -49,8 +37,7 @@
             "dependsOn": [
                 "copy file",
                 "build rust file",
-                "copy exec file",
-                "remove bin and target",
+                // "copy exec file",
             ],
             "group": {
                 "kind": "build",
