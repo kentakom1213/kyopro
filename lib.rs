@@ -11,6 +11,8 @@ mod ABC {
     }
 }
 mod AOJ {
+    mod LCA_Lowest_Common_Ancestor;
+    mod LCA_Lowest_Common_Ancestor_Library;
     mod Range_Minimum_Query_RMQ;
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;

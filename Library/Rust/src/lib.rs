@@ -5,6 +5,7 @@ pub mod BinarySearch4BTreeSet;
 pub mod BinarySearch4slice;
 pub mod Comb;
 pub mod Factors;
+pub mod LCA;
 pub mod LCS;
 pub mod max_min;
 pub mod Miller_Rabin_test;
