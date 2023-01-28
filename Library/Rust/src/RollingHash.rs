@@ -32,8 +32,6 @@ struct RollingHash {
 }
 
 impl RollingHash {
-    const MOD: usize = (2 << 61) - 1;
-
     /// 初期化
     fn build(arr: &[usize], base: usize) -> Self {
         let size = arr.len();
