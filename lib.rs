@@ -190,6 +190,7 @@ mod abc_training {
         mod C_March;
         mod C_Max_Even;
         mod C_Multiplication_3;
+        mod C_Path_Graph;
         mod C_Rotate_and_Palindrome;
         mod C_Shopping_Street;
         mod C_Step;
@@ -275,6 +276,7 @@ mod abc_training {
         mod E_Fraction_Floor_Sum;
         mod E_Fraction_Floor_Sum_ans;
         mod E_Graph_Destruction;
+        mod E_Karuta;
         mod E_King_Bombee;
         mod E_LCM_on_Whiteboard;
         mod E_Least_Elements_SegTree;
