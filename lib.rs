@@ -117,6 +117,7 @@ mod abc_training {
         mod A_New_Generation_ABC;
         mod A_Plural_Form;
         mod A_Rainy_Season;
+        mod A_Range_Swap;
         mod A_Sequence_of_Strings;
         mod A_Slot;
         mod A_Takoyaki;
@@ -182,6 +183,7 @@ mod abc_training {
         mod C_March;
         mod C_Max_Even;
         mod C_Multiplication_3;
+        mod C_Rotate_and_Palindrome;
         mod C_Shopping_Street;
         mod C_Step;
         mod C_String_Transformation;
@@ -219,6 +221,7 @@ mod abc_training {
         mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
         mod D_Max_Multiple;
+        mod D_Money_in_Hand;
         mod D_Moves_on_Binary_Tree;
         mod D_Online_games;
         mod D_Online_games_ans;
@@ -281,6 +284,7 @@ mod abc_training {
         mod E_Sequence_Decomposing;
         mod E_Small_d_and_k;
         mod E_Sorting_Queries;
+        mod E_Souvenir;
         mod E_Strings_of_Impurity;
         mod E_Stronger_Takahashi;
         mod E_Sugoroku_4;
