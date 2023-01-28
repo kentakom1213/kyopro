@@ -247,6 +247,7 @@ mod abc_training {
         mod D_一刀両断;
         mod D_多重ループ;
         mod D_多重ループ_modint;
+        mod D_閉路;
         mod D_食塩水;
     }
     mod E {
