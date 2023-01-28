@@ -9,6 +9,11 @@ mod ABC {
     mod abc285 {
         mod E;
     }
+    mod abc287 {
+        mod C;
+        mod D;
+        mod E;
+    }
 }
 mod AOJ {
     mod LCA_Lowest_Common_Ancestor;
