@@ -204,6 +204,7 @@ mod abc_training {
         mod D_2017like_Number;
         mod D_250like_Number;
         mod D_AtCoder_Express_2;
+        mod D_AxisParallel_Rectangle;
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Coloring_Edges_on_Tree;
         mod D_Cylinder;
