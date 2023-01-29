@@ -108,6 +108,7 @@ mod VirtualContest {
 mod abc_training {
     mod A {
         mod A_ABC_Preparation;
+        mod A_AC_or_WA;
         mod A_A_C;
         mod A_Air_Conditioner;
         mod A_Anyway_Takahashi;
@@ -340,6 +341,7 @@ mod arc_training {
         mod A_Max_Mod_Min;
         mod A_Right_String;
         mod A_Simple_Math;
+        mod A_Sum_and_Product;
         mod A_Tax_Included_Price;
         mod A_Three_Integers;
         mod A_Two_Choices;
@@ -357,12 +359,14 @@ mod arc_training {
     mod B {
         mod B_A_lt_AP;
         mod B_AtCoderでじゃんけんを;
+        mod B_Counting_Grids;
         mod B_Many_110;
         mod B_Many_110_re;
         mod B_Plus_and_AND;
         mod B_Reversible_Cards;
         mod B_Reversible_Cards_ans;
         mod B_Special_Subsets;
+        mod B_Swap_to_Sort;
         mod B_Your_Numbers_are_XORed;
         mod B_dp;
         mod B_ツリーグラフ;

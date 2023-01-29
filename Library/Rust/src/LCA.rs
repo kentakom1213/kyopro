@@ -10,7 +10,7 @@ pub struct LCA {
 impl LCA {
     pub fn new(graph: &Graph, root: usize) -> Self {
         let V = graph.len();  // グラフの頂点数
-        let logV = {  // log_2(グラフの頂点数)
+        let logV = {          // log_2(グラフの頂点数)
             let mut logv = 0;
             while (V >> logv) > 0 {
                 logv += 1;
@@ -18,7 +18,7 @@ impl LCA {
             logv
         };
         let mut double = vec![vec![0; V]; logV];  // ダブリング配列
-        let mut depth = vec![INF; V];  // 頂点の根からの距離
+        let mut depth = vec![INF; V];             // 頂点の根からの距離
         depth[0] = 0;
         Self::dfs(root, &mut double[0], &mut depth, &graph);
 

@@ -1,4 +1,4 @@
-//                  文字列検索                  
+//                  文字列検索
 // ----------------------------------------
 // 問題
 // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja
@@ -80,15 +80,15 @@ impl RollingHash {
         // hashを初期化
         let mut v = 0;
         for i in 0..size {
-            v = Self::madd( Self::mmul(v, base), arr[i]);
-            hash[i+1] = v;
+            v = Self::madd(Self::mmul(v, base), arr[i]);
+            hash[i + 1] = v;
         }
 
         // powerを初期化
         let mut v = 1;
         for i in 0..size {
             v = Self::mmul(v, base);
-            power[i+1] = v;
+            power[i + 1] = v;
         }
 
         Self { power, hash, base }
@@ -96,20 +96,14 @@ impl RollingHash {
 
     /// 文字列から生成
     fn from_str(s: &str, base: usize) -> Self {
-        let arr: Vec<usize> = s
-            .chars()
-            .map(Self::ord)
-            .collect();
-        
+        let arr: Vec<usize> = s.chars().map(Self::ord).collect();
+
         Self::build(&arr, base)
     }
 
     /// `l..r`のハッシュを取得
     fn get(&self, l: usize, r: usize) -> usize {
-        Self::msub(
-            self.hash[r],
-            Self::mmul(self.hash[l], self.power[r-l])
-        )
+        Self::msub(self.hash[r], Self::mmul(self.hash[l], self.power[r - l]))
     }
 
     /// `A`を`0`とするascii文字(`A~Za~z`)のインデックスを返す
@@ -122,7 +116,9 @@ impl RollingHash {
     /// 足し算
     fn madd(mut a: usize, b: usize) -> usize {
         a += b;
-        if a >= Self::MOD { a -= Self::MOD; }
+        if a >= Self::MOD {
+            a -= Self::MOD;
+        }
         a
     }
 
@@ -130,7 +126,9 @@ impl RollingHash {
     fn msub(mut a: usize, b: usize) -> usize {
         a += Self::MOD;
         a -= b;
-        while a >= Self::MOD { a -= Self::MOD }
+        while a >= Self::MOD {
+            a -= Self::MOD
+        }
         a
     }
 
@@ -157,8 +155,8 @@ fn main() {
     let ptn = RollingHash::from_str(&P, base);
     let p = ptn.get(0, plen);
 
-    for i in 0..=tlen-plen {
-        if target.get(i, i+plen) == p {
+    for i in 0..=tlen - plen {
+        if target.get(i, i + plen) == p {
             println!("{}", i);
         }
     }

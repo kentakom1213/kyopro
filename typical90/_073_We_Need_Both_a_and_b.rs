@@ -1,4 +1,4 @@
-//      073 - We Need Both a and b（★5）     
+//      073 - We Need Both a and b（★5）
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/typical90/tasks/typical90_bu
@@ -30,8 +30,8 @@ dp[pos][今の連結成分にどれがあるか] := 頂点`pos`の部分木を�
 #![allow(dead_code)]
 
 // imports
-use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
 use std::cmp::Reverse;
+use std::collections::{BTreeMap, BinaryHeap, HashMap, VecDeque};
 
 // input macro
 // [Rustで競技プログラミング スターターキット](https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e)
@@ -88,10 +88,10 @@ fn main() {
     let N = get!(usize);
     let C = get!(char;;);
     let mut G = vec![vec![]; N];
-    for _ in 0..N-1 {
+    for _ in 0..N - 1 {
         let (a, b) = get!(usize, usize);
-        G[a-1].push(b-1);
-        G[b-1].push(a-1);
+        G[a - 1].push(b - 1);
+        G[b - 1].push(a - 1);
     }
 
     // dp[pos][今の連結成分にどれがあるか] := 頂点`pos`の部分木を考えたときに何通りあるか
@@ -104,13 +104,21 @@ fn main() {
     println!("{}", dp[0][2]);
 }
 
-fn dfs(prev: usize, cur: usize, graph: &Vec<Vec<usize>>, color: &Vec<char>, dp: &mut Vec<Vec<usize>>) {
+fn dfs(
+    prev: usize,
+    cur: usize,
+    graph: &Vec<Vec<usize>>,
+    color: &Vec<char>,
+    dp: &mut Vec<Vec<usize>>,
+) {
     let (mut val1, mut val2) = (1, 1);
     for &nxt in &graph[cur] {
-        if nxt == prev { continue; }
+        if nxt == prev {
+            continue;
+        }
 
         // 子について呼び出し
-        dfs(cur, nxt, &graph, color, dp);  // ← 既にmutだから宣言しなくても良い？
+        dfs(cur, nxt, &graph, color, dp); // ← 既にmutだから宣言しなくても良い？
 
         if color[cur] == 'a' {
             val1 *= dp[nxt][0] + dp[nxt][2];
