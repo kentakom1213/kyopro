@@ -378,6 +378,7 @@ mod arc_training {
         mod B_赤と黒の木;
         mod D_Derangement;
         mod D_Equals;
+        mod D_Menagerie;
         mod D_Widespread;
         mod pass {
             mod B_Village_of_M_People;
