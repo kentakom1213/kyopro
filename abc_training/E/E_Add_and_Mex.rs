@@ -1,70 +1,78 @@
-//             E - Add and Mex             
+//             E - Add and Mex
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc272/tasks/abc272_e
 // ----------------------------------------
 
-// [Rustで競技プログラミングの入力をスッキリ記述するマクロ](https://qiita.com/tanakh/items/0ba42c7ca36cd29d0ac8)
-macro_rules! input {
-    (source = $s:expr, $($r:tt)*) => {
-        let mut iter = $s.split_whitespace();
-        let mut next = || { iter.next().unwrap() };
-        input_inner!{next, $($r)*}
-    };
-    ($($r:tt)*) => {
-        let stdin = std::io::stdin();
-        let mut bytes = std::io::Read::bytes(std::io::BufReader::new(stdin.lock()));
-        let mut next = move || -> String{
-            bytes
-                .by_ref()
-                .map(|r|r.unwrap() as char)
-                .skip_while(|c|c.is_whitespace())
-                .take_while(|c|!c.is_whitespace())
-                .collect()
-        };
-        input_inner!{next, $($r)*}
-    };
+// attributes
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(non_snake_case)]
+#![allow(dead_code)]
+#![allow(unused_macros)]
+
+// imports
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
+use std::cmp::{max, min, Reverse};
+use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
+
+/// `a > b` のとき、`a`を`b`に置き換え、trueを返す
+macro_rules! chmin {
+    ( $a:expr, $b:expr $(,)* ) => {{
+        if $a > $b {
+            $a = $b;
+            true
+        } else {
+            false
+        }
+    }};
 }
 
-macro_rules! input_inner {
-    ($next:expr) => {};
-    ($next:expr, ) => {};
-
-    ($next:expr, $var:ident : $t:tt $($r:tt)*) => {
-        let $var = read_value!($next, $t);
-        input_inner!{$next $($r)*}
-    };
-}
-
-macro_rules! read_value {
-    ($next:expr, ( $($t:tt),* )) => {
-        ( $(read_value!($next, $t)),* )
-    };
-
-    ($next:expr, [ $t:tt ; $len:expr ]) => {
-        (0..$len).map(|_| read_value!($next, $t)).collect::<Vec<_>>()
-    };
-
-    ($next:expr, chars) => {
-        read_value!($next, String).chars().collect::<Vec<char>>()
-    };
-
-    ($next:expr, usize1) => {
-        read_value!($next, usize) - 1
-    };
-
-    ($next:expr, $t:ty) => {
-        $next().parse::<$t>().expect("Parse error")
-    };
-}
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: isize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
 
 // solve
 fn main() {
     input! {
-        n: usize,
-        m: usize,
-        a: [isize; n],
+        N: usize,
+        M: usize,
+        A: [isize; N],
     }
 
+    let mut arrays = vec![vec![]; M+1];
+
+    // 計算結果を生成
+    // 計算量を調和級数に帰着
+    for (i, &a) in A.iter().enumerate() {
+        // a + (i+1) * j >= 0 となる最小のj
+        let start: isize = 1.max( - a / (1 + i as isize) - 1 );
+        for j in start..=(M as isize) {
+            let val = a + (1 + i as isize) * j as isize;
+            arrays[j as usize].push(val);
+            if val > N as isize { break; }
+        }
+    }
     
+    // 配列に含まれない最小の非負整数を求める
+    for i in 1..=M {
+        let ref arr = arrays[i];
+        let mut exists = vec![false; arr.len()+1];
+        for &v in arr {
+            if 0 <= v && v <= arr.len() as isize {
+                exists[v as usize] = true;
+            }
+        }
+
+        let mut ans = 0;
+        while exists[ans] {
+            ans += 1;
+        }
+        println!("{}", ans);
+    }
 }

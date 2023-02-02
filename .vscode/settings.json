@@ -143,6 +143,6 @@
 
     // Rust
     "rust-analyzer.linkedProjects": [
-        ".vscode/rust-project.json",
+        "./rust-project.json",
     ],
 }
