@@ -14,6 +14,10 @@ mod ABC {
         mod D;
         mod E;
     }
+    mod abc288 {
+        mod C;
+        mod D;
+    }
 }
 mod AOJ {
     mod LCA_Lowest_Common_Ancestor;
@@ -473,13 +477,6 @@ mod asakatsu {
         mod _3;
         mod _4;
         mod _5;
-    }
-}
-mod heuristic {
-    mod ahc015 {
-        mod after03 {
-            mod main;
-        }
     }
 }
 mod learn_algorithm {
