@@ -242,6 +242,7 @@ mod abc_training {
         mod D_Pairs;
         mod D_Patisserie_ABC;
         mod D_Practical_Skill_Test;
+        mod D_Range_Add_Query;
         mod D_Robot_Arms_2;
         mod D_Root_M_Leaper;
         mod D_Snuke_Panic_1D;

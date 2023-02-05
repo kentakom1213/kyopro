@@ -7,7 +7,7 @@
             "command": "cp",
             "args": [
                 "${file}",
-                "~/Docker/kyopuro/builder/src/main.rs"
+                "~/Docker/kyopro/builder/src/main.rs"
             ],
         },
         {
@@ -27,7 +27,7 @@
             "label": "copy exec file",
             "command": "cp",
             "args": [
-                "~/Docker/kyopuro/builder/target/debug/builder",
+                "~/Docker/kyopro/builder/target/debug/builder",
                 "${fileDirname}/${fileBasenameNoExtension}",
             ],
         },
