@@ -1,6 +1,6 @@
 #[allow(dead_code)]
 
-use crate::Miller_Rabin_test::is_prime_MR;
+use crate::MillerRabinTest::is_prime_MR;
 
 fn gcd(a: usize, b: usize) -> usize {
     if b == 0 {
