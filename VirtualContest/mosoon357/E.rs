@@ -16,8 +16,6 @@ const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
 const NEG1: usize = 1_usize.wrapping_neg();
 
-struct 
-
 /// ## 問題
 /// https://atcoder.jp/contests/abc189/tasks/abc189_e
 /// ## 方針
