@@ -108,6 +108,11 @@ mod VirtualContest {
         mod _4;
         mod _5;
     }
+    mod mosoon357 {
+        mod C;
+        mod D;
+        mod E;
+    }
 }
 mod abc_training {
     mod A {
@@ -485,6 +490,7 @@ mod learn_algorithm {
         mod ext_gcd;
         mod modinv_non_rec;
     }
+    mod generate_combination;
     mod rust_binary_tree {
         mod gen_tree_macro;
         mod replace;
