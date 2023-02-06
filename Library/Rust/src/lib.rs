@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 
+pub mod AffineTransform;
 pub mod BIT;
 pub mod BinarySearch4BTreeSet;
 pub mod BinarySearch4slice;
