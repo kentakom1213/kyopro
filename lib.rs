@@ -168,6 +168,7 @@ mod abc_training {
         mod B_Orthogonality;
         mod B_Painting_Balls_with_AtCoDeer;
         mod B_Play_Snuke;
+        mod B_Playing_Cards_Validation;
         mod B_Quizzes;
         mod B_Rectangle_Detection;
         mod B_Sandwich_Number;
@@ -195,6 +196,7 @@ mod abc_training {
         mod C_Distinct_or_Not;
         mod C_Five_Transportations;
         mod C_GCD_on_Blackboard;
+        mod C_Ladder_Takahashi;
         mod C_Many_Requirements;
         mod C_Many_Segments;
         mod C_March;
@@ -255,6 +257,7 @@ mod abc_training {
         mod D_Stones;
         mod D_Strange_Lunchbox;
         mod D_Summer_Vacation;
+        mod D_Takahashis_Solitaire;
         mod D_Teleporter;
         mod D_Triangles;
         mod D_Triangles_new;
