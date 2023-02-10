@@ -39,6 +39,8 @@ mod AlgoMethod {
         mod Q4_2;
         mod Q4_2_segtree;
         mod Q4_3;
+        mod Q4_4_Hanbouki;
+        mod Q4_5_number_of_ropes;
     }
     mod Graph {
         mod Q3_1;
@@ -263,6 +265,7 @@ mod abc_training {
         mod D_Triangles_new;
         mod D_Wall;
         mod D_Yet_Another_Recursive_Function;
+        mod D_equeue;
         mod D_トレジャーハント;
         mod D_一刀両断;
         mod D_多重ループ;
