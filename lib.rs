@@ -143,6 +143,7 @@ mod abc_training {
         mod A_Therefore;
         mod A_Vanishing_Pitch;
         mod A_Very_Very_Primitive_Game;
+        mod A_flip;
         mod A_pow_neg1;
         mod A_twiblr;
         mod A_αlphabet;
@@ -177,6 +178,7 @@ mod abc_training {
         mod B_Savings;
         mod B_Smartphone_Addiction;
         mod B_Trapezoid_Sum;
+        mod B_V;
         mod B_Varied;
         mod B_Various_distances;
         mod B_Various_distances_for;
@@ -184,6 +186,7 @@ mod abc_training {
         mod B_回転;
         mod B_投票;
         mod B_文字数カウント;
+        mod B_高橋くんの集計;
     }
     mod C {
         mod C_ABC_Tournament;
@@ -194,6 +197,7 @@ mod abc_training {
         mod C_Circular_Playlist;
         mod C_Count_Connected_Components;
         mod C_Counting_Squares;
+        mod C_Coverage;
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
         mod C_Five_Transportations;
@@ -254,8 +258,10 @@ mod abc_training {
         mod D_Range_Add_Query;
         mod D_Robot_Arms_2;
         mod D_Root_M_Leaper;
+        mod D_Scope;
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
+        mod D_Step_Up_Robot;
         mod D_Stones;
         mod D_Strange_Lunchbox;
         mod D_Summer_Vacation;
@@ -318,6 +324,7 @@ mod abc_training {
         mod E_Stronger_Takahashi;
         mod E_Sugoroku_4;
         mod E_Sugoroku_4_modint;
+        mod E_Swap_Places;
         mod E_Takahashi_and_Animals;
         mod E_Takahashis_Anguish;
         mod E_Through_Path;
