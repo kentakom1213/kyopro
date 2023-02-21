@@ -96,6 +96,11 @@ mod VirtualContest {
         mod _3;
         mod _5;
     }
+    mod eoeo_3 {
+        mod C_ChocolateBar;
+        mod D_FriendSuggestions;
+        mod E_AppleBasketsOnCircle;
+    }
     mod mosoon20230103 {
         mod _1;
         mod _2;
@@ -224,6 +229,7 @@ mod abc_training {
         mod C_正直者の高橋くん;
         mod C_民族大移動;
         mod C_背の順;
+        mod C_高橋くんのバグ探し;
     }
     mod D {
         mod D_1;
@@ -234,6 +240,7 @@ mod abc_training {
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Coloring_Edges_on_Tree;
         mod D_Cylinder;
+        mod D_Decayed_Bridges;
         mod D_Digits_Parade;
         mod D_Disjoint_Set_of_Common_Divisors;
         mod D_Do_use_hexagon_grid;
