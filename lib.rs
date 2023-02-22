@@ -99,6 +99,7 @@ mod VirtualContest {
     mod eoeo_3 {
         mod C_ChocolateBar;
         mod D_FriendSuggestions;
+        mod D_FriendSuggestions_re;
         mod E_AppleBasketsOnCircle;
     }
     mod mosoon20230103 {
@@ -287,6 +288,7 @@ mod abc_training {
         mod D_食塩水;
     }
     mod E {
+        mod E_1_or_2;
         mod E_Add_and_Mex;
         mod E_Apple_Baskets_on_Circle;
         mod E_At_Least_One;
