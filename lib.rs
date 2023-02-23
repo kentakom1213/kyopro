@@ -223,6 +223,7 @@ mod abc_training {
         mod C_The_Kth_Time_Query;
         mod C_Traveling_Salesman_around_Lake;
         mod C_Ubiquity;
+        mod C_chokudai;
         mod C_management;
         mod C_ピアニスト高橋君;
         mod C_入れ替え;
@@ -258,6 +259,7 @@ mod abc_training {
         mod D_Max_Multiple;
         mod D_Money_in_Hand;
         mod D_Moves_on_Binary_Tree;
+        mod D_Number_of_Shortest_paths;
         mod D_Online_games;
         mod D_Online_games_ans;
         mod D_Pairs;
