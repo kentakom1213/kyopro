@@ -65,6 +65,13 @@ impl Modint for usize {
     }
 }
 
+macro_rules! madd_assign {
+    ( $a:expr, $b:expr ) => {{
+        let tmp = ($a).madd($b);
+        $a = tmp;
+    }};
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -135,5 +142,13 @@ mod test {
         assert_eq!(20021213.factorial(), 666935530);
         assert_eq!(10.factorial(), 3628800);
         assert_eq!(999999.factorial(), 595392237);
+    }
+
+    #[test]
+    fn test_madd_assign() {
+        let mut arr = vec![1, 2, 3];
+        for i in 0..3 {
+            madd_assign!(arr[i], arr[i]);
+        }
     }
 }

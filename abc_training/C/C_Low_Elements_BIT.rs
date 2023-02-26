@@ -1,8 +1,28 @@
+//             C - Low Elements            
+// ----------------------------------------
+// 問題
+// https://atcoder.jp/contests/abc152/tasks/abc152_c
+// ----------------------------------------
+
+// attributes
+#![allow(unused_imports)]
+#![allow(unused_variables)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
+#![allow(unused_macros)]
 
+// imports
+use std::cmp::{max, min, Reverse};
+use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
+use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
 use num_traits::identities::Zero;
 use std::ops::{Add, AddAssign, Sub};
+
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
 
 // BinaryIndexedTree
 struct BIT<T> {
@@ -60,40 +80,24 @@ where
     }
 }
 
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn test_new() {
-        let mut bit = BIT::<isize>::new(5);
-
-        bit.add(0, 20);
-        bit.add(2, -5);
-
-        let sum_5 = bit.sum(5);
-        assert_eq!(sum_5, 15);
-
-        bit.add(4, 10);
-        bit.add(1, -20);
-
-        let sum_2 = bit.sum(2);
-        assert_eq!(sum_2, 0);
-
-        let sum_all = bit.sum(5);
-        assert_eq!(sum_all, 5);
+// solve
+fn main() {
+    input! {
+        N: usize,
+        P: [Usize1; N],
     }
 
-    #[test]
-    fn test_build() {
-        let mut bit = BIT::build(&vec![1, 2, 3, 4, 5]);
+    // cnt[i] := iより大きい数字の数
+    let mut cnt = BIT::new(N);
+    let mut ans = 0;
 
-        assert_eq!(bit.sum_range(1, 4), 9);
-        assert_eq!(bit.sum(5), 15);
+    for (i, &v) in P.iter().enumerate() {
+        cnt.add(v, 1);
 
-        bit.add(2, -3);
-        bit.add(3, -4);
-
-        assert_eq!(bit.sum(5), 8);
+        if cnt.sum(v) == 0 {
+            ans += 1;
+        }
     }
+
+    println!("{}", ans);
 }
