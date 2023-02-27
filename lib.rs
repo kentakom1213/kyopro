@@ -21,7 +21,6 @@ mod ABC {
     mod abc291 {
         mod D;
         mod E;
-        mod F;
     }
 }
 mod AOJ {
@@ -254,6 +253,7 @@ mod abc_training {
         mod D_Digits_Parade;
         mod D_Disjoint_Set_of_Common_Divisors;
         mod D_Do_use_hexagon_grid;
+        mod D_Flip_Cards;
         mod D_Game_in_Momotetsu_World;
         mod D_Handstand_2;
         mod D_Happy_New_Year_2023_;
@@ -360,6 +360,7 @@ mod abc_training {
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_Segtree;
         mod F_Substring_of_Sorted_String;
+        mod F_Teleporter_and_Closed_off;
     }
 }
 mod agc_training {

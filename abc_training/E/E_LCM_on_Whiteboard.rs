@@ -1,4 +1,4 @@
-//          E - LCM on Whiteboard          
+//          E - LCM on Whiteboard
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc259/tasks/abc259_e
@@ -9,80 +9,76 @@
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
+#![allow(unused_macros)]
 
 // imports
-use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
-use std::cmp::Reverse;
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
+use std::cmp::{max, min, Reverse};
+use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
 
-// input macro
-// [Rustで競技プログラミング スターターキット](https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e)
-macro_rules! get {
-    ($t:ty) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.trim().parse::<$t>().unwrap()
-        }
-    };
-    ($($t:ty),*) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            let mut iter = line.split_whitespace();
-            (
-                $(iter.next().unwrap().parse::<$t>().unwrap(),)*
-            )
-        }
-    };
-    ($t:ty ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t)
-        ).collect::<Vec<_>>()
-    };
-    ($($t:ty),* ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($($t),*)
-        ).collect::<Vec<_>>()
-    };
-    ($t:ty ;;) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.split_whitespace()
-                .map(|t| t.parse::<$t>().unwrap())
-                .collect::<Vec<_>>()
-        }
-    };
-    ($t:ty ;; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t ;;)
-        ).collect::<Vec<_>>()
-    };
-}
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
 
-// static vales
-static MOD1: usize = 1_000_000_007;
-static MOD9: usize = 998_244_353;
-static INF: usize = 1_000_000_000_000_000_000;
-
+type Num = BTreeMap<usize, usize>;
 
 // solve
 fn main() {
-    let N = get!(usize);
-    let mut nums = vec![];
-    let mut common_divs = BTreeMap::new();
+    input! {N: usize}
 
-    for i in 0..N {
-        let mut num = vec![];
-        let m = get!(usize);
-        for j in 0..m {
-            let (p, e) = get!(usize, usize);
-            
-            num.push((p, e));
+    let nums: Vec<Num> = (0..N)
+        .map(|_| {
+            input! {m: usize}
+            let mut res: Num = BTreeMap::new();
+            for _ in 0..m {
+                input!{p: usize, e: usize}
+                res.insert(p, e);
+            }
+            res
+        })
+        .collect();
+
+    // L[素因数] = (指数の最大値, 最大値を達成するnumの数)
+    let mut L: BTreeMap<usize, (usize, usize)> = BTreeMap::new();
+    for num in &nums {
+        for (p, &e) in num.iter() {
+            match L.get(p) {
+                Some(_) => {
+                    let (v, cnt) = L.get_mut(p).unwrap();
+                    if *v == e {
+                        *cnt += 1;
+                    }
+                    else if *v < e {
+                        *v = e;
+                        *cnt = 1;
+                    }
+                },
+                None => {
+                    L.insert(*p, (e, 1));
+                },
+            }
         }
-        nums.push(num);
     }
 
-    (&nums).into_iter().for_each(|v| println!("{:?}", v));
-}
+    // 各numについて、それを消した時に別の最大公約数が生まれるかを考える
+    let mut c = 0;
+    for num in &nums {
+        let mut tmp = false;
+        for (p, &e) in num {
+            if let Some(&(v, cnt)) = L.get(p) {
+                tmp |= e == v && cnt == 1;
+            }
+        }
+        if tmp {
+            c += 1;
+        }
+    }
 
+    let ans = N.min(c + 1);  // Li == L が存在する場合を考える
+    println!("{}", ans);
+}
