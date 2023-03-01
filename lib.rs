@@ -336,6 +336,7 @@ mod abc_training {
         mod E_Queen_on_Grid;
         mod E_Road_Reduction;
         mod E_Rook_Path;
+        mod E_Rook_Path_pow;
         mod E_Rotate_and_Flip;
         mod E_Sequence_Decomposing;
         mod E_Small_d_and_k;
