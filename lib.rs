@@ -379,6 +379,7 @@ mod agc_training {
 }
 mod arc_training {
     mod A {
+        mod A_119_x_2_23_1;
         mod A_B_eq_C;
         mod A_Continuous_1;
         mod A_Fourtune_Cookies;
@@ -405,6 +406,7 @@ mod arc_training {
         mod B_A_lt_AP;
         mod B_AtCoderでじゃんけんを;
         mod B_Counting_Grids;
+        mod B_Electric_Board;
         mod B_Many_110;
         mod B_Many_110_re;
         mod B_Plus_and_AND;
@@ -430,6 +432,7 @@ mod arc_training {
         }
     }
     mod C {
+        mod C_ARC_Wrecker_2;
         mod C_Tree_Queries;
         mod C_Z塗り;
         mod C_ℕ_Coloring;
