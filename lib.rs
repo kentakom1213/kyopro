@@ -66,6 +66,9 @@ mod Others {
         mod Product_of_Ranges_modint;
         mod Product_of_Ranges_seg;
     }
+    mod TUPC2021 {
+        mod A_Unique_Nickname;
+    }
     mod others {
         mod A_Reachable_Towns;
         mod A_ヘイホー君と加算;
@@ -94,6 +97,9 @@ mod VirtualContest {
         mod A_Darker_and_darker;
         mod D_Katana_Thrower;
         mod D_NotDivisible;
+    }
+    mod Mayo20230302 {
+        mod _5;
     }
     mod _20221104 {
         mod _2;
