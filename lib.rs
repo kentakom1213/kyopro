@@ -106,6 +106,11 @@ mod VirtualContest {
         mod _3;
         mod _5;
     }
+    mod burioden20230306 {
+        mod _2;
+        mod _3;
+        mod _4;
+    }
     mod eoeo_3 {
         mod C_ChocolateBar;
         mod D_FriendSuggestions;
@@ -250,6 +255,7 @@ mod abc_training {
         mod D_2017like_Number;
         mod D_250like_Number;
         mod D_756;
+        mod D_756_re;
         mod D_AtCoder_Express_2;
         mod D_AxisParallel_Rectangle;
         mod D_Candidates_of_No_Shortest_Paths;
