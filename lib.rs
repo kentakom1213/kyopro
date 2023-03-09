@@ -106,10 +106,14 @@ mod VirtualContest {
         mod _3;
         mod _5;
     }
-    mod burioden20230306 {
+    mod asa20230310 {
         mod _2;
         mod _3;
         mod _4;
+    }
+    mod burioden20230306 {
+        mod _2;
+        mod _3;
     }
     mod eoeo_3 {
         mod C_ChocolateBar;
@@ -421,6 +425,7 @@ mod arc_training {
         mod B_AtCoderでじゃんけんを;
         mod B_Counting_Grids;
         mod B_Electric_Board;
+        mod B_Grid_Rotations;
         mod B_Many_110;
         mod B_Many_110_re;
         mod B_Plus_and_AND;
