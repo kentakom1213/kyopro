@@ -143,6 +143,6 @@
 
     // Rust
     "rust-analyzer.linkedProjects": [
-        "./rust-project.json",
+        "./Cargo.toml"
     ],
 }

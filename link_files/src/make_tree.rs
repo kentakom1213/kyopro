@@ -18,7 +18,7 @@ pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool
         let next_path = entry.unwrap().path();
         let obj_name = next_path.file_name().unwrap().to_string_lossy().to_owned().to_string();
         
-        if obj_name == "Cargo.toml" {
+        if depth >= 1 && obj_name == "Cargo.toml" {
             return false;
         }
     }

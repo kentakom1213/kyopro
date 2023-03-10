@@ -73,6 +73,7 @@ mod Others {
         mod A_Reachable_Towns;
         mod A_ヘイホー君と加算;
         mod B_Interactive_Sorting_partial;
+        mod B_Picking_Up;
         mod B_fLIP;
         mod B_天下一リテラル;
         mod C_Inserting_x;
@@ -207,6 +208,7 @@ mod abc_training {
         mod B_Varied;
         mod B_Various_distances;
         mod B_Various_distances_for;
+        mod B_Yellow_and_Red_Card;
         mod B_uNrEaDaBlE_sTrInG;
         mod B_回転;
         mod B_投票;
@@ -226,6 +228,7 @@ mod abc_training {
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
         mod C_Five_Transportations;
+        mod C_Four_Variables;
         mod C_GCD_on_Blackboard;
         mod C_Ladder_Takahashi;
         mod C_Low_Elements;
@@ -304,7 +307,9 @@ mod abc_training {
         mod D_Teleporter;
         mod D_Triangles;
         mod D_Triangles_new;
+        mod D_Unicyclic_Components;
         mod D_Wall;
+        mod D_Xor_Sum_4;
         mod D_Yet_Another_Recursive_Function;
         mod D_equeue;
         mod D_トレジャーハント;
@@ -367,6 +372,7 @@ mod abc_training {
         mod E_Takahashis_Anguish;
         mod E_Through_Path;
         mod E_Throwing_the_Die;
+        mod E_Transitivity;
         mod E_Traveling_Salesman_among_Aerial_Cities;
         mod E_Warp;
         mod E_Warp_new;
@@ -374,7 +380,6 @@ mod abc_training {
     }
     mod F {
         mod F_ABCBAC;
-        mod F_Distance_Sums_2;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_Segtree;
         mod F_Substring_of_Sorted_String;
