@@ -313,6 +313,7 @@ mod abc_training {
         mod D_Xor_Sum_4;
         mod D_Yet_Another_Recursive_Function;
         mod D_equeue;
+        mod D_joisinos_travel;
         mod D_トレジャーハント;
         mod D_一刀両断;
         mod D_多重ループ;
