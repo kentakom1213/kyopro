@@ -294,8 +294,6 @@ mod abc_training {
         mod D_Patisserie_ABC;
         mod D_Practical_Skill_Test;
         mod D_Range_Add_Query;
-        mod D_Robot_Arms_2;
-        mod D_Root_M_Leaper;
         mod D_Scope;
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
@@ -373,6 +371,7 @@ mod abc_training {
         mod E_Through_Path;
         mod E_Throwing_the_Die;
         mod E_Transitivity;
+        mod E_Traveler;
         mod E_Traveling_Salesman_among_Aerial_Cities;
         mod E_Warp;
         mod E_Warp_new;
@@ -560,6 +559,19 @@ mod learn_algorithm {
     }
 }
 mod lib;
+mod target {
+    mod debug {
+        mod build {
+            mod typenum-8ecbfdcbc47c00c5 {
+                mod out {
+                    mod consts;
+                    mod op;
+                    mod tests;
+                }
+            }
+        }
+    }
+}
 mod typical90 {
     mod _004_Cross_Sum;
     mod _036_Max_Manhattan_Distance;
