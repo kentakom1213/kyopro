@@ -175,6 +175,7 @@ mod abc_training {
         mod A_αlphabet;
         mod A_ゲーム;
         mod A_テスト評価;
+        mod A_高橋くんと年齢;
     }
     mod B {
         mod B_Alcoholic;
@@ -213,6 +214,7 @@ mod abc_training {
         mod B_回転;
         mod B_投票;
         mod B_文字数カウント;
+        mod B_高橋くんと文字列圧縮;
         mod B_高橋くんの集計;
     }
     mod C {
@@ -255,6 +257,7 @@ mod abc_training {
         mod C_正直者の高橋くん;
         mod C_民族大移動;
         mod C_背の順;
+        mod C_高橋くんと魔法の箱;
         mod C_高橋くんのバグ探し;
     }
     mod D {
@@ -316,6 +319,7 @@ mod abc_training {
         mod D_多重ループ_modint;
         mod D_閉路;
         mod D_食塩水;
+        mod D_高橋くんと木の直径;
     }
     mod E {
         mod E_1_or_2;
@@ -332,6 +336,7 @@ mod abc_training {
         mod E_Count_Median;
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
+        mod E_Distance_Sequence;
         mod E_Erasing_Vertices_2;
         mod E_Erasing_Vertices_2_binaryheap;
         mod E_Flatten;
