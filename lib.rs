@@ -27,6 +27,7 @@ mod AOJ {
     mod LCA_Lowest_Common_Ancestor;
     mod LCA_Lowest_Common_Ancestor_Library;
     mod Range_Minimum_Query_RMQ;
+    mod Range_Minimum_Query_RMQ_new;
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;
     mod 文字列検索;
@@ -241,6 +242,7 @@ mod abc_training {
         mod C_Max_Even;
         mod C_Multiplication_3;
         mod C_Path_Graph;
+        mod C_Pyramid;
         mod C_Rotate_and_Palindrome;
         mod C_Shopping_Street;
         mod C_Step;
@@ -295,6 +297,7 @@ mod abc_training {
         mod D_Online_games_ans;
         mod D_Pairs;
         mod D_Patisserie_ABC;
+        mod D_Polynomial_division;
         mod D_Practical_Skill_Test;
         mod D_Range_Add_Query;
         mod D_Scope;
@@ -338,6 +341,7 @@ mod abc_training {
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
         mod E_Distance_Sequence;
+        mod E_Edge_Deletion;
         mod E_Erasing_Vertices_2;
         mod E_Erasing_Vertices_2_binaryheap;
         mod E_Flatten;
@@ -395,6 +399,7 @@ mod agc_training {
     mod A {
         mod A_Colorful_Slimes_2;
         mod A_Getting_Difference;
+        mod A_ZeroSum_Ranges;
     }
     mod B {
         mod B_Bowling;
@@ -562,20 +567,6 @@ mod learn_algorithm {
         mod gen_tree_macro;
         mod replace;
         mod tree_node;
-    }
-}
-mod lib;
-mod target {
-    mod debug {
-        mod build {
-            mod typenum-8ecbfdcbc47c00c5 {
-                mod out {
-                    mod consts;
-                    mod op;
-                    mod tests;
-                }
-            }
-        }
     }
 }
 mod typical90 {

@@ -13,6 +13,12 @@ use crate::FileTree;
 pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool {
     let mut is_contain = false;
 
+    // `target/`、`lib.rs`を無視
+    let fname = path.file_name().unwrap();
+    if fname == "target" {
+        return false;
+    }
+
     // `Cargo.toml`が含まれる場合は処理しない
     for entry in path.read_dir().unwrap() {
         let next_path = entry.unwrap().path();
@@ -41,7 +47,7 @@ pub fn make_tree(path: &path::PathBuf, lib: &mut FileTree, depth: usize) -> bool
             is_contain |= tmp_contains;
         } else {
             // Rustファイルだけを抽出
-            if obj_name.ends_with(".rs") {
+            if obj_name != "lib.rs" && obj_name.ends_with(".rs") {
                 lib.push((depth, obj_name));
                 is_contain = true;
             }

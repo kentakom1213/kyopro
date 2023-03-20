@@ -36,9 +36,6 @@ target/
 # rustビルド用プロジェクト
 builder/
 
-## コンテスト期間中のみ
-ahc017/
-
 # テスト用ファイル
 test.txt
 
