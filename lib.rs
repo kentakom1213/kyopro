@@ -347,6 +347,8 @@ mod abc_training {
         mod E_Flatten;
         mod E_Fraction_Floor_Sum;
         mod E_Fraction_Floor_Sum_ans;
+        mod E_Geometric_Progression;
+        mod E_Geometric_Progression_new;
         mod E_Graph_Destruction;
         mod E_Karuta;
         mod E_King_Bombee;
