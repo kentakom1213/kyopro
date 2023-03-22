@@ -341,6 +341,7 @@ mod abc_training {
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
         mod E_Distance_Sequence;
+        mod E_Distance_on_Large_Perfect_Binary_Tree;
         mod E_Edge_Deletion;
         mod E_Erasing_Vertices_2;
         mod E_Erasing_Vertices_2_binaryheap;
@@ -356,6 +357,7 @@ mod abc_training {
         mod E_Least_Elements_SegTree;
         mod E_Logs;
         mod E_Lucky_Numbers;
+        mod E_Make_it_Palindrome;
         mod E_MaxMin_Sums;
         mod E_MaxMin_Sums_inv;
         mod E_Moat;
