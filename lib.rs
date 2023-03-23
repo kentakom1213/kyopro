@@ -340,6 +340,7 @@ mod abc_training {
         mod E_Count_Median;
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
+        mod E_Dist_Max;
         mod E_Distance_Sequence;
         mod E_Distance_on_Large_Perfect_Binary_Tree;
         mod E_Edge_Deletion;
@@ -395,6 +396,7 @@ mod abc_training {
         mod F_ABCBAC;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_Segtree;
+        mod F_Shiritori;
         mod F_Substring_of_Sorted_String;
         mod F_Teleporter_and_Closed_off;
     }
