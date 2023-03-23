@@ -313,6 +313,7 @@ mod abc_training {
         mod D_Triangles_new;
         mod D_Unicyclic_Components;
         mod D_Wall;
+        mod D_XXOR;
         mod D_Xor_Sum_4;
         mod D_Yet_Another_Recursive_Function;
         mod D_equeue;
