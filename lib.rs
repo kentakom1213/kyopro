@@ -292,6 +292,7 @@ mod abc_training {
         mod D_Max_Multiple;
         mod D_Money_in_Hand;
         mod D_Moves_on_Binary_Tree;
+        mod D_National_Railway;
         mod D_Number_of_Shortest_paths;
         mod D_Online_games;
         mod D_Online_games_ans;
@@ -329,6 +330,7 @@ mod abc_training {
     mod E {
         mod E_1_or_2;
         mod E_Add_and_Mex;
+        mod E_Addition_and_Multiplication_2;
         mod E_Apple_Baskets_on_Circle;
         mod E_At_Least_One;
         mod E_AxA;
