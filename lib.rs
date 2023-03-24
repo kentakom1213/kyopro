@@ -189,6 +189,7 @@ mod abc_training {
         mod B_Hammer;
         mod B_Intersection;
         mod B_Job_Assignment;
+        mod B_Magic_3;
         mod B_Making_Triangle;
         mod B_Mix_Juice;
         mod B_Modulo_Number;
@@ -470,6 +471,7 @@ mod arc_training {
         mod D_Equals;
         mod D_Menagerie;
         mod D_Widespread;
+        mod D_Xor_Sum_2;
         mod pass {
             mod B_Village_of_M_People;
         }
