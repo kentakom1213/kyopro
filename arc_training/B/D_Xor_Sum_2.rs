@@ -34,5 +34,39 @@ fn main() {
         N: usize,
         A: [usize; N],
     }
-    
+
+    let mut ans = 0;
+    let mut xor = 0;
+    let mut sum = 0;
+    let mut cnt = vec![0; 20];
+    let mut l = 0;
+
+    for r in 0..N {
+        // A[r]を追加
+        xor ^= A[r];
+        sum += A[r];
+        for i in 0..20 {
+            cnt[i] += (A[r] >> i) & 1;
+        }
+
+        let mut is_ok = cnt.iter().all(|&v| v <= 1);
+
+        // 条件を満たさない場合、A[l]を削除
+        while l < r && !is_ok {
+            // A[l]を削除
+            xor ^= A[l];
+            sum -= A[l];
+            for i in 0..20 {
+                cnt[i] -= (A[l] >> i) & 1;
+            }
+            is_ok = cnt.iter().all(|&v| v <= 1);
+            l += 1;
+        }
+
+        if xor == sum {
+            ans += r - l + 1;
+        }
+    }
+
+    println!("{}", ans);
 }
