@@ -470,8 +470,10 @@ mod arc_training {
         mod D_Derangement;
         mod D_Equals;
         mod D_Menagerie;
+        mod D_Nondecreasing;
         mod D_Widespread;
         mod D_Xor_Sum_2;
+        mod D_Xor_Sum_2_re;
         mod pass {
             mod B_Village_of_M_People;
         }
