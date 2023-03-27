@@ -311,6 +311,7 @@ mod abc_training {
         mod D_Summer_Vacation;
         mod D_Takahashis_Solitaire;
         mod D_Teleporter;
+        mod D_Three_Days_Ago;
         mod D_Triangles;
         mod D_Triangles_new;
         mod D_Unicyclic_Components;
