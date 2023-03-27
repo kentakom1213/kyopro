@@ -166,6 +166,7 @@ mod abc_training {
         mod A_Range_Swap;
         mod A_Sequence_of_Strings;
         mod A_Slot;
+        mod A_Swap_Odd_and_Even;
         mod A_Takoyaki;
         mod A_Therefore;
         mod A_Vanishing_Pitch;
@@ -183,6 +184,7 @@ mod abc_training {
         mod B_Almost_GCD;
         mod B_Billiards;
         mod B_Blocks_on_Grid;
+        mod B_Call_the_ID_Number;
         mod B_Distance_;
         mod B_Everyone_is_Friends;
         mod B_Gentle_Pairs;
@@ -237,6 +239,7 @@ mod abc_training {
         mod C_Ladder_Takahashi;
         mod C_Low_Elements;
         mod C_Low_Elements_BIT;
+        mod C_Make_Takahashi_Happy_;
         mod C_Many_Requirements;
         mod C_Many_Segments;
         mod C_March;
@@ -354,6 +357,7 @@ mod abc_training {
         mod E_Flatten;
         mod E_Fraction_Floor_Sum;
         mod E_Fraction_Floor_Sum_ans;
+        mod E_Friendships;
         mod E_Geometric_Progression;
         mod E_Geometric_Progression_new;
         mod E_Graph_Destruction;
