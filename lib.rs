@@ -57,6 +57,9 @@ mod AlgoMethod {
         mod あまりが等しい2;
     }
 }
+mod LibraryChecker {
+    mod Predecessor_Problem;
+}
 mod Others {
     mod ACL_Contest {
         mod C_Connect_Cities;
@@ -373,6 +376,7 @@ mod abc_training {
         mod E_Karuta;
         mod E_King_Bombee;
         mod E_LCM_on_Whiteboard;
+        mod E_LEQ;
         mod E_Least_Elements_SegTree;
         mod E_Logs;
         mod E_Lucky_Numbers;
@@ -497,6 +501,7 @@ mod arc_training {
         mod C_Tree_Queries;
         mod C_Z塗り;
         mod C_ℕ_Coloring;
+        mod C_データ構造;
     }
 }
 mod asakatsu {
