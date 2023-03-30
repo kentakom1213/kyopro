@@ -245,6 +245,7 @@ mod abc_training {
         mod C_Five_Transportations;
         mod C_Four_Variables;
         mod C_GCD_on_Blackboard;
+        mod C_GCD_on_Blackboard_SegTree;
         mod C_Ladder_Takahashi;
         mod C_Low_Elements;
         mod C_Low_Elements_BIT;
@@ -419,6 +420,7 @@ mod abc_training {
         mod F_ABCBAC;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_Segtree;
+        mod F_Range_Xor_Query_re;
         mod F_Shiritori;
         mod F_Substring_of_Sorted_String;
         mod F_Teleporter_and_Closed_off;

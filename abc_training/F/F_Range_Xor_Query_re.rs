@@ -1,7 +1,7 @@
-//        Range Minimum Query (RMQ)        
+//           F - Range Xor Query
 // ----------------------------------------
 // 問題
-// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
+// https://atcoder.jp/contests/abc185/tasks/abc185_f
 // ----------------------------------------
 
 // attributes
@@ -9,60 +9,16 @@
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
+#![allow(unused_macros)]
 
 // imports
+use itertools::Itertools;
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 use std::cmp::{max, min, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
-
-// input macro
-macro_rules! get {
-    ($t:ty) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.trim().parse::<$t>().unwrap()
-        }
-    };
-    ($($t:ty),*) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            let mut iter = line.split_whitespace();
-            (
-                $(iter.next().unwrap().parse::<$t>().unwrap(),)*
-            )
-        }
-    };
-    ($($t:ty);*) => {
-        (
-            $(get!($t),)*
-        )
-    };
-    ($t:ty ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t)
-        ).collect::<Vec<_>>()
-    };
-    ($($t:ty),* ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($($t),*)
-        ).collect::<Vec<_>>()
-    };
-    ($t:ty ;;) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.split_whitespace()
-                .map(|t| t.parse::<$t>().unwrap())
-                .collect::<Vec<_>>()
-        }
-    };
-    ($t:ty ;; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t ;;)
-        ).collect::<Vec<_>>()
-    };
-}
 
 use std::fmt;
 use std::ops::{
@@ -225,38 +181,42 @@ impl<T: Monoid> DerefMut for ValMut<'_, T> {
 pub mod Alg {
     use super::Monoid;
 
-    pub struct Min;
-    impl Monoid for Min {
+    pub struct Xor;
+    impl Monoid for Xor {
         type Val = usize;
-        const E: Self::Val = (1 << 31) - 1;
+        const E: Self::Val = 0;
         fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            *left.min(right)
+            left ^ right
         }
     }
 }
 
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
-
-// solve
+// main
 fn main() {
-    let (N, Q) = get!(usize, usize);
+    input! {
+        N: usize,
+        Q: usize,
+        A: [usize; N],
+    }
+    
+    // segmenttree
+    let mut seg = SegmentTree::<Alg::Xor>::from(&A);
 
-    let mut seg = SegmentTree::<Alg::Min>::new(N);
-
-    for i in 0..Q {
-        let (com, x, y) = get!(usize, usize, usize);
-
-        match com {
-            0 => {
-                *seg.get_mut(x).unwrap() = y;
+    for _ in 0..Q {
+        input! {
+            t: usize,
+            x: usize,
+            y: usize,
+        }
+        match t {
+            1 => {
+                *seg.get_mut(x-1).unwrap() ^= y;
             },
-            _ => {
-                let ans = seg.get_range(x .. y+1);
-                println!("{}", ans);
-            }
+            2 => {
+                let res = seg.get_range(x-1 .. y);
+                println!("{}", res);
+            },
+            _ => unreachable!(),
         }
     }
 }

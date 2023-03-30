@@ -1,7 +1,7 @@
-//        Range Minimum Query (RMQ)        
+//          C - GCD on Blackboard          
 // ----------------------------------------
 // 問題
-// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
+// https://atcoder.jp/contests/abc125/tasks/abc125_c
 // ----------------------------------------
 
 // attributes
@@ -9,70 +9,22 @@
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
+#![allow(unused_macros)]
 
 // imports
+use itertools::Itertools;
 use std::cmp::{max, min, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
+use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
 
-// input macro
-macro_rules! get {
-    ($t:ty) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.trim().parse::<$t>().unwrap()
-        }
-    };
-    ($($t:ty),*) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            let mut iter = line.split_whitespace();
-            (
-                $(iter.next().unwrap().parse::<$t>().unwrap(),)*
-            )
-        }
-    };
-    ($($t:ty);*) => {
-        (
-            $(get!($t),)*
-        )
-    };
-    ($t:ty ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t)
-        ).collect::<Vec<_>>()
-    };
-    ($($t:ty),* ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($($t),*)
-        ).collect::<Vec<_>>()
-    };
-    ($t:ty ;;) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.split_whitespace()
-                .map(|t| t.parse::<$t>().unwrap())
-                .collect::<Vec<_>>()
-        }
-    };
-    ($t:ty ;; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t ;;)
-        ).collect::<Vec<_>>()
-    };
-}
-
-use std::fmt;
 use std::ops::{
     Bound::{Excluded, Included, Unbounded},
-    Deref, DerefMut, Index, RangeBounds,
+    Index, RangeBounds,
 };
 
 /// # Monoid
 pub trait Monoid {
-    type Val: fmt::Debug + Clone + PartialEq;
+    type Val: Clone + PartialEq;
     const E: Self::Val;
     fn op(left: &Self::Val, right: &Self::Val) -> Self::Val;
 }
@@ -120,28 +72,16 @@ impl<T: Monoid> SegmentTree<T> {
         }
     }
 
-    fn update(&mut self, index: usize, value: T::Val) {
+    /// ## update
+    /// 要素`index`を`value`に上書きする
+    /// （`index`：0-indexed）
+    pub fn update(&mut self, index: usize, value: T::Val) {
         let mut i = index + self.offset;
         self.data[i] = value;
         while i > 1 {
             i >>= 1;
             let lch = i << 1;
             self.data[i] = T::op(&self.data[lch], &self.data[lch + 1]);
-        }
-    }
-
-    /// ## get_mut
-    /// - 可変な参照を返す
-    pub fn get_mut(&mut self, i: usize) -> Option<ValMut<'_, T>> {
-        if i < self.len {
-            let default = self.index(i).clone();
-            Some(ValMut {
-                segtree: self,
-                idx: i,
-                new_val: default,
-            })
-        } else {
-            None
         }
     }
 
@@ -189,48 +129,23 @@ impl<T: Monoid> From<&Vec<T::Val>> for SegmentTree<T> {
     }
 }
 
-pub struct ValMut<'a, T: 'a + Monoid> {
-    segtree: &'a mut SegmentTree<T>,
-    idx: usize,
-    new_val: T::Val,
-}
-
-impl<T: Monoid> fmt::Debug for ValMut<'_, T> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.debug_tuple("ValMut")
-            .field(&self.segtree.index(self.idx))
-            .finish()
-    }
-}
-
-impl<T: Monoid> Drop for ValMut<'_, T> {
-    fn drop(&mut self) {
-        self.segtree.update(self.idx, self.new_val.clone());
-    }
-}
-
-impl<T: Monoid> Deref for ValMut<'_, T> {
-    type Target = T::Val;
-    fn deref(&self) -> &Self::Target {
-        &self.segtree[self.idx]
-    }
-}
-
-impl<T: Monoid> DerefMut for ValMut<'_, T> {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.new_val
-    }
-}
-
-pub mod Alg {
+mod Alg {
     use super::Monoid;
 
-    pub struct Min;
-    impl Monoid for Min {
+    pub struct GCD;
+    impl Monoid for GCD {
         type Val = usize;
-        const E: Self::Val = (1 << 31) - 1;
+        const E: Self::Val = 0;
         fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            *left.min(right)
+            gcd(*left, *right)
+        }
+    }
+
+    pub fn gcd(a: usize, b: usize) -> usize {
+        if b == 0 {
+            a
+        } else {
+            gcd(b, a % b)
         }
     }
 }
@@ -239,24 +154,24 @@ pub mod Alg {
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
 
-// solve
+// main
 fn main() {
-    let (N, Q) = get!(usize, usize);
+    input! {
+        N: usize,
+        A: [usize; N],
+    }
 
-    let mut seg = SegmentTree::<Alg::Min>::new(N);
+    let seg = SegmentTree::<Alg::GCD>::from(&A);
 
-    for i in 0..Q {
-        let (com, x, y) = get!(usize, usize, usize);
-
-        match com {
-            0 => {
-                *seg.get_mut(x).unwrap() = y;
-            },
-            _ => {
-                let ans = seg.get_range(x .. y+1);
-                println!("{}", ans);
-            }
+    let mut ans = 0;
+    for i in 0..N {
+        let tmp = Alg::gcd(seg.get_range(..i), seg.get_range(i+1..));
+        if tmp > ans {
+            ans = tmp;
         }
     }
+
+    println!("{}", ans);
 }
