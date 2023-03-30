@@ -316,6 +316,7 @@ mod abc_training {
         mod D_Patisserie_ABC;
         mod D_Polynomial_division;
         mod D_Practical_Skill_Test;
+        mod D_Prefix_Kth_Max;
         mod D_Range_Add_Query;
         mod D_Scope;
         mod D_Snuke_Panic_1D;

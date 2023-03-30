@@ -1,7 +1,7 @@
-//                C - データ構造
+//           D - Prefix K-th Max
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/arc033/tasks/arc033_3
+// https://atcoder.jp/contests/abc234/tasks/abc234_d
 // ----------------------------------------
 
 // attributes
@@ -13,15 +13,22 @@
 
 // imports
 use itertools::Itertools;
+use num::CheckedDiv;
 use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Usize1},
 };
-use std::cmp::{max, min, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
+use std::{
+    cmp::{max, min, Reverse},
+    iter,
+};
 
-use num_traits::identities::Zero;
-use std::ops::{Add, AddAssign, Sub, SubAssign};
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
 
 /// # Monoid
 pub trait Monoid {
@@ -125,57 +132,30 @@ mod Alg {
     }
 }
 
-/// # BinarySearch
-/// 二分探索の実装
-trait BinarySearch<T> {
-    fn lower_bound(&self, x: T) -> usize;
-}
-
-impl<T: Ord> BinarySearch<T> for [T] {
-    /// ソート済み配列において、`v`以上の最小のインデックスを取得
-    fn lower_bound(&self, v: T) -> usize {
-        let mut ng = 1_usize.wrapping_neg();
-        let mut ok = self.len();
-        while ok.wrapping_sub(ng) > 1 {
-            let mid = ng.wrapping_add(ok) / 2;
-            if v <= self[mid] {
-                ok = mid;
-            } else {
-                ng = mid;
-            }
-        }
-        ok
-    }
-}
-
 // main
 fn main() {
     input! {
-        Q: usize,
-        queries: [(usize, usize); Q],
+        N: usize,
+        K: usize,
+        P: [usize; N],
     }
 
-    let comp = queries
-        .iter()
-        .map(|(_, v)| *v)
-        .sorted()
-        .dedup()
-        .collect_vec();
-    let mut bit = BIT::<Alg::Add>::new(comp.len());
+    let mut bit = BIT::<Alg::Add>::new(N);
 
-    for &(t, x) in &queries {
-        if t == 1 {
-            let idx = comp.lower_bound(x);
-            bit.add(idx, 1);
-        } else {
-            if bit.prefix_sum(comp.len()) < (x as isize) {
-                println!("-1");
-            }
-            else {
-                let idx = bit.lower_bound(x as isize);
-                println!("{}", comp[idx]);
-                bit.add(idx, -1);
-            }
+    for i in 0..N {
+        // 値をセット
+        bit.add(P[i] - 1, 1);
+
+        // デバッグ
+        // for i in 0..N {
+        //     print!("{} ", bit.prefix_sum(i+1) - bit.prefix_sum(i));
+        // }
+        // println!();
+
+        if i >= K - 1 {
+            // 小さい方から`i-K-1`番目を調べる
+            let idx = bit.lower_bound((i + 1 - K + 1) as isize);
+            println!("{}", idx + 1);
         }
     }
 }
