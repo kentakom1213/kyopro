@@ -30,6 +30,7 @@ mod AOJ {
     mod Range_Minimum_Query_RMQ_new;
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;
+    mod Range_Sum_Query_Sqrt;
     mod 文字列検索;
 }
 mod ARC {
@@ -295,6 +296,7 @@ mod abc_training {
         mod D_Do_use_hexagon_grid;
         mod D_Flip_Cards;
         mod D_Game_in_Momotetsu_World;
+        mod D_Good_Grid;
         mod D_Handstand_2;
         mod D_Happy_New_Year_2023_;
         mod D_Index_Trio;
@@ -419,11 +421,14 @@ mod abc_training {
     mod F {
         mod F_ABCBAC;
         mod F_Range_Xor_Query;
+        mod F_Range_Xor_Query_SegTree_Monoid;
         mod F_Range_Xor_Query_Segtree;
-        mod F_Range_Xor_Query_re;
         mod F_Shiritori;
         mod F_Substring_of_Sorted_String;
         mod F_Teleporter_and_Closed_off;
+    }
+    mod G {
+        mod G_Triple_Index;
     }
 }
 mod agc_training {
