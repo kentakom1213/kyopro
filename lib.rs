@@ -77,6 +77,7 @@ mod Others {
     mod others {
         mod A_Reachable_Towns;
         mod A_ヘイホー君と加算;
+        mod A_深さ優先探索;
         mod B_Interactive_Sorting_partial;
         mod B_Picking_Up;
         mod B_fLIP;

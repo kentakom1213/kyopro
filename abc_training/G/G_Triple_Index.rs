@@ -70,10 +70,9 @@ fn main() {
     let B_SIZ = N.sqrt(); // バケットのサイズ
 
     // クエリのソート
-    let sorted_query = queries.iter().sorted_by_key(|(l, r)| (l / B_SIZ, r));
+    let sorted_query = queries.iter().enumerate().sorted_by_key(|(i, (l, r))| (l / B_SIZ, r));
 
-    // 結果を保存するmap
-    let mut map = BTreeMap::new();
+    let mut res = vec![0; Q];
 
     // 現在の区間における答え
     let mut ans = 0_usize;
@@ -106,7 +105,7 @@ fn main() {
         *ans += comb3(cnt[x]);
     };
 
-    for &(l, r) in sorted_query {
+    for (i, &(l, r)) in sorted_query {
         while nl > l {
             nl -= 1;
             add(A[nl], &mut ans, &mut cnt);
@@ -124,11 +123,9 @@ fn main() {
             del(A[nr], &mut ans, &mut cnt);
         }
         // 答えを保存
-        map.insert((nl, nr), ans);
+        res[i] = ans;
     }
 
     // 出力
-    for q in &queries {
-        println!("{}", map[q]);
-    }
+    println!("{}", res.iter().join("\n"));
 }
