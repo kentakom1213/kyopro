@@ -334,6 +334,7 @@ mod abc_training {
         mod D_Three_Days_Ago;
         mod D_Triangles;
         mod D_Triangles_new;
+        mod D_Tying_Rope;
         mod D_Unicyclic_Components;
         mod D_Wall;
         mod D_XXOR;
@@ -424,6 +425,7 @@ mod abc_training {
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_SegTree_Monoid;
         mod F_Range_Xor_Query_Segtree;
+        mod F_Regular_Triangle_Inside_a_Rectangle;
         mod F_Shiritori;
         mod F_Substring_of_Sorted_String;
         mod F_Teleporter_and_Closed_off;
