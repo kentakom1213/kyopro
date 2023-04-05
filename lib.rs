@@ -496,6 +496,7 @@ mod arc_training {
         mod B_回文分割;
         mod B_格子点と整数;
         mod B_赤と黒の木;
+        mod D_An_Invisible_Hand;
         mod D_Derangement;
         mod D_Equals;
         mod D_Menagerie;
