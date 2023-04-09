@@ -31,6 +31,7 @@ mod AOJ {
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;
     mod Range_Sum_Query_Sqrt;
+    mod 二分探索木I;
     mod 文字列検索;
 }
 mod ARC {
@@ -308,6 +309,7 @@ mod abc_training {
         mod D_Line;
         mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
+        mod D_M_eq_ab;
         mod D_Marking;
         mod D_Max_Multiple;
         mod D_Money_in_Hand;
@@ -413,6 +415,7 @@ mod abc_training {
         mod E_Takahashis_Anguish;
         mod E_Through_Path;
         mod E_Throwing_the_Die;
+        mod E_Transition_Game;
         mod E_Transitivity;
         mod E_Traveler;
         mod E_Traveling_Salesman_among_Aerial_Cities;
