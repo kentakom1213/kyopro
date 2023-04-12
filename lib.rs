@@ -119,13 +119,13 @@ mod VirtualContest {
         mod _3;
         mod _4;
     }
+    mod buri20230306 {
+        mod _2;
+        mod _3;
+    }
     mod buri20230328 {
         mod _3;
         mod _4;
-    }
-    mod burioden20230306 {
-        mod _2;
-        mod _3;
     }
     mod eoeo_3 {
         mod C_ChocolateBar;
@@ -291,6 +291,7 @@ mod abc_training {
         mod D_Bank;
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Coloring_Edges_on_Tree;
+        mod D_Count_Subtractions;
         mod D_Cylinder;
         mod D_Decayed_Bridges;
         mod D_Digits_Parade;
@@ -383,6 +384,8 @@ mod abc_training {
         mod E_Graph_Destruction;
         mod E_Karuta;
         mod E_King_Bombee;
+        mod E_Kth_Takoyaki_Set;
+        mod E_Kth_Takoyaki_Set_binarysearch;
         mod E_LCM_on_Whiteboard;
         mod E_LEQ;
         mod E_Least_Elements_SegTree;
@@ -485,6 +488,7 @@ mod arc_training {
         mod B_Grid_Rotations;
         mod B_Many_110;
         mod B_Many_110_re;
+        mod B_New_Place;
         mod B_Plus_and_AND;
         mod B_Reversible_Cards;
         mod B_Reversible_Cards_ans;
