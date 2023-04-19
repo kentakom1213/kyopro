@@ -1,4 +1,7 @@
 mod ABC {
+    mod 298 {
+        mod D;
+    }
     mod abc278 {
         mod E;
     }
@@ -197,6 +200,7 @@ mod abc_training {
         mod B_Billiards;
         mod B_Blocks_on_Grid;
         mod B_Call_the_ID_Number;
+        mod B_Coloring_Matrix;
         mod B_Distance_;
         mod B_Everyone_is_Friends;
         mod B_Gentle_Pairs;
@@ -239,6 +243,7 @@ mod abc_training {
         mod C_AtColor;
         mod C_Blue_Bird;
         mod C_Buy_an_Integer;
+        mod C_Cards_Query_Problem;
         mod C_Circular_Playlist;
         mod C_Count_Connected_Components;
         mod C_Counting_Squares;
@@ -311,6 +316,7 @@ mod abc_training {
         mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
         mod D_M_eq_ab;
+        mod D_Make_Bipartite_2;
         mod D_Marking;
         mod D_Max_Multiple;
         mod D_Money_in_Hand;
@@ -328,6 +334,7 @@ mod abc_training {
         mod D_Scope;
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
+        mod D_Staircase_Sequences;
         mod D_Step_Up_Robot;
         mod D_Stones;
         mod D_Strange_Lunchbox;
@@ -340,6 +347,7 @@ mod abc_training {
         mod D_Tying_Rope;
         mod D_Unicyclic_Components;
         mod D_Wall;
+        mod D_Writing_a_Numeral;
         mod D_XXOR;
         mod D_Xor_Sum_4;
         mod D_Yet_Another_Recursive_Function;
@@ -388,9 +396,11 @@ mod abc_training {
         mod E_Kth_Takoyaki_Set_binarysearch;
         mod E_LCM_on_Whiteboard;
         mod E_LEQ;
+        mod E_Last_Rook;
         mod E_Least_Elements_SegTree;
         mod E_Logs;
         mod E_Lucky_Numbers;
+        mod E_Magical_Ornament;
         mod E_Make_it_Palindrome;
         mod E_MaxMin_Sums;
         mod E_MaxMin_Sums_inv;
@@ -422,6 +432,7 @@ mod abc_training {
         mod E_Transitivity;
         mod E_Traveler;
         mod E_Traveling_Salesman_among_Aerial_Cities;
+        mod E_Unfair_Sugoroku;
         mod E_Warp;
         mod E_Warp_new;
         mod E_Work_or_Rest;

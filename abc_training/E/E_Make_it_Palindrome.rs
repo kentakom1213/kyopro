@@ -30,6 +30,7 @@ const NEG1: usize = 1_usize.wrapping_neg();
 fn main() {
     input! {
         N: usize,
+        
         A: [usize; N],
     }
 
