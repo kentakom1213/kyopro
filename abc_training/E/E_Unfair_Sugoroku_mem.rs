@@ -82,40 +82,45 @@ macro_rules! madd_assign {
     }};
 }
 
-const INF: usize = 1001001001001001001;
 const MOD: usize = 998_244_353;
 
 // main
 fn main() {
     input! {
         N: usize,
-        A: usize,
-        B: usize,
+        A: Usize1,
+        B: Usize1,
         P: usize,
         Q: usize,
     }
 
-    let mut dp = vec![vec![vec![0; 2]; N + 1]; N + 1];
+    let mut dp: Vec<Vec<Vec<Option<usize>>>> = vec![vec![vec![None; N]; N]; 2];
+    dp[0][N-1][N-1] = Some(1);
+    dp[1][N-1][N-1] = Some(0);
 
-    for i in 0..N {
-        for f in 0..2 {
-            dp[N][i][f] = 1;
-            dp[i][N][f] = 0;
-        }
+    let ans = calc(A, B, 0, P, Q, N, &mut dp);
+
+    println!("{}", ans);
+}
+
+fn calc(i: usize, j: usize, t: usize, P: usize, Q: usize, N: usize, dp: &mut Vec<Vec<Vec<Option<usize>>>>) -> usize {
+    if let Some(res) = dp[t][i][j] {
+        return res;
     }
-
-    for i in (0..N).rev() {
-        for j in (0..N).rev() {
-            for k in 1..=P {
-                madd_assign!(dp[i][j][0], dp[N.min(i + k)][j][1]);
-            }
-            dp[i][j][0] = dp[i][j][0].mdiv(P);
-            for k in 1..=Q {
-                madd_assign!(dp[i][j][1], dp[i][N.min(j + k)][0]);
-            }
-            dp[i][j][1] = dp[i][j][1].mdiv(Q);
+    if t == 0 {
+        let mut res = 0;
+        for k in 1..=P {
+            madd_assign!(res, calc((i+k).min(N-1), j, 1, P, Q, N, dp).mdiv(P));
         }
+        dp[t][i][j] = Some(res);
+        res
     }
-
-    println!("{}", dp[A][B][0].val());
+    else {
+        let mut res = 0;
+        for k in 1..=Q {
+            madd_assign!(res, calc(i, (j+k).min(N-1), 0, P, Q, N, dp).mdiv(Q));
+        }
+        dp[t][i][j] = Some(res);
+        res
+    }
 }
