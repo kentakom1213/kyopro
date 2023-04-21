@@ -363,6 +363,7 @@ mod abc_training {
     }
     mod E {
         mod E_1_or_2;
+        mod E_2xN_Grid;
         mod E_Add_and_Mex;
         mod E_Addition_and_Multiplication_2;
         mod E_Apple_Baskets_on_Circle;
@@ -377,6 +378,7 @@ mod abc_training {
         mod E_Count_Median;
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
+        mod E_Crystal_Switches;
         mod E_Dist_Max;
         mod E_Distance_Sequence;
         mod E_Distance_on_Large_Perfect_Binary_Tree;
