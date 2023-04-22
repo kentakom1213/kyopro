@@ -8,68 +8,49 @@
 #![allow(unused_imports)]
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
+#![allow(dead_code)]
+#![allow(unused_macros)]
 
 // imports
-use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
-use std::cmp::Reverse;
+use itertools::Itertools;
+use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
 
-// input macro
-// [Rustで競技プログラミング スターターキット](https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e)
-macro_rules! get {
-    ($t:ty) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.trim().parse::<$t>().unwrap()
-        }
-    };
-    ($($t:ty),*) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            let mut iter = line.split_whitespace();
-            (
-                $(iter.next().unwrap().parse::<$t>().unwrap(),)*
-            )
-        }
-    };
-    ($t:ty ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t)
-        ).collect::<Vec<_>>()
-    };
-    ($($t:ty),* ; $n:expr) => {
-        (0..$n).map(|_|
-            get!($($t),*)
-        ).collect::<Vec<_>>()
-    };
-    ($t:ty ;;) => {
-        {
-            let mut line = String::new();
-            std::io::stdin().read_line(&mut line).unwrap();
-            line.split_whitespace()
-                .map(|t| t.parse::<$t>().unwrap())
-                .collect::<Vec<_>>()
-        }
-    };
-    ($t:ty ;; $n:expr) => {
-        (0..$n).map(|_|
-            get!($t ;;)
-        ).collect::<Vec<_>>()
-    };
-}
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
+const NEG1: usize = 1_usize.wrapping_neg();
 
-/*
- * # 方針
- * - 左下から貪欲に処理
- */
-
-// solve
+/// ## 解説
+/// 1. 最もx座標の小さい青い点(bA)を選ぶ
+/// 2. bAとマッチングできる赤い点の中で最もy座標の大きい点(rA)を選ぶ
+/// → この貪欲法が最適に動作する
 fn main() {
-    let N = get!(usize);
-    let R = get!(usize, usize; N);
-    let B = get!(usize, usize; N);
+    input! {
+        N: usize,
+        mut A: [(usize, usize); N],
+        mut B: [(usize, usize); N],
+    }
 
-    
+    // x座標の小さい順にソート
+    B.sort_by_key(|v| v.0);
+
+    let mut ans = 0;
+
+    // 貪欲にマッチング
+    for &(bx, by) in &B {
+        // y座標が最も大きいもののインデックス
+        let idx = A.iter()
+            .enumerate()
+            .filter(|(_, &(ax, ay))| ax < bx && ay < by)
+            .max_by_key(|(_, &(ax, ay))| ay)
+            .map(|(i, _)| i);
+
+        if let Some(i) = idx {
+            ans += 1;
+            A.remove(i);
+        }
+    }
+
+    println!("{}", ans);
 }
-
