@@ -435,6 +435,7 @@ mod abc_training {
         mod E_Swap_Places;
         mod E_Takahashi_and_Animals;
         mod E_Takahashis_Anguish;
+        mod E_Third_Avenue;
         mod E_Through_Path;
         mod E_Throwing_the_Die;
         mod E_Transition_Game;
