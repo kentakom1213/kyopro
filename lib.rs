@@ -342,6 +342,7 @@ mod abc_training {
         mod D_Practical_Skill_Test;
         mod D_Prefix_Kth_Max;
         mod D_Range_Add_Query;
+        mod D_Recording;
         mod D_Scope;
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
