@@ -377,6 +377,7 @@ mod abc_training {
         mod E_2xN_Grid;
         mod E_Add_and_Mex;
         mod E_Addition_and_Multiplication_2;
+        mod E_Amusement_Park;
         mod E_Apple_Baskets_on_Circle;
         mod E_At_Least_One;
         mod E_AxA;
