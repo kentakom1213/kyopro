@@ -29,6 +29,10 @@ mod ABC {
         mod D;
         mod E;
     }
+    mod abc300 {
+        mod D;
+        mod E;
+    }
 }
 mod AOJ {
     mod LCA_Lowest_Common_Ancestor;
@@ -306,6 +310,7 @@ mod abc_training {
         mod D_AxisParallel_Rectangle;
         mod D_Bank;
         mod D_Candidates_of_No_Shortest_Paths;
+        mod D_Christmas;
         mod D_Coloring_Edges_on_Tree;
         mod D_Count_Subtractions;
         mod D_Cylinder;
