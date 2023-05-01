@@ -1,4 +1,4 @@
-//           E - Transition Game
+//           E - Transition Game           
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc296/tasks/abc296_e
@@ -13,12 +13,14 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Usize1},
-};
-use std::cmp::{max, min, Reverse};
-use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
+use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+
+macro_rules! debug {
+    ( $($val:expr),* $(,)* ) => {{
+        #[cfg(debug_assertions)]
+        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
+    }};
+}
 
 // constant
 const MOD1: usize = 1_000_000_007;
@@ -31,17 +33,6 @@ fn main() {
     input! {
         N: usize,
         A: [Usize1; N],
-    }
-
-    // ダブリング
-    let mut double = vec![vec![0; N]; 30];
-    for i in 0..N {
-        double[0][i] = A[i];
-    }
-    for i in 1..30 {
-        for j in 0..N {
-            double[i][j] = double[i - 1][double[i - 1][j]];
-        }
     }
 
     

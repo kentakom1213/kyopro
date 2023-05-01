@@ -371,6 +371,7 @@ mod abc_training {
         mod D_equeue;
         mod D_joisinos_travel;
         mod D_トレジャーハント;
+        mod D_ナップサック問題;
         mod D_一刀両断;
         mod D_多重ループ;
         mod D_多重ループ_modint;
@@ -462,6 +463,7 @@ mod abc_training {
     }
     mod F {
         mod F_ABCBAC;
+        mod F_More_Holidays;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_SegTree_Monoid;
         mod F_Range_Xor_Query_Segtree;
