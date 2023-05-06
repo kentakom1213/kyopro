@@ -83,6 +83,7 @@ mod Others {
         mod I_Coins;
         mod J_Sushi;
         mod K_Stones;
+        mod L_Deque;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
@@ -124,6 +125,13 @@ mod VirtualContest {
         mod D_NotDivisible;
     }
     mod Mayo20230302 {
+        mod _5;
+    }
+    mod Mayo20230506 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
         mod _5;
     }
     mod _20221104 {
