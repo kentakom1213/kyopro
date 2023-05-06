@@ -81,6 +81,8 @@ mod Others {
     mod EDPC {
         mod F_LCS;
         mod I_Coins;
+        mod J_Sushi;
+        mod K_Stones;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
