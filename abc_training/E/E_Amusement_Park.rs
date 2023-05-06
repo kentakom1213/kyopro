@@ -16,7 +16,7 @@ use std::collections::BTreeMap;
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
         #[cfg(debug_assertions)]
-        dbg!($($val),*);
+        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
     }};
 }
 
