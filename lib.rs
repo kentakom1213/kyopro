@@ -78,6 +78,10 @@ mod Others {
         mod C_Connect_Cities;
         mod E_Replace_Digits;
     }
+    mod EDPC {
+        mod F_LCS;
+        mod I_Coins;
+    }
     mod MojaCoder {
         mod Product_of_Ranges;
         mod Product_of_Ranges_modint;
@@ -388,6 +392,7 @@ mod abc_training {
         mod E_Apple_Baskets_on_Circle;
         mod E_At_Least_One;
         mod E_AxA;
+        mod E_Bishop_2;
         mod E_Blackout_2;
         mod E_Bomber;
         mod E_Bomber_ans;
