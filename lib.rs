@@ -84,6 +84,7 @@ mod Others {
         mod J_Sushi;
         mod K_Stones;
         mod L_Deque;
+        mod M_Candies;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
