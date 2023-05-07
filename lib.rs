@@ -144,6 +144,13 @@ mod VirtualContest {
         mod _3;
         mod _4;
     }
+    mod asa20230507 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+    }
     mod buri20230306 {
         mod _2;
         mod _3;
@@ -370,6 +377,7 @@ mod abc_training {
         mod D_Stones;
         mod D_Strange_Lunchbox;
         mod D_Summer_Vacation;
+        mod D_Summer_Vacation_20230506;
         mod D_Takahashis_Solitaire;
         mod D_Teleporter;
         mod D_Three_Days_Ago;
@@ -478,6 +486,7 @@ mod abc_training {
     }
     mod F {
         mod F_ABCBAC;
+        mod F_Knapsack_for_All_Subsets;
         mod F_More_Holidays;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_SegTree_Monoid;
@@ -513,6 +522,7 @@ mod arc_training {
         mod A_Continuous_1;
         mod A_Fourtune_Cookies;
         mod A_God_Sequence;
+        mod A_Make_10;
         mod A_Max_Mod_Min;
         mod A_Right_String;
         mod A_Simple_Math;
@@ -535,6 +545,7 @@ mod arc_training {
         mod B_A_lt_AP;
         mod B_AtCoderでじゃんけんを;
         mod B_Counting_Grids;
+        mod B_Crossfree_Matching;
         mod B_Electric_Board;
         mod B_Grid_Rotations;
         mod B_Many_110;
