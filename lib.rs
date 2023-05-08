@@ -86,6 +86,7 @@ mod Others {
         mod L_Deque;
         mod M_Candies;
         mod N_Slimes;
+        mod O_Matching;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
