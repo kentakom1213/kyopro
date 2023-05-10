@@ -114,6 +114,7 @@ mod Others {
         mod D_Crossing;
         mod D_ヘイホー君と削除;
         mod N_木;
+        mod P_Independent_Set;
     }
     mod typical_algorithm {
         mod A_二分探索の練習問題;
@@ -136,6 +137,14 @@ mod VirtualContest {
         mod _3;
         mod _4;
         mod _5;
+    }
+    mod Mayo20230510 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+        mod _6.;
     }
     mod _20221104 {
         mod _2;
