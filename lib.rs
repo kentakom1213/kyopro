@@ -87,6 +87,8 @@ mod Others {
         mod M_Candies;
         mod N_Slimes;
         mod O_Matching;
+        mod P_Independent_Set;
+        mod P_Independent_Set_re;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
@@ -114,7 +116,6 @@ mod Others {
         mod D_Crossing;
         mod D_ヘイホー君と削除;
         mod N_木;
-        mod P_Independent_Set;
     }
     mod typical_algorithm {
         mod A_二分探索の練習問題;
