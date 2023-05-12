@@ -89,6 +89,7 @@ mod Others {
         mod O_Matching;
         mod P_Independent_Set;
         mod P_Independent_Set_re;
+        mod Q_Flowers;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
