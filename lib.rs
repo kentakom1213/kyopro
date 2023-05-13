@@ -95,6 +95,7 @@ mod Others {
         mod P_Independent_Set;
         mod P_Independent_Set_re;
         mod Q_Flowers;
+        mod R_Walk;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
@@ -151,7 +152,7 @@ mod VirtualContest {
         mod _3;
         mod _4;
         mod _5;
-        mod _6.;
+        mod _6;
     }
     mod Mayo20230511 {
         mod _1;
