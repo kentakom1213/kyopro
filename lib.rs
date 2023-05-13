@@ -478,6 +478,7 @@ mod abc_training {
         mod E_Moat_wrapping;
         mod E_Notebook;
         mod E_Notebook_input;
+        mod E_PacTakahashi_;
         mod E_Packing_Potatoes;
         mod E_Prefix_Equality;
         mod E_Putting_Candies;
