@@ -96,6 +96,7 @@ mod Others {
         mod P_Independent_Set_re;
         mod Q_Flowers;
         mod R_Walk;
+        mod T_Permutation;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
