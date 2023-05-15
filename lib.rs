@@ -123,6 +123,8 @@ mod Others {
         mod D_Anything_Goes_to_Zero_popcount;
         mod D_Crossing;
         mod D_ヘイホー君と削除;
+        mod E_Lamps;
+        mod E_Lamps_re;
         mod N_木;
     }
     mod typical_algorithm {
@@ -376,6 +378,8 @@ mod abc_training {
         mod D_Jumping_Takahashi_2;
         mod D_Knight;
         mod D_LR_insertion;
+        mod D_Lamp;
+        mod D_Lamp_re;
         mod D_Lazy_Faith;
         mod D_Line;
         mod D_Lunlun_Number;
