@@ -165,6 +165,14 @@ mod VirtualContest {
         mod _4;
         mod _5;
     }
+    mod Mayo20230517 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+        mod _5_namori;
+    }
     mod _20221104 {
         mod _2;
         mod _3;
@@ -497,6 +505,7 @@ mod abc_training {
         mod E_Rotate_and_Flip;
         mod E_Sequence_Decomposing;
         mod E_Sequence_Decomposing_re;
+        mod E_Sequence_Matching;
         mod E_Small_d_and_k;
         mod E_Sorting_Queries;
         mod E_Souvenir;
@@ -510,6 +519,7 @@ mod abc_training {
         mod E_Third_Avenue;
         mod E_Through_Path;
         mod E_Throwing_the_Die;
+        mod E_Transformable_Teacher;
         mod E_Transition_Game;
         mod E_Transitivity;
         mod E_Traveler;
