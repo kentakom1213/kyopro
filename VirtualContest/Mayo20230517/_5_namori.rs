@@ -119,4 +119,27 @@ fn main() {
         }
     }
 
+    debug!(&deg);
+
+    // サイクルを除いたグラフ
+    let is_leaf = {
+        let mut visited = vec![false; N];
+
+        while let Some(u) = que.pop_front() {
+            visited[u] = true;
+            for &v in &G[u] {
+                if visited[v] {
+                    continue;
+                }
+                deg[v] -= 1;
+                visited[v] = true;
+                if deg[v] <= 1 {
+                    que.push_back(v);
+                }
+            }
+        }
+        visited
+    };
+
+    debug!(&is_leaf);
 }
