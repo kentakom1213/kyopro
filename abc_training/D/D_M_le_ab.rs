@@ -1,7 +1,7 @@
-//        E - Transformable Teacher
+//                D - M<=ab                
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc181/tasks/abc181_e
+// https://atcoder.jp/contests/abc296/tasks/abc296_d
 // ----------------------------------------
 
 // attributes
@@ -13,10 +13,7 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Usize1},
-};
+use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -66,19 +63,25 @@ fn main() {
     input! {
         N: usize,
         M: usize,
-        H: [usize; N],
-        W: [usize; M],
     }
 
-    // sum[i] := 左からi//2番目までをペアにしていったときの差の合計
-    let mut sum = vec![0; N];
-    for i in 0..N - 1 {
-        if i % 2 == 0 {
-            sum[i + 1] = sum[i];
-        } else {
-            sum[i + 1] = sum[i] + H[i + 1].abs_diff(H[i]);
+    // a <= b <= Nと固定する
+    // このときab <= b^2
+    // ab >= Mを求めたいので，b^2 <= M すなわち b <= √M まで調べる．
+    // aの値は M/bであり，これがN以下の整数になるかを調べれば良い
+    let mut ans = INF;
+
+    for b in 1..=N.min(M.sqrt() + 10) {
+        let a = (M + b - 1) / b;
+        debug!(b, a);
+        if a <= N {
+            ans = ans.min(a * b);
         }
     }
 
-    debug!(&sum);
+    if ans == INF {
+        println!("-1");
+    } else {
+        println!("{}", ans);
+    }
 }

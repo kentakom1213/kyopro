@@ -395,6 +395,7 @@ mod abc_training {
         mod D_Lunlun_Number;
         mod D_Lunlun_Number_DFS;
         mod D_M_eq_ab;
+        mod D_M_le_ab;
         mod D_Make_Bipartite_2;
         mod D_Marking;
         mod D_Max_Multiple;
@@ -507,6 +508,7 @@ mod abc_training {
         mod E_Sequence_Decomposing;
         mod E_Sequence_Decomposing_re;
         mod E_Sequence_Matching;
+        mod E_Skiing;
         mod E_Small_d_and_k;
         mod E_Sorting_Queries;
         mod E_Souvenir;
@@ -520,7 +522,6 @@ mod abc_training {
         mod E_Third_Avenue;
         mod E_Through_Path;
         mod E_Throwing_the_Die;
-        mod E_Transformable_Teacher;
         mod E_Transition_Game;
         mod E_Transitivity;
         mod E_Traveler;
