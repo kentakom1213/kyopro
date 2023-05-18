@@ -131,6 +131,7 @@ mod Others {
     mod typical_algorithm {
         mod A_二分探索の練習問題;
         mod B_区間スケジューリング問題;
+        mod D_単一始点最短経路問題;
         mod E_全点対最短経路問題;
     }
 }
