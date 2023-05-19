@@ -243,6 +243,7 @@ mod abc_training {
         mod A_Brick;
         mod A_Circle_Pond;
         mod A_Coffee;
+        mod A_Contest_Result;
         mod A_Discount;
         mod A_Dont_be_late;
         mod A_Filter;
@@ -401,6 +402,7 @@ mod abc_training {
         mod D_Max_Multiple;
         mod D_Money_in_Hand;
         mod D_Moves_on_Binary_Tree;
+        mod D_Moving_Piece;
         mod D_National_Railway;
         mod D_Number_of_Shortest_paths;
         mod D_Online_games;
