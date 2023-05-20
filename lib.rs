@@ -93,11 +93,14 @@ mod Others {
         mod N_Slimes;
         mod O_Matching;
         mod P_Independent_Set;
+        mod P_Independent_Set_abstract;
         mod P_Independent_Set_re;
         mod Q_Flowers;
         mod R_Walk;
         mod T_Permutation;
         mod U_Grouping;
+        mod V_Subtree;
+        mod V_Subtree_abstract;
     }
     mod MojaCoder {
         mod Product_of_Ranges;
