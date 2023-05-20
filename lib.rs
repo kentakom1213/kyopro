@@ -328,6 +328,7 @@ mod abc_training {
         mod C_Count_Connected_Components;
         mod C_Counting_Squares;
         mod C_Coverage;
+        mod C_Dice_Sum;
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
         mod C_Five_Transportations;
