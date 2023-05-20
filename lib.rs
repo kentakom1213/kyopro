@@ -506,6 +506,7 @@ mod abc_training {
         mod E_Putting_Candies;
         mod E_Queen_on_Grid;
         mod E_Ranges_on_Tree;
+        mod E_Red_and_Blue_Tree;
         mod E_Road_Reduction;
         mod E_Rook_Path;
         mod E_Rook_Path_pow;
