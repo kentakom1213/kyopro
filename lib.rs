@@ -380,6 +380,7 @@ mod abc_training {
         mod D_AtCoder_Express_2;
         mod D_AxisParallel_Rectangle;
         mod D_Bank;
+        mod D_Base_n;
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Christmas;
         mod D_Coloring_Edges_on_Tree;
