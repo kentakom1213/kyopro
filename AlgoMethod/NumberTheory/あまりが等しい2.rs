@@ -78,7 +78,9 @@ fn gcd(a: usize, b: usize) -> usize {
 fn factor(mut n: usize) -> HashMap<usize, usize> {
     let mut res = HashMap::new();
     for i in 2..n {
-        if i*i > n { break; }
+        if i * i > n {
+            break;
+        }
         while n % i == 0 {
             *res.entry(i).or_insert(0) += 1;
             n /= i;
@@ -97,9 +99,7 @@ fn main() {
     let N = get!(usize);
     let A = get!(isize;;);
 
-    let GCD = A.iter()
-        .map(|&a| (a - A[0]).abs() as usize)
-        .fold(0, gcd);
+    let GCD = A.iter().map(|&a| (a - A[0]).abs() as usize).fold(0, gcd);
 
     let fact = factor(GCD);
 

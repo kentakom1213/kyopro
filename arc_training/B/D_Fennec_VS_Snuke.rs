@@ -1,4 +1,4 @@
-//           D - Fennec VS. Snuke          
+//           D - Fennec VS. Snuke
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc067/tasks/arc078_b
@@ -15,7 +15,10 @@ use std::collections::VecDeque;
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{

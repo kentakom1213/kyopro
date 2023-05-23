@@ -644,6 +644,7 @@ mod arc_training {
         mod D_Fennec_VS_Snuke;
         mod D_Menagerie;
         mod D_Nondecreasing;
+        mod D_Two_Sequences;
         mod D_Widespread;
         mod D_Xor_Sum_2;
         mod D_Xor_Sum_2_re;

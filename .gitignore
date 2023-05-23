@@ -28,7 +28,6 @@ contest.acc.json
 tools/
 in/
 out/
-Cargo.lock
 debug/
 target/
 **/*.rs.bk
