@@ -81,7 +81,9 @@ mod AlgoMethod {
     }
 }
 mod LibraryChecker {
+    mod A_add_B;
     mod Predecessor_Problem;
+    mod ShortestPath;
 }
 mod Others {
     mod ACL_Contest {
