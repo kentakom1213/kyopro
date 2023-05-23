@@ -182,6 +182,14 @@ mod VirtualContest {
         mod _5;
         mod _5_namori;
     }
+    mod NUCODER {
+        mod nucoder20230523 {
+            mod A;
+            mod B;
+            mod C;
+            mod D;
+        }
+    }
     mod _20221104 {
         mod _2;
         mod _3;
@@ -631,6 +639,7 @@ mod arc_training {
         mod D_An_Invisible_Hand;
         mod D_Derangement;
         mod D_Equals;
+        mod D_Fennec_VS_Snuke;
         mod D_Menagerie;
         mod D_Nondecreasing;
         mod D_Widespread;
