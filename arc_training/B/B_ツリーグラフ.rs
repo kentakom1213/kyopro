@@ -1,4 +1,4 @@
-//                B - ツリーグラフ               
+//                B - ツリーグラフ
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/arc030/tasks/arc030_2
@@ -81,9 +81,10 @@ fn main() {
     let H = get!(isize;;);
     let graph: G = {
         let mut g = vec![vec![]; N];
-        for _ in 0..N-1 {
+        for _ in 0..N - 1 {
             let (mut a, mut b) = get!(usize, usize);
-            a -= 1; b -= 1;
+            a -= 1;
+            b -= 1;
             g[a].push(b);
             g[b].push(a);
         }
@@ -124,9 +125,11 @@ fn dfs1(p: usize, u: usize, cnt: &mut [isize], H: &[isize], graph: &G) {
 /// - 部分木に宝石がある場合のみ探索
 fn dfs2(p: usize, u: usize, path: &mut Vec<usize>, cnt: &[isize], graph: &G) {
     for &v in &graph[u] {
-        if v == p || cnt[v] == 0 { continue; }
-        path.push(v+1);
+        if v == p || cnt[v] == 0 {
+            continue;
+        }
+        path.push(v + 1);
         dfs2(u, v, path, cnt, graph);
-        path.push(v+1);
+        path.push(v + 1);
     }
 }
