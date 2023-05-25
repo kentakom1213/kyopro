@@ -184,10 +184,6 @@ mod VirtualContest {
         mod _5;
         mod _5_namori;
     }
-    mod Mayo20230524 {
-        mod C;
-        mod D;
-    }
     mod NUCODER {
         mod nucoder20230523 {
             mod A;
@@ -564,6 +560,8 @@ mod abc_training {
         mod F_ABCBAC;
         mod F_Knapsack_for_All_Subsets;
         mod F_More_Holidays;
+        mod F_Programming_Contest;
+        mod F_Programming_Contest_vec;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_SegTree_Monoid;
         mod F_Range_Xor_Query_Segtree;
@@ -614,6 +612,7 @@ mod arc_training {
         mod C_Be_Together;
         mod C_Candles;
         mod C_Cat_Snuke_and_a_Voyage;
+        mod C_Kth_Substring;
         mod C_Many_Formulas;
         mod C_Reconciled;
         mod C_Splitting_Pile;
