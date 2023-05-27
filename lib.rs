@@ -395,6 +395,8 @@ mod abc_training {
         mod D_Christmas;
         mod D_Coloring_Edges_on_Tree;
         mod D_Count_Subtractions;
+        mod D_Cutting_Woods;
+        mod D_Cutting_Woods_Treap;
         mod D_Cylinder;
         mod D_Decayed_Bridges;
         mod D_Digits_Parade;
