@@ -352,6 +352,7 @@ mod abc_training {
         mod C_Counting_Squares;
         mod C_Coverage;
         mod C_Dash;
+        mod C_Dash_BTreeSet;
         mod C_Dice_Sum;
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
@@ -565,6 +566,7 @@ mod abc_training {
         mod E_Traveling_Salesman_among_Aerial_Cities;
         mod E_Unfair_Sugoroku;
         mod E_Unfair_Sugoroku_mem;
+        mod E_Virus_Tree_2;
         mod E_Warp;
         mod E_Warp_new;
         mod E_Work_or_Rest;
