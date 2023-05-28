@@ -4,6 +4,7 @@
 from bisect import bisect_left
 def mapl(func, iter): return list(map(func, iter))
 
+
 # input
 N, K = map(int, input().split())
 A = sorted(mapl(int, input().split()), reverse=True)
@@ -30,4 +31,3 @@ print(result)
 
 #     K -= 1
 #     # print(K, A, "->", result)  # test
-

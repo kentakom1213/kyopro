@@ -129,6 +129,7 @@ mod Others {
         mod A_深さ優先探索;
         mod B_Interactive_Sorting_partial;
         mod B_Picking_Up;
+        mod B_Problem_Set;
         mod B_fLIP;
         mod B_天下一リテラル;
         mod C_Inserting_x;
@@ -140,6 +141,7 @@ mod Others {
         mod D_Anything_Goes_to_Zero_popcount;
         mod D_Crossing;
         mod D_ヘイホー君と削除;
+        mod EX23_303;
         mod E_Lamps;
         mod E_Lamps_re;
         mod N_木;
@@ -349,6 +351,7 @@ mod abc_training {
         mod C_Count_Connected_Components;
         mod C_Counting_Squares;
         mod C_Coverage;
+        mod C_Dash;
         mod C_Dice_Sum;
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
@@ -409,6 +412,7 @@ mod abc_training {
         mod D_Digits_Parade;
         mod D_Disjoint_Set_of_Common_Divisors;
         mod D_Do_use_hexagon_grid;
+        mod D_Face_Produces_Unhappiness;
         mod D_Flip_Cards;
         mod D_Game_in_Momotetsu_World;
         mod D_Good_Grid;
