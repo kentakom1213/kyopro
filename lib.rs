@@ -343,6 +343,7 @@ mod abc_training {
     mod C {
         mod C_ABC_Tournament;
         mod C_A_x_B_plus_C;
+        mod C_All_Green;
         mod C_AtColor;
         mod C_Blue_Bird;
         mod C_Buy_an_Integer;
@@ -371,6 +372,8 @@ mod abc_training {
         mod C_Merge_Sequences;
         mod C_Multiplication_3;
         mod C_Path_Graph;
+        mod C_Poll;
+        mod C_Poll_Trie;
         mod C_Pyramid;
         mod C_Rotate_and_Palindrome;
         mod C_Shopping_Street;
@@ -380,6 +383,7 @@ mod abc_training {
         mod C_The_Kth_Time_Query;
         mod C_Traveling_Salesman_around_Lake;
         mod C_Ubiquity;
+        mod C_Unexpressed;
         mod C_chokudai;
         mod C_management;
         mod C_ピアニスト高橋君;
@@ -397,6 +401,7 @@ mod abc_training {
         mod D_250like_Number;
         mod D_756;
         mod D_756_re;
+        mod D_All_Assign_Point_Add;
         mod D_AtCoder_Express_2;
         mod D_AxisParallel_Rectangle;
         mod D_Bank;
