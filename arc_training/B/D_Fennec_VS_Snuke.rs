@@ -77,4 +77,45 @@ fn main() {
     };
 
     debug!(&path);
+
+    // フェネックの分 → すぬけの分を塗る
+    let plen = path.len();
+    let mut color = vec![INF; N];
+    for (i, &u) in path.iter().enumerate() {
+        if i < (plen + 1) / 2 {
+            color[u] = 0; // フェネック
+        } else {
+            color[u] = 1; // すぬけ
+        }
+    }
+
+    debug!(&color);
+
+    // DFS（隣接している色を塗っていく）
+    for i in 0..N {
+        if color[i] == INF {
+            continue;
+        }
+        let mut st = vec![i];
+        while let Some(u) = st.pop() {
+            for &v in &G[u] {
+                if color[v] != INF {
+                    continue;
+                }
+                color[v] = color[u];
+                st.push(v);
+            }
+        }
+    }
+
+    debug!(&color);
+
+    // 勝者を判定
+    let snuke = color.iter().sum::<usize>();
+    let fennec = N - snuke;
+    if fennec > snuke {
+        println!("Fennec");
+    } else {
+        println!("Snuke");
+    }
 }
