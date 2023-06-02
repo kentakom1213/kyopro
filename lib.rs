@@ -210,17 +210,107 @@ mod VirtualContest {
         mod _3;
         mod _5;
     }
-    mod asa20230310 {
-        mod _2;
-        mod _3;
-        mod _4;
-    }
-    mod asa20230507 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
+    mod asakatsu {
+        mod asa20221006 {
+            mod B_Resale;
+            mod _2;
+            mod _3;
+        }
+        mod asa20221010 {
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221019 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221020 {
+            mod _5;
+        }
+        mod asa20221022 {
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221024 {
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20221027 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221031 {
+            mod _1;
+            mod _2;
+        }
+        mod asa20221102 {
+            mod B_Similar_Arrays;
+            mod _4;
+        }
+        mod asa20221119 {
+            mod C_SecretNumber;
+            mod E_Destruction;
+        }
+        mod asa20221123 {
+            mod _1;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221126 {
+            mod _4_E_Coprime;
+            mod _5_Xor_Sum_4;
+        }
+        mod asa20221128 {
+            mod _3;
+        }
+        mod asa20221129 {
+            mod _4;
+        }
+        mod asa20221226 {
+            mod A;
+            mod B;
+            mod C;
+            mod D;
+            mod E;
+        }
+        mod asa20221229 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230112 {
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230310 {
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20230507 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230603 {
+            mod _3;
+            mod _4;
+            mod _5;
+        }
     }
     mod buri20230306 {
         mod _2;
@@ -584,6 +674,7 @@ mod abc_training {
     }
     mod F {
         mod F_ABCBAC;
+        mod F_Endless_Walk;
         mod F_Knapsack_for_All_Subsets;
         mod F_More_Holidays;
         mod F_Programming_Contest;
@@ -690,102 +781,12 @@ mod arc_training {
         mod C_データ構造;
     }
 }
-mod asakatsu {
-    mod asa20221006 {
-        mod B_Resale;
-        mod _2;
-        mod _3;
-    }
-    mod asa20221010 {
-        mod _2;
-        mod _3;
-        mod _4;
-    }
-    mod asa20221019 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-    }
-    mod asa20221020 {
-        mod _5;
-    }
-    mod asa20221022 {
-        mod _2;
-        mod _3;
-        mod _4;
-    }
-    mod asa20221024 {
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-    mod asa20221027 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-    }
-    mod asa20221031 {
-        mod _1;
-        mod _2;
-    }
-    mod asa20221102 {
-        mod B_Similar_Arrays;
-        mod _4;
-    }
-    mod asa20221119 {
-        mod C_SecretNumber;
-        mod E_Destruction;
-    }
-    mod asa20221123 {
-        mod _1;
-        mod _3;
-        mod _4;
-    }
-    mod asa20221126 {
-        mod _4_E_Coprime;
-        mod _5_Xor_Sum_4;
-    }
-    mod asa20221128 {
-        mod _3;
-    }
-    mod asa20221129 {
-        mod _4;
-    }
-    mod asa20221226 {
-        mod A;
-        mod B;
-        mod C;
-        mod D;
-        mod E;
-    }
-    mod asa20221229 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-    mod asa20230112 {
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-}
 mod learn_algorithm {
     mod ext_gcd {
         mod ext_gcd;
         mod modinv_non_rec;
     }
     mod generate_combination;
-    mod rust_binary_tree {
-        mod gen_tree_macro;
-        mod replace;
-        mod tree_node;
-    }
 }
 mod typical90 {
     mod _004_Cross_Sum;
