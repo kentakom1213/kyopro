@@ -136,6 +136,7 @@ mod Others {
         mod C_Lamps;
         mod C_N進数;
         mod C_Sqrt_Inequality;
+        mod C_Successive_Subtraction;
         mod C_一次元オセロ;
         mod D_Anything_Goes_to_Zero;
         mod D_Anything_Goes_to_Zero_popcount;
@@ -307,8 +308,6 @@ mod VirtualContest {
             mod _5;
         }
         mod asa20230603 {
-            mod _3;
-            mod _4;
             mod _5;
         }
     }
