@@ -315,6 +315,11 @@ mod VirtualContest {
         mod asa20230603 {
             mod _5;
         }
+        mod asa20230606 {
+            mod _3;
+            mod _4;
+            mod _5;
+        }
     }
     mod buri20230306 {
         mod _2;
@@ -435,6 +440,7 @@ mod abc_training {
         mod B_uNrEaDaBlE_sTrInG;
         mod B_回転;
         mod B_投票;
+        mod B_投票_trie;
         mod B_文字数カウント;
         mod B_高橋くんと文字列圧縮;
         mod B_高橋くんの集計;
@@ -460,6 +466,8 @@ mod abc_training {
         mod C_Four_Variables;
         mod C_GCD_on_Blackboard;
         mod C_GCD_on_Blackboard_SegTree;
+        mod C_Green_Bin;
+        mod C_Green_Bin_trie;
         mod C_Ladder_Takahashi;
         mod C_Low_Elements;
         mod C_Low_Elements_BIT;
