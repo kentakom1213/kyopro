@@ -625,6 +625,7 @@ mod abc_training {
         mod E_Friendships;
         mod E_Geometric_Progression;
         mod E_Geometric_Progression_new;
+        mod E_Good_Graph;
         mod E_Graph_Destruction;
         mod E_Karuta;
         mod E_King_Bombee;
@@ -689,6 +690,7 @@ mod abc_training {
         mod F_Endless_Walk;
         mod F_Knapsack_for_All_Subsets;
         mod F_More_Holidays;
+        mod F_Playing_Tag_on_Tree;
         mod F_Programming_Contest;
         mod F_Programming_Contest_vec;
         mod F_Range_Xor_Query;
@@ -777,6 +779,7 @@ mod arc_training {
         mod D_Fennec_VS_Snuke;
         mod D_Menagerie;
         mod D_Nondecreasing;
+        mod D_Remainder_Reminder;
         mod D_Two_Sequences;
         mod D_Widespread;
         mod D_Xor_Sum_2;
@@ -804,5 +807,6 @@ mod typical90 {
     mod _004_Cross_Sum;
     mod _036_Max_Manhattan_Distance;
     mod _066_Various_Arrays;
+    mod _068_Paired_Information;
     mod _073_We_Need_Both_a_and_b;
 }

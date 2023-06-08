@@ -1,7 +1,7 @@
-//           D - Make Bipartite 2
+//              E - Good Graph
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc282/tasks/abc282_d
+// https://atcoder.jp/contests/abc304/tasks/abc304_e
 // ----------------------------------------
 
 // attributes
@@ -10,6 +10,8 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 #![allow(unused_macros)]
+
+use std::collections::BTreeSet;
 
 // imports
 use itertools::Itertools;
@@ -21,79 +23,20 @@ use proconio::{
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
         #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:#?}, "),*), $($val),* );
+        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
     }};
 }
 
 // constant
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
-const INF: isize = 1001001001001001001;
-
-// main
-fn main() {
-    input! {
-        N: usize,
-        M: usize,
-        edges: [(Usize1, Usize1); M],
-    }
-
-    let mut graph = SimpleGraph::new(N);
-    for &(u, v) in &edges {
-        graph.add_edge(u, v);
-    }
-
-    // 連結成分分解
-    graph.decompose();
-    let cnt = graph.component_size.unwrap();
-    // 連結成分ごとの頂点数を取得
-    let mut compV = vec![0; cnt];
-    for &i in &graph.components {
-        compV[i] += 1;
-    }
-    debug!(&compV);
-
-    let mut ans = 0;
-    // 連結成分を跨いで辺を張るときの組合せ数
-    // (Σ 自分の頂点数 * (自分以外の頂点数)) / 2
-    for &s in &compV {
-        ans += s * (N - s);
-    }
-    ans /= 2;
-
-    // 2部グラフ成分に分解
-    if let Some(bigraph) = graph.bipartite() {
-        // 連結成分ごとに、正負の要素の数をカウント
-        let mut plus = vec![0; cnt];
-        for &v in &bigraph {
-            if v > 0 {
-                plus[v as usize - 1] += 1;
-            }
-        }
-        debug!(&plus);
-        // 連結成分ごとの辺数をカウント
-        let mut compE = vec![0; cnt];
-        for &(u, v) in &edges {
-            let c = graph.components[u];
-            compE[c] += 1;
-        }
-        debug!(&compE);
-
-        // 連結成分ごとに計算
-        for c in 0..cnt {
-            ans += plus[c] * (compV[c] - plus[c]) - compE[c];
-        }
-
-        println!("{}", ans);
-    } else {
-        // 2部グラフでない場合
-        println!("0");
-    }
-}
+const INF: usize = 1001001001001001001;
 
 type Graph = Vec<Vec<usize>>;
 
 /// # 単純グラフ
+/// - 連結成分分解
+/// - 2部グラフ分解
 #[derive(Debug)]
 pub struct SimpleGraph {
     pub V: usize,
@@ -127,9 +70,10 @@ impl SimpleGraph {
         self.graph[v].push(u);
     }
 
-    /// 連結成分に分解
+    /// 連結成分に分解：O(|V|+|E|)
     pub fn decompose(&mut self) {
         let mut component = 0;
+        self.components = vec![Self::INF; self.V];
         for i in 0..self.V {
             if self.components[i] != Self::INF {
                 continue;
@@ -149,7 +93,7 @@ impl SimpleGraph {
         self.component_size = Some(component);
     }
 
-    /// 2部グラフ判定
+    /// 2部グラフ判定：O(|V|+|E|)
     pub fn bipartite(&mut self) -> Option<Vec<isize>> {
         // 未だ連結成分分解されていない場合
         if self.component_size.is_none() {
@@ -175,5 +119,46 @@ impl SimpleGraph {
             }
         }
         Some(res)
+    }
+}
+
+// main
+#[fastout]
+fn main() {
+    input! {
+        N: usize,
+        M: usize,
+        edges: [(Usize1, Usize1); M],
+        K: usize,
+        bad_edges: [(Usize1, Usize1); K],
+        Q: usize,
+        queries: [(Usize1, Usize1); Q],
+    }
+
+    let mut graph = SimpleGraph::new(N);
+    for &(u, v) in &edges {
+        graph.add_edge(u, v);
+    }
+    // 連結成分に分解
+    graph.decompose();
+
+    // 悪い辺を保存
+    let mut bad = BTreeSet::new();
+    for &(u, v) in &bad_edges {
+        let x = graph.components[u];
+        let y = graph.components[v];
+        bad.insert((x, y));
+        bad.insert((y, x));
+    }
+
+    // クエリの処理
+    for &(u, v) in &queries {
+        let x = graph.components[u];
+        let y = graph.components[v];
+        if bad.contains(&(x, y)) {
+            println!("No");
+        } else {
+            println!("Yes");
+        }
     }
 }
