@@ -1,7 +1,7 @@
-//           E - Transition Game           
+//                 G - SCC
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc296/tasks/abc296_e
+// https://atcoder.jp/contests/practice2/tasks/practice2_g?lang=ja
 // ----------------------------------------
 
 // attributes
@@ -22,6 +22,10 @@ macro_rules! debug {
     }};
 }
 
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
 type Graph = Vec<Vec<usize>>;
 
 /// ## SCC (強連結成分分解)
@@ -32,8 +36,8 @@ pub struct SCC {
     pub G: Graph,
     rG: Graph,
     pub group_count: Option<usize>,
-    pub components: Vec<usize>,
-    pub DAG: Graph,
+    pub components: Option<Vec<usize>>,
+    pub DAG: Option<Graph>,
 }
 
 impl SCC {
@@ -46,8 +50,8 @@ impl SCC {
             G: vec![vec![]; V],
             rG: vec![vec![]; V],
             group_count: None,
-            components: vec![],
-            DAG: vec![],
+            components: None,
+            DAG: None,
         }
     }
 
@@ -88,8 +92,8 @@ impl SCC {
         }
 
         self.group_count = Some(group);
-        self.components = components;
-        self.DAG = DAG;
+        self.components = Some(components);
+        self.DAG = Some(DAG);
     }
 
     fn dfs(u: usize, G: &Graph, order: &mut Vec<usize>, visited: &mut Vec<bool>) {
@@ -115,39 +119,33 @@ impl SCC {
 }
 
 // main
+#[fastout]
 fn main() {
     input! {
         N: usize,
-        A: [Usize1; N],
+        M: usize,
+        edges: [(usize, usize); M],
     }
 
-    // 強連結成分分解
     let mut scc = SCC::new(N);
-    for (i, &to) in A.iter().enumerate() {
-        scc.add_edge(i, to);
+
+    for &(u, v) in &edges {
+        scc.add_edge(u, v);
     }
 
     scc.decompose();
 
-    debug!(&scc.components);
-    debug!(&scc.G);
-    debug!(&scc.DAG);
+    let V = scc.group_count.unwrap();
+    let comp = &scc.components.unwrap();
+    let mut res = vec![vec![]; V];
 
-    // 各連結成分のサイズを保存
-    let mut sizes = vec![0; scc.group_count.unwrap()];
-    for &g in &scc.components {
-        sizes[g] += 1;
-    }
-
-    debug!(&sizes);
-
-    // 判定
-    let mut ans = 0;
     for i in 0..N {
-        if sizes[scc.components[i]] >= 2 || A[i] == i {
-            ans += 1;
-        }
+        res[comp[i]].push(i);
     }
 
-    println!("{}", ans);
+    // 出力
+    println!("{}", V);
+    for c in &res {
+        println!("{} {}", c.len(), c.iter().join(" "));
+    }
 }

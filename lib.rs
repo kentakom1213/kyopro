@@ -100,6 +100,8 @@ mod Others {
     mod ACL_Contest {
         mod C_Connect_Cities;
         mod E_Replace_Digits;
+        mod G_SCC;
+        mod G_SCC_lib;
     }
     mod EDPC {
         mod F_LCS;
