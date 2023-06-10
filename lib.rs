@@ -749,6 +749,7 @@ mod arc_training {
         mod C_Kth_Substring_Trie;
         mod C_Many_Formulas;
         mod C_Reconciled;
+        mod C_Snuke_Festival;
         mod C_Splitting_Pile;
     }
     mod B {
