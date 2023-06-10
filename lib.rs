@@ -54,6 +54,10 @@ mod ABC {
         mod E;
         mod F;
     }
+    mod abc305 {
+        mod D;
+        mod E;
+    }
 }
 mod AOJ {
     mod LCA_Lowest_Common_Ancestor;
@@ -602,6 +606,7 @@ mod abc_training {
         mod E_Addition_and_Multiplication_2;
         mod E_Amusement_Park;
         mod E_Apple_Baskets_on_Circle;
+        mod E_Art_Gallery_on_Graph;
         mod E_At_Least_One;
         mod E_AxA;
         mod E_Bishop_2;
