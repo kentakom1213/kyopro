@@ -758,6 +758,7 @@ mod arc_training {
         mod C_Kth_Substring;
         mod C_Kth_Substring_Trie;
         mod C_Linear_Approximation;
+        mod C_Linear_Approximation_intro_select;
         mod C_Many_Formulas;
         mod C_Reconciled;
         mod C_Snuke_Festival;
