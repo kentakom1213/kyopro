@@ -204,6 +204,9 @@ mod VirtualContest {
         mod _5;
         mod _5_namori;
     }
+    mod Mayo20230613 {
+        mod _1;
+    }
     mod NUCODER {
         mod nucoder20230523 {
             mod A;

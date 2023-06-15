@@ -63,4 +63,5 @@
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml"
     ],
+    "glassit.alpha": 220,
 }
