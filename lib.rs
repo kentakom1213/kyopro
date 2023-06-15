@@ -739,6 +739,8 @@ mod arc_training {
         mod A_Fourtune_Cookies;
         mod A_God_Sequence;
         mod A_Make_10;
+        mod A_Make_M;
+        mod A_Make_M_intro_select;
         mod A_Max_Mod_Min;
         mod A_Right_String;
         mod A_Simple_Math;
@@ -792,6 +794,7 @@ mod arc_training {
         mod D_Nondecreasing;
         mod D_Remainder_Reminder;
         mod D_Two_Sequences;
+        mod D_Unbalanced;
         mod D_Widespread;
         mod D_Xor_Sum_2;
         mod D_Xor_Sum_2_re;
