@@ -60,6 +60,7 @@ mod ABC {
     }
 }
 mod AOJ {
+    mod Disjoint_Set;
     mod LCA_Lowest_Common_Ancestor;
     mod LCA_Lowest_Common_Ancestor_Library;
     mod Range_Minimum_Query_RMQ;
@@ -67,6 +68,7 @@ mod AOJ {
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;
     mod Range_Sum_Query_Sqrt;
+    mod Weighted_Union_Find_Trees;
     mod 二分探索木I;
     mod 文字列検索;
 }
@@ -141,6 +143,8 @@ mod Others {
         mod B_Interactive_Sorting_partial;
         mod B_Picking_Up;
         mod B_Problem_Set;
+        mod B_Union_Find;
+        mod B_Union_Find_lib;
         mod B_fLIP;
         mod B_天下一リテラル;
         mod C_Inserting_x;
@@ -455,6 +459,7 @@ mod abc_training {
         mod B_高橋くんの集計;
     }
     mod C {
+        mod A_幅優先探索;
         mod C_ABC_Tournament;
         mod C_A_x_B_plus_C;
         mod C_All_Green;
@@ -795,6 +800,7 @@ mod arc_training {
         mod D_Fennec_VS_Snuke;
         mod D_Menagerie;
         mod D_Nondecreasing;
+        mod D_People_on_a_Line;
         mod D_Remainder_Reminder;
         mod D_Two_Sequences;
         mod D_Unbalanced;
