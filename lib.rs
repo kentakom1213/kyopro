@@ -61,6 +61,7 @@ mod ABC {
 }
 mod AOJ {
     mod Disjoint_Set;
+    mod Doubly_Linked_List;
     mod LCA_Lowest_Common_Ancestor;
     mod LCA_Lowest_Common_Ancestor_Library;
     mod Range_Minimum_Query_RMQ;
