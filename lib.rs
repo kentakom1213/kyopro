@@ -618,6 +618,7 @@ mod abc_training {
         mod E_Art_Gallery_on_Graph;
         mod E_At_Least_One;
         mod E_AxA;
+        mod E_Best_Performances;
         mod E_Bishop_2;
         mod E_Blackout_2;
         mod E_Bomber;
@@ -768,6 +769,7 @@ mod arc_training {
         mod C_Linear_Approximation_intro_select;
         mod C_Many_Formulas;
         mod C_Reconciled;
+        mod C_Sequence;
         mod C_Snuke_Festival;
         mod C_Splitting_Pile;
     }
