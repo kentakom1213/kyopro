@@ -483,6 +483,7 @@ mod abc_training {
         mod C_GCD_on_Blackboard_SegTree;
         mod C_Green_Bin;
         mod C_Green_Bin_trie;
+        mod C_Ideal_Sheet;
         mod C_Ladder_Takahashi;
         mod C_Low_Elements;
         mod C_Low_Elements_BIT;
