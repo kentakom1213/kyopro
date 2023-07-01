@@ -723,6 +723,7 @@ mod abc_training {
         mod F_Shiritori;
         mod F_Substring_of_Sorted_String;
         mod F_Teleporter_and_Closed_off;
+        mod F_Vouchers;
         mod F_Welldefined_Path_Queries_on_a_Namori;
     }
     mod G {
