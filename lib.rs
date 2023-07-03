@@ -581,6 +581,7 @@ mod abc_training {
         mod D_Range_Add_Query;
         mod D_Recording;
         mod D_Scope;
+        mod D_Snuke_Maze;
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
         mod D_Staircase_Sequences;
@@ -638,6 +639,7 @@ mod abc_training {
         mod E_Dist_Max;
         mod E_Distance_Sequence;
         mod E_Distance_on_Large_Perfect_Binary_Tree;
+        mod E_Distinct_Adjacent;
         mod E_Edge_Deletion;
         mod E_Erasing_Vertices_2;
         mod E_Erasing_Vertices_2_binaryheap;
