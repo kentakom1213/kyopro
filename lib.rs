@@ -712,11 +712,14 @@ mod abc_training {
         mod E_Virus_Tree_2;
         mod E_Warp;
         mod E_Warp_new;
+        mod E_Who_Says_a_Pun;
+        mod E_Who_Says_a_Pun_Trie;
         mod E_Work_or_Rest;
         mod E_Wrapping_Chocolate;
     }
     mod F {
         mod F_ABCBAC;
+        mod F_Box_in_Box;
         mod F_Dungeon_Explore;
         mod F_Endless_Walk;
         mod F_Knapsack_for_All_Subsets;
