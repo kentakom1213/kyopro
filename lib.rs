@@ -221,6 +221,10 @@ mod VirtualContest {
     mod Mayo20230613 {
         mod _1;
     }
+    mod Mayo20230711 {
+        mod _1;
+        mod _2;
+    }
     mod NUCODER {
         mod nucoder20230523 {
             mod A;
@@ -413,7 +417,6 @@ mod abc_training {
         mod A_Swap_Odd_and_Even;
         mod A_Takoyaki;
         mod A_Therefore;
-        mod A_Vanishing_Pitch;
         mod A_Very_Very_Primitive_Game;
         mod A_flip;
         mod A_pow_neg1;
@@ -646,6 +649,7 @@ mod abc_training {
         mod E_Distance_Sequence;
         mod E_Distance_on_Large_Perfect_Binary_Tree;
         mod E_Distinct_Adjacent;
+        mod E_Dividing_Chocolate;
         mod E_Edge_Deletion;
         mod E_Erasing_Vertices_2;
         mod E_Erasing_Vertices_2_binaryheap;
