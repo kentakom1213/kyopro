@@ -523,6 +523,7 @@ mod abc_training {
         mod C_management;
         mod C_ピアニスト高橋君;
         mod C_入れ替え;
+        mod C_幅優先探索;
         mod C_座圧;
         mod C_正直者の高橋くん;
         mod C_民族大移動;
@@ -542,6 +543,7 @@ mod abc_training {
         mod D_Bank;
         mod D_Base_n;
         mod D_Candidates_of_No_Shortest_Paths;
+        mod D_Candy_Distribution;
         mod D_Christmas;
         mod D_Coloring_Edges_on_Tree;
         mod D_Count_Subtractions;
@@ -809,6 +811,7 @@ mod arc_training {
         mod B_Reversible_Cards_ans;
         mod B_Special_Subsets;
         mod B_Swap_to_Sort;
+        mod B_Village_of_M_People;
         mod B_Your_Numbers_are_XORed;
         mod B_dp;
         mod B_ツリーグラフ;
@@ -831,9 +834,6 @@ mod arc_training {
         mod D_Widespread;
         mod D_Xor_Sum_2;
         mod D_Xor_Sum_2_re;
-        mod pass {
-            mod B_Village_of_M_People;
-        }
     }
     mod C {
         mod C_ARC_Wrecker_2;
