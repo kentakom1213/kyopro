@@ -68,10 +68,8 @@ mod ABC {
         mod F;
     }
     mod abc310 {
-        mod B;
         mod D;
         mod E;
-        mod F;
     }
 }
 mod AOJ {
@@ -591,6 +589,7 @@ mod abc_training {
         mod D_Online_games_ans;
         mod D_Pairs;
         mod D_Patisserie_ABC;
+        mod D_Peaceful_Teams;
         mod D_Polynomial_division;
         mod D_Practical_Skill_Test;
         mod D_Prefix_Kth_Max;
