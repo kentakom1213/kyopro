@@ -437,6 +437,7 @@ mod abc_training {
         mod B_Billiards;
         mod B_Blocks_on_Grid;
         mod B_Call_the_ID_Number;
+        mod B_Choose_Integers;
         mod B_Coloring_Matrix;
         mod B_Distance_;
         mod B_Everyone_is_Friends;
@@ -797,6 +798,7 @@ mod arc_training {
         mod C_Linear_Approximation_intro_select;
         mod C_Many_Formulas;
         mod C_Reconciled;
+        mod C_Sentou;
         mod C_Sequence;
         mod C_Snuke_Festival;
         mod C_Splitting_Pile;
@@ -834,6 +836,7 @@ mod arc_training {
         mod D_Nondecreasing;
         mod D_People_on_a_Line;
         mod D_Remainder_Reminder;
+        mod D_Simple_Knapsack;
         mod D_Two_Sequences;
         mod D_Unbalanced;
         mod D_Widespread;
