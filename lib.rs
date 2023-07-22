@@ -71,6 +71,12 @@ mod ABC {
         mod D;
         mod E;
     }
+    mod abc311 {
+        mod C;
+        mod D;
+        mod E;
+        mod F;
+    }
 }
 mod AOJ {
     mod Disjoint_Set;
@@ -667,6 +673,7 @@ mod abc_training {
         mod E_Friendships;
         mod E_Geometric_Progression;
         mod E_Geometric_Progression_new;
+        mod E_Gluttony;
         mod E_Good_Graph;
         mod E_Graph_Destruction;
         mod E_Karuta;
