@@ -358,10 +358,8 @@ mod VirtualContest {
         }
         mod asa20230723 {
             mod _1;
-            mod _2;
             mod _3;
             mod _4;
-            mod _5;
         }
     }
     mod buri20230306 {
@@ -665,6 +663,7 @@ mod abc_training {
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
         mod E_Crystal_Switches;
+        mod E_Defectfree_Squares;
         mod E_Dist_Max;
         mod E_Distance_Sequence;
         mod E_Distance_on_Large_Perfect_Binary_Tree;
