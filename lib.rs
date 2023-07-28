@@ -625,6 +625,7 @@ mod abc_training {
         mod D_Tying_Rope;
         mod D_Unicyclic_Components;
         mod D_Wall;
+        mod D_We_Like_AGC;
         mod D_Writing_a_Numeral;
         mod D_XXOR;
         mod D_Xor_Sum_4;
