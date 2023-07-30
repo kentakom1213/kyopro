@@ -571,6 +571,7 @@ mod abc_training {
         mod D_Disjoint_Set_of_Common_Divisors;
         mod D_Do_use_hexagon_grid;
         mod D_Face_Produces_Unhappiness;
+        mod D_Factorial_and_Multiple;
         mod D_Flip_Cards;
         mod D_Game_in_Momotetsu_World;
         mod D_Good_Grid;
@@ -626,6 +627,7 @@ mod abc_training {
         mod D_Unicyclic_Components;
         mod D_Wall;
         mod D_We_Like_AGC;
+        mod D_We_Like_AGC_umekomi;
         mod D_Writing_a_Numeral;
         mod D_XXOR;
         mod D_Xor_Sum_4;
