@@ -169,6 +169,7 @@ mod Others {
         mod C_Inserting_x;
         mod C_Lamps;
         mod C_N進数;
+        mod C_Ordinary_Beauty;
         mod C_Sqrt_Inequality;
         mod C_Successive_Subtraction;
         mod C_一次元オセロ;
@@ -511,6 +512,7 @@ mod abc_training {
         mod C_Green_Bin;
         mod C_Green_Bin_trie;
         mod C_Ideal_Sheet;
+        mod C_Invisible_Hand;
         mod C_Ladder_Takahashi;
         mod C_Low_Elements;
         mod C_Low_Elements_BIT;
