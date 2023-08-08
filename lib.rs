@@ -732,6 +732,7 @@ mod abc_training {
         mod E_Third_Avenue;
         mod E_Through_Path;
         mod E_Throwing_the_Die;
+        mod E_Transformable_Teacher;
         mod E_Transition_Game;
         mod E_Transitivity;
         mod E_Traveler;
