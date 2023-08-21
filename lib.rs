@@ -853,6 +853,8 @@ mod arc_training {
         mod B_格子点と整数;
         mod B_赤と黒の木;
         mod D_An_Invisible_Hand;
+        mod D_AtCoDeer_and_RockPaper;
+        mod D_AtCoDeer_and_RockPaper_ans;
         mod D_Derangement;
         mod D_Equals;
         mod D_Fennec_VS_Snuke;
