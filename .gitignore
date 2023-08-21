@@ -24,6 +24,9 @@ test/
 node_modules/
 contest.acc.json
 
+# cargo-compete
+testcases/
+
 # ヒューリスティック
 *.dSYM/
 tools/
