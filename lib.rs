@@ -595,6 +595,7 @@ mod abc_training {
         mod D_Lunlun_Number_DFS;
         mod D_M_eq_ab;
         mod D_M_le_ab;
+        mod D_Magical_Cookies;
         mod D_Make_Bipartite_2;
         mod D_Marking;
         mod D_Max_Multiple;
