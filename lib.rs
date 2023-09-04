@@ -85,6 +85,7 @@ mod AOJ {
     mod Doubly_Linked_List;
     mod LCA_Lowest_Common_Ancestor;
     mod LCA_Lowest_Common_Ancestor_Library;
+    mod Range_Add_Query;
     mod Range_Minimum_Query_RMQ;
     mod Range_Minimum_Query_RMQ_new;
     mod Range_Sum_Query;
