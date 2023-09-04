@@ -85,12 +85,16 @@ mod AOJ {
     mod Doubly_Linked_List;
     mod LCA_Lowest_Common_Ancestor;
     mod LCA_Lowest_Common_Ancestor_Library;
+    mod RMQ_and_RAQ;
+    mod RMQ_and_RUQ;
+    mod RSQ_and_RAQ;
     mod Range_Add_Query;
     mod Range_Minimum_Query_RMQ;
     mod Range_Minimum_Query_RMQ_new;
     mod Range_Sum_Query;
     mod Range_Sum_Query_BIT;
     mod Range_Sum_Query_Sqrt;
+    mod Range_Update_Query;
     mod Weighted_Union_Find_Trees;
     mod 二分探索木I;
     mod 文字列検索;
