@@ -95,6 +95,7 @@ mod AOJ {
     mod Range_Sum_Query_BIT;
     mod Range_Sum_Query_Sqrt;
     mod Range_Update_Query;
+    mod Sliding_Minimum_Element;
     mod Weighted_Union_Find_Trees;
     mod 二分探索木I;
     mod 文字列検索;
