@@ -389,6 +389,7 @@ const INF: usize = 1001001001001001001;
 type Graph = Vec<Vec<usize>>;
 
 // main
+#[fastout]
 fn main() {
     input! {
         N: usize,

@@ -484,6 +484,7 @@ mod abc_training {
         mod B_Sandwich_Number;
         mod B_Savings;
         mod B_Smartphone_Addiction;
+        mod B_The_Middle_Day;
         mod B_Trapezoid_Sum;
         mod B_V;
         mod B_Varied;
@@ -517,6 +518,7 @@ mod abc_training {
         mod C_Dice_and_Coin;
         mod C_Distinct_or_Not;
         mod C_Five_Transportations;
+        mod C_Flavors;
         mod C_Four_Variables;
         mod C_GCD_on_Blackboard;
         mod C_GCD_on_Blackboard_SegTree;
@@ -721,6 +723,7 @@ mod abc_training {
         mod E_PacTakahashi_;
         mod E_Packing_Potatoes;
         mod E_Prefix_Equality;
+        mod E_Prerequisites;
         mod E_Putting_Candies;
         mod E_Queen_on_Grid;
         mod E_Ranges_on_Tree;
