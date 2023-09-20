@@ -187,6 +187,7 @@ mod Others {
         mod D_Crossing;
         mod D_ヘイホー君と削除;
         mod EX23_303;
+        mod EX23_303_SplayTree;
         mod E_Lamps;
         mod E_Lamps_re;
         mod N_木;
@@ -535,6 +536,7 @@ mod abc_training {
         mod C_Multiplication_3;
         mod C_Path_Graph;
         mod C_Poll;
+        mod C_Poll_SplayTree;
         mod C_Poll_Trie;
         mod C_Pyramid;
         mod C_Rotate_and_Palindrome;
