@@ -79,9 +79,6 @@ mod ABC {
     mod abc314 {
         mod D;
     }
-    mod abc321 {
-        mod F;
-    }
 }
 mod AOJ {
     mod Disjoint_Set;
@@ -200,6 +197,11 @@ mod Others {
         mod B_区間スケジューリング問題;
         mod D_単一始点最短経路問題;
         mod E_全点対最短経路問題;
+    }
+}
+mod Sakumon {
+    mod Sum_of_Range {
+        mod main;
     }
 }
 mod VirtualContest {
