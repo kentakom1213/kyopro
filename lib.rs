@@ -200,7 +200,10 @@ mod Others {
     }
 }
 mod Sakumon {
-    mod Sum_of_Range {
+    mod Sum_of_Ranges {
+        mod main;
+    }
+    mod Sum_of_Ranges_Easy {
         mod main;
     }
 }
@@ -684,6 +687,7 @@ mod abc_training {
         mod E_Cheating_Amidakuji;
         mod E_Colorful_Blocks;
         mod E_Come_Back_Quickly;
+        mod E_Complete_Binary_Tree;
         mod E_Count_Median;
         mod E_Count_Simple_Paths;
         mod E_Critical_Hit;
