@@ -732,6 +732,7 @@ mod abc_training {
         mod E_Packing_Potatoes;
         mod E_Prefix_Equality;
         mod E_Prerequisites;
+        mod E_Product_Development;
         mod E_Putting_Candies;
         mod E_Queen_on_Grid;
         mod E_Ranges_on_Tree;
