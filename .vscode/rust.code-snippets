@@ -11,7 +11,7 @@
             "",
             "// imports",
             "use itertools::Itertools;",
-            "use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};",
+            "use proconio::{input, fastout, marker::{Chars, Usize1}};",
             "",
             "macro_rules! debug {",
             "\t( $(\\$val:expr),* $(,)* ) => {{",

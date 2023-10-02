@@ -514,6 +514,7 @@ mod abc_training {
         mod C_All_Green;
         mod C_AtColor;
         mod C_Blue_Bird;
+        mod C_Blue_Spring;
         mod C_Buy_an_Integer;
         mod C_Cards_Query_Problem;
         mod C_Circular_Playlist;
@@ -779,6 +780,7 @@ mod abc_training {
         mod F_Dungeon_Explore;
         mod F_Endless_Walk;
         mod F_Knapsack_for_All_Subsets;
+        mod F_Max_Sum_Counting;
         mod F_Merge_Sets;
         mod F_More_Holidays;
         mod F_Playing_Tag_on_Tree;
@@ -791,6 +793,7 @@ mod abc_training {
         mod F_Shiritori;
         mod F_Substring_of_Sorted_String;
         mod F_Teleporter_and_Closed_off;
+        mod F_Vacation_Query;
         mod F_Vouchers;
         mod F_Welldefined_Path_Queries_on_a_Namori;
     }
