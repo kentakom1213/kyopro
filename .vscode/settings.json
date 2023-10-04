@@ -53,6 +53,8 @@
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": true,
+    "python.analysis.inlayHints.functionReturnTypes": false,
+    "python.analysis.inlayHints.variableTypes": false,
     // font
     "editor.fontFamily": "Cica",
     "editor.fontSize": 14,
