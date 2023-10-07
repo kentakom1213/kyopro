@@ -12,6 +12,18 @@
         },
         {
             "type": "shell",
+            "label": "lint rust file",
+            "command": "cargo",
+            "args": [
+                "clippy",
+            ],
+            "options": {
+                "cwd": "builder",
+            },
+            "problemMatcher": [],
+        },
+        {
+            "type": "shell",
             "label": "build rust file",
             "command": "cargo",
             "args": [
@@ -36,8 +48,8 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "copy file",
+                "lint rust file",
                 "build rust file",
-                // "copy exec file",
             ],
             "group": {
                 "kind": "build",

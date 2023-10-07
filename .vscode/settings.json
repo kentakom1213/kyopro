@@ -34,15 +34,6 @@
     },
     "python.defaultInterpreterPath": ".local/bin/python",
     "python.venvPath": ".local",
-    // "python.pipenvPath": "/usr/local/bin/pipenv",
-    "python.linting.pylintEnabled": true,
-    "python.linting.pycodestyleEnabled": false,
-    "python.linting.mypyEnabled": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.flake8Args": [
-        "--max-line-length=120",
-        "--max-complexity","20"
-    ],
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -55,12 +46,6 @@
     "python.testing.unittestEnabled": true,
     "python.analysis.inlayHints.functionReturnTypes": false,
     "python.analysis.inlayHints.variableTypes": false,
-    // font
-    "editor.fontFamily": "Cica",
-    "editor.fontSize": 14,
-    "editor.lineHeight": 16,
-    "editor.letterSpacing": 0.3,
-
     // Rust
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml"
