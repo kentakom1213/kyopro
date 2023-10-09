@@ -924,4 +924,5 @@ mod typical90 {
     mod _081_Friendly_Group;
     mod _081_Friendly_Group_ans;
     mod _086_Snukes_Favorite_Arrays;
+    mod _087_Chokudais_Demand;
 }
