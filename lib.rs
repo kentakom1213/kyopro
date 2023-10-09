@@ -917,6 +917,7 @@ mod learn_algorithm {
 }
 mod typical90 {
     mod _004_Cross_Sum;
+    mod _029_Long_Bricks;
     mod _036_Max_Manhattan_Distance;
     mod _066_Various_Arrays;
     mod _068_Paired_Information;
