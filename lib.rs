@@ -680,6 +680,7 @@ mod abc_training {
         mod E_2xN_Grid;
         mod E_Add_and_Mex;
         mod E_Addition_and_Multiplication_2;
+        mod E_Allyoucaneat;
         mod E_Amusement_Park;
         mod E_Apple_Baskets_on_Circle;
         mod E_Art_Gallery_on_Graph;
@@ -783,6 +784,7 @@ mod abc_training {
     mod F {
         mod F_ABCBAC;
         mod F_Box_in_Box;
+        mod F_Cans_and_Openers;
         mod F_Dungeon_Explore;
         mod F_Endless_Walk;
         mod F_Knapsack_for_All_Subsets;
