@@ -640,6 +640,7 @@ mod abc_training {
         mod D_Range_Add_Query;
         mod D_Recording;
         mod D_Scope;
+        mod D_Semi_Common_Multiple;
         mod D_Snuke_Maze;
         mod D_Snuke_Panic_1D;
         mod D_Snuke_Prime;
@@ -674,6 +675,9 @@ mod abc_training {
         mod D_閉路;
         mod D_食塩水;
         mod D_高橋くんと木の直径;
+        mod _4;
+        mod _5;
+        mod _6;
     }
     mod E {
         mod E_1_or_2;
