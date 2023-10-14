@@ -796,6 +796,7 @@ mod abc_training {
     }
     mod F {
         mod F_ABCBAC;
+        mod F_Beautiful_Path;
         mod F_Box_in_Box;
         mod F_Cans_and_Openers;
         mod F_Dungeon_Explore;
