@@ -902,6 +902,7 @@ mod arc_training {
         mod D_An_Invisible_Hand;
         mod D_AtCoDeer_and_RockPaper;
         mod D_AtCoDeer_and_RockPaper_ans;
+        mod D_Decrease_Contestant_ver;
         mod D_Derangement;
         mod D_Equals;
         mod D_Fennec_VS_Snuke;
