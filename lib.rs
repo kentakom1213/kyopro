@@ -652,6 +652,7 @@ mod abc_training {
         mod D_Polynomial_division;
         mod D_Practical_Skill_Test;
         mod D_Prefix_Kth_Max;
+        mod D_Printing_Machine;
         mod D_Range_Add_Query;
         mod D_Recording;
         mod D_Scope;
