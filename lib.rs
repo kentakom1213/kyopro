@@ -758,6 +758,7 @@ mod abc_training {
         mod E_Ranges_on_Tree;
         mod E_Red_and_Blue_Tree;
         mod E_Road_Reduction;
+        mod E_Roaming;
         mod E_Rook_Path;
         mod E_Rook_Path_pow;
         mod E_Rotate_and_Flip;
@@ -809,6 +810,7 @@ mod abc_training {
         mod F_Programming_Contest;
         mod F_Programming_Contest_vec;
         mod F_Push_and_Carry;
+        mod F_Range_Set_Query;
         mod F_Range_Xor_Query;
         mod F_Range_Xor_Query_SegTree_Monoid;
         mod F_Range_Xor_Query_Segtree;
