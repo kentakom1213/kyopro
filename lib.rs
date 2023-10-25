@@ -285,6 +285,11 @@ mod VirtualContest {
             mod _5;
             mod _6;
         }
+        mod nucoder20231025 {
+            mod B;
+            mod C;
+            mod C_50;
+        }
     }
     mod _20221104 {
         mod _2;
@@ -571,6 +576,7 @@ mod abc_training {
         mod C_Poll_Trie;
         mod C_Pyramid;
         mod C_Rotate_and_Palindrome;
+        mod C_Sensors;
         mod C_Shopping_Street;
         mod C_Step;
         mod C_String_Transformation;
