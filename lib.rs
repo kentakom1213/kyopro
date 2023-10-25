@@ -602,6 +602,9 @@ mod abc_training {
         mod D_AxisParallel_Rectangle;
         mod D_Bank;
         mod D_Base_n;
+        mod D_Cake_123;
+        mod D_Cake_123_ans;
+        mod D_Cake_123_ans2;
         mod D_Candidates_of_No_Shortest_Paths;
         mod D_Candy_Distribution;
         mod D_Christmas;
