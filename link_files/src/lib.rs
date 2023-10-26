@@ -1,4 +1,3 @@
-
 /// (深さ, パス) のベクタ
 pub type FileTree = Vec<(usize, String)>;
 
