@@ -36,9 +36,9 @@ def make_filename(data: dict, lang: str="py") -> Path:
     if data["service"] == "aoj":
         dir /= problem_dir["aoj"]
 
-    # ファイル名
+    # ファイル名から特殊文字を削除
     filename = re.sub(
-        r"-|\+|:|/|,|\.|\(|\)|!|\?|<|>|'",
+        r"-|\+|:|/|,|\.|\(|\)|!|\?|<|>|'|\"",
         "",
         data["title"]
     )

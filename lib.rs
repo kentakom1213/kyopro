@@ -780,6 +780,8 @@ mod abc_training {
         mod E_Queen_on_Grid;
         mod E_Ranges_on_Tree;
         mod E_Red_and_Blue_Tree;
+        mod E_Revenge_of_The_Salary_of_AtCoder_Inc;
+        mod E_Revenge_of_The_Salary_of_AtCoder_Inc_modint;
         mod E_Road_Reduction;
         mod E_Roaming;
         mod E_Rook_Path;
