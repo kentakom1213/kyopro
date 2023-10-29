@@ -34,15 +34,6 @@ fn ord(c: char) -> usize {
     (c - a) as usize
 }
 
-/// 行、列を表す列挙型
-#[derive(Debug)]
-enum Line {
-    /// 行を表す
-    Row { i: usize, c: usize },
-    /// 列を表す
-    Col { j: usize, c: usize },
-}
-
 // 文字の種類
 const SIGMA: usize = 26;
 
@@ -57,11 +48,6 @@ fn main() {
     let mut rows = vec![[0; SIGMA]; H];
     let mut cols = vec![[0; SIGMA]; W];
 
-    // 行、列に残っているクッキーの合計
-    let mut row_cnt = vec![W; H];
-    let mut col_cnt = vec![H; W];
-
-    // それぞれの行、列の色を記録
     for i in 0..H {
         for j in 0..W {
             let c = ord(C[i][j]);
@@ -70,74 +56,64 @@ fn main() {
         }
     }
 
-    // 削除できる行、列をキューに保存
-    let mut que = VecDeque::new();
+    // 残っている行、列の数
+    let mut cnt_row = H;
+    let mut cnt_col = W;
+    // その行、列が残っているか
+    let mut deleted_row = vec![false; H];
+    let mut deleted_col = vec![false; W];
 
-    // 今の段階で全て同じ色になっている行、列を列挙
-    for i in 0..H {
-        for c in 0..SIGMA {
-            if rows[i][c] == W {
-                que.push_back(Line::Row { i, c });
+    // 行、列を探索
+    for _ in 0..H + W {
+        let mut nr = vec![];
+        let mut nc = vec![];
+
+        for i in 0..H {
+            if deleted_row[i] {
+                continue;
             }
-        }
-    }
-
-    for j in 0..W {
-        for c in 0..SIGMA {
-            if cols[j][c] == H {
-                que.push_back(Line::Col { j, c });
-            }
-        }
-    }
-
-    debug!(&que);
-
-    // BFS的に処理 -> O(H + W)
-    while let Some(line) = que.pop_front() {
-        match line {
-            Line::Row { i, c } => {
-                // すべての列から色cを1ずつ減らす
-                for j in 0..W {
-                    if cols[j][c] >= 1 {
-                        cols[j][c] -= 1;
-                        col_cnt[j] -= 1;
-                        // 1色になった場合、追加する
-                        for d in 0..SIGMA {
-                            if col_cnt[j] >= 2 && col_cnt[j] == cols[j][d] {
-                                que.push_back(Line::Col { j, c: d });
-                            }
-                        }
-                    }
+            for c in 0..SIGMA {
+                if rows[i][c] == cnt_col && cnt_col >= 2 {
+                    nr.push((i, c));
                 }
-                // Rowの色を全削除
-                rows[i][c] = 0;
-                row_cnt[i] = 0;
-            }
-            Line::Col { j, c } => {
-                // すべての行から色cを1ずつ減らす
-                for i in 0..H {
-                    if rows[i][c] >= 1 {
-                        rows[i][c] -= 1;
-                        row_cnt[i] -= 1;
-                        // 1色になった場合、追加する
-                        for d in 0..SIGMA {
-                            if row_cnt[i] >= 2 && row_cnt[i] == rows[i][d] {
-                                que.push_back(Line::Row { i, c: d });
-                            }
-                        }
-                    }
-                }
-                // Colの色を全削除
-                cols[j][c] = 0;
-                col_cnt[j] = 0;
             }
         }
 
-        debug!(&que);
+        for j in 0..W {
+            if deleted_col[j] {
+                continue;
+            }
+            for c in 0..SIGMA {
+                if cols[j][c] == cnt_row && cnt_row >= 2 {
+                    nc.push((j, c));
+                }
+            }
+        }
+
+        for &(i, c) in &nr {
+            // 行を削除
+            deleted_row[i] = true;
+            // すべての行に関して処理
+            for j in 0..W {
+                if cols[j][c] > 0 {
+                    cols[j][c] -= 1;
+                }
+            }
+            cnt_row -= 1;
+        }
+
+        for &(j, c) in &nc {
+            // 列を削除
+            deleted_col[j] = true;
+            // すべての列に関して処理
+            for i in 0..H {
+                if rows[i][c] > 0 {
+                    rows[i][c] -= 1;
+                }
+            }
+            cnt_col -= 1;
+        }
     }
 
-    // 残っているドロップの数をカウント
-    let ans: usize = rows.iter().map(|col| col.iter().sum::<usize>()).sum();
-
-    println!("{ans}");
+    println!("{}", cnt_row * cnt_col);
 }

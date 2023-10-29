@@ -12,32 +12,19 @@
         },
         {
             "type": "shell",
-            "label": "build rust file",
-            "command": "cargo",
-            "args": [
-                "build",
-            ],
+            "label": "lint and build file",
+            "command": "cargo clippy && cargo build",
             "options": {
                 "cwd": "builder",
             },
             "problemMatcher": [],
         },
         {
-            "type": "shell",
-            "label": "copy exec file",
-            "command": "cp",
-            "args": [
-                "~/Docker/kyopro/builder/target/debug/builder",
-                "${fileDirname}/${fileBasenameNoExtension}",
-            ],
-        },
-        {
             "label": "Task Sequence",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "copy file",
-                "build rust file",
-                // "copy exec file",
+                "lint and build file",
             ],
             "group": {
                 "kind": "build",

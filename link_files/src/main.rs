@@ -1,12 +1,12 @@
-use std::path;
 use colored::*;
 use link_files::{
-    FileTree,
     make_tree,
     // display_tree,
     write_lib,
+    FileTree,
 };
 use std::env;
+use std::path;
 
 fn main() {
     let root = path::PathBuf::from(env::var("KYOPURO_ROOT_DIR").unwrap());
@@ -20,7 +20,7 @@ fn main() {
 
     // tree形式で表示を行う
     // display_tree(&lib);
-    
+
     // ファイルに書き出し
     write_lib(&lib, &lib_path);
 

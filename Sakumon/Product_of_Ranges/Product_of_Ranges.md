@@ -7,14 +7,14 @@ $1$ 以上の整数 $N$ と、$1$ 以上の整数 $N$ 個からなる数列 $A =
 $Q$ 個のクエリ $(l_j, r_j)$ に対して、以下の式により定義される $P_j$ を $998244353$ で割ったあまりを求めよ。
 
 $$
-P_j = \prod_{i=l_j}^{r_j} a_i = a_{l_j}\cdot a_{l_j+1}\cdot ... \cdot a_{r_j}
+P_j = \prod_{i=l_j}^{r_j} a_i = a_{l_j}\times a_{l_{j+1}}\times \cdots \times a_{r_j}
 $$
 
 ## 制約
 - $1 \le N \le 10^5$
-- $1 \le a_i \le 10^9 $
+- $1 \le a_i \le 10^9 ~(1\le i\le N)$
 - $1 \le Q \le 10^5$
-- $1 \le l_j \le r_j \le N$
+- $1 \le l_j \le r_j \le N ~(1\le j\le Q)$
 
 ---
 
