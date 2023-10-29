@@ -1130,6 +1130,7 @@ mod atcoder_training {
     mod abc326 {
         mod E_Revenge_of_The_Salary_of_AtCoder_Inc;
         mod E_Revenge_of_The_Salary_of_AtCoder_Inc_modint;
+        mod F_Robot_Rotation;
     }
     mod abl {
         mod C_Connect_Cities;
