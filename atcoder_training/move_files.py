@@ -1,4 +1,5 @@
 from pathlib import Path
+import shutil
 import re
 
 # ルート
@@ -57,9 +58,9 @@ def parse_url(url: str) -> dict:
 def main():
     """ファイルのコピーを行う
     """
-    for file in traverse_file():
+    for filepath in traverse_file():
         # 問題のURLを取得
-        file_url = get_file_url(file)
+        file_url = get_file_url(filepath)
         if file_url is None:
             continue
 
@@ -73,7 +74,7 @@ def main():
         dir.mkdir(exist_ok=True)
 
         # ファイルをコピーする
-        
+        shutil.copy2(filepath.resolve(), dir.resolve())
         
 
 if __name__ == "__main__":
