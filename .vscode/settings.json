@@ -51,4 +51,5 @@
         "./Cargo.toml"
     ],
     "glassit.alpha": 220,
+    "rust-analyzer.showUnlinkedFileNotification": false,
 }
