@@ -7,7 +7,7 @@
             "command": "cp",
             "args": [
                 "${file}",
-                "~/Docker/kyopro/builder/src/main.rs"
+                "~/Docker/kyopro/utils/builder/src/main.rs"
             ],
         },
         {
@@ -15,7 +15,7 @@
             "label": "lint and build file",
             "command": "cargo clippy && cargo build",
             "options": {
-                "cwd": "builder",
+                "cwd": "utils/builder",
             },
             "problemMatcher": [],
         },
