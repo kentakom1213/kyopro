@@ -1,5 +1,6 @@
 from pathlib import Path
 import shutil
+import os
 import re
 
 # ルート
@@ -12,6 +13,7 @@ ATCODER_DIRS = [
     ROOT / "Others",
 ]
 TARGET_DIR = ROOT / "atcoder_training"
+
 
 def traverse_file():
     """atcoderの提出ファイルを列挙する
@@ -75,7 +77,10 @@ def main():
 
         # ファイルをコピーする
         shutil.copy2(filepath.resolve(), dir.resolve())
-        
+
+        # ファイルを削除する
+        os.remove(filepath)
+
 
 if __name__ == "__main__":
     main()
