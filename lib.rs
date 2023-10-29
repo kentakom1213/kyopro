@@ -94,13 +94,6 @@ mod ABC {
         mod D;
         mod E;
     }
-    mod abc326 {
-        mod C;
-        mod D;
-        mod D2;
-        mod E;
-        mod F;
-    }
 }
 mod AOJ {
     mod Disjoint_Set;
