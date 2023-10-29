@@ -1,100 +1,3 @@
-mod ABC {
-    mod abc278 {
-        mod E;
-    }
-    mod abc279 {
-        mod D;
-        mod E;
-    }
-    mod abc285 {
-        mod E;
-    }
-    mod abc287 {
-        mod C;
-        mod D;
-        mod E;
-    }
-    mod abc288 {
-        mod C;
-        mod D;
-    }
-    mod abc291 {
-        mod D;
-        mod E;
-    }
-    mod abc299 {
-        mod A;
-        mod B;
-        mod C;
-        mod D;
-        mod E;
-    }
-    mod abc300 {
-        mod D;
-        mod E;
-    }
-    mod abc301 {
-        mod D;
-        mod E;
-        mod E_fast;
-    }
-    mod abc302 {
-        mod D;
-        mod E;
-        mod F;
-    }
-    mod abc303 {
-        mod C;
-        mod D;
-        mod E;
-        mod F;
-    }
-    mod abc304 {
-        mod D;
-        mod E;
-        mod F;
-    }
-    mod abc305 {
-        mod D;
-        mod E;
-    }
-    mod abc308 {
-        mod E;
-        mod F;
-    }
-    mod abc309 {
-        mod D;
-        mod E;
-        mod F;
-    }
-    mod abc310 {
-        mod D;
-        mod E;
-    }
-    mod abc311 {
-        mod C;
-        mod E;
-        mod F;
-    }
-    mod abc314 {
-        mod D;
-    }
-    mod abc323 {
-        mod C;
-        mod D;
-        mod E;
-    }
-    mod abc324 {
-        mod C;
-        mod D;
-        mod E;
-    }
-    mod abc325 {
-        mod C;
-        mod D;
-        mod E;
-    }
-}
 mod AOJ {
     mod Disjoint_Set;
     mod Doubly_Linked_List;
@@ -114,11 +17,6 @@ mod AOJ {
     mod Weighted_Union_Find_Trees;
     mod 二分探索木I;
     mod 文字列検索;
-}
-mod ARC {
-    mod arc151 {
-        mod A;
-    }
 }
 mod AlgoMethod {
     mod CalculationComplexity {
@@ -1488,6 +1386,106 @@ mod atcoder_training {
     }
     mod zone2021 {
         mod C_MAD_TEAM;
+    }
+}
+mod contests {
+    mod abc278 {
+        mod E;
+    }
+    mod abc279 {
+        mod D;
+        mod E;
+    }
+    mod abc285 {
+        mod E;
+    }
+    mod abc287 {
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod abc288 {
+        mod C;
+        mod D;
+    }
+    mod abc291 {
+        mod D;
+        mod E;
+    }
+    mod abc299 {
+        mod A;
+        mod B;
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod abc300 {
+        mod D;
+        mod E;
+    }
+    mod abc301 {
+        mod D;
+        mod E;
+        mod E_fast;
+    }
+    mod abc302 {
+        mod D;
+        mod E;
+        mod F;
+    }
+    mod abc303 {
+        mod C;
+        mod D;
+        mod E;
+        mod F;
+    }
+    mod abc304 {
+        mod D;
+        mod E;
+        mod F;
+    }
+    mod abc305 {
+        mod D;
+        mod E;
+    }
+    mod abc308 {
+        mod E;
+        mod F;
+    }
+    mod abc309 {
+        mod D;
+        mod E;
+        mod F;
+    }
+    mod abc310 {
+        mod D;
+        mod E;
+    }
+    mod abc311 {
+        mod C;
+        mod E;
+        mod F;
+    }
+    mod abc314 {
+        mod D;
+    }
+    mod abc323 {
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod abc324 {
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod abc325 {
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod arc151 {
+        mod A;
     }
 }
 mod learn_algorithm {
