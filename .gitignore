@@ -9,9 +9,6 @@
 .DS_Store
 .mypy_cache/
 
-# ac-library
-ac-library/
-
 # pycache
 __pycache__/
 .ipynb_checkpoints/
@@ -26,15 +23,9 @@ contest.acc.json
 
 # cargo-compete
 testcases/
-
-# ヒューリスティック
-*.dSYM/
-tools/
-in/
-out/
-debug/
 target/
-**/*.rs.bk
+Cargo.toml
+Cargo.lock
 
 # rustビルド用プロジェクト
 builder/
@@ -44,3 +35,4 @@ test.txt
 
 # 環境変数
 .env
+

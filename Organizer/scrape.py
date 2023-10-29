@@ -59,6 +59,10 @@ def scrape_atcoder(url: str):
     # urlの解析
     tail = url.split("/")[-1]
 
+    # コンテスト名の取得
+    words = url.split("/")
+    contest = words[words.index("contests") + 1]
+
     if "typical90" in url:
         contest_type = "typical90"
     else:
@@ -80,6 +84,7 @@ def scrape_atcoder(url: str):
         "service": "atcoder",
         "title": soup.title.text,
         "url": url,
+        "contest": contest,
         "contest_type": contest_type,
         "problem_type": problem_type,
         "point": point,

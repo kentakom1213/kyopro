@@ -10,15 +10,6 @@ import re
 import scrape
 from pathlib import Path
 
-problem_dir = {
-    "abc": "abc_training",
-    "arc": "arc_training",
-    "agc": "agc_training",
-    "typical90": "typical90",
-    "other": "Others/others",
-    "aoj": "AOJ",
-}
-
 def make_filename(data: dict, lang: str="py") -> Path:
     """ファイル名を作成する"""
 
@@ -27,14 +18,16 @@ def make_filename(data: dict, lang: str="py") -> Path:
     
     if data["service"] == "atcoder":
         # コンテストで分類
-        dir /= problem_dir[data["contest_type"]]
+        # dir /= problem_dir[data["contest_type"]]
 
-        # 問題難易度で分類
-        if data["contest_type"] in ("abc", "arc", "agc"):
-            dir /= data["problem_type"].upper()
+        # # 問題難易度で分類
+        # if data["contest_type"] in ("abc", "arc", "agc"):
+        #     dir /= data["problem_type"].upper()
+        dir /= "atcoder_training"
+        dir /= data["contest"]
 
     if data["service"] == "aoj":
-        dir /= problem_dir["aoj"]
+        dir /= "AOJ"
 
     # ファイル名から特殊文字を削除
     filename = re.sub(
