@@ -10,19 +10,15 @@ import re
 import scrape
 from pathlib import Path
 
+KYOPRO_DIR = Path("/Users/komotokenta/Docker/kyopro/")
+
 def make_filename(data: dict, lang: str="py") -> Path:
     """ファイル名を作成する"""
 
     # ディレクトリ名
-    dir = Path(__file__).parent.parent
+    dir = KYOPRO_DIR
     
     if data["service"] == "atcoder":
-        # コンテストで分類
-        # dir /= problem_dir[data["contest_type"]]
-
-        # # 問題難易度で分類
-        # if data["contest_type"] in ("abc", "arc", "agc"):
-        #     dir /= data["problem_type"].upper()
         dir /= "atcoder_training"
         dir /= data["contest"]
 
