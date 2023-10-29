@@ -1,7 +1,7 @@
-//          D - Count Subtractions         
+//           E - Kth Takoyaki Set          
 // ----------------------------------------
 // 問題
-// https://atcoder.jp/contests/abc297/tasks/abc297_d
+// https://atcoder.jp/contests/abc297/tasks/abc297_e
 // ----------------------------------------
 
 // attributes
@@ -23,27 +23,30 @@ const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
 const NEG1: usize = 1_usize.wrapping_neg();
 
-/// ## 方針
-/// ユークリッドの互除法を用いて実装する
-/// - 計算量：O(log(max(A, B)))
+/// ## 解説
+/// - ダイクストラ法
 fn main() {
     input! {
-        A: usize, B: usize
+        N: usize,
+        K: usize,
+        A: [usize; N]
     }
 
-    let mut ans = 0;
-    let mut a = A;
-    let mut b = B;
+    let mut que = BinaryHeap::new();
+    que.push(Reverse(0));
+    let mut ans = vec![INF; K + 2];
 
-    while a > 0 && b > 0 {
-        if a > b {
-            ans += a / b;
-            a %= b;
-        } else {
-            ans += b / a;
-            b %= a;
+    for i in 1..=K+1 {
+        let Reverse(mut cur) = que.pop().unwrap();
+        while ans[i-1] == cur {
+            cur = que.pop().unwrap().0;
+        }
+        ans[i] = cur;
+        for &a in &A {
+            let nxt = cur + a;
+            que.push(Reverse(nxt));
         }
     }
 
-    println!("{}", ans - 1);
+    println!("{}", ans[K+1]);
 }
