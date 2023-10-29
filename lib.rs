@@ -146,31 +146,6 @@ mod LibraryChecker {
     mod ShortestPath;
 }
 mod Others {
-    mod ACL_Contest {
-        mod C_Connect_Cities;
-        mod E_Replace_Digits;
-        mod G_SCC;
-        mod G_SCC_lib;
-    }
-    mod EDPC {
-        mod F_LCS;
-        mod I_Coins;
-        mod J_Sushi;
-        mod K_Stones;
-        mod L_Deque;
-        mod M_Candies;
-        mod N_Slimes;
-        mod O_Matching;
-        mod P_Independent_Set;
-        mod P_Independent_Set_abstract;
-        mod P_Independent_Set_re;
-        mod Q_Flowers;
-        mod R_Walk;
-        mod T_Permutation;
-        mod U_Grouping;
-        mod V_Subtree;
-        mod V_Subtree_abstract;
-    }
     mod MojaCoder {
         mod Product_of_Ranges;
         mod Product_of_Ranges_modint;
@@ -178,41 +153,6 @@ mod Others {
     }
     mod TUPC2021 {
         mod A_Unique_Nickname;
-    }
-    mod others {
-        mod A_Reachable_Towns;
-        mod A_ヘイホー君と加算;
-        mod A_深さ優先探索;
-        mod B_Interactive_Sorting_partial;
-        mod B_Picking_Up;
-        mod B_Problem_Set;
-        mod B_Union_Find;
-        mod B_Union_Find_lib;
-        mod B_fLIP;
-        mod B_天下一リテラル;
-        mod C_Inserting_x;
-        mod C_Lamps;
-        mod C_MAD_TEAM;
-        mod C_N進数;
-        mod C_Ordinary_Beauty;
-        mod C_Sqrt_Inequality;
-        mod C_Successive_Subtraction;
-        mod C_一次元オセロ;
-        mod D_Anything_Goes_to_Zero;
-        mod D_Anything_Goes_to_Zero_popcount;
-        mod D_Crossing;
-        mod D_ヘイホー君と削除;
-        mod EX23_303;
-        mod EX23_303_SplayTree;
-        mod E_Lamps;
-        mod E_Lamps_re;
-        mod N_木;
-    }
-    mod typical_algorithm {
-        mod A_二分探索の練習問題;
-        mod B_区間スケジューリング問題;
-        mod D_単一始点最短経路問題;
-        mod E_全点対最短経路問題;
     }
 }
 mod Sakumon {
@@ -448,504 +388,1106 @@ mod VirtualContest {
         mod E;
     }
 }
-mod abc_training {
-    mod A {
-        mod A_ABC_Preparation;
-        mod A_AC_or_WA;
-        mod A_A_C;
-        mod A_Air_Conditioner;
-        mod A_Anyway_Takahashi;
-        mod A_Apple;
+mod atcoder_training {
+    mod abc003 {
         mod A_AtCoder社の給料;
-        mod A_Brick;
-        mod A_Circle_Pond;
-        mod A_Coffee;
-        mod A_Contest_Result;
-        mod A_Discount;
-        mod A_Dont_be_late;
-        mod A_Filter;
-        mod A_Find_Takahashi;
-        mod A_Five_Variables;
-        mod A_Large_Digits;
-        mod A_Leyland_Number;
-        mod A_Multiplication_1;
-        mod A_New_Generation_ABC;
-        mod A_Plural_Form;
-        mod A_Rainy_Season;
-        mod A_Range_Swap;
-        mod A_Sequence_of_Strings;
-        mod A_Slot;
-        mod A_Swap_Odd_and_Even;
-        mod A_Takoyaki;
-        mod A_Therefore;
-        mod A_Very_Very_Primitive_Game;
-        mod A_flip;
-        mod A_pow_neg1;
-        mod A_twiblr;
-        mod A_αlphabet;
-        mod A_ゲーム;
-        mod A_テスト評価;
-        mod A_高橋くんと年齢;
     }
-    mod B {
-        mod B_ASCII_Art;
-        mod B_Alcoholic;
-        mod B_Almost_GCD;
-        mod B_Billiards;
-        mod B_Blocks_on_Grid;
-        mod B_Call_the_ID_Number;
-        mod B_Choose_Integers;
-        mod B_Coloring_Matrix;
-        mod B_Distance_;
-        mod B_Everyone_is_Friends;
-        mod B_Gentle_Pairs;
-        mod B_Hammer;
-        mod B_Intersection;
-        mod B_Job_Assignment;
-        mod B_Magic_3;
-        mod B_Making_Triangle;
-        mod B_Mix_Juice;
-        mod B_Modulo_Number;
-        mod B_Multi_Test_Cases;
-        mod B_Multiple_of_9;
-        mod B_Multiplication_2;
-        mod B_One_Clue;
-        mod B_Orthogonality;
-        mod B_Painting_Balls_with_AtCoDeer;
-        mod B_Play_Snuke;
-        mod B_Playing_Cards_Validation;
-        mod B_Quizzes;
-        mod B_Rectangle_Detection;
-        mod B_Sandwich_Number;
-        mod B_Savings;
-        mod B_Smartphone_Addiction;
-        mod B_The_Middle_Day;
-        mod B_Trapezoid_Sum;
-        mod B_V;
-        mod B_Varied;
-        mod B_Various_distances;
-        mod B_Various_distances_for;
-        mod B_Yellow_and_Red_Card;
-        mod B_uNrEaDaBlE_sTrInG;
+    mod abc004 {
         mod B_回転;
+        mod C_入れ替え;
+    }
+    mod abc007 {
+        mod C_幅優先探索;
+    }
+    mod abc008 {
         mod B_投票;
         mod B_投票_trie;
-        mod B_文字数カウント;
-        mod B_高橋くんと文字列圧縮;
-        mod B_高橋くんの集計;
     }
-    mod C {
-        mod A_幅優先探索;
-        mod C_ABC_Tournament;
-        mod C_A_x_B_plus_C;
-        mod C_All_Green;
+    mod abc014 {
         mod C_AtColor;
-        mod C_Blue_Bird;
-        mod C_Blue_Spring;
-        mod C_Buy_an_Integer;
-        mod C_Cards_Query_Problem;
-        mod C_Circular_Playlist;
-        mod C_Count_Connected_Components;
-        mod C_Counting_Squares;
-        mod C_Coverage;
-        mod C_Dash;
-        mod C_Dash_BTreeSet;
-        mod C_Dice_Sum;
-        mod C_Dice_and_Coin;
-        mod C_Distinct_or_Not;
-        mod C_Five_Transportations;
-        mod C_Flavors;
-        mod C_Four_Variables;
-        mod C_GCD_on_Blackboard;
-        mod C_GCD_on_Blackboard_SegTree;
-        mod C_Green_Bin;
-        mod C_Green_Bin_trie;
-        mod C_Ideal_Sheet;
-        mod C_Ladder_Takahashi;
-        mod C_Low_Elements;
-        mod C_Low_Elements_BIT;
-        mod C_Make_Takahashi_Happy_;
-        mod C_Many_Requirements;
-        mod C_Many_Segments;
-        mod C_March;
-        mod C_Max_Even;
-        mod C_Merge_Sequences;
-        mod C_Multiplication_3;
-        mod C_Path_Graph;
-        mod C_Poll;
-        mod C_Poll_SplayTree;
-        mod C_Poll_Trie;
-        mod C_Pyramid;
-        mod C_Rotate_and_Palindrome;
-        mod C_Sensors;
-        mod C_Shopping_Street;
-        mod C_Step;
-        mod C_String_Transformation;
-        mod C_Submask;
-        mod C_The_Kth_Time_Query;
-        mod C_Traveling_Salesman_around_Lake;
-        mod C_Ubiquity;
-        mod C_Unexpressed;
-        mod C_chokudai;
-        mod C_management;
-        mod C_ピアニスト高橋君;
-        mod C_入れ替え;
-        mod C_幅優先探索;
-        mod C_座圧;
-        mod C_正直者の高橋くん;
-        mod C_民族大移動;
-        mod C_背の順;
-        mod C_高橋くんと魔法の箱;
+        mod D_閉路;
+    }
+    mod abc015 {
+        mod B_高橋くんの集計;
         mod C_高橋くんのバグ探し;
     }
-    mod D {
-        mod D_1;
-        mod D_2017like_Number;
-        mod D_250like_Number;
-        mod D_756;
-        mod D_756_re;
-        mod D_All_Assign_Point_Add;
-        mod D_AtCoder_Express_2;
-        mod D_AxisParallel_Rectangle;
-        mod D_Bank;
-        mod D_Base_n;
-        mod D_Cake_123;
-        mod D_Cake_123_ans;
-        mod D_Cake_123_ans2;
-        mod D_Candidates_of_No_Shortest_Paths;
-        mod D_Candy_Distribution;
-        mod D_Christmas;
-        mod D_Coloring_Edges_on_Tree;
-        mod D_Count_Bracket_Sequences;
-        mod D_Count_Subtractions;
-        mod D_Cutting_Woods;
-        mod D_Cutting_Woods_BST;
-        mod D_Cutting_Woods_Treap;
-        mod D_Cylinder;
-        mod D_Decayed_Bridges;
-        mod D_Digits_Parade;
-        mod D_Disjoint_Set_of_Common_Divisors;
-        mod D_Do_use_hexagon_grid;
-        mod D_Face_Produces_Unhappiness;
-        mod D_Factorial_and_Multiple;
-        mod D_Flip_Cards;
-        mod D_Game_in_Momotetsu_World;
-        mod D_Good_Grid;
-        mod D_Handstand_2;
-        mod D_Happy_New_Year_2023_;
-        mod D_Index_Trio;
-        mod D_Jumping_Takahashi_2;
-        mod D_Knight;
-        mod D_LR_insertion;
-        mod D_Lamp;
-        mod D_Lamp_re;
-        mod D_Lazy_Faith;
-        mod D_Line;
-        mod D_Lunlun_Number;
-        mod D_Lunlun_Number_DFS;
-        mod D_M_eq_ab;
-        mod D_M_le_ab;
-        mod D_Magical_Cookies;
-        mod D_Make_Bipartite_2;
-        mod D_Marking;
-        mod D_Max_Multiple;
-        mod D_Money_in_Hand;
-        mod D_Moves_on_Binary_Tree;
-        mod D_Moving_Piece;
-        mod D_National_Railway;
-        mod D_Number_of_Shortest_paths;
-        mod D_Online_games;
-        mod D_Online_games_ans;
-        mod D_Pairs;
-        mod D_Patisserie_ABC;
-        mod D_Peaceful_Teams;
-        mod D_Polynomial_division;
-        mod D_Practical_Skill_Test;
-        mod D_Prefix_Kth_Max;
-        mod D_Printing_Machine;
-        mod D_Range_Add_Query;
-        mod D_Recording;
-        mod D_Scope;
-        mod D_Semi_Common_Multiple;
-        mod D_Snuke_Maze;
-        mod D_Snuke_Panic_1D;
-        mod D_Snuke_Prime;
-        mod D_Staircase_Sequences;
-        mod D_Step_Up_Robot;
-        mod D_Stones;
-        mod D_Strange_Lunchbox;
-        mod D_Summer_Vacation;
-        mod D_Summer_Vacation_20230506;
-        mod D_Takahashis_Solitaire;
-        mod D_Teleporter;
-        mod D_Three_Days_Ago;
-        mod D_Three_Days_Ago_re;
-        mod D_Triangles;
-        mod D_Triangles_new;
-        mod D_Tying_Rope;
-        mod D_Unicyclic_Components;
-        mod D_Wall;
-        mod D_We_Like_AGC;
-        mod D_We_Like_AGC_umekomi;
-        mod D_Writing_a_Numeral;
-        mod D_XXOR;
-        mod D_Xor_Sum_4;
-        mod D_Yet_Another_Recursive_Function;
-        mod D_equeue;
-        mod D_joisinos_travel;
-        mod D_トレジャーハント;
-        mod D_ナップサック問題;
+    mod abc016 {
         mod D_一刀両断;
-        mod D_多重ループ;
-        mod D_多重ループ_modint;
-        mod D_閉路;
-        mod D_食塩水;
+    }
+    mod abc019 {
+        mod A_高橋くんと年齢;
+        mod B_高橋くんと文字列圧縮;
+        mod C_高橋くんと魔法の箱;
         mod D_高橋くんと木の直径;
     }
-    mod E {
-        mod E_1_or_2;
-        mod E_2xN_Grid;
-        mod E_Add_and_Mex;
-        mod E_Addition_and_Multiplication_2;
-        mod E_Allyoucaneat;
-        mod E_Amusement_Park;
-        mod E_Apple_Baskets_on_Circle;
-        mod E_Art_Gallery_on_Graph;
-        mod E_At_Least_One;
-        mod E_AxA;
-        mod E_Best_Performances;
-        mod E_Bishop_2;
-        mod E_Blackout_2;
-        mod E_Bomber;
-        mod E_Bomber_ans;
-        mod E_Chain_Contestant;
-        mod E_Cheating_Amidakuji;
-        mod E_Colorful_Blocks;
-        mod E_Come_Back_Quickly;
-        mod E_Count_Median;
-        mod E_Count_Simple_Paths;
-        mod E_Critical_Hit;
-        mod E_Crystal_Switches;
-        mod E_Defectfree_Squares;
-        mod E_Dist_Max;
-        mod E_Distance_Sequence;
-        mod E_Distance_on_Large_Perfect_Binary_Tree;
-        mod E_Distinct_Adjacent;
-        mod E_Dividing_Chocolate;
-        mod E_Edge_Deletion;
-        mod E_Erasing_Vertices_2;
-        mod E_Erasing_Vertices_2_binaryheap;
-        mod E_Flatten;
-        mod E_Fraction_Floor_Sum;
-        mod E_Fraction_Floor_Sum_ans;
-        mod E_Friendships;
-        mod E_Geometric_Progression;
-        mod E_Geometric_Progression_new;
-        mod E_Gluttony;
-        mod E_Good_Graph;
-        mod E_Graph_Destruction;
-        mod E_Joint_Two_Strings;
-        mod E_Karuta;
-        mod E_King_Bombee;
-        mod E_Kth_Takoyaki_Set;
-        mod E_Kth_Takoyaki_Set_binarysearch;
-        mod E_LCM_on_Whiteboard;
-        mod E_LEQ;
-        mod E_Last_Rook;
-        mod E_League;
-        mod E_Least_Elements_SegTree;
-        mod E_Logs;
-        mod E_Lucky_Numbers;
-        mod E_Magical_Ornament;
-        mod E_Make_it_Palindrome;
-        mod E_MaxMin_Sums;
-        mod E_MaxMin_Sums_inv;
-        mod E_Moat;
-        mod E_Moat_wrapping;
-        mod E_Notebook;
-        mod E_Notebook_input;
-        mod E_PacTakahashi_;
-        mod E_Packing_Potatoes;
-        mod E_Prefix_Equality;
-        mod E_Prerequisites;
-        mod E_Product_Development;
-        mod E_Putting_Candies;
-        mod E_Queen_on_Grid;
-        mod E_Ranges_on_Tree;
-        mod E_Red_and_Blue_Tree;
-        mod E_Revenge_of_The_Salary_of_AtCoder_Inc;
-        mod E_Revenge_of_The_Salary_of_AtCoder_Inc_modint;
-        mod E_Road_Reduction;
-        mod E_Roaming;
-        mod E_Rook_Path;
-        mod E_Rook_Path_pow;
-        mod E_Rotate_and_Flip;
-        mod E_Sequence_Decomposing;
-        mod E_Sequence_Decomposing_re;
-        mod E_Sequence_Matching;
-        mod E_Skiing;
-        mod E_Small_d_and_k;
-        mod E_Sorting_Queries;
-        mod E_Souvenir;
-        mod E_Strings_of_Impurity;
-        mod E_Stronger_Takahashi;
-        mod E_Sugoroku_4;
-        mod E_Sugoroku_4_modint;
-        mod E_Swap_Places;
-        mod E_Takahashi_and_Animals;
-        mod E_Takahashis_Anguish;
-        mod E_Third_Avenue;
-        mod E_Through_Path;
-        mod E_Throwing_the_Die;
-        mod E_Transformable_Teacher;
-        mod E_Transition_Game;
-        mod E_Transitivity;
-        mod E_Traveler;
-        mod E_Traveling_Salesman_among_Aerial_Cities;
-        mod E_Unfair_Sugoroku;
-        mod E_Unfair_Sugoroku_mem;
-        mod E_Virus_Tree_2;
-        mod E_Warp;
-        mod E_Warp_new;
-        mod E_Who_Says_a_Pun;
-        mod E_Who_Says_a_Pun_Trie;
-        mod E_Work_or_Rest;
-        mod E_Wrapping_Chocolate;
-        mod E_Xor_Distances;
+    mod abc021 {
+        mod C_正直者の高橋くん;
+        mod D_多重ループ;
+        mod D_多重ループ_modint;
     }
-    mod F {
-        mod F_ABCBAC;
-        mod F_Beautiful_Path;
-        mod F_Box_in_Box;
-        mod F_Cans_and_Openers;
-        mod F_Dungeon_Explore;
-        mod F_Endless_Walk;
-        mod F_Knapsack_for_All_Subsets;
-        mod F_Max_Sum_Counting;
-        mod F_Merge_Sets;
-        mod F_More_Holidays;
-        mod F_Playing_Tag_on_Tree;
-        mod F_Programming_Contest;
-        mod F_Programming_Contest_vec;
-        mod F_Push_and_Carry;
-        mod F_Range_Set_Query;
-        mod F_Range_Xor_Query;
-        mod F_Range_Xor_Query_SegTree_Monoid;
-        mod F_Range_Xor_Query_Segtree;
-        mod F_Regular_Triangle_Inside_a_Rectangle;
-        mod F_Sensor_Optimization_Dilemma_;
-        mod F_Shiritori;
-        mod F_Substring_of_Sorted_String;
-        mod F_Teleporter_and_Closed_off;
-        mod F_Vacation_Query;
-        mod F_Vouchers;
-        mod F_Welldefined_Path_Queries_on_a_Namori;
+    mod abc022 {
+        mod C_Blue_Bird;
     }
-    mod G {
-        mod G_Triple_Index;
+    mod abc024 {
+        mod C_民族大移動;
     }
-}
-mod agc_training {
-    mod A {
-        mod A_Colorful_Slimes_2;
-        mod A_Getting_Difference;
-        mod A_ZeroSum_Ranges;
+    mod abc028 {
+        mod A_テスト評価;
+        mod B_文字数カウント;
     }
-    mod B {
-        mod B_Bowling;
-        mod B_Find_Symmetries;
-        mod B_Reversi;
+    mod abc029 {
+        mod D_1;
     }
-    mod C {
-        mod C_Knot_Puzzle;
+    mod abc031 {
+        mod A_ゲーム;
     }
-}
-mod arc_training {
-    mod A {
-        mod A_119_x_2_23_1;
-        mod A_B_eq_C;
-        mod A_Continuous_1;
-        mod A_Fourtune_Cookies;
-        mod A_God_Sequence;
-        mod A_Make_10;
-        mod A_Make_M;
-        mod A_Make_M_intro_select;
-        mod A_Max_Mod_Min;
-        mod A_Right_String;
-        mod A_Simple_Math;
-        mod A_Sum_and_Product;
-        mod A_Tax_Included_Price;
-        mod A_Three_Integers;
-        mod A_Two_Choices;
-        mod A_mod_M;
-        mod A_ゾロ目数;
-        mod A_週末;
-        mod C_2D_Plane_2N_Points;
-        mod C_Be_Together;
-        mod C_Candles;
-        mod C_Cat_Snuke_and_a_Voyage;
-        mod C_Kth_Substring;
-        mod C_Kth_Substring_Trie;
-        mod C_Linear_Approximation;
-        mod C_Linear_Approximation_intro_select;
+    mod abc032 {
+        mod D_ナップサック問題;
+    }
+    mod abc034 {
+        mod D_食塩水;
+    }
+    mod abc035 {
+        mod D_トレジャーハント;
+    }
+    mod abc036 {
+        mod C_座圧;
+    }
+    mod abc039 {
+        mod C_ピアニスト高橋君;
+    }
+    mod abc041 {
+        mod C_背の順;
+    }
+    mod abc043 {
+        mod D_Unbalanced;
+    }
+    mod abc045 {
         mod C_Many_Formulas;
-        mod C_Reconciled;
-        mod C_Sentou;
-        mod C_Sequence;
-        mod C_Snuke_Festival;
-        mod C_Splitting_Pile;
     }
-    mod B {
-        mod B_A_lt_AP;
-        mod B_AtCoderでじゃんけんを;
-        mod B_Counting_Grids;
-        mod B_Crossfree_Matching;
-        mod B_Electric_Board;
-        mod B_Grid_Rotations;
-        mod B_Many_110;
-        mod B_Many_110_re;
-        mod B_New_Place;
-        mod B_Plus_and_AND;
-        mod B_Reversible_Cards;
-        mod B_Reversible_Cards_ans;
-        mod B_Special_Subsets;
-        mod B_Swap_to_Sort;
-        mod B_Village_of_M_People;
-        mod B_Your_Numbers_are_XORed;
-        mod B_dp;
-        mod B_ツリーグラフ;
-        mod B_ムーアの法則;
-        mod B_互除法;
-        mod B_円錐;
-        mod B_回文分割;
-        mod B_格子点と整数;
-        mod B_赤と黒の木;
-        mod D_11;
-        mod D_An_Invisible_Hand;
+    mod abc046 {
+        mod B_Painting_Balls_with_AtCoDeer;
         mod D_AtCoDeer_and_RockPaper;
         mod D_AtCoDeer_and_RockPaper_ans;
-        mod D_Decrease_Contestant_ver;
-        mod D_Derangement;
-        mod D_Equals;
-        mod D_FT_Robot;
-        mod D_Fennec_VS_Snuke;
+    }
+    mod abc047 {
+        mod D_An_Invisible_Hand;
+    }
+    mod abc051 {
+        mod D_Candidates_of_No_Shortest_Paths;
+    }
+    mod abc055 {
         mod D_Menagerie;
-        mod D_Nondecreasing;
-        mod D_People_on_a_Line;
-        mod D_Remainder_Reminder;
+    }
+    mod abc059 {
+        mod C_Sequence;
+    }
+    mod abc060 {
+        mod B_Choose_Integers;
+        mod C_Sentou;
         mod D_Simple_Knapsack;
-        mod D_Two_Sequences;
-        mod D_Unbalanced;
+    }
+    mod abc063 {
+        mod B_Varied;
         mod D_Widespread;
+    }
+    mod abc065 {
+        mod C_Reconciled;
+    }
+    mod abc066 {
+        mod D_11;
+    }
+    mod abc067 {
+        mod C_Splitting_Pile;
+        mod D_Fennec_VS_Snuke;
+    }
+    mod abc068 {
+        mod C_Cat_Snuke_and_a_Voyage;
+        mod D_Decrease_Contestant_ver;
+    }
+    mod abc072 {
+        mod D_Derangement;
+    }
+    mod abc073 {
+        mod D_joisinos_travel;
+    }
+    mod abc075 {
+        mod D_AxisParallel_Rectangle;
+    }
+    mod abc077 {
+        mod C_Snuke_Festival;
+    }
+    mod abc079 {
+        mod D_Wall;
+    }
+    mod abc080 {
+        mod C_Shopping_Street;
+        mod D_Recording;
+    }
+    mod abc081 {
+        mod D_Nondecreasing;
+    }
+    mod abc082 {
+        mod D_FT_Robot;
+    }
+    mod abc084 {
+        mod D_2017like_Number;
+    }
+    mod abc087 {
+        mod D_People_on_a_Line;
+    }
+    mod abc089 {
+        mod C_March;
+        mod D_Practical_Skill_Test;
+    }
+    mod abc090 {
+        mod D_Remainder_Reminder;
+    }
+    mod abc091 {
+        mod C_2D_Plane_2N_Points;
+        mod D_Two_Sequences;
+    }
+    mod abc097 {
+        mod C_Kth_Substring;
+        mod C_Kth_Substring_Trie;
+        mod D_Equals;
+    }
+    mod abc098 {
         mod D_Xor_Sum_2;
         mod D_Xor_Sum_2_re;
     }
-    mod C {
-        mod C_ARC_Wrecker_2;
-        mod C_Tree_Queries;
-        mod C_Z塗り;
-        mod C_ℕ_Coloring;
+    mod abc099 {
+        mod D_Good_Grid;
+    }
+    mod abc100 {
+        mod D_Patisserie_ABC;
+    }
+    mod abc102 {
+        mod C_Linear_Approximation;
+        mod C_Linear_Approximation_intro_select;
+    }
+    mod abc104 {
+        mod C_All_Green;
+    }
+    mod abc105 {
+        mod D_Candy_Distribution;
+    }
+    mod abc106 {
+        mod D_AtCoder_Express_2;
+    }
+    mod abc107 {
+        mod C_Candles;
+    }
+    mod abc110 {
+        mod C_String_Transformation;
+    }
+    mod abc112 {
+        mod C_Pyramid;
+    }
+    mod abc114 {
+        mod D_756;
+        mod D_756_re;
+    }
+    mod abc115 {
+        mod D_Christmas;
+    }
+    mod abc117 {
+        mod D_XXOR;
+    }
+    mod abc119 {
+        mod D_Lazy_Faith;
+    }
+    mod abc120 {
+        mod D_Decayed_Bridges;
+    }
+    mod abc122 {
+        mod D_We_Like_AGC;
+        mod D_We_Like_AGC_umekomi;
+    }
+    mod abc123 {
+        mod C_Five_Transportations;
+        mod D_Cake_123;
+        mod D_Cake_123_ans;
+        mod D_Cake_123_ans2;
+    }
+    mod abc125 {
+        mod C_GCD_on_Blackboard;
+        mod C_GCD_on_Blackboard_SegTree;
+    }
+    mod abc126 {
+        mod C_Dice_and_Coin;
+        mod E_1_or_2;
+    }
+    mod abc128 {
+        mod D_equeue;
+    }
+    mod abc129 {
+        mod D_Lamp;
+        mod D_Lamp_re;
+    }
+    mod abc131 {
+        mod E_Friendships;
+    }
+    mod abc133 {
+        mod E_Virus_Tree_2;
+    }
+    mod abc134 {
+        mod E_Sequence_Decomposing;
+        mod E_Sequence_Decomposing_re;
+    }
+    mod abc135 {
+        mod D_Digits_Parade;
+    }
+    mod abc137 {
+        mod B_One_Clue;
+        mod C_Green_Bin;
+        mod C_Green_Bin_trie;
+        mod D_Summer_Vacation;
+        mod D_Summer_Vacation_20230506;
+    }
+    mod abc138 {
+        mod E_Strings_of_Impurity;
+    }
+    mod abc139 {
+        mod E_League;
+    }
+    mod abc140 {
+        mod D_Face_Produces_Unhappiness;
+    }
+    mod abc141 {
+        mod E_Who_Says_a_Pun;
+        mod E_Who_Says_a_Pun_Trie;
+    }
+    mod abc142 {
+        mod D_Disjoint_Set_of_Common_Divisors;
+    }
+    mod abc143 {
+        mod D_Triangles;
+        mod D_Triangles_new;
+    }
+    mod abc144 {
+        mod E_Gluttony;
+    }
+    mod abc145 {
+        mod D_Knight;
+        mod E_Allyoucaneat;
+    }
+    mod abc146 {
+        mod C_Buy_an_Integer;
+        mod D_Coloring_Edges_on_Tree;
+    }
+    mod abc147 {
+        mod D_Xor_Sum_4;
+    }
+    mod abc148 {
+        mod F_Playing_Tag_on_Tree;
+    }
+    mod abc150 {
+        mod D_Semi_Common_Multiple;
+    }
+    mod abc151 {
+        mod E_MaxMin_Sums;
+        mod E_MaxMin_Sums_inv;
+    }
+    mod abc152 {
+        mod A_AC_or_WA;
+        mod C_Low_Elements;
+        mod C_Low_Elements_BIT;
+        mod D_Handstand_2;
+        mod E_Flatten;
+    }
+    mod abc154 {
+        mod C_Distinct_or_Not;
+    }
+    mod abc155 {
+        mod C_Poll;
+        mod C_Poll_SplayTree;
+        mod C_Poll_Trie;
+        mod D_Pairs;
+    }
+    mod abc156 {
+        mod E_Roaming;
+    }
+    mod abc159 {
+        mod E_Dividing_Chocolate;
+    }
+    mod abc160 {
+        mod A_Coffee;
+        mod C_Traveling_Salesman_around_Lake;
+        mod D_Line;
+    }
+    mod abc161 {
+        mod D_Lunlun_Number;
+        mod D_Lunlun_Number_DFS;
+    }
+    mod abc163 {
+        mod A_Circle_Pond;
+        mod C_management;
+    }
+    mod abc165 {
+        mod C_Many_Requirements;
+    }
+    mod abc166 {
+        mod A_A_C;
+    }
+    mod abc167 {
+        mod D_Teleporter;
+        mod E_Colorful_Blocks;
+    }
+    mod abc168 {
+        mod A_Therefore;
+    }
+    mod abc169 {
+        mod A_Multiplication_1;
+        mod B_Multiplication_2;
+        mod C_Multiplication_3;
+        mod E_Count_Median;
+        mod F_Knapsack_for_All_Subsets;
+    }
+    mod abc170 {
+        mod A_Five_Variables;
+    }
+    mod abc171 {
+        mod A_αlphabet;
+        mod B_Mix_Juice;
+    }
+    mod abc174 {
+        mod A_Air_Conditioner;
+        mod B_Distance_;
+        mod E_Logs;
+        mod F_Range_Set_Query;
+    }
+    mod abc175 {
+        mod A_Rainy_Season;
+        mod B_Making_Triangle;
+        mod D_Moving_Piece;
+    }
+    mod abc176 {
+        mod A_Takoyaki;
+        mod B_Multiple_of_9;
+        mod C_Step;
+        mod E_Bomber;
+        mod E_Bomber_ans;
+    }
+    mod abc177 {
+        mod A_Dont_be_late;
+    }
+    mod abc178 {
+        mod C_Ubiquity;
+        mod E_Dist_Max;
+    }
+    mod abc179 {
+        mod A_Plural_Form;
+        mod C_A_x_B_plus_C;
+    }
+    mod abc180 {
+        mod B_Various_distances;
+        mod B_Various_distances_for;
+        mod E_Traveling_Salesman_among_Aerial_Cities;
+    }
+    mod abc181 {
+        mod B_Trapezoid_Sum;
+        mod E_Transformable_Teacher;
+    }
+    mod abc182 {
+        mod A_twiblr;
+        mod B_Almost_GCD;
+    }
+    mod abc183 {
+        mod B_Billiards;
+        mod E_Queen_on_Grid;
+    }
+    mod abc184 {
+        mod B_Quizzes;
+        mod E_Third_Avenue;
+        mod F_Programming_Contest;
+        mod F_Programming_Contest_vec;
+    }
+    mod abc185 {
+        mod A_ABC_Preparation;
+        mod B_Smartphone_Addiction;
+        mod E_Sequence_Matching;
+        mod F_Range_Xor_Query;
+        mod F_Range_Xor_Query_SegTree_Monoid;
+        mod F_Range_Xor_Query_Segtree;
+    }
+    mod abc186 {
+        mod A_Brick;
+        mod B_Blocks_on_Grid;
+    }
+    mod abc187 {
+        mod A_Large_Digits;
+        mod B_Gentle_Pairs;
+        mod E_Through_Path;
+    }
+    mod abc188 {
+        mod B_Orthogonality;
+        mod C_ABC_Tournament;
+        mod D_Snuke_Prime;
+    }
+    mod abc189 {
+        mod A_Slot;
+        mod B_Alcoholic;
+        mod E_Rotate_and_Flip;
+    }
+    mod abc190 {
+        mod A_Very_Very_Primitive_Game;
+        mod B_Magic_3;
+        mod D_Staircase_Sequences;
+        mod E_Magical_Ornament;
+    }
+    mod abc191 {
+        mod E_Come_Back_Quickly;
+    }
+    mod abc192 {
+        mod B_uNrEaDaBlE_sTrInG;
+        mod D_Base_n;
+    }
+    mod abc193 {
+        mod A_Discount;
+        mod B_Play_Snuke;
+        mod C_Unexpressed;
+    }
+    mod abc194 {
+        mod B_Job_Assignment;
+    }
+    mod abc197 {
+        mod E_Traveler;
+    }
+    mod abc199 {
+        mod B_Intersection;
+    }
+    mod abc201 {
+        mod D_Game_in_Momotetsu_World;
+        mod E_Xor_Distances;
+    }
+    mod abc206 {
+        mod B_Savings;
+    }
+    mod abc207 {
+        mod C_Many_Segments;
+    }
+    mod abc210 {
+        mod D_National_Railway;
+    }
+    mod abc211 {
+        mod C_chokudai;
+        mod D_Number_of_Shortest_paths;
+    }
+    mod abc213 {
+        mod E_Stronger_Takahashi;
+    }
+    mod abc214 {
+        mod A_New_Generation_ABC;
+    }
+    mod abc215 {
+        mod E_Chain_Contestant;
+    }
+    mod abc216 {
+        mod E_Amusement_Park;
+        mod F_Max_Sum_Counting;
+    }
+    mod abc217 {
+        mod D_Cutting_Woods;
+        mod D_Cutting_Woods_BST;
+        mod D_Cutting_Woods_Treap;
+        mod E_Sorting_Queries;
+    }
+    mod abc219 {
+        mod D_Strange_Lunchbox;
+        mod E_Moat;
+        mod E_Moat_wrapping;
+    }
+    mod abc220 {
+        mod E_Distance_on_Large_Perfect_Binary_Tree;
+    }
+    mod abc221 {
+        mod D_Online_games;
+        mod D_Online_games_ans;
+        mod E_LEQ;
+    }
+    mod abc222 {
+        mod E_Red_and_Blue_Tree;
+    }
+    mod abc229 {
+        mod E_Graph_Destruction;
+    }
+    mod abc230 {
+        mod E_Fraction_Floor_Sum;
+        mod E_Fraction_Floor_Sum_ans;
+    }
+    mod abc232 {
+        mod E_Rook_Path;
+        mod E_Rook_Path_pow;
+    }
+    mod abc234 {
+        mod D_Prefix_Kth_Max;
+    }
+    mod abc235 {
+        mod C_The_Kth_Time_Query;
+    }
+    mod abc237 {
+        mod D_LR_insertion;
+        mod E_Skiing;
+    }
+    mod abc240 {
+        mod E_Ranges_on_Tree;
+    }
+    mod abc241 {
+        mod E_Putting_Candies;
+    }
+    mod abc242 {
+        mod E_AxA;
+    }
+    mod abc243 {
+        mod D_Moves_on_Binary_Tree;
+        mod E_Edge_Deletion;
+    }
+    mod abc244 {
+        mod E_King_Bombee;
+    }
+    mod abc245 {
+        mod D_Polynomial_division;
+        mod E_Wrapping_Chocolate;
+        mod F_Endless_Walk;
+    }
+    mod abc246 {
+        mod E_Bishop_2;
+    }
+    mod abc247 {
+        mod D_Cylinder;
+    }
+    mod abc248 {
+        mod C_Dice_Sum;
+    }
+    mod abc249 {
+        mod D_Index_Trio;
+    }
+    mod abc250 {
+        mod D_250like_Number;
+        mod E_Prefix_Equality;
+    }
+    mod abc251 {
+        mod E_Takahashi_and_Animals;
+    }
+    mod abc252 {
+        mod E_Road_Reduction;
+    }
+    mod abc253 {
+        mod E_Distance_Sequence;
+    }
+    mod abc254 {
+        mod E_Small_d_and_k;
+    }
+    mod abc255 {
+        mod E_Lucky_Numbers;
+    }
+    mod abc256 {
+        mod E_Takahashis_Anguish;
+    }
+    mod abc257 {
+        mod D_Jumping_Takahashi_2;
+        mod E_Addition_and_Multiplication_2;
+    }
+    mod abc258 {
+        mod E_Packing_Potatoes;
+    }
+    mod abc259 {
+        mod E_LCM_on_Whiteboard;
+    }
+    mod abc260 {
+        mod E_At_Least_One;
+    }
+    mod abc264 {
+        mod E_Blackout_2;
+    }
+    mod abc265 {
+        mod A_Apple;
+        mod E_Warp;
+        mod E_Warp_new;
+    }
+    mod abc266 {
+        mod B_Modulo_Number;
+        mod D_Snuke_Panic_1D;
+        mod E_Throwing_the_Die;
+        mod F_Welldefined_Path_Queries_on_a_Namori;
+    }
+    mod abc267 {
+        mod E_Erasing_Vertices_2;
+        mod E_Erasing_Vertices_2_binaryheap;
+    }
+    mod abc269 {
+        mod A_Anyway_Takahashi;
+        mod B_Rectangle_Detection;
+        mod C_Submask;
+        mod D_Do_use_hexagon_grid;
+        mod E_Last_Rook;
+    }
+    mod abc270 {
+        mod B_Hammer;
+        mod D_Stones;
+        mod E_Apple_Baskets_on_Circle;
+    }
+    mod abc272 {
+        mod B_Everyone_is_Friends;
+        mod C_Max_Even;
+        mod E_Add_and_Mex;
+    }
+    mod abc273 {
+        mod E_Notebook;
+        mod E_Notebook_input;
+    }
+    mod abc275 {
+        mod A_Find_Takahashi;
+        mod C_Counting_Squares;
+        mod D_Yet_Another_Recursive_Function;
+        mod E_Sugoroku_4;
+        mod E_Sugoroku_4_modint;
+    }
+    mod abc277 {
+        mod A_pow_neg1;
+        mod B_Playing_Cards_Validation;
+        mod C_Ladder_Takahashi;
+        mod D_Takahashis_Solitaire;
+        mod E_Crystal_Switches;
+    }
+    mod abc278 {
+        mod D_All_Assign_Point_Add;
+        mod F_Shiritori;
+    }
+    mod abc279 {
+        mod E_Cheating_Amidakuji;
+    }
+    mod abc280 {
+        mod D_Factorial_and_Multiple;
+        mod E_Critical_Hit;
+    }
+    mod abc281 {
+        mod B_Sandwich_Number;
+        mod C_Circular_Playlist;
+        mod D_Max_Multiple;
+        mod E_Least_Elements_SegTree;
+    }
+    mod abc282 {
+        mod D_Make_Bipartite_2;
+    }
+    mod abc283 {
+        mod D_Scope;
+    }
+    mod abc284 {
+        mod A_Sequence_of_Strings;
+        mod B_Multi_Test_Cases;
+        mod C_Count_Connected_Components;
+        mod D_Happy_New_Year_2023_;
+        mod E_Count_Simple_Paths;
+        mod F_ABCBAC;
+    }
+    mod abc285 {
+        mod E_Work_or_Rest;
+        mod F_Substring_of_Sorted_String;
+    }
+    mod abc286 {
+        mod A_Range_Swap;
+        mod C_Rotate_and_Palindrome;
+        mod D_Money_in_Hand;
+        mod E_Souvenir;
+    }
+    mod abc287 {
+        mod C_Path_Graph;
+        mod E_Karuta;
+    }
+    mod abc288 {
+        mod D_Range_Add_Query;
+    }
+    mod abc289 {
+        mod A_flip;
+        mod B_V;
+        mod C_Coverage;
+        mod D_Step_Up_Robot;
+        mod E_Swap_Places;
+    }
+    mod abc290 {
+        mod A_Contest_Result;
+        mod D_Marking;
+        mod E_Make_it_Palindrome;
+    }
+    mod abc291 {
+        mod D_Flip_Cards;
+        mod F_Teleporter_and_Closed_off;
+    }
+    mod abc292 {
+        mod B_Yellow_and_Red_Card;
+        mod C_Four_Variables;
+        mod D_Unicyclic_Components;
+        mod E_Transitivity;
+        mod F_Regular_Triangle_Inside_a_Rectangle;
+    }
+    mod abc293 {
+        mod A_Swap_Odd_and_Even;
+        mod B_Call_the_ID_Number;
+        mod C_Make_Takahashi_Happy_;
+        mod D_Tying_Rope;
+        mod E_Geometric_Progression;
+        mod E_Geometric_Progression_new;
+        mod G_Triple_Index;
+    }
+    mod abc294 {
+        mod A_Filter;
+        mod B_ASCII_Art;
+        mod C_Merge_Sequences;
+        mod D_Bank;
+        mod E_2xN_Grid;
+    }
+    mod abc295 {
+        mod D_Three_Days_Ago;
+        mod D_Three_Days_Ago_re;
+    }
+    mod abc296 {
+        mod D_M_eq_ab;
+        mod D_M_le_ab;
+        mod E_Transition_Game;
+    }
+    mod abc297 {
+        mod D_Count_Subtractions;
+        mod E_Kth_Takoyaki_Set;
+        mod E_Kth_Takoyaki_Set_binarysearch;
+    }
+    mod abc298 {
+        mod B_Coloring_Matrix;
+        mod C_Cards_Query_Problem;
+        mod D_Writing_a_Numeral;
+        mod E_Unfair_Sugoroku;
+        mod E_Unfair_Sugoroku_mem;
+    }
+    mod abc300 {
+        mod F_More_Holidays;
+    }
+    mod abc301 {
+        mod E_PacTakahashi_;
+    }
+    mod abc303 {
+        mod C_Dash;
+        mod C_Dash_BTreeSet;
+    }
+    mod abc304 {
+        mod E_Good_Graph;
+    }
+    mod abc305 {
+        mod E_Art_Gallery_on_Graph;
+        mod F_Dungeon_Explore;
+    }
+    mod abc306 {
+        mod E_Best_Performances;
+        mod F_Merge_Sets;
+    }
+    mod abc307 {
+        mod C_Ideal_Sheet;
+        mod E_Distinct_Adjacent;
+    }
+    mod abc308 {
+        mod D_Snuke_Maze;
+        mod F_Vouchers;
+    }
+    mod abc309 {
+        mod F_Box_in_Box;
+    }
+    mod abc310 {
+        mod D_Peaceful_Teams;
+    }
+    mod abc311 {
+        mod E_Defectfree_Squares;
+    }
+    mod abc312 {
+        mod D_Count_Bracket_Sequences;
+        mod F_Cans_and_Openers;
+    }
+    mod abc315 {
+        mod B_The_Middle_Day;
+        mod C_Flavors;
+        mod D_Magical_Cookies;
+        mod E_Prerequisites;
+    }
+    mod abc318 {
+        mod C_Blue_Spring;
+    }
+    mod abc320 {
+        mod A_Leyland_Number;
+    }
+    mod abc322 {
+        mod E_Product_Development;
+        mod F_Vacation_Query;
+    }
+    mod abc323 {
+        mod F_Push_and_Carry;
+    }
+    mod abc324 {
+        mod E_Joint_Two_Strings;
+        mod F_Beautiful_Path;
+    }
+    mod abc325 {
+        mod C_Sensors;
+        mod D_Printing_Machine;
+        mod F_Sensor_Optimization_Dilemma_;
+    }
+    mod abc326 {
+        mod E_Revenge_of_The_Salary_of_AtCoder_Inc;
+        mod E_Revenge_of_The_Salary_of_AtCoder_Inc_modint;
+    }
+    mod abl {
+        mod C_Connect_Cities;
+        mod E_Replace_Digits;
+    }
+    mod acl1 {
+        mod A_Reachable_Towns;
+    }
+    mod agc002 {
+        mod C_Knot_Puzzle;
+    }
+    mod agc018 {
+        mod A_Getting_Difference;
+    }
+    mod agc023 {
+        mod A_ZeroSum_Ranges;
+        mod B_Find_Symmetries;
+    }
+    mod agc026 {
+        mod A_Colorful_Slimes_2;
+    }
+    mod agc031 {
+        mod B_Reversi;
+    }
+    mod agc051 {
+        mod B_Bowling;
+    }
+    mod aising2020 {
+        mod D_Anything_Goes_to_Zero;
+        mod D_Anything_Goes_to_Zero_popcount;
+    }
+    mod apg4b {
+        mod EX23_303;
+        mod EX23_303_SplayTree;
+    }
+    mod arc012 {
+        mod A_週末;
+    }
+    mod arc018 {
+        mod B_格子点と整数;
+    }
+    mod arc021 {
+        mod B_Your_Numbers_are_XORed;
+    }
+    mod arc024 {
+        mod B_赤と黒の木;
+    }
+    mod arc030 {
+        mod B_ツリーグラフ;
+    }
+    mod arc033 {
         mod C_データ構造;
+    }
+    mod arc040 {
+        mod C_Z塗り;
+    }
+    mod arc046 {
+        mod A_ゾロ目数;
+    }
+    mod arc048 {
+        mod B_AtCoderでじゃんけんを;
+    }
+    mod arc051 {
+        mod B_互除法;
+    }
+    mod arc052 {
+        mod B_円錐;
+    }
+    mod arc053 {
+        mod B_回文分割;
+    }
+    mod arc054 {
+        mod B_ムーアの法則;
+    }
+    mod arc059 {
+        mod C_Be_Together;
+    }
+    mod arc105 {
+        mod A_Fourtune_Cookies;
+    }
+    mod arc107 {
+        mod A_Simple_Math;
+    }
+    mod arc108 {
+        mod A_Sum_and_Product;
+    }
+    mod arc110 {
+        mod B_Many_110;
+        mod B_Many_110_re;
+    }
+    mod arc111 {
+        mod B_Reversible_Cards;
+        mod B_Reversible_Cards_ans;
+    }
+    mod arc112 {
+        mod A_B_eq_C;
+    }
+    mod arc114 {
+        mod B_Special_Subsets;
+    }
+    mod arc115 {
+        mod A_Two_Choices;
+        mod C_ℕ_Coloring;
+    }
+    mod arc117 {
+        mod A_God_Sequence;
+    }
+    mod arc118 {
+        mod A_Tax_Included_Price;
+        mod B_Village_of_M_People;
+    }
+    mod arc119 {
+        mod A_119_x_2_23_1;
+        mod B_Electric_Board;
+        mod C_ARC_Wrecker_2;
+    }
+    mod arc126 {
+        mod A_Make_10;
+        mod B_Crossfree_Matching;
+    }
+    mod arc140 {
+        mod A_Right_String;
+    }
+    mod arc142 {
+        mod C_Tree_Queries;
+    }
+    mod arc143 {
+        mod A_Three_Integers;
+        mod B_Counting_Grids;
+    }
+    mod arc146 {
+        mod B_Plus_and_AND;
+    }
+    mod arc147 {
+        mod A_Max_Mod_Min;
+        mod B_Swap_to_Sort;
+    }
+    mod arc148 {
+        mod A_mod_M;
+        mod B_dp;
+    }
+    mod arc150 {
+        mod A_Continuous_1;
+    }
+    mod arc151 {
+        mod B_A_lt_AP;
+    }
+    mod arc153 {
+        mod B_Grid_Rotations;
+    }
+    mod arc154 {
+        mod B_New_Place;
+    }
+    mod arc161 {
+        mod A_Make_M;
+        mod A_Make_M_intro_select;
+    }
+    mod atc001 {
+        mod A_深さ優先探索;
+        mod B_Union_Find;
+        mod B_Union_Find_lib;
+    }
+    mod atc002 {
+        mod A_幅優先探索;
+    }
+    mod code-festival-2014-final {
+        mod C_N進数;
+    }
+    mod code-festival-2015-morning-easy {
+        mod A_ヘイホー君と加算;
+        mod D_ヘイホー君と削除;
+    }
+    mod code-festival-2015-morning-middle {
+        mod C_一次元オセロ;
+    }
+    mod code-festival-2017-quala {
+        mod B_fLIP;
+    }
+    mod code-festival-2017-qualb {
+        mod B_Problem_Set;
+    }
+    mod code-festival-2017-qualc {
+        mod C_Inserting_x;
+    }
+    mod diverta2019-2 {
+        mod B_Picking_Up;
+        mod C_Successive_Subtraction;
+    }
+    mod dp {
+        mod F_LCS;
+        mod I_Coins;
+        mod J_Sushi;
+        mod K_Stones;
+        mod L_Deque;
+        mod M_Candies;
+        mod N_Slimes;
+        mod O_Matching;
+        mod P_Independent_Set;
+        mod P_Independent_Set_abstract;
+        mod P_Independent_Set_re;
+        mod Q_Flowers;
+        mod R_Walk;
+        mod T_Permutation;
+        mod U_Grouping;
+        mod V_Subtree;
+        mod V_Subtree_abstract;
+    }
+    mod hhkb2020 {
+        mod E_Lamps;
+        mod E_Lamps_re;
+    }
+    mod panasonic2020 {
+        mod C_Sqrt_Inequality;
+    }
+    mod practice {
+        mod B_Interactive_Sorting_partial;
+    }
+    mod practice2 {
+        mod G_SCC;
+        mod G_SCC_lib;
+    }
+    mod soundhound2018-summer-qual {
+        mod C_Ordinary_Beauty;
+    }
+    mod tdpc {
+        mod N_木;
+    }
+    mod tenka1-2015-qualb {
+        mod B_天下一リテラル;
+    }
+    mod tenka1-2018 {
+        mod D_Crossing;
+    }
+    mod tokiomarine2020 {
+        mod C_Lamps;
+    }
+    mod typical-algorithm {
+        mod A_二分探索の練習問題;
+        mod B_区間スケジューリング問題;
+        mod D_単一始点最短経路問題;
+        mod E_全点対最短経路問題;
+    }
+    mod typical90 {
+        mod _004_Cross_Sum;
+        mod _029_Long_Bricks;
+        mod _036_Max_Manhattan_Distance;
+        mod _066_Various_Arrays;
+        mod _068_Paired_Information;
+        mod _073_We_Need_Both_a_and_b;
+        mod _081_Friendly_Group;
+        mod _081_Friendly_Group_ans;
+        mod _086_Snukes_Favorite_Arrays;
+        mod _087_Chokudais_Demand;
+    }
+    mod zone2021 {
+        mod C_MAD_TEAM;
     }
 }
 mod learn_algorithm {
@@ -954,16 +1496,4 @@ mod learn_algorithm {
         mod modinv_non_rec;
     }
     mod generate_combination;
-}
-mod typical90 {
-    mod _004_Cross_Sum;
-    mod _029_Long_Bricks;
-    mod _036_Max_Manhattan_Distance;
-    mod _066_Various_Arrays;
-    mod _068_Paired_Information;
-    mod _073_We_Need_Both_a_and_b;
-    mod _081_Friendly_Group;
-    mod _081_Friendly_Group_ans;
-    mod _086_Snukes_Favorite_Arrays;
-    mod _087_Chokudais_Demand;
 }
