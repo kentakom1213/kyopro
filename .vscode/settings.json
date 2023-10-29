@@ -7,7 +7,7 @@
         ".kyopuro/": true,
         ".devcontainer/": false,
         ".vscode/": false,
-        
+        "target/": true,
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
