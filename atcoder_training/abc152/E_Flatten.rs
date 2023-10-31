@@ -11,6 +11,7 @@
 #![allow(dead_code)]
 #![allow(unused_macros)]
 
+
 // imports
 // https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e
 use std::cmp::{max, min, Reverse};

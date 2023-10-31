@@ -13,9 +13,17 @@
 
 // imports
 use itertools::Itertools;
+use superslice::Ext;
 use std::cmp::{max, min, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
 use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+
+macro_rules! debug {
+    ( $($val:expr),* $(,)* ) => {{
+        #[cfg(debug_assertions)]
+        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
+    }};
+}
 
 // constant
 const MOD1: usize = 1_000_000_007;
@@ -29,24 +37,26 @@ fn main() {
     input! {
         N: usize,
         K: usize,
-        A: [usize; N]
+        mut A: [usize; N]
     }
 
-    let mut que = BinaryHeap::new();
-    que.push(Reverse(0));
-    let mut ans = vec![INF; K + 2];
+    // ダイクストラ法
+    let mut dist = vec![INF; K + 1];
 
-    for i in 1..=K+1 {
-        let Reverse(mut cur) = que.pop().unwrap();
-        while ans[i-1] == cur {
-            cur = que.pop().unwrap().0;
+    let mut pq = BinaryHeap::new();
+    pq.push(Reverse(0));
+
+    for k in 0..=K {
+        while k > 0 && pq.peek().unwrap().0 == dist[k - 1] {
+            pq.pop();
         }
-        ans[i] = cur;
+        // k番目の値を確定させる
+        dist[k] = pq.pop().unwrap().0;
+        // 新たな最小値を探索する
         for &a in &A {
-            let nxt = cur + a;
-            que.push(Reverse(nxt));
+            pq.push(Reverse(dist[k] + a));
         }
     }
 
-    println!("{}", ans[K+1]);
+    println!("{}", dist[K]);
 }
