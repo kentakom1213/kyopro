@@ -49,7 +49,9 @@
         "./Cargo.toml",
         "./atcoder_training/abc082/Cargo.toml",
         "./atcoder_training/abc297/Cargo.toml",
-        "./atcoder_training/abc241/Cargo.toml"
+        "./atcoder_training/abc241/Cargo.toml",
+        "./atcoder_training/joi2008ho/Cargo.toml",
+        "./atcoder_training/abc170/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,

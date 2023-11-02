@@ -425,9 +425,6 @@ mod atcoder_training {
     mod abc081 {
         mod D_Nondecreasing;
     }
-    mod abc082 {
-        mod D_FT_Robot;
-    }
     mod abc084 {
         mod D_2017like_Number;
     }
@@ -644,6 +641,7 @@ mod atcoder_training {
     }
     mod abc170 {
         mod A_Five_Variables;
+        mod E_Smart_Infants;
     }
     mod abc171 {
         mod A_αlphabet;
@@ -822,9 +820,6 @@ mod atcoder_training {
     }
     mod abc240 {
         mod E_Ranges_on_Tree;
-    }
-    mod abc241 {
-        mod E_Putting_Candies;
     }
     mod abc242 {
         mod E_AxA;
