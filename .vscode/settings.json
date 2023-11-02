@@ -18,7 +18,7 @@
     // "files.defaultLanguage": "python",
     "files.autoSaveDelay": 1000,
     // ファイルの終了時に行末のスペース削除
-    "files.trimTrailingWhitespace": true,
+    // "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     // "python.linting.lintOnSave": true,
     //Tabをスペースキーとして変換
@@ -41,18 +41,8 @@
     // Rust
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml",
-        // "./atcoder_training/abc082/Cargo.toml",
-        // "./atcoder_training/abc297/Cargo.toml",
-        // "./atcoder_training/abc241/Cargo.toml",
-        // "./atcoder_training/joi2008ho/Cargo.toml",
-        // "./atcoder_training/abc170/Cargo.toml",
-        // "./atcoder_training/abc179/Cargo.toml",
-        // "./atcoder_training/abc030/Cargo.toml",
-        // "./atcoder_training/abc030/Cargo.toml",
-        // "./virtual_contest/4aa0347f-2081-47ef-a459-e9ee82768539/Cargo.toml",
-        // "./virtual_contest/2a1dc6a7-e0dc-40ac-9cd5-ca7188eaed16/Cargo.toml",
-        // "./virtual_contest/2a1dc6a7-e0dc-40ac-9cd5-ca7188eaed16/Cargo.toml",
-        "./atcoder_training/abc022/Cargo.toml"
+        "./atcoder_training/abc022/Cargo.toml",
+        "./atcoder_training/abc236/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,
