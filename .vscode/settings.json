@@ -40,7 +40,6 @@
         "*test.py"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": true,
     "python.analysis.inlayHints.functionReturnTypes": false,
     "python.analysis.inlayHints.variableTypes": false,
@@ -55,8 +54,13 @@
         "./atcoder_training/abc179/Cargo.toml",
         "./atcoder_training/abc030/Cargo.toml",
         "./atcoder_training/abc030/Cargo.toml",
-        "./virtual_contest/4aa0347f-2081-47ef-a459-e9ee82768539/Cargo.toml"
+        "./virtual_contest/4aa0347f-2081-47ef-a459-e9ee82768539/Cargo.toml",
+        "./virtual_contest/2a1dc6a7-e0dc-40ac-9cd5-ca7188eaed16/Cargo.toml",
+        "./virtual_contest/2a1dc6a7-e0dc-40ac-9cd5-ca7188eaed16/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,
+    "rust-analyzer.diagnostics.disabled": [
+        "unresolved-proc-macro",
+    ]
 }
