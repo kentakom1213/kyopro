@@ -41,7 +41,10 @@
     // Rust
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml",
-        "./atcoder_training/abc188/Cargo.toml"
+        "./atcoder_training/abc188/Cargo.toml",
+        "./atcoder_training/sumitrust2019/Cargo.toml",
+        "./atcoder_training/abc208/Cargo.toml",
+        "./atcoder_training/typical90/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,
