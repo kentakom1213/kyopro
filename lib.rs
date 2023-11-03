@@ -61,231 +61,6 @@ mod Sakumon {
         mod main;
     }
 }
-mod VirtualContest {
-    mod Green5 {
-        mod A_Darker_and_darker;
-        mod D_Katana_Thrower;
-        mod D_NotDivisible;
-    }
-    mod Mayo20230302 {
-        mod _5;
-    }
-    mod Mayo20230506 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-    mod Mayo20230510 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-        mod _6;
-    }
-    mod Mayo20230511 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-    mod Mayo20230517 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-        mod _5_namori;
-    }
-    mod Mayo20230613 {
-        mod _1;
-    }
-    mod Mayo20230711 {
-        mod _1;
-        mod _2;
-    }
-    mod NUCODER {
-        mod nucoder20230523 {
-            mod A;
-            mod B;
-            mod C;
-            mod D;
-        }
-        mod nucoder20230601 {
-            mod _3;
-            mod _4;
-            mod _5;
-        }
-        mod nucoder20231012 {
-            mod _4;
-            mod _5;
-            mod _6;
-        }
-        mod nucoder20231025 {
-            mod B;
-            mod C;
-            mod C_50;
-        }
-    }
-    mod _20221104 {
-        mod _2;
-        mod _3;
-        mod _5;
-    }
-    mod asakatsu {
-        mod asa20221006 {
-            mod B_Resale;
-            mod _2;
-            mod _3;
-        }
-        mod asa20221010 {
-            mod _2;
-            mod _3;
-            mod _4;
-        }
-        mod asa20221019 {
-            mod _1;
-            mod _2;
-            mod _3;
-            mod _4;
-        }
-        mod asa20221020 {
-            mod _5;
-        }
-        mod asa20221022 {
-            mod _2;
-            mod _3;
-            mod _4;
-        }
-        mod asa20221024 {
-            mod _2;
-            mod _3;
-            mod _4;
-            mod _5;
-        }
-        mod asa20221027 {
-            mod _1;
-            mod _2;
-            mod _3;
-            mod _4;
-        }
-        mod asa20221031 {
-            mod _1;
-            mod _2;
-        }
-        mod asa20221102 {
-            mod B_Similar_Arrays;
-            mod _4;
-        }
-        mod asa20221119 {
-            mod C_SecretNumber;
-            mod E_Destruction;
-        }
-        mod asa20221123 {
-            mod _1;
-            mod _3;
-            mod _4;
-        }
-        mod asa20221126 {
-            mod _4_E_Coprime;
-            mod _5_Xor_Sum_4;
-        }
-        mod asa20221128 {
-            mod _3;
-        }
-        mod asa20221129 {
-            mod _4;
-        }
-        mod asa20221226 {
-            mod A;
-            mod B;
-            mod C;
-            mod D;
-            mod E;
-        }
-        mod asa20221229 {
-            mod _1;
-            mod _2;
-            mod _3;
-            mod _4;
-            mod _5;
-        }
-        mod asa20230112 {
-            mod _2;
-            mod _3;
-            mod _4;
-            mod _5;
-        }
-        mod asa20230310 {
-            mod _2;
-            mod _3;
-            mod _4;
-        }
-        mod asa20230507 {
-            mod _1;
-            mod _2;
-            mod _3;
-            mod _4;
-            mod _5;
-        }
-        mod asa20230603 {
-            mod _5;
-        }
-        mod asa20230606 {
-            mod _3;
-            mod _4;
-            mod _5;
-        }
-        mod asa20230723 {
-            mod _1;
-            mod _3;
-            mod _4;
-        }
-    }
-    mod buri20230306 {
-        mod _2;
-        mod _3;
-    }
-    mod buri20230328 {
-        mod _3;
-        mod _4;
-    }
-    mod eoeo_3 {
-        mod C_ChocolateBar;
-        mod D_FriendSuggestions;
-        mod D_FriendSuggestions_re;
-        mod E_AppleBasketsOnCircle;
-    }
-    mod mosoon20230103 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-    mod mosoon20230107 {
-        mod _1;
-        mod _2;
-        mod _3;
-        mod _4;
-        mod _5;
-    }
-    mod mosoon20230424 {
-        mod A;
-        mod B;
-        mod C;
-        mod D;
-        mod E;
-    }
-    mod mosoon357 {
-        mod C;
-        mod D;
-        mod E;
-    }
-}
 mod atcoder_training {
     mod abc003 {
         mod A_AtCoder社の給料;
@@ -322,9 +97,6 @@ mod atcoder_training {
         mod C_正直者の高橋くん;
         mod D_多重ループ;
         mod D_多重ループ_modint;
-    }
-    mod abc022 {
-        mod C_Blue_Bird;
     }
     mod abc024 {
         mod C_民族大移動;
@@ -567,10 +339,6 @@ mod atcoder_training {
         mod D_Knight;
         mod E_Allyoucaneat;
     }
-    mod abc146 {
-        mod C_Buy_an_Integer;
-        mod D_Coloring_Edges_on_Tree;
-    }
     mod abc147 {
         mod D_Xor_Sum_4;
     }
@@ -639,10 +407,6 @@ mod atcoder_training {
         mod E_Count_Median;
         mod F_Knapsack_for_All_Subsets;
     }
-    mod abc170 {
-        mod A_Five_Variables;
-        mod E_Smart_Infants;
-    }
     mod abc171 {
         mod A_αlphabet;
         mod B_Mix_Juice;
@@ -671,10 +435,6 @@ mod atcoder_training {
     mod abc178 {
         mod C_Ubiquity;
         mod E_Dist_Max;
-    }
-    mod abc179 {
-        mod A_Plural_Form;
-        mod C_A_x_B_plus_C;
     }
     mod abc180 {
         mod B_Various_distances;
@@ -707,11 +467,6 @@ mod atcoder_training {
         mod A_Large_Digits;
         mod B_Gentle_Pairs;
         mod E_Through_Path;
-    }
-    mod abc188 {
-        mod B_Orthogonality;
-        mod C_ABC_Tournament;
-        mod D_Snuke_Prime;
     }
     mod abc189 {
         mod A_Slot;
@@ -860,9 +615,6 @@ mod atcoder_training {
     }
     mod abc253 {
         mod E_Distance_Sequence;
-    }
-    mod abc254 {
-        mod E_Small_d_and_k;
     }
     mod abc255 {
         mod E_Lucky_Numbers;
@@ -1477,4 +1229,227 @@ mod learn_algorithm {
         mod modinv_non_rec;
     }
     mod generate_combination;
+}
+mod virtual_contest {
+    mod Green5 {
+        mod A_Darker_and_darker;
+        mod D_Katana_Thrower;
+        mod D_NotDivisible;
+    }
+    mod Mayo20230302 {
+        mod _5;
+    }
+    mod Mayo20230506 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+    }
+    mod Mayo20230510 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+        mod _6;
+    }
+    mod Mayo20230511 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+    }
+    mod Mayo20230517 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+        mod _5_namori;
+    }
+    mod Mayo20230613 {
+        mod _1;
+    }
+    mod Mayo20230711 {
+        mod _1;
+        mod _2;
+    }
+    mod _20221104 {
+        mod _2;
+        mod _3;
+        mod _5;
+    }
+    mod asakatsu {
+        mod asa20221006 {
+            mod B_Resale;
+            mod _2;
+            mod _3;
+        }
+        mod asa20221010 {
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221019 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221020 {
+            mod _5;
+        }
+        mod asa20221022 {
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221024 {
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20221027 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221031 {
+            mod _1;
+            mod _2;
+        }
+        mod asa20221102 {
+            mod B_Similar_Arrays;
+            mod _4;
+        }
+        mod asa20221119 {
+            mod C_SecretNumber;
+            mod E_Destruction;
+        }
+        mod asa20221123 {
+            mod _1;
+            mod _3;
+            mod _4;
+        }
+        mod asa20221126 {
+            mod _4_E_Coprime;
+            mod _5_Xor_Sum_4;
+        }
+        mod asa20221128 {
+            mod _3;
+        }
+        mod asa20221129 {
+            mod _4;
+        }
+        mod asa20221226 {
+            mod A;
+            mod B;
+            mod C;
+            mod D;
+            mod E;
+        }
+        mod asa20221229 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230112 {
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230310 {
+            mod _2;
+            mod _3;
+            mod _4;
+        }
+        mod asa20230507 {
+            mod _1;
+            mod _2;
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230603 {
+            mod _5;
+        }
+        mod asa20230606 {
+            mod _3;
+            mod _4;
+            mod _5;
+        }
+        mod asa20230723 {
+            mod _1;
+            mod _3;
+            mod _4;
+        }
+    }
+    mod buri20230306 {
+        mod _2;
+        mod _3;
+    }
+    mod buri20230328 {
+        mod _3;
+        mod _4;
+    }
+    mod eoeo_3 {
+        mod C_ChocolateBar;
+        mod D_FriendSuggestions;
+        mod D_FriendSuggestions_re;
+        mod E_AppleBasketsOnCircle;
+    }
+    mod mosoon20230103 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+    }
+    mod mosoon20230107 {
+        mod _1;
+        mod _2;
+        mod _3;
+        mod _4;
+        mod _5;
+    }
+    mod mosoon20230424 {
+        mod A;
+        mod B;
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod mosoon357 {
+        mod C;
+        mod D;
+        mod E;
+    }
+    mod nucoder20230523 {
+        mod A;
+        mod B;
+        mod C;
+        mod D;
+    }
+    mod nucoder20230601 {
+        mod _3;
+        mod _4;
+        mod _5;
+    }
+    mod nucoder20231012 {
+        mod _4;
+        mod _5;
+        mod _6;
+    }
+    mod nucoder20231025 {
+        mod B;
+        mod C;
+        mod C_50;
+    }
 }
