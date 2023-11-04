@@ -6,6 +6,7 @@ mod AOJ {
     mod RMQ_and_RAQ;
     mod RMQ_and_RUQ;
     mod RSQ_and_RAQ;
+    mod RSQ_and_RUQ;
     mod Range_Add_Query;
     mod Range_Minimum_Query_RMQ;
     mod Range_Minimum_Query_RMQ_new;
@@ -1106,18 +1107,6 @@ mod atcoder_training {
         mod B_区間スケジューリング問題;
         mod D_単一始点最短経路問題;
         mod E_全点対最短経路問題;
-    }
-    mod typical90 {
-        mod _004_Cross_Sum;
-        mod _029_Long_Bricks;
-        mod _036_Max_Manhattan_Distance;
-        mod _066_Various_Arrays;
-        mod _068_Paired_Information;
-        mod _073_We_Need_Both_a_and_b;
-        mod _081_Friendly_Group;
-        mod _081_Friendly_Group_ans;
-        mod _086_Snukes_Favorite_Arrays;
-        mod _087_Chokudais_Demand;
     }
     mod zone2021 {
         mod C_MAD_TEAM;

@@ -1,7 +1,7 @@
-//               RMQ and RAQ               
+//               RSQ and RUQ               
 // ----------------------------------------
 // 問題
-// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
+// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I&lang=ja
 // ----------------------------------------
 
 // attributes
@@ -63,16 +63,16 @@ macro_rules! debug {
     }};
 }
 
-use std::{ops::{
+use std::ops::{
     Bound::{Excluded, Included, Unbounded},
     RangeBounds,
-}, fmt::Debug};
+};
 /// 作用付きモノイド
 pub trait ExtMonoid {
     /// 要素のデータ型
-    type X: Clone + PartialEq + Debug;
+    type X: Clone + PartialEq;
     /// 作用素のデータ型
-    type M: Clone + PartialEq + Debug;
+    type M: Clone + PartialEq;
     /// 要素Xの単位元
     const IX: Self::X;
     /// 作用素Mの単位元
@@ -118,7 +118,7 @@ impl<T: ExtMonoid> LazySegmentTree<T> {
     /// 遅延評価セグメント木を初期化する
     /// - `n`: 配列サイズ
     pub fn new(n: usize) -> Self {
-        let offset = n.next_power_of_two();
+        let offset = (n - 1).next_power_of_two();
         Self {
             size: n,
             offset,
@@ -267,9 +267,9 @@ pub mod Alg {
         type X = isize;
         type M = isize;
         const IM: Self::M = 0;
-        const IX: Self::X = 1 << 31;
+        const IX: Self::X = 0;
         fn operate_x(x: &Self::X, y: &Self::X) -> Self::X {
-            *x.min(y)
+            *x.max(y)
         }
         fn apply(x: &Self::X, y: &Self::M) -> Self::X {
             x + y
@@ -281,17 +281,41 @@ pub mod Alg {
             *x
         }
     }
+    /// ## RSQandRUQ
+    /// - 区間加算
+    /// - 区間和
+    #[derive(Debug)]
+    pub struct RSQandRUQ;
+    impl ExtMonoid for RSQandRUQ {
+        type X = isize;
+        type M = isize;
+        const IX: Self::X = 0;
+        const IM: Self::M = 1 << 31;
+        fn operate_x(x: &Self::X, y: &Self::X) -> Self::X {
+            x + y
+        }
+        fn apply(_x: &Self::X, y: &Self::M) -> Self::X {
+            *y
+        }
+        fn operate_m(_x: &Self::M, y: &Self::M) -> Self::M {
+            *y
+        }
+        fn aggregate(x: &Self::M, p: usize) -> Self::M {
+            x * p as isize
+        }
+    }
 }
+
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
 
 fn main() {
     let (N, Q) = get!(usize, usize);
 
-    let mut seg = LazySegmentTree::<Alg::RMQandRAQ>::new(N + 1);
-
-    // 初期化
-    for i in 0..N {
-        seg.apply_range(i..=i, -(1 << 31));
-    }
+    let mut seg = LazySegmentTree::<Alg::RSQandRUQ>::new(N + 1);
+    seg.apply_range(0..N, 0);
 
     for _ in 0..Q {
         let query = get!(isize;;);
@@ -312,11 +336,11 @@ fn main() {
         }
 
         if cfg!(debug_assertions) {
-            eprintln!("{:?}", &query);
             for i in 0..N {
-                print!("{} ", seg.get_range(i..=i));
+                eprint!("{} ", seg.get_range(i..=i));
             }
-            println!();
+            eprintln!();
         }
+        debug!(&seg);
     }
 }
