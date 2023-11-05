@@ -149,11 +149,6 @@ impl<T: Monoid> LazySegmentTree<T> {
     }
 }
 
-struct Vacation;
-impl Monoid for Vacation {
-    type X = ();
-}
-
 // constant
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;

@@ -288,20 +288,20 @@ pub mod Alg {
     pub struct RSQandRUQ;
     impl ExtMonoid for RSQandRUQ {
         type X = isize;
-        type M = isize;
+        type M = Option<isize>;
         const IX: Self::X = 0;
-        const IM: Self::M = 1 << 31;
+        const IM: Self::M = None;
         fn operate_x(x: &Self::X, y: &Self::X) -> Self::X {
             x + y
         }
-        fn apply(_x: &Self::X, y: &Self::M) -> Self::X {
-            *y
+        fn apply(x: &Self::X, y: &Self::M) -> Self::X {
+            y.unwrap()
         }
         fn operate_m(_x: &Self::M, y: &Self::M) -> Self::M {
             *y
         }
         fn aggregate(x: &Self::M, p: usize) -> Self::M {
-            x * p as isize
+            x.map(|x| x * p as isize)
         }
     }
 }
@@ -315,7 +315,7 @@ fn main() {
     let (N, Q) = get!(usize, usize);
 
     let mut seg = LazySegmentTree::<Alg::RSQandRUQ>::new(N + 1);
-    seg.apply_range(0..N, 0);
+    seg.apply_range(0..N, Some(0));
 
     for _ in 0..Q {
         let query = get!(isize;;);
@@ -324,7 +324,7 @@ fn main() {
             if let [s, t, x] = query[1..] {
                 let s = s as usize;
                 let t = t as usize;
-                seg.apply_range(s..=t, x);
+                seg.apply_range(s..=t, Some(x));
             }
         } else {
             if let [s, t] = query[1..] {
