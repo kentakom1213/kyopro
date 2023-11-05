@@ -15,6 +15,12 @@ mod AOJ {
     mod Range_Sum_Query_Sqrt;
     mod Range_Update_Query;
     mod Sliding_Minimum_Element;
+    mod The_Maximum_Number_of_Customers;
+    mod The_Maximum_Number_of_Overlaps;
+    mod The_Number_of_Windows;
+    mod The_Smallest_Window_I;
+    mod The_Smallest_Window_II;
+    mod Union_of_Rectangles;
     mod Weighted_Union_Find_Trees;
     mod 二分探索木I;
     mod 文字列検索;
