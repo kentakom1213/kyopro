@@ -31,7 +31,7 @@ src = '''
 
 // imports
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use proconio::{input, marker::{Chars, Bytes, Usize1}, fastout};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -118,7 +118,7 @@ either = "1.8.1"
 im-rc = "15.1.0"
 fixedbitset = "0.4.2"
 bitset-fixed = "0.1.0"
-proconio = "0.4.5"
+proconio = { version = "0.4.5", features = ["derive"] }
 text_io = "0.1.12"
 rustc-hash = "1.1.0"
 smallvec = "1.11.0"
