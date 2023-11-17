@@ -44,7 +44,9 @@
         "./atcoder_training/abc195/Cargo.toml",
         "./virtual_contest/40e996f6-3fcf-4a41-a9b7-3eda196af730/Cargo.toml",
         "./atcoder_training/abc273/Cargo.toml",
-        "./atcoder_training/abc298/Cargo.toml"
+        "./atcoder_training/abc298/Cargo.toml",
+        "./atcoder_training/abc235/Cargo.toml",
+        "./atcoder_training/abc210/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,
