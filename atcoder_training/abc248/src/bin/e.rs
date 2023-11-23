@@ -5,11 +5,8 @@
 #![allow(dead_code)]
 #![allow(unused_macros)]
 
-use std::collections::HashMap;
-
 // imports
 use itertools::Itertools;
-use num_integer::gcd;
 use proconio::{
     input,
     marker::{Bytes, Chars, Usize1},
@@ -29,76 +26,99 @@ fn main() {
         XY: [(isize, isize); N]
     }
 
-    // 点がK個以上重なっている場合，infinity
-    if XY
-        .iter()
-        .fold(HashMap::new(), |mut acc, &x| {
-            *acc.entry(x).or_insert(0) += 1;
-            acc
-        })
-        .values()
-        .any(|&v| v >= K)
-    {
+    if K == 1 {
         println!("Infinity");
         return;
     }
 
-    // 直線を列挙
-    let mut lines = HashMap::<(Frac, Frac), usize>::new();
+    let mut used = vec![vec![false; N]; N];
+    let mut ans = 0;
 
+    // 直線を全列挙
     for i in 0..N {
         for j in i + 1..N {
-            let (ax, ay) = XY[i];
-            let (bx, by) = XY[j];
-            let grad = Frac::new(ay - by, ax - bx);
-            let mut sect = Frac::new(ax * by - ay * bx, ax - bx);
-
-            if grad == Frac(0, 0) {
-                sect = Frac(ax, 1);
+            if used[i][j] {
+                continue;
             }
+            let (a, b) = (XY[i], XY[j]);
+            // 上に乗っている点をカウント
+            let colinear = (0..N).filter(|&x| is_on_line((a, b), XY[x])).collect_vec();
+            let cnt = colinear.len();
 
-            *lines.entry((grad, sect)).or_insert(0) += 1;
+            if cnt >= K {
+                ans += 1;
+            }
+            // 記録
+            for ii in 0..cnt {
+                for jj in ii + 1..cnt {
+                    used[colinear[ii]][colinear[jj]] = true;
+                }
+            }
         }
     }
-
-    debug!(lines);
-
-    // nC2の逆関数テーブル
-    let comb_inv = (1..400)
-        .map(|i| (i * (i - 1) / 2, i))
-        .collect::<HashMap<usize, usize>>();
-
-    // 何個の点が直線上を通ったかをカウント
-    let ans = lines.values().filter(|v| comb_inv[v] >= K).count();
 
     println!("{}", ans);
 }
 
-/// 分数
-#[derive(Debug, Hash, PartialEq, Eq)]
-pub struct Frac(isize, isize);
+const INF: usize = 1001001001001001001;
 
-impl Frac {
-    #[inline]
-    fn gcd(a: isize, b: isize) -> isize {
-        if b == 0 {
-            a
-        } else {
-            Self::gcd(b, a % b)
-        }
+use std::ops::{Add, Mul, Neg, Sub};
+pub type Pos<T> = (T, T);
+pub type Line<T> = (Pos<T>, Pos<T>);
+/// ベクトル演算を行う
+pub trait Vec2<T> {
+    fn mul(&self, scalar: T) -> Self;
+    fn add(&self, other: Self) -> Self;
+    fn sub(&self, other: Self) -> Self;
+    /// ドット積
+    fn dot(&self, other: Self) -> T;
+    /// クロス積
+    fn cross(&self, other: Self) -> T;
+    /// L2-ノルム（の2乗）
+    fn dist2(&self, other: Self) -> T;
+}
+impl<T> Vec2<T> for Pos<T>
+where
+    T: Copy + Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Neg,
+{
+    fn mul(&self, scalar: T) -> Self {
+        (self.0 * scalar, self.1 * scalar)
     }
+    fn add(&self, other: Self) -> Self {
+        (self.0 + other.0, self.1 + other.1)
+    }
+    fn sub(&self, other: Self) -> Self {
+        (self.0 - other.0, self.1 - other.1)
+    }
+    fn dot(&self, other: Self) -> T {
+        self.0 * other.0 + self.1 * other.1
+    }
+    fn cross(&self, other: Self) -> T {
+        (self.0 * other.1) - (other.0 * self.1)
+    }
+    fn dist2(&self, other: Self) -> T {
+        (self.0 - other.0) * (self.0 - other.0) + (self.1 - other.1) * (self.1 - other.1)
+    }
+}
+/// 線分abと線分xyが衝突しているかどうか
+pub fn is_collided(ab: Line<isize>, xy: Line<isize>) -> bool {
+    let (a, b) = ab;
+    let (x, y) = xy;
+    // Aから見たとき
+    let AX = x.sub(a);
+    let AY = y.sub(a);
+    let AB = b.sub(a);
+    // Xから見たとき
+    let XA = a.sub(x);
+    let XB = b.sub(x);
+    let XY = y.sub(x);
+    AB.cross(AX) * AB.cross(AY) < 0 && XY.cross(XA) * XY.cross(XB) < 0
+}
 
-    /// 分数 `a / b` を作成する
-    pub fn new(a: isize, b: isize) -> Self {
-        let sgn = a.signum() * b.signum();
-        let (a, b) = (a.abs(), b.abs());
-        let gcd = Self::gcd(a, b);
-        if b == 0 {
-            Self(0, 0)
-        } else if a == 0 {
-            Self(0, 1)
-        } else {
-            Self(sgn * a / gcd, b / gcd)
-        }
-    }
+/// 点xが直線ab上に存在するか
+pub fn is_on_line(ab: Line<isize>, x: Pos<isize>) -> bool {
+    let (a, b) = ab;
+    let xa = a.sub(x);
+    let xb = b.sub(x);
+    xa.0 * xb.1 == xa.1 * xb.0
 }
