@@ -62,7 +62,8 @@
         "./atcoder_training/abc256/Cargo.toml",
         "./atcoder_training/abc282/Cargo.toml",
         "./contests/abc330/Cargo.toml",
-        "./atcoder_training/abc330/Cargo.toml"
+        "./atcoder_training/abc330/Cargo.toml",
+        "./atcoder_training/abc074/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,
