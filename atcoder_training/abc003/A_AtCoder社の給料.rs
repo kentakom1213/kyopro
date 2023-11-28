@@ -1,4 +1,4 @@
-//             A - AtCoder社の給料             
+//             A - AtCoder社の給料
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc003/tasks/abc003_1
