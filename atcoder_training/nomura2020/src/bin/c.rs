@@ -17,6 +17,11 @@ macro_rules! debug {
 }
 
 fn main() {
+    input! {
+        N: usize,
+        A: [usize; N + 1]
+    }
+
     
 }
 

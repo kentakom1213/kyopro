@@ -18,20 +18,24 @@ macro_rules! debug {
 
 fn main() {
     input! {
-        H1: usize,
-        M1: usize,
-        H2: usize,
-        M2: usize,
-        K: usize,
+        X: usize,
+        Y: usize,
+        Z: usize
     }
 
-    // 分に直す
-    let m1 = H1 * 60 + M1;
-    let m2 = H2 * 60 + M2;
+    // let div_ceil = |a, b| {
+    //     (a + b - 1) / b
+    // };
 
-    let ans = (m2 - m1).saturating_sub(K);
+    let cnt = X / (Y + Z);
 
-    println!("{}", ans);
+    debug!(cnt * (Y + Z));
+
+    if X >= cnt * (Y + Z) + Z {
+        println!("{}", cnt);
+    } else {
+        println!("{}", cnt - 1);
+    }
 }
 
 const INF: usize = 1001001001001001001;

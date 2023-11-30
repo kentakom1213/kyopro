@@ -43,7 +43,12 @@
         "./Cargo.toml",
         "./atcoder_training/indeednow-qualb/Cargo.toml",
         "./virtual_contest/44e348d6-f33f-4188-81aa-90bfe6b95cc7/Cargo.toml",
-        "./atcoder_training/abc187/Cargo.toml"
+        "./atcoder_training/abc187/Cargo.toml",
+        "./atcoder_training/nomura2020/Cargo.toml",
+        "./atcoder_training/abc078/Cargo.toml",
+        "./atcoder_training/abc179/Cargo.toml",
+        "./atcoder_training/abc298/Cargo.toml",
+        "./atcoder_training/abc261/Cargo.toml"
     ],
     "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,

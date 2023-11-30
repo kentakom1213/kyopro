@@ -18,18 +18,13 @@ macro_rules! debug {
 
 fn main() {
     input! {
-        H1: usize,
-        M1: usize,
-        H2: usize,
-        M2: usize,
-        K: usize,
+        l1: usize,
+        r1: usize,
+        l2: usize,
+        r2: usize,
     }
 
-    // 分に直す
-    let m1 = H1 * 60 + M1;
-    let m2 = H2 * 60 + M2;
-
-    let ans = (m2 - m1).saturating_sub(K);
+    let ans = r1.min(r2).saturating_sub(l1.max(l2));
 
     println!("{}", ans);
 }

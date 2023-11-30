@@ -7,7 +7,11 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
+use std::cmp::Ordering::*;
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -18,19 +22,15 @@ macro_rules! debug {
 
 fn main() {
     input! {
-        H1: usize,
-        M1: usize,
-        H2: usize,
-        M2: usize,
-        K: usize,
+        X: char,
+        Y: char,
     }
 
-    // 分に直す
-    let m1 = H1 * 60 + M1;
-    let m2 = H2 * 60 + M2;
-
-    let ans = (m2 - m1).saturating_sub(K);
-
+    let ans = match X.cmp(&Y) {
+        Less => '<',
+        Equal => '=',
+        Greater => '>',
+    };
     println!("{}", ans);
 }
 

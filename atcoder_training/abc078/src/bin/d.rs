@@ -17,21 +17,7 @@ macro_rules! debug {
 }
 
 fn main() {
-    input! {
-        H1: usize,
-        M1: usize,
-        H2: usize,
-        M2: usize,
-        K: usize,
-    }
-
-    // 分に直す
-    let m1 = H1 * 60 + M1;
-    let m2 = H2 * 60 + M2;
-
-    let ans = (m2 - m1).saturating_sub(K);
-
-    println!("{}", ans);
+    
 }
 
 const INF: usize = 1001001001001001001;
