@@ -1,4 +1,4 @@
-//               RMQ and RAQ               
+//               RMQ and RAQ
 // ----------------------------------------
 // 問題
 // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
@@ -63,10 +63,13 @@ macro_rules! debug {
     }};
 }
 
-use std::{ops::{
-    Bound::{Excluded, Included, Unbounded},
-    RangeBounds,
-}, fmt::Debug};
+use std::{
+    fmt::Debug,
+    ops::{
+        Bound::{Excluded, Included, Unbounded},
+        RangeBounds,
+    },
+};
 /// 作用付きモノイド
 pub trait ExtMonoid {
     /// 要素のデータ型
