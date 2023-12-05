@@ -22,5 +22,4 @@ const MOD9: usize = 998_244_353;
 const INF: usize = 1001001001001001001;
 
 fn main() {
-    
 }

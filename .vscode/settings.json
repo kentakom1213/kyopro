@@ -41,27 +41,8 @@
     // Rust
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml",
-        "./atcoder_training/indeednow-qualb/Cargo.toml",
-        "./virtual_contest/44e348d6-f33f-4188-81aa-90bfe6b95cc7/Cargo.toml",
-        "./atcoder_training/abc187/Cargo.toml",
-        "./atcoder_training/nomura2020/Cargo.toml",
-        "./atcoder_training/abc078/Cargo.toml",
-        "./atcoder_training/abc179/Cargo.toml",
-        "./atcoder_training/abc298/Cargo.toml",
-        "./atcoder_training/abc261/Cargo.toml",
-        "./atcoder_training/typical90/Cargo.toml",
-        "./atcoder_training/abc224/Cargo.toml",
-        "./atcoder_training/abc265/Cargo.toml",
-        "./atcoder_training/degwer2023/Cargo.toml",
-        "./contests/abc331/Cargo.toml",
-        "./atcoder_training/abl/Cargo.toml",
-        "./atcoder_training/abc331/Cargo.toml",
-        "./atcoder_training/abc263/Cargo.toml",
-        "./atcoder_training/abc321/Cargo.toml",
-        "./atcoder_training/abc183/Cargo.toml",
-        "./atcoder_training/abc183/Cargo.toml"
+        "./atcoder_training/abc262/Cargo.toml"
     ],
-    "glassit.alpha": 220,
     "rust-analyzer.showUnlinkedFileNotification": true,
     // "rust-analyzer.diagnostics.disabled": [
     //     "unresolved-proc-macro",
