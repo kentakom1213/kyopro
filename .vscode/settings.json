@@ -41,7 +41,9 @@
     // Rust
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml",
-        "./atcoder_training/abc262/Cargo.toml"
+        "./atcoder_training/abc262/Cargo.toml",
+        "./atcoder_training/abc315/Cargo.toml",
+        "./virtual_contest/e5188171-1284-47f4-8f5d-b0b99a176441/Cargo.toml"
     ],
     "rust-analyzer.showUnlinkedFileNotification": true,
     // "rust-analyzer.diagnostics.disabled": [
