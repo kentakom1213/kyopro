@@ -7,7 +7,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -60,11 +63,39 @@ macro_rules! get {
         ).collect::<Vec<_>>()
     };
 }
- 
+
 fn main() {
     let (N, K) = get!(usize, usize);
 
+    // A1 ~ AK+1 までを復元
+    let S = (0..=K)
+        .map(|i| {
+            // i, i + 1, ... (K個)
+            println!("? {}", (i..i + K).map(|x| x % (K + 1) + 1).join(" "));
+            // 結果の受け取り
+            get!(usize)
+        })
+        .collect_vec();
 
+    let SK1 = S.iter().fold(0, |a, b| a ^ b);
+
+    let mut A = (0..=K).map(|i| SK1 ^ S[(i + 1) % (K + 1)]).collect_vec();
+
+    debug!(A);
+
+    // 0..K
+    let SK = A[..K - 1].iter().sum::<usize>() % 2;
+    debug!(SK);
+
+    // 残りを復元
+    for i in K + 1..N {
+        // 1, 2, ..., K, i
+        println!("? {} {}", (1..K).join(" "), i + 1);
+        let res = get!(usize);
+        A.push(res ^ SK);
+    }
+
+    println!("! {}", A.iter().join(" "));
 }
 
 const INF: usize = 1001001001001001001;
