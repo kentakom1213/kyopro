@@ -36,3 +36,7 @@ test.txt
 # 環境変数
 .env
 
+# ワークスペースのスニペット
+.vscode/
+!./.vscode
+
