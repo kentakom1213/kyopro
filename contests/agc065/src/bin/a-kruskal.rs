@@ -5,13 +5,14 @@
 #![allow(dead_code)]
 #![allow(unused_macros)]
 
+use std::{collections::BTreeMap, iter::FromIterator};
+
 // imports
 use itertools::Itertools;
 use proconio::{
-    input,
+    fastout, input,
     marker::{Bytes, Chars, Usize1},
 };
-use rustc_hash::{FxHashMap, FxHashSet};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -28,37 +29,44 @@ const INF: usize = 1001001001001001001;
 fn main() {
     input! {
         N: usize,
-        M: usize,
-        mut A: [usize; N],
+        K: usize,
+        A: [usize; N]
     }
 
-    A.sort();
-
-    let mut uf = UnionFind::new(N);
-
-    for i in 0..N - 1 {
-        if A[i + 1] - A[i] <= 1 {
-            uf.unite(i, i + 1);
+    // Kruskal法
+    let mut edges = vec![];
+    for i in 0..N {
+        for j in 0..N {
+            if i == j {
+                continue;
+            }
+            edges.push(((K + A[i] - A[j]) % K, i, j));
         }
     }
-    if (A[N - 1] + 1) % M == A[0] {
-        uf.unite(0, N - 1);
+    edges.sort();
+    edges.reverse();
+    debug!(edges);
+
+    let mut indeg = vec![false; N];
+    let mut outdeg = vec![false; N];
+    let mut uf = UnionFind::new(N);
+    let mut ans = 0;
+
+    for &(w, u, v) in &edges {
+        // u -> v に辺を張る
+        if !uf.issame(u, v) && !outdeg[u] && !indeg[v] {
+            uf.unite(u, v);
+            outdeg[u] = true;
+            indeg[v] = true;
+            ans += w;
+
+            debug!(ans);
+            debug!(indeg);
+            debug!(outdeg);
+        }
     }
 
-    // もっとも大きいグループを見つける
-    let largest_group = *(0..N)
-        .fold(FxHashMap::default(), |mut map, x| {
-            *map.entry(uf.root(x)).or_insert(0) += A[x];
-            map
-        })
-        .iter()
-        .map(|x| x.1)
-        .max()
-        .unwrap();
-
-    let ans = A.iter().sum::<usize>() - largest_group;
-
-    println!("{ans}");
+    println!("{}", ans);
 }
 
 /// # UnionFind

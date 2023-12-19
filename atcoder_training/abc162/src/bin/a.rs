@@ -1,5 +1,3 @@
-// https://judge.yosupo.jp/problem/predecessor_problem
-
 // attributes
 #![allow(unused_imports)]
 #![allow(unused_variables)]
@@ -9,7 +7,7 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{input, marker::{Chars, Bytes, Usize1}};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -18,14 +16,16 @@ macro_rules! debug {
     }};
 }
 
-
-
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
-
-// main
 fn main() {
-    
+    input! {
+        N: String,
+    }
+
+    if N.contains("7") {
+        println!("Yes");
+    } else {
+        println!("No");
+    }
 }
+
+const INF: usize = 1001001001001001001;
