@@ -24,6 +24,8 @@ mod AOJ {
     mod Weighted_Union_Find_Trees;
     mod 二分探索木I;
     mod 文字列検索;
+    mod 最大流;
+    mod 最大流_no_num_traits;
 }
 mod AlgoMethod {
     mod CalculationComplexity {
@@ -95,10 +97,6 @@ mod atcoder_training {
     }
     mod abc007 {
         mod C_幅優先探索;
-    }
-    mod abc008 {
-        mod B_投票;
-        mod B_投票_trie;
     }
     mod abc014 {
         mod C_AtColor;
@@ -175,11 +173,6 @@ mod atcoder_training {
     }
     mod abc059 {
         mod C_Sequence;
-    }
-    mod abc060 {
-        mod B_Choose_Integers;
-        mod C_Sentou;
-        mod D_Simple_Knapsack;
     }
     mod abc063 {
         mod B_Varied;
