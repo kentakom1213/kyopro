@@ -1,4 +1,4 @@
-//            E - Edge Deletion            
+//            E - Edge Deletion
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc243/tasks/abc243_e
@@ -12,9 +12,12 @@
 #![allow(unused_macros)]
 
 // imports
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 use std::cmp::{max, min, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
 
 /// `a > b` のとき、`a`を`b`に置き換え、trueを返す
 macro_rules! chmin {
@@ -53,10 +56,7 @@ fn main() {
     for k in 0..N {
         for i in 0..N {
             for j in 0..N {
-                chmin!(
-                    dist[i][j],
-                    dist[i][k] + dist[k][j],
-                );
+                chmin!(dist[i][j], dist[i][k] + dist[k][j],);
             }
         }
     }
@@ -68,7 +68,9 @@ fn main() {
         for i in 0..N {
             unused |= dist[u][i] + dist[i][v] <= c;
         }
-        if unused { ans += 1; }
+        if unused {
+            ans += 1;
+        }
     }
 
     println!("{}", ans);
