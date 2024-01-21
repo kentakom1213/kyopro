@@ -40,14 +40,9 @@
     "python.analysis.inlayHints.variableTypes": false,
     // Rust
     "rust-analyzer.linkedProjects": [
-        "./Cargo.toml",
-        "./atcoder_training/abc262/Cargo.toml",
-        "./atcoder_training/abc315/Cargo.toml",
-        "./virtual_contest/e5188171-1284-47f4-8f5d-b0b99a176441/Cargo.toml",
-        "./atcoder_training/abc240/Cargo.toml",
-        "./atcoder_training/abc313/Cargo.toml",
-        "./virtual_contest/6f487a00-cc6b-4f16-a82b-23a566798c55/Cargo.toml",
-        "./atcoder_training/abc319/Cargo.toml"
+        "./AlgoMethod/Cargo.toml",
+        "./AOJ/Cargo.toml",
+        "./LibraryChecker/Cargo.toml",
     ],
     "rust-analyzer.showUnlinkedFileNotification": true,
     // "rust-analyzer.diagnostics.disabled": [

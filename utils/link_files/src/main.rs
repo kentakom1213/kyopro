@@ -9,10 +9,11 @@ use std::env;
 use std::path;
 
 fn main() {
-    let root = path::PathBuf::from(env::var("KYOPURO_ROOT_DIR").unwrap());
-    let lib_path = path::PathBuf::from(env::var("KYOPURO_LIB_PATH").unwrap());
+    let dir = env::args().nth(1).unwrap();
+    let root = path::PathBuf::from(&dir);
+    let lib_path = path::PathBuf::from(dir.clone() + "/lib.rs");
 
-    print!("{}", "Rendering `lib.rs` ... ".blue());
+    print!("Rendering `{}/lib.rs` ... ", &dir);
 
     // `lib.rs`のベースとなるリストを取得
     let mut lib: FileTree = vec![];
@@ -22,7 +23,6 @@ fn main() {
     // display_tree(&lib);
 
     // ファイルに書き出し
-    write_lib(&lib, &lib_path);
-
+    write_lib(&lib, &lib_path).ok();
     println!("{}", "Complete!".green().bold());
 }
