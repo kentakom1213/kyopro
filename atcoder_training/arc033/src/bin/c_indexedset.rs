@@ -8,8 +8,8 @@
 // imports
 use itertools::Itertools;
 use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1}, fastout,
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
 };
 
 macro_rules! debug {
@@ -23,24 +23,21 @@ macro_rules! debug {
 fn main() {
     input! {
         Q: usize,
+        queries: [(usize, usize); Q]
     }
 
     let mut set = IndexedSet::new();
 
-    for _ in 0..Q {
-        input! {
-            T: usize,
-            X: usize,
+    for &(t, x) in &queries {
+        if t == 1 {
+            set.insert(x);
+        } else {
+            let res = *set.nth(x - 1).unwrap();
+            set.delete(&res);
+            println!("{}", res);
         }
 
-        if T == 1 {
-            set.insert(X);
-        } else {
-            let n = *set.get_by_index(X - 1).unwrap();
-            // 削除
-            set.delete(&n);
-            println!("{n}");
-        }
+        debug!(set);
     }
 }
 
@@ -49,16 +46,18 @@ const INF: usize = 1001001001001001001;
 use std::iter::FromIterator;
 use std::mem::{replace, swap};
 use std::{cmp::Ordering, fmt::Debug};
+
 /// # Node
 #[derive(Debug, Clone)]
-pub struct Node<T: Ord> {
+pub struct Node<T: Ord + Debug> {
     pub key: T,
     pub left: Option<Box<Node<T>>>,
     pub right: Option<Box<Node<T>>>,
     /// 部分木のサイズ
     pub size: usize,
 }
-impl<T: Ord> Node<T> {
+
+impl<T: Ord + Debug> Node<T> {
     pub fn new(key: T) -> Self {
         Self {
             key,
@@ -68,48 +67,57 @@ impl<T: Ord> Node<T> {
         }
     }
 }
+
 /// # IndexedSet
 /// スプレー木のクラス
-pub struct IndexedSet<T: Ord> {
+pub struct IndexedSet<T: Ord + Debug> {
     size: usize,
     pub root: Option<Box<Node<T>>>,
 }
+
 impl<T> IndexedSet<T>
 where
-    T: Ord + Clone,
+    T: Ord + Clone + Debug,
 {
     /// `a <= b`の値を返す
     #[inline]
     fn le(a: &T, b: &T) -> bool {
         matches!(a.cmp(b), Ordering::Less | Ordering::Equal)
     }
+
     /// `a < b`の値を返す
     #[inline]
     fn lt(a: &T, b: &T) -> bool {
         matches!(a.cmp(b), Ordering::Less)
     }
+
     /// `a >= b`の値を返す
     #[inline]
     fn ge(a: &T, b: &T) -> bool {
         matches!(a.cmp(b), Ordering::Equal | Ordering::Greater)
     }
+
     /// `a > b`の値を返す
     #[inline]
     fn gt(a: &T, b: &T) -> bool {
         matches!(a.cmp(b), Ordering::Greater)
     }
+
     pub fn new() -> Self {
         Self {
             size: 0,
             root: None,
         }
     }
+
     pub fn len(&self) -> usize {
         self.size
     }
+
     pub fn is_empty(&self) -> bool {
         self.size == 0
     }
+
     /// ## get
     /// 値の検索を行う
     /// ### 戻り値
@@ -122,6 +130,7 @@ where
             None
         }
     }
+
     /// 値の挿入を行う。
     /// ### 戻り値
     /// - `bool`: 挿入が行われたか
@@ -158,6 +167,7 @@ where
         self.size += 1;
         None
     }
+
     /// ## delete
     /// 値の削除
     /// ### 戻り値
@@ -196,11 +206,13 @@ where
         let deleted = tmp_root.take();
         Some(deleted.unwrap().key)
     }
+
     /// ## contains_key
     /// - 値`key`を含むか
     pub fn contains_key(&mut self, key: &T) -> bool {
         self.get(key).is_some_and(|k| k == key)
     }
+
     /// ## lower_bound
     /// - `key`以上の最小の値を返す
     pub fn lower_bound(&mut self, key: &T) -> Option<&T> {
@@ -215,6 +227,7 @@ where
             None
         }
     }
+
     /// ## upper_bound
     /// - `key`より大きい最小の値を返す
     pub fn upper_bound(&mut self, key: &T) -> Option<&T> {
@@ -229,6 +242,7 @@ where
             None
         }
     }
+
     /// ## lower_bound_rev
     /// - `key`以下の最大の値を返す
     pub fn lower_bound_rev(&mut self, key: &T) -> Option<&T> {
@@ -243,6 +257,7 @@ where
             None
         }
     }
+
     /// ## upper_bound_rev
     /// - `key`未満の最大の値を返す
     pub fn upper_bound_rev(&mut self, key: &T) -> Option<&T> {
@@ -257,35 +272,42 @@ where
             None
         }
     }
-    /// ## get_by_index
+
+    /// ## nth
     /// - 先頭からn番目の値を取得する（0-indexed）
-    pub fn get_by_index(&self, n: usize) -> Option<&T> {
+    pub fn nth(&self, n: usize) -> Option<&T> {
         if n > self.size {
             None
         } else {
             get_nth(&self.root, n + 1)
         }
     }
-    /// ## index
-    /// - 要素`key`のインデックスを取得する（0-indexed）
-    pub fn index(&mut self, key: &T) -> Option<usize> {
-        // keyでsplayを行う
-        if self.get(key).is_some() {
-            let left_size = self
-                .root
-                .as_ref()
-                .unwrap()
-                .left
-                .as_ref()
-                .map_or(0, |node| node.size);
-            Some(left_size)
-        } else {
-            None
-        }
+
+    /// ## to_vec
+    /// 要素を順にVecとして取り出す
+    pub fn to_vec(&self) -> Vec<&T> {
+        let mut res = vec![];
+        traverse(&self.root, &mut res);
+        res
     }
 }
+
+/// ## traverse
+/// 順に取り出す
+fn traverse<'a, T: Ord + Debug>(root: &'a Option<Box<Node<T>>>, res: &mut Vec<&'a T>) {
+    if root.is_none() {
+        return;
+    }
+    // 左の子を探索
+    traverse(&root.as_ref().unwrap().left, res);
+    // 値を追加
+    res.push(&root.as_ref().unwrap().key);
+    // 右の子を探索
+    traverse(&root.as_ref().unwrap().right, res);
+}
+
 /// ## get_nth
-fn get_nth<T: Ord>(root: &Option<Box<Node<T>>>, n: usize) -> Option<&T> {
+fn get_nth<T: Ord + Debug>(root: &Option<Box<Node<T>>>, n: usize) -> Option<&T> {
     if let Some(root) = root {
         let left_size = root.left.as_ref().map_or(0, |node| node.size);
         match n.cmp(&(left_size + 1)) {
@@ -297,11 +319,12 @@ fn get_nth<T: Ord>(root: &Option<Box<Node<T>>>, n: usize) -> Option<&T> {
         None
     }
 }
+
 /// ## splay
 /// 比較関数`compare`を引数にとり、条件を満たす最小のノードを返す
 fn splay<T, C>(mut root: Option<Box<Node<T>>>, key: &T, compare: C) -> (Option<Box<Node<T>>>, bool)
 where
-    T: Ord,
+    T: Ord + Debug,
     C: Fn(&T, &T) -> bool,
 {
     if root.is_none() {
@@ -370,6 +393,7 @@ where
         }
     }
 }
+
 /// ## splay_rev
 /// - 比較関数`compare`を引数にとり、条件を満たす最小のノードを返す
 /// - splayの逆向き
@@ -379,7 +403,7 @@ fn splay_rev<T, C>(
     compare: C,
 ) -> (Option<Box<Node<T>>>, bool)
 where
-    T: Ord,
+    T: Ord + Debug,
     C: Fn(&T, &T) -> bool,
 {
     if root.is_none() {
@@ -448,23 +472,25 @@ where
         }
     }
 }
+
 /// 部分木のサイズを更新する
-fn update_size<T: Ord>(node: &mut Option<Box<Node<T>>>) {
+fn update_size<T: Ord + Debug>(node: &mut Option<Box<Node<T>>>) {
     if let Some(node) = node {
         let left_size = node.left.as_ref().map_or(0, |node| node.size);
         let right_size = node.right.as_ref().map_or(0, |node| node.size);
         node.size = left_size + right_size + 1;
     }
 }
+
 /// ## 右回転
 /// ```not-rust
-///		Y					  X
-///	   / \	   right		/ \
-///	  X   C  === rotate ==>  A   Y
-///	 / \						/ \
-///	A   B					  B   C
+///        Y                      X
+///       / \       right        / \
+///      X   C  === rotate ==>  A   Y
+///     / \                        / \
+///    A   B                      B   C
 /// ```
-fn rotate_right<T: Ord>(root: Option<Box<Node<T>>>) -> Option<Box<Node<T>>> {
+fn rotate_right<T: Ord + Debug>(root: Option<Box<Node<T>>>) -> Option<Box<Node<T>>> {
     let Some(mut root) = root else { return None };
     let Some(mut new_root) = root.left else {
         return Some(root);
@@ -476,15 +502,16 @@ fn rotate_right<T: Ord>(root: Option<Box<Node<T>>>) -> Option<Box<Node<T>>> {
     update_size(&mut res);
     res
 }
+
 /// ## 左回転
 /// ```not-rust
-///	  X						  Y
-///	 / \		 left		   / \
-///	A   Y	=== rotate ==>	X   C
-///	   / \					/ \
-///	  B   C				  A   B
+///      X                          Y
+///     / \         left           / \
+///    A   Y    === rotate ==>    X   C
+///       / \                    / \
+///      B   C                  A   B
 /// ```
-fn rotate_left<T: Ord>(root: Option<Box<Node<T>>>) -> Option<Box<Node<T>>> {
+fn rotate_left<T: Ord + Debug>(root: Option<Box<Node<T>>>) -> Option<Box<Node<T>>> {
     let Some(mut root) = root else { return None };
     let Some(mut new_root) = root.right else {
         return Some(root);
@@ -496,8 +523,9 @@ fn rotate_left<T: Ord>(root: Option<Box<Node<T>>>) -> Option<Box<Node<T>>> {
     update_size(&mut res);
     res
 }
+
 // ----- FromIterator -----
-impl<T: Ord + Clone> FromIterator<T> for IndexedSet<T> {
+impl<T: Ord + Clone + Debug> FromIterator<T> for IndexedSet<T> {
     fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
         let mut res = IndexedSet::new();
         for item in iter {
@@ -506,6 +534,7 @@ impl<T: Ord + Clone> FromIterator<T> for IndexedSet<T> {
         res
     }
 }
+
 // ----- Debug -----
 impl<T: Ord + Debug> Debug for IndexedSet<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -513,6 +542,7 @@ impl<T: Ord + Debug> Debug for IndexedSet<T> {
         Ok(())
     }
 }
+
 /// 再帰的に表示
 #[allow(unused_must_use)]
 fn fmt_inner<T>(f: &mut std::fmt::Formatter<'_>, node: &Option<Box<Node<T>>>, depth: usize)
@@ -532,42 +562,5 @@ where
             fmt_inner(f, &node.right, depth + 1);
         }
         None => {}
-    }
-}
-// ----- iterator -----
-pub struct SplayTreeIterator<'a, T: 'a + Ord> {
-    unvisited: Vec<&'a Node<T>>,
-}
-impl<'a, T: Ord> SplayTreeIterator<'a, T> {
-    fn push_left_edge(&mut self, mut tree: &'a Option<Box<Node<T>>>) {
-        while let Some(node) = tree.as_deref() {
-            self.unvisited.push(node);
-            tree = &node.left;
-        }
-    }
-}
-impl<'a, T: Ord> Iterator for SplayTreeIterator<'a, T> {
-    type Item = &'a T;
-    fn next(&mut self) -> Option<Self::Item> {
-        let node = match self.unvisited.pop() {
-            None => return None,
-            Some(n) => n,
-        };
-        self.push_left_edge(&node.right);
-        Some(&node.key)
-    }
-}
-impl<T: Ord> IndexedSet<T> {
-    pub fn iter<'a>(&'a self) -> SplayTreeIterator<'a, T> {
-        let mut iter = SplayTreeIterator { unvisited: vec![] };
-        iter.push_left_edge(&self.root);
-        iter
-    }
-}
-impl<'a, T: Ord> IntoIterator for &'a IndexedSet<T> {
-    type IntoIter = SplayTreeIterator<'a, T>;
-    type Item = &'a T;
-    fn into_iter(self) -> Self::IntoIter {
-        self.iter()
     }
 }
