@@ -32,32 +32,33 @@ fn main() {
         N: usize,
         Q: usize,
         S: String,
-        queries: [(usize, Usize1, Usize1); Q]
+        queries: [(char, Usize1, Usize1); Q]
     }
 
-    // (累積和の最小値, 累積和)
-    let mut S = S
-        .chars()
-        .map(|c| if c == '(' { 1 } else { -1 })
-        .map(|x| if x == 1 { (0, 1) } else { (-1, -1) })
-        .collect_vec();
-
-    debug!(S);
+    // debug!(S);
 
     // セグ木に乗れ！
-    let mut seg = SegmentTree::<PrefixSum>::from(&S);
+    let mut seg = SegmentTree::<PrefixSum>::new(N);
 
-    debug!(seg);
+    for (i, c) in S.chars().enumerate() {
+        seg.data[N + i] = if c == '(' { (0, 1) } else { (-1, -1) };
+    }
+
+    for i in (0..seg.offset).rev() {
+        let lch = i << 1;
+        seg.data[i] = PrefixSum::op(&seg.data[lch], &seg.data[lch + 1]);
+    }
 
     // クエリの処理
-    for &q in &queries {
+    for q in queries {
         match q {
-            (1, l, r) => {
-                S.swap(l, r);
-                *seg.get_mut(l).unwrap() = S[l];
-                *seg.get_mut(r).unwrap() = S[r];
+            ('1', l, r) => {
+                let lval = seg[l];
+                let rval = seg[r];
+                *seg.get_mut(l).unwrap() = rval;
+                *seg.get_mut(r).unwrap() = lval;
             }
-            (2, l, r) => {
+            ('2', l, r) => {
                 let (smin, sum) = seg.get_range(l..=r);
                 debug!(l, r, smin, sum);
                 if smin >= 0 && sum == 0 {
@@ -68,14 +69,15 @@ fn main() {
             }
             _ => unreachable!(),
         }
-        debug!(seg);
+        // debug!(seg);
     }
 }
 
 struct PrefixSum;
 impl Monoid for PrefixSum {
-    type Val = (isize, isize);
-    const E: Self::Val = (1001001001001001001, 0);
+    type Val = (i32, i32);
+    const E: Self::Val = (1001001001, 0);
+    #[inline]
     fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
         (left.0.min(left.1 + right.0), left.1 + right.1)
     }
@@ -89,7 +91,7 @@ use std::ops::{
 /// モノイド
 pub trait Monoid {
     /// 元の型
-    type Val: fmt::Debug + Clone + PartialEq;
+    type Val: fmt::Debug + Clone + PartialEq + Sized;
     /// 単位元
     const E: Self::Val;
     /// 演算
@@ -130,7 +132,7 @@ impl<T: Monoid> SegmentTree<T> {
     /// ## new
     /// セグメント木を初期化する
     pub fn new(n: usize) -> Self {
-        let offset = n.next_power_of_two();
+        let offset = n;
         Self {
             size: n,
             offset,
@@ -164,10 +166,6 @@ impl<T: Monoid> SegmentTree<T> {
         let Some((start, end)) = self.parse_range(&range) else {
             panic!("The given range is wrong: {:?}", range);
         };
-        // 全体の値を取得
-        if (start, end) == (0, self.size) {
-            return self.data[1].clone();
-        }
         // 値の取得
         let mut l = self.offset + start;
         let mut r = self.offset + end;
@@ -190,9 +188,7 @@ impl<T: Monoid> SegmentTree<T> {
 impl<T: Monoid> From<&Vec<T::Val>> for SegmentTree<T> {
     fn from(src: &Vec<T::Val>) -> Self {
         let mut seg = Self::new(src.len());
-        for (i, v) in src.iter().enumerate() {
-            seg.data[seg.offset + i] = v.clone();
-        }
+        seg.data[seg.offset..seg.offset + src.len()].clone_from_slice(src);
         for i in (0..seg.offset).rev() {
             let lch = i << 1;
             seg.data[i] = T::op(&seg.data[lch], &seg.data[lch + 1]);
@@ -240,88 +236,4 @@ impl<T: Monoid> DerefMut for ValMut<'_, T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.new_val
     }
-}
-/// さまざまな代数的構造
-pub mod Alg {
-    use super::Monoid;
-    /// 和
-    pub struct Add;
-    impl Monoid for Add {
-        type Val = isize;
-        const E: Self::Val = 0;
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            left + right
-        }
-    }
-    /// 積
-    pub struct Mul;
-    impl Monoid for Mul {
-        type Val = isize;
-        const E: Self::Val = 1;
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            left * right
-        }
-    }
-    /// bit単位の排他的論理和
-    pub struct Xor;
-    impl Monoid for Xor {
-        type Val = usize;
-        const E: Self::Val = 0;
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            left ^ right
-        }
-    }
-    /// 最小値
-    pub struct Min;
-    impl Monoid for Min {
-        type Val = isize;
-        const E: Self::Val = (1 << 31) - 1;
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            *left.min(right)
-        }
-    }
-    /// 最大値
-    pub struct Max;
-    impl Monoid for Max {
-        type Val = isize;
-        const E: Self::Val = -((1 << 31) - 1);
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            *left.max(right)
-        }
-    }
-    /// 最小公倍数
-    pub struct GCD;
-    impl Monoid for GCD {
-        type Val = usize;
-        const E: Self::Val = 0;
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            gcd(*left, *right)
-        }
-    }
-    pub fn gcd(a: usize, b: usize) -> usize {
-        if b == 0 {
-            a
-        } else {
-            gcd(b, a % b)
-        }
-    }
-    // use super::Modint;
-    // /// あまりをとる和
-    // pub struct ModAdd;
-    // impl Monoid for ModAdd {
-    //	 type Val = Modint<998244353>;
-    //	 const E: Self::Val = Modint::<998244353>(0);
-    //	 fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-    //		 *left + *right
-    //	 }
-    // }
-    // /// あまりをとる積
-    // pub struct ModMul;
-    // impl Monoid for ModMul {
-    //	 type Val = Modint<998244353>;
-    //	 const E: Self::Val = Modint::<998244353>(1);
-    //	 fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-    //		 *left * *right
-    //	 }
-    // }
 }
