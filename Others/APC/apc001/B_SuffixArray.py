@@ -1,3 +1,0 @@
-# B - Suffix Array
-
-# むずい
