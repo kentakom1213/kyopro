@@ -24,8 +24,8 @@ contest.acc.json
 # cargo-compete
 testcases/
 target/
-Cargo.toml
-Cargo.lock
+# Cargo.toml
+# Cargo.lock
 
 # rustビルド用プロジェクト
 builder/

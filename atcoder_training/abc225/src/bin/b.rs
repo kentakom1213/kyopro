@@ -20,10 +20,7 @@ macro_rules! debug2D {
     }};
 }
 
-use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1},
-};
+use proconio::{input, marker::{Chars, Bytes, Usize1}};
 
 fn main() {
     

@@ -26,7 +26,9 @@ use proconio::{
 };
 
 fn main() {
-    
+    input! {
+        N: usize
+    }
 }
 
 const INF: usize = 1001001001001001001;
