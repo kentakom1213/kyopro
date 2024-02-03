@@ -51,8 +51,8 @@ use proconio::{
 fn main() {
     input! {
         N: usize,
-        A: isize,
-        B: isize,
+        A: usize,
+        B: usize,
         mut V: [isize; N],
     }
 
@@ -66,7 +66,7 @@ fn main() {
         for &a in &V {
             let Frac(sum, n) = cur;
             let nxt = Frac(sum + a, n + 1);
-            if A <= n + 1 && n + 1 <= B {
+            if A as isize <= n + 1 && n + 1 <= B as isize {
                 chmax! {
                     max,
                     nxt,
@@ -84,7 +84,19 @@ fn main() {
         println!("{:.10}", a as f64 / b as f64);
     }
 
-    
+    // 個数の復元
+    if V[0] == V[A - 1] {
+        // すべてV[0]を選ぶ場合に，平均が最大
+        let X = V.iter().filter(|&&v| v == V[0]).count();
+        let ans = (A..=B).map(|i| comb(X, i)).sum::<usize>();
+        println!("{ans}");
+    } else {
+        // V[A-1]のえらびかた
+        let X = V.iter().filter(|&&v| v == V[A - 1]).count();
+        let Y = V[..A].iter().filter(|&&v| v == V[A - 1]).count();
+        let ans = comb(X, Y);
+        println!("{ans}");
+    }
 }
 
 const INF: isize = 1001001001001001001;
@@ -130,3 +142,13 @@ where
     }
 }
 // TODO: Add, Mul等の実装
+
+pub fn comb(n: usize, r: usize) -> usize {
+    if r == 0 {
+        1
+    } else if n < r {
+        0
+    } else {
+        n * comb(n - 1, r - 1) / r
+    }
+}
