@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # ディレクトリの移動
-cd ~/Docker/kyopro/atcoder_training
+cd $KYOPRO_DIR/atcoder_training
 
 # ファイルのコピー
 if [ -d $1 ]; then
