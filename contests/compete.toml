@@ -38,6 +38,16 @@ macro_rules! debug {
     }};
 }
 
+macro_rules! debug2D {
+    ( $array:expr ) => {{
+        #![cfg(debug_assertions)]
+        eprintln!("{}: ", stringify!($array));
+        for row in &$array {
+            eprintln!("{:?}", row);
+        }
+    }};
+}
+
 // constant
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
