@@ -45,7 +45,4 @@
         "./LibraryChecker/Cargo.toml",
     ],
     "rust-analyzer.showUnlinkedFileNotification": true,
-    // "rust-analyzer.diagnostics.disabled": [
-    //     "unresolved-proc-macro",
-    // ]
 }

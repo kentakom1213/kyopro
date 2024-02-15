@@ -1,35 +1,29 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "type": "shell",
-            "label": "copy file",
-            "command": "cp",
-            "args": [
-                "${file}",
-                "~/Docker/kyopro/utils/builder/src/main.rs"
-            ],
-        },
-        {
-            "type": "shell",
-            "label": "lint and build file",
-            "command": "cargo clippy && cargo build",
-            "options": {
-                "cwd": "utils/builder",
-            },
-            "problemMatcher": [],
-        },
-        {
-            "label": "Task Sequence",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "copy file",
-                "lint and build file",
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ],
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "copy file",
+      "command": "cp",
+      "args": ["${file}", "~/develop/kp/kyopro/utils/builder/src/main.rs"]
+    },
+    {
+      "type": "shell",
+      "label": "lint and build file",
+      "command": "cargo clippy && cargo build",
+      "options": {
+        "cwd": "utils/builder"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task Sequence",
+      "dependsOrder": "sequence",
+      "dependsOn": ["copy file", "lint and build file"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
 }
