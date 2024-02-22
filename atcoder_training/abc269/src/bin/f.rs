@@ -1,18 +1,8 @@
-// attributes
 #![allow(unused_imports)]
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 #![allow(unused_macros)]
-
-// imports
-use itertools::Itertools;
-use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1},
-};
-
-use crate::modint::Mod998;
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -30,44 +20,20 @@ macro_rules! debug2D {
     }};
 }
 
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
+
+use crate::modint::{Mod109, Mod998};
+
 fn main() {
     input! {
         N: usize,
         M: usize,
-        K: usize,
+        Q: usize,
+        ABCD: [(Usize1, usize, Usize1, usize); Q]
     }
-
-    let invM = Mod998::new(1) / M;
-
-    // dp[k][n] := kターン目にマスnにいる確率
-    let mut dp = vec![vec![Mod998::new(0); N + 1]; K + 1];
-    dp[0][0] = 1.into();
-
-    for k in 0..K {
-        for n in 0..=N {
-            // すでにゴール済み
-            if n == N {
-                let tmp = dp[k][n];
-                dp[k + 1][n] += tmp;
-                continue;
-            }
-            for m in 1..=M {
-                let tmp = dp[k][n] * invM;
-                // 引き返しなし
-                if n + m <= N {
-                    dp[k + 1][n + m] += tmp;
-                }
-                // 引き返しあり
-                else {
-                    dp[k + 1][N - (n + m - N)] += tmp;
-                }
-            }
-        }
-    }
-
-    debug2D!(dp);
-
-    println!("{}", dp[K][N]);
 }
 
 mod usize_tools {
@@ -140,7 +106,7 @@ mod modint {
         impl<const MOD: usize> Display for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "{}", self.0) } }
         impl<const MOD: usize> PartialEq<usize> for Modint<MOD> { fn eq(&self, other: &usize) -> bool { self == &Modint::new(*other) } }
         impl<const MOD: usize> FromStr for Modint<MOD> { type Err = ParseIntError; fn from_str(s: &str) -> Result<Self, Self::Err> { Ok(Self::from_str(s)) } }
-        impl<const MOD: usize> Debug for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { match self.rational_reconstruction() { Some((n, d)) => if d > 1 { write!(f, "Modint({n}/{d})") } else { write!(f, "Modint({n})") } _ => write!(f, "Modint({})", self.0) } } }
+        impl<const MOD: usize> Debug for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { if let Some((n, d)) = self.rational_reconstruction() { write!(f, "Modint({}/{})", n, d) } else { write!(f, "Modint({})", self.0) } } }
         pub trait Fp { fn pow(&self, rhs: usize) -> Self; fn inv(&self) -> Self; }
         impl<const MOD: usize> Fp for Modint<MOD> { fn pow(&self, rhs: usize) -> Self { let (mut a, mut b) = (self.0, rhs); let mut res = 1; while b > 0 { if b & 1 == 1 { res = (res * a) % MOD; } a = (a * a) % MOD; b >>= 1u32; } Modint(res) } fn inv(&self) -> Self { self.pow(MOD - 2) } }
         impl<const MOD: usize> Sum<Modint<MOD>> for Modint<MOD> { fn sum<I: Iterator<Item = Modint<MOD>>>(iter: I) -> Self { iter.fold(Modint::<MOD>(0), |acc, x| acc + x) } }
