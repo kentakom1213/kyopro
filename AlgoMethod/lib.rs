@@ -13,6 +13,7 @@ mod Graph {
 mod NumberTheory {
     mod Miller_Rabin_method;
     mod Pollard_Pho_method;
-    mod Q6_あまりが等しい;
-    mod あまりが等しい2;
+    mod Q6_Mod_Equality;
+    mod Q7_Mod_Equality2;
+    mod Sieve_EX;
 }

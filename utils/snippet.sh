@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # スニペットを作成
-SNIPPET_FILE="$KYOPURO_LIBRARY_DIR/rust.code-snippets"
+SNIPPET_FILE="$KYOPURO_LIBRARY_DIR/rust.json"
 
 # ディレクトリを作成
 mkdir -p .vscode
