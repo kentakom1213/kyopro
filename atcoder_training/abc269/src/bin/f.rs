@@ -21,12 +21,14 @@ macro_rules! debug2D {
 }
 
 use proconio::{
-    input,
+    fastout, input,
     marker::{Bytes, Chars, Usize1},
 };
+use recur_fn::{recur_fn, RecurFn};
 
-use crate::modint::{Mod109, Mod998};
+use crate::modint::Mod998;
 
+#[fastout]
 fn main() {
     input! {
         N: usize,
@@ -34,36 +36,54 @@ fn main() {
         Q: usize,
         ABCD: [(Usize1, usize, Usize1, usize); Q]
     }
+
+    let M = Mod998::new(M);
+
+    for &(t, b, l, r) in &ABCD {
+        debug!(
+            prefix_sum(b, r, M),
+            prefix_sum(b, l, M),
+            prefix_sum(t, r, M),
+            prefix_sum(t, l, M)
+        );
+        let ans =
+            prefix_sum(b, r, M) - prefix_sum(b, l, M) - prefix_sum(t, r, M) + prefix_sum(t, l, M);
+        println!("{ans}");
+    }
 }
 
-mod usize_tools {
-    //! usizeの便利ツール
-    pub trait UsizeTools {
-        fn abs_diff(&self, other: Self) -> Self;
-        fn sqrt(&self) -> Self;
+fn prefix_sum(r: usize, c: usize, M: Mod998) -> Mod998 {
+    if r == 0 || c == 0 {
+        return 0.into();
     }
-    impl UsizeTools for usize {
-        fn abs_diff(&self, other: Self) -> Self {
-            if *self > other {
-                *self - other
-            } else {
-                other - *self
-            }
+    match (r & 1) * 2 + (c & 1) {
+        0 => {
+            // 全部の数字を足して2で割る
+            let all = Mod998::new(1 + c) * c / 2 * r + Mod998::new(r - 1) * r * M / 2 * c;
+            all / 2
         }
-        /// x^2がNを超えない最大のxを求める
-        /// - 計算量：O(log(N))
-        fn sqrt(&self) -> Self {
-            let (mut ok, mut ng) = (0_usize, 1001001001001001001);
-            while (ng - ok) > 1 {
-                let m = (ok + ng) / 2;
-                if m.saturating_mul(m) <= *self {
-                    ok = m;
-                } else {
-                    ng = m;
-                }
-            }
-            ok
+        1 => {
+            let head = Mod998::new(c);
+            let tail = M * (r - 2) + c;
+            let rem = (head + tail) * r / 4;
+            debug!(r, c, head, tail, rem);
+            prefix_sum(r, c - 1, M) + rem
         }
+        2 => {
+            let head = M * (r - 1) + 1;
+            let tail = M * (r - 1) + c - 1;
+            let rem = (head + tail) * c / 4;
+            debug!(r, c, head, tail, rem);
+            prefix_sum(r - 1, c, M) + rem
+        }
+        3 => {
+            let head = M * (r - 1) + 1;
+            let tail = M * (r - 1) + c;
+            let rem = (head + tail) * (c + 1) / 4;
+            debug!(r, c, head, tail, rem);
+            prefix_sum(r - 1, c, M) + rem
+        }
+        _ => unreachable!(),
     }
 }
 
@@ -79,13 +99,13 @@ mod modint {
     pub type P2 = Modint<958472071>;
     #[rustfmt::skip]
     pub mod modint {
+        fn sqrt(n: usize) -> usize { let (mut ok, mut ng) = (0_usize, 1001001001001001001); while (ng - ok) > 1 { let m = (ok + ng) / 2; if m.saturating_mul(m) <= n { ok = m; } else { ng = m; } } ok }
         use std::{fmt::{Debug, Display}, iter::{Sum, Product}, mem::replace, num::ParseIntError, ops::{Add, AddAssign, Div, Mul, MulAssign, Neg, Sub, SubAssign}, str::FromStr};
-        use crate::usize_tools::UsizeTools;
         #[derive(Clone, Copy, Default, PartialEq, Eq, Hash)] pub struct Modint<const MOD: usize>(pub usize);
         impl<const MOD: usize> Modint<MOD> { pub fn new(n: usize) -> Self { Self(if n < MOD { n } else { n % MOD }) }
         pub fn from_str(s: &str) -> Self { s.chars().fold(0.into(), |n, c| n * 10 + c.to_digit(10).unwrap() as usize) }
         pub fn from_isize(n: isize) -> Self { Self::new((MOD as isize + n % MOD as isize) as usize) }
-        pub fn rational_reconstruction(&self) -> Option<(isize, isize)> { let N = (MOD / 2).sqrt() as isize; let mut v = (MOD as isize, 0); let mut w = (self.0 as isize, 1);
+        pub fn rational_reconstruction(&self) -> Option<(isize, isize)> { let N = sqrt(MOD / 2) as isize; let mut v = (MOD as isize, 0); let mut w = (self.0 as isize, 1);
         while w.0 > N { let q = v.0.div_euclid(w.0); let z = (v.0 - q * w.0, v.1 - q * w.1); v = replace(&mut w, z); } if w.1 < 0 { w = (-w.0, -w.1); } (w.0 <= N && w.1 <= N).then_some(w) } }
         impl<const MOD: usize> Neg for Modint<MOD> { type Output = Self; fn neg(self) -> Self { Modint(if self.0 == 0 { 0 } else { MOD - self.0 }) } }
         impl<const MOD: usize> Add for Modint<MOD> { type Output = Self; fn add(self, rhs: Self) -> Self { let mut res = self.0 + rhs.0; if res >= MOD { res -= MOD; } Modint(res) } }
@@ -106,7 +126,7 @@ mod modint {
         impl<const MOD: usize> Display for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "{}", self.0) } }
         impl<const MOD: usize> PartialEq<usize> for Modint<MOD> { fn eq(&self, other: &usize) -> bool { self == &Modint::new(*other) } }
         impl<const MOD: usize> FromStr for Modint<MOD> { type Err = ParseIntError; fn from_str(s: &str) -> Result<Self, Self::Err> { Ok(Self::from_str(s)) } }
-        impl<const MOD: usize> Debug for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { if let Some((n, d)) = self.rational_reconstruction() { write!(f, "Modint({}/{})", n, d) } else { write!(f, "Modint({})", self.0) } } }
+        impl<const MOD: usize> Debug for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { match self.rational_reconstruction() { Some((n, d)) => if d > 1 { write!(f, "Modint({n}/{d})") } else { write!(f, "Modint({n})") } _ => write!(f, "Modint({})", self.0) } } }
         pub trait Fp { fn pow(&self, rhs: usize) -> Self; fn inv(&self) -> Self; }
         impl<const MOD: usize> Fp for Modint<MOD> { fn pow(&self, rhs: usize) -> Self { let (mut a, mut b) = (self.0, rhs); let mut res = 1; while b > 0 { if b & 1 == 1 { res = (res * a) % MOD; } a = (a * a) % MOD; b >>= 1u32; } Modint(res) } fn inv(&self) -> Self { self.pow(MOD - 2) } }
         impl<const MOD: usize> Sum<Modint<MOD>> for Modint<MOD> { fn sum<I: Iterator<Item = Modint<MOD>>>(iter: I) -> Self { iter.fold(Modint::<MOD>(0), |acc, x| acc + x) } }
