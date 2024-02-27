@@ -4,12 +4,21 @@
 #![allow(dead_code)]
 #![allow(unused_macros)]
 
+use itertools::Itertools;
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
+
+use crate::{dynamic_segment_tree::DynamicSegmentTree, monoid::examples::Add};
+
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
         #[cfg(debug_assertions)]
         eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
     }};
 }
+
 macro_rules! debug2D {
     ( $array:expr ) => {{
         #![cfg(debug_assertions)]
@@ -20,59 +29,69 @@ macro_rules! debug2D {
     }};
 }
 
-use monoid::Monoid;
-use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1},
-};
+// constant
+const MOD1: usize = 1_000_000_007;
+const MOD9: usize = 998_244_353;
+const INF: usize = 1001001001001001001;
 
-use crate::dynamic_segment_tree::DynamicSegmentTree;
-
+#[fastout]
 fn main() {
     input! {
         N: usize,
-        M: usize,
-        PAB: [(usize, f64, f64); M]
+        Q: usize,
+        S: String,
     }
 
-    let mut seg = DynamicSegmentTree::<usize, Affine>::new();
+    let S = S
+        .chars()
+        .map(|x| (x as usize) - ('0' as usize))
+        .collect_vec();
 
-    let mut min = 1.0;
-    let mut max = 1.0;
+    // 差分
+    let mut D = vec![1];
 
-    for &(p, a, b) in &PAB {
-        // 更新
-        seg.insert(p, (a, b));
-
-        // たこやきを処理
-        let (x, y) = seg.get_range(..);
-
-        let z = x + y;
-
-        if z < min {
-            min = z;
-        }
-        if z > max {
-            max = z;
-        }
-
-        if cfg!(debug_assertions) {
-            seg.print_as_binary_tree();
-        }
+    for i in 0..N - 1 {
+        D.push(S[i] ^ S[i + 1]);
     }
 
-    println!("{min}");
-    println!("{max}");
-}
+    D.push(1);
 
-struct Affine;
-impl Monoid for Affine {
-    type Val = (f64, f64);
-    const E: Self::Val = (1.0, 0.0);
-    fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-        let &(a1, b1) = left;
-        let &(a2, b2) = right;
-        (a2 * a1, a2 * b1 + b2)
+    debug!(S);
+    debug!(D);
+
+    // セグ木に乗せる
+    let mut seg = DynamicSegmentTree::<usize, Add>::new();
+
+    for (i, &d) in D.iter().enumerate() {
+        seg.insert(i, d);
+    }
+
+    // クエリ
+    for _ in 0..Q {
+        input! {
+            t: usize,
+            l: usize,
+            r: usize,
+        }
+
+        if t == 1 {
+            // 区間のはじめと終わりを反転
+            *seg.get_mut(l - 1) ^= 1;
+            *seg.get_mut(r) ^= 1;
+
+            if cfg!(debug_assertions) {
+                seg.print_as_binary_tree();
+            }
+        } else {
+            // 区間がすべて1になっているかを判定
+            let sum = seg.get_range(l..r);
+            debug!(l, r - 1, sum);
+            if sum == (r - l) {
+                println!("Yes");
+            } else {
+                println!("No");
+            }
+        }
     }
 }
 
@@ -94,7 +113,7 @@ mod monoid {
         /// 和
         pub struct Add;
         impl Monoid for Add {
-            type Val = isize;
+            type Val = usize;
             const E: Self::Val = 0;
             fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
                 left + right
@@ -152,6 +171,17 @@ mod monoid {
                 gcd(b, a % b)
             }
         }
+        /// アフィン変換（浮動小数点数）
+        struct Affine;
+        impl Monoid for Affine {
+            type Val = (f64, f64);
+            const E: Self::Val = (1.0, 0.0);
+            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+                let &(a1, b1) = left;
+                let &(a2, b2) = right;
+                (a2 * a1, a2 * b1 + b2)
+            }
+        }
     }
 }
 
@@ -160,7 +190,6 @@ mod dynamic_segment_tree {
     //! - 遅延評価なし
     use crate::monoid;
     pub use dynamic_segment_tree::*;
-    pub use print_util::*;
     mod dynamic_segment_tree {
         //! AA木による動的セグ木
         //! - 遅延評価なし

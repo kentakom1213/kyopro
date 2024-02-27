@@ -1,15 +1,16 @@
 #!/bin/zsh
 
-# スニペットを作成
-SNIPPET_FILE="$KYOPURO_LIBRARY_DIR/rust.json"
+# スニペットの元ファイル
+TARGET_FILE="$KYOPURO_LIBRARY_DIR/rust.json"
+
+# スニペットのファイル
+SNIPPET_FILE='.vscode/rust.code-snippets'
 
 # ディレクトリを作成
 mkdir -p .vscode
 
-if [[ -e .vscode/rust.code-snippets ]]; then
-  # 既にファイルが存在する場合は削除
-  rm .vscode/rust.code-snippets
-fi
+# 既にファイルが存在する場合は削除
+unlink $SNIPPET_FILE || :
 
 # シンボリックリンクを作成
-ln -s $SNIPPET_FILE .vscode/rust.code-snippets
+ln -s $TARGET_FILE $SNIPPET_FILE
