@@ -5,9 +5,14 @@
 #![allow(dead_code)]
 #![allow(unused_macros)]
 
+use std::collections::VecDeque;
+
 // imports
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -17,7 +22,28 @@ macro_rules! debug {
 }
 
 fn main() {
-    
+    input! {
+        N: usize,
+        X: usize,
+        Y: usize,
+        A: [usize; N],
+    }
+
+    // 条件を満たす可能性がある区間のみ
+    let mut B = vec![];
+
+    for &a in &A {
+        if Y <= a && a <= X {
+            B.push(a);
+        } else {
+            debug!(B);
+            B.clear();
+        }
+    }
+    debug!(B);
 }
 
-const INF: usize = 1001001001001001001;
+/// 条件を満たす区間の個数をカウント
+fn shakutori(B: &mut Vec<usize>) -> usize {
+    
+}

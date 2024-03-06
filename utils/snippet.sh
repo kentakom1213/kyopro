@@ -14,3 +14,6 @@ unlink $SNIPPET_FILE || :
 
 # シンボリックリンクを作成
 ln -s $TARGET_FILE $SNIPPET_FILE
+
+echo ".vscode/rust.code-snippetsを作成しました．"
+
