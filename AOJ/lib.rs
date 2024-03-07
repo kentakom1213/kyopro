@@ -16,6 +16,7 @@ mod Range_Update_Query;
 mod Sliding_Minimum_Element;
 mod The_Maximum_Number_of_Customers;
 mod The_Maximum_Number_of_Overlaps;
+mod The_Maximum_Number_of_Overlaps_seg;
 mod The_Number_of_Windows;
 mod The_Smallest_Window_I;
 mod The_Smallest_Window_II;
