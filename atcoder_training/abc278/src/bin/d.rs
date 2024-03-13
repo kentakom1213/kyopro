@@ -1,16 +1,8 @@
-// attributes
 #![allow(unused_imports)]
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 #![allow(unused_macros)]
-
-// imports
-use itertools::Itertools;
-use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1},
-};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -18,18 +10,28 @@ macro_rules! debug {
         eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
     }};
 }
+macro_rules! debug2D {
+    ( $array:expr ) => {{
+        #![cfg(debug_assertions)]
+        eprintln!("{}: ", stringify!($array));
+        for row in &$array {
+            eprintln!("{:?}", row);
+        }
+    }};
+}
 
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 fn main() {
     input! {
         N: usize,
+        A: [usize; N],
         Q: usize,
-        TX: [(usize, Usize1); Q]
     }
 
     
+
 }

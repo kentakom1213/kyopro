@@ -10,7 +10,7 @@ SNIPPET_FILE='.vscode/rust.code-snippets'
 mkdir -p .vscode
 
 # 既にファイルが存在する場合は削除
-unlink $SNIPPET_FILE || :
+unlink $SNIPPET_FILE 2>/dev/null || :
 
 # シンボリックリンクを作成
 ln -s $TARGET_FILE $SNIPPET_FILE
