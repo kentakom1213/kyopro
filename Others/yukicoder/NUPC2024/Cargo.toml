@@ -1,6 +1,5 @@
-workspace = { members = ["NUPC2024"] }
 [package]
-name = "yukicoder"
+name = "NUPC2024"
 version = "0.1.0"
 edition = "2021"
 
