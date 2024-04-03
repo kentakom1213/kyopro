@@ -20,32 +20,60 @@ macro_rules! debug2D {
     }};
 }
 
+use std::{
+    cmp::Reverse,
+    collections::{BTreeMap, BTreeSet, BinaryHeap},
+    result,
+};
+
+use itertools::Itertools;
 use proconio::{
     input,
     marker::{Bytes, Chars, Usize1},
 };
+use rustc_hash::{FxHashMap, FxHashSet};
+use superslice::Ext;
 
 fn main() {
     input! {
-        N: usize,
+        N: isize,
         M: usize,
-        XY: [(usize, usize); M]
+        XY: [(isize, isize); M]
     }
 
-    // Y座標だけ座標圧縮
-    let comp = {
-        let mut ys = vec![0, 2 * N];
-        for &(_, y) in &XY {
-            ys.push(y);
+    // 候補となるc座標
+    let mut S = FxHashSet::from_iter([N]);
+
+    // r座標が小さい順に見ていく
+    for (&g, rcs) in &XY.iter().sorted().group_by(|&(r, c)| r) {
+        // Sに追加する座標の集合
+        let mut A = FxHashSet::default();
+
+        // Sから削除する座標の集合
+        let mut B = FxHashSet::default();
+
+        for &(r, c) in rcs {
+            // 左上，右上から到達できる場合
+            if (S.contains(&(c - 1)) || S.contains(&(c + 1))) && !S.contains(&c) {
+                A.insert(c);
+            }
+            // 上からしか到達できない場合，削除
+            if (!S.contains(&(c - 1)) && !S.contains(&(c + 1))) && S.contains(&c) {
+                B.insert(c);
+            }
         }
-        ys.sort();
-        ys.dedup();
-        ys
-    };
 
-    debug!(comp);
+        // Sを更新
+        for &a in &A {
+            S.insert(a);
+        }
 
-    // 動ける場所
+        for &b in &B {
+            S.remove(&b);
+        }
+    }
+
+    println!("{}", S.len());
 }
 
 const INF: usize = 1001001001001001001;
