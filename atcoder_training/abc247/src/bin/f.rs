@@ -25,6 +25,16 @@ macro_rules! debug {
     }};
 }
 
+macro_rules! debug2D {
+    ( $array:expr ) => {{
+        #![cfg(debug_assertions)]
+        eprintln!("{}: ", stringify!($array));
+        for row in &$array {
+            eprintln!("{:?}", row);
+        }
+    }};
+}
+
 fn main() {
     input! {
         N: usize,
@@ -55,17 +65,43 @@ fn main() {
 
     // n枚のグループから、すべての数字が含まれるように選ぶときの組合せの数
     let get_comb = {
-        // dp[i][0] := i枚目までのカードから条件を満たすように選んだとき、
+        // dp1: 辺1-Mが存在しない場合
+        // dp1[i][0] := i枚目までのカードから条件を満たすように選んだとき、
         //              最後に選んだカードがi-1枚目
-        // dp[i][1] := i枚目までのカードから条件を満たすように選んだとき、
+        // dp1[i][1] := i枚目までのカードから条件を満たすように選んだとき、
         //              最後に選んだカードがi枚目
-        let mut dp = vec![[Mint998::new(0), Mint998::new(0)]; N + 1];
+        let mut dp1 = vec![[Mint998::new(0), Mint998::new(0)]; N + 1];
+        dp1[1][0] = 0.into();
+        dp1[1][1] = 1.into();
 
-        for i in 0..N {
+        // dp2: 辺1-Mが存在する場合
+        // dp2[i][0] := i枚目までのカードから条件を満たすように選んだとき、
+        //              最後に選んだカードがi-1枚目
+        // dp2[i][1] := i枚目までのカードから条件を満たすように選んだとき、
+        //              最後に選んだカードがi枚目
+        let mut dp2 = vec![[Mint998::new(0), Mint998::new(0)]; N + 1];
+        dp2[1][0] = 1.into();
+        dp2[1][1] = 1.into();
 
+        for i in 2..=N {
+            // dp1
+            dp1[i][0] = dp1[i - 1][1];
+            dp1[i][1] = dp1[i - 1][0] + dp1[i - 1][1];
+            // dp2
+            dp2[i][0] = dp2[i - 1][1];
+            dp2[i][1] = dp2[i - 1][0] + dp2[i - 1][1];
         }
 
-        move |n: usize| dp[n][0] + dp[n][1]
+        debug2D!(dp1);
+        debug2D!(dp2);
+
+        move |n: usize| {
+            if n == 1 {
+                1.into()
+            } else {
+                dp1[n - 1][1] + dp2[n - 1][0] + dp2[n - 1][1]
+            }
+        }
     };
 
     // 各グループに関して、独立に考える
@@ -78,6 +114,8 @@ fn main() {
             let size = uf.get_size(i);
             ans *= get_comb(size);
             seen[p] = true;
+
+            debug!(size);
         }
     }
 
