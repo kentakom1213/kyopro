@@ -1,0 +1,16 @@
+[package]
+name = "contest8"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.cargo-compete.bin]
+contest8-a = { alias = "a", problem = "https://yukicoder.me/problems/no/8" }
+
+[[bin]]
+name = "contest8-a"
+path = "src/bin/a.rs"
+
+[dependencies]
+proconio = { version = "=0.3.6", features = ["derive"] }
+
+[dev-dependencies]

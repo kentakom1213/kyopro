@@ -1,0 +1,46 @@
+[package]
+name = "contest490"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.cargo-compete.bin]
+contest490-a = { alias = "a", problem = "https://yukicoder.me/problems/no/2721" }
+contest490-b = { alias = "b", problem = "https://yukicoder.me/problems/no/2722" }
+contest490-c = { alias = "c", problem = "https://yukicoder.me/problems/no/2723" }
+contest490-d = { alias = "d", problem = "https://yukicoder.me/problems/no/2724" }
+contest490-e = { alias = "e", problem = "https://yukicoder.me/problems/no/2725" }
+contest490-f = { alias = "f", problem = "https://yukicoder.me/problems/no/2726" }
+contest490-g = { alias = "g", problem = "https://yukicoder.me/problems/no/2727" }
+
+[[bin]]
+name = "contest490-a"
+path = "src/bin/a.rs"
+
+[[bin]]
+name = "contest490-b"
+path = "src/bin/b.rs"
+
+[[bin]]
+name = "contest490-c"
+path = "src/bin/c.rs"
+
+[[bin]]
+name = "contest490-d"
+path = "src/bin/d.rs"
+
+[[bin]]
+name = "contest490-e"
+path = "src/bin/e.rs"
+
+[[bin]]
+name = "contest490-f"
+path = "src/bin/f.rs"
+
+[[bin]]
+name = "contest490-g"
+path = "src/bin/g.rs"
+
+[dependencies]
+proconio = { version = "=0.3.6", features = ["derive"] }
+
+[dev-dependencies]
