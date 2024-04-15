@@ -20,45 +20,62 @@ macro_rules! debug2D {
     }};
 }
 
+use itertools::Itertools;
 use proconio::{
     input,
     marker::{Bytes, Chars, Usize1},
 };
 
-use crate::modint::Mint998;
+use crate::modint::M998;
 
 fn main() {
     input! {
         N: usize,
     }
 
-    let mut P = vec![Mint998::new(1)];
+    let mut P = vec![M998::new(1)];
 
     for i in 1..=N {
         P.push(P[i - 1] / 2);
     }
 
-    // dp[i][j] := 列にi人並んでいるとき，先頭からj番目の人が最後に残る確率
-    let mut dp = vec![vec![Mint998::new(0); N]; N + 1];
+    // dp[i][j] := 今列にi人いるとき、先頭からj番目の人が最後に残る確率
+    let mut dp = vec![vec![M998::new(0); N]; N + 1];
 
-    // 初期化
-    dp[1][0] = Mint998::new(1);
+    // 1人のときは確率1
+    dp[1][0] = 1.into();
 
-    // 更新
-    for i in 0..N {
-        for j in 0..N {
+    for i in 2..=N {
+        // 累積和で高速化
+        // dp[5][0] = sum( dp[4][0] * P[4], dp[4][1] * P[3], dp[4][2] * P[2], dp[4][3] * P[1], )
+        // dp[5][1] = sum( dp[4][0] * P[0], dp[4][1] * P[4], dp[4][2] * P[3], dp[4][3] * P[2], )
+        // dp[5][2] = sum( dp[4][0] * P[1], dp[4][1] * P[0], dp[4][2] * P[4], dp[4][3] * P[3], )
+        // dp[5][3] = sum( dp[4][0] * P[2], dp[4][1] * P[1], dp[4][2] * P[0], dp[4][3] * P[4], )
+        // dp[5][4] = sum( dp[4][0] * P[3], dp[4][1] * P[2], dp[4][2] * P[1], dp[4][3] * P[0], )
+        let mut sum: M998 = (0..i - 1)
+            // .inspect(|&k| eprintln!("dp[{}][0] += dp[{}][{}] * P[{}]", i, i - 1, k, i - k - 1))
+            .map(|k| dp[i - 1][k] * P[i - k - 1])
+            .sum();
 
+        for j in 0..i {
+            dp[i][j] = sum * P[1] / (M998::new(1) - P[i]);
+
+            // 差分の更新
+            sum *= P[1];
+            sum -= dp[i - 1][j] * (P[i] - P[0]);
         }
     }
+
+    debug2D!(dp);
+
+    println!("{}", dp[N].iter().join(" "));
 }
 
 mod modint {
-    //! Modintの構造体 
+    //! Modintの構造体
     pub use modint::*;
-    pub const M998: usize = 998244353;
-    pub const M107: usize = 1000000007;
-    pub type Mint998 = Modint<M998>;
-    pub type Mint107 = Modint<M107>;
+    pub type M998 = Modint<998244353>;
+    pub type M107 = Modint<1000000007>;
     // 適当な素数
     pub type P1 = Modint<938472061>;
     pub type P2 = Modint<958472071>;
