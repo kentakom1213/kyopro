@@ -20,43 +20,71 @@ macro_rules! debug2D {
     }};
 }
 
+use std::{
+    cmp::Reverse,
+    collections::{BTreeSet, BinaryHeap},
+};
+
 use itertools::Itertools;
 use proconio::{
     input,
     marker::{Bytes, Chars, Usize1},
 };
+use rustc_hash::FxHashSet;
 
 fn main() {
     input! {
         N: usize,
-        A: [isize; N * 3]
+        A: [isize; 3 * N],
     }
 
-    // D: 削除する値の集合
-    // X: A\D の先頭N個
-    // Y: A\D の末尾N個
-    // 定義から、
-    // A = X + Y + D
-    //
-    // ここで、
-    //     max. sum(X) - sum(Y)
-    // ==> max. (sum(X) - sum(Y)) + sum(A)
-    // ==> max. 2*sum(X) + sum(D)
-    //
-    // 先頭N個と、削除するN個のみを調べれば良い
+    // 先頭の候補
+    let mut Sx = vec![0; N + 1];
+    let mut X: BinaryHeap<Reverse<isize>> = A[..N]
+        .iter()
+        .inspect(|&&v| Sx[0] += v)
+        .map(|&v| Reverse(v))
+        .collect();
 
-    // 全体の総和
-    let Sa: isize = A.iter().sum();
+    let mut Sy = vec![0; N + 1];
+    let mut Y: BinaryHeap<isize> = A[2 * N..]
+        .iter()
+        .inspect(|&&v| Sy[N] += v)
+        .cloned()
+        .collect();
 
-    // 先頭2N個のうち大きいものN個の総和
-    let Sx: isize = A[..2 * N].iter().sorted().skip(N).sum();
+    // 前半、後半の区切りを全探索
+    for k in N..2 * N {
+        debug!(X, k);
+        // XにAkを追加（既存の要素より大きい場合）
+        if X.peek().unwrap().0 < A[k] {
+            let old = X.pop().unwrap().0;
+            X.push(Reverse(A[k]));
+            // 更新
+            Sx[k - N + 1] = Sx[k - N] - old + A[k];
+        } else {
+            Sx[k - N + 1] = Sx[k - N];
+        }
+    }
 
-    // 末尾N個の総和
-    let Sy: isize = A[2 * N..].iter().sum();
+    for k in (N..2 * N).rev() {
+        debug!(Y, k);
+        // YにAkを追加（既存の要素より小さい場合）
+        if *Y.peek().unwrap() > A[k] {
+            let old = Y.pop().unwrap();
+            Y.push(A[k]);
+            // 更新
+            Sy[k - N] = Sy[k + 1 - N] - old + A[k];
+        } else {
+            Sy[k - N] = Sy[k + 1 - N];
+        }
+    }
 
-    let ans = Sx - Sy;
+    debug!(Sx, Sy);
+
+    let ans = (0..=N).map(|k| Sx[k] - Sy[k]).max().unwrap();
 
     println!("{ans}");
 }
 
-const INF: usize = 1001001001001001001;
+const INF: isize = 1001001001001001001;
