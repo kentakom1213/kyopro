@@ -6,8 +6,11 @@
 #![allow(unused_macros)]
 
 // imports
-use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use itertools::{sorted, Itertools};
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Isize1, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -17,10 +20,36 @@ macro_rules! debug {
 }
 
 // constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
+const INF: isize = 1001001001001001001;
 
 fn main() {
-    
+    input! {
+        N: usize,
+        mut DCS: [(isize, isize, usize); N]
+    }
+
+    // 終了時刻でソート
+    DCS.sort();
+
+    let mut ans = 0;
+
+    // 全探索
+    for i in 0..1 << N {
+        // 現在時刻
+        let mut t = 1;
+        // スコア
+        let mut score = 0;
+
+        for j in (0..N).filter(|j| i >> j & 1 == 1) {
+            let (d, c, s) = DCS[j];
+            if t + c <= d {
+                score += s;
+                t += c;
+            }
+        }
+
+        ans = ans.max(score);
+    }
+
+    println!("{ans}");
 }
