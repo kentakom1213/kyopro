@@ -10,7 +10,7 @@ use proconio::{
     marker::{Bytes, Chars, Usize1},
 };
 
-use crate::{monoid::examples::Add, segment_tree::SegmentTree};
+use crate::bit::{Alg::Add, BIT};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -65,42 +65,183 @@ fn main() {
     let mut ans = 0;
 
     // 自分の前にある数の数
-    let mut seg1 = SegmentTree::<Add>::new(N);
+    let mut seg1 = BIT::<Add>::new(N);
     // 自分の前にある数の合計
-    let mut seg2 = SegmentTree::<Add>::new(N);
+    let mut seg2 = BIT::<Add>::new(N);
 
     for &(a, i) in &AI {
         // 自分の前にある数の数
-        let cnt = seg1.get_range(..i);
+        let cnt = seg1.prefix_sum(i);
         // 自分の前にある数の合計
-        let sum = seg2.get_range(..i);
+        let sum = seg2.prefix_sum(i);
 
         ans += cnt * a - sum;
 
         // 設定
-        *seg1.get_mut(i).unwrap() += 1;
-        *seg2.get_mut(i).unwrap() += a;
+        seg1.add(i, 1);
+        seg2.add(i, a);
     }
 
     println!("{ans}");
 }
 
-mod monoid {
-    //! モノイド
-    use std::fmt::Debug;
-    /// モノイド
+mod bit {
+    //! BinaryIndexedTree / FenwickTree
+    use std::{
+        fmt::Debug,
+        ops::{
+            Bound::{Excluded, Included, Unbounded},
+            RangeBounds,
+        },
+    };
+    /// # Monoid
+    /// - モノイド
     pub trait Monoid {
-        /// 元の型
+        /// 値の型
         type Val: Debug + Clone + PartialEq;
         /// 単位元
         const E: Self::Val;
         /// 演算
         fn op(left: &Self::Val, right: &Self::Val) -> Self::Val;
     }
-    /// 各種モノイド
-    pub mod examples {
-        use super::Monoid;
-        /// 和
+    /// モノイドに対する逆元の実装
+    pub trait InversableMonoid: Monoid {
+        fn inv(val: &Self::Val) -> Self::Val;
+    }
+    /// モノイドに対する順序の実装
+    pub trait OrderedMonoid: Monoid {
+        fn lt(left: &Self::Val, right: &Self::Val) -> bool;
+        fn le(left: &Self::Val, right: &Self::Val) -> bool;
+    }
+    /// # BinaryIndexedTree
+    /// - `0-indexed`なインターフェースを持つBIT
+    pub struct BIT<T: Monoid> {
+        pub size: usize,
+        arr: Vec<T::Val>,
+    }
+    impl<T: Monoid> BIT<T> {
+        #[inline]
+        fn lsb(x: usize) -> usize {
+            x & x.wrapping_neg()
+        }
+        /// BITの初期化を行う
+        /// - `n`: 列の長さ
+        pub fn new(n: usize) -> Self {
+            BIT {
+                size: n,
+                arr: vec![T::E; n + 1],
+            }
+        }
+        /// 一点加算を行う
+        /// - `i`: 加算を行うインデックス（`0-indexed`）
+        /// - `x`: 加算する値
+        pub fn add(&mut self, mut i: usize, x: T::Val) {
+            i += 1;
+            while i <= self.size {
+                self.arr[i] = T::op(&self.arr[i], &x);
+                i += Self::lsb(i);
+            }
+        }
+        /// 先頭からの和を求める
+        /// - `i`: 区間`[0,i)`に対しての総和（`0-indexed`）
+        pub fn prefix_sum(&self, mut i: usize) -> T::Val {
+            let mut res = T::E;
+            while i != 0 {
+                res = T::op(&res, &self.arr[i]);
+                i -= Self::lsb(i);
+            }
+            res
+        }
+    }
+    impl<T: InversableMonoid> BIT<T> {
+        #[inline]
+        fn parse_range<R: RangeBounds<usize>>(&self, range: R) -> Option<(usize, usize)> {
+            let start = match range.start_bound() {
+                Unbounded => 0,
+                Excluded(&v) => v + 1,
+                Included(&v) => v,
+            }
+            .min(self.size);
+            let end = match range.end_bound() {
+                Unbounded => self.size,
+                Excluded(&v) => v,
+                Included(&v) => v + 1,
+            }
+            .min(self.size);
+            if start <= end {
+                Some((start, end))
+            } else {
+                None
+            }
+        }
+        /// 任意の区間の和を求める
+        /// - `range`: 区間を表すRangeオブジェクト
+        pub fn sum<R: RangeBounds<usize>>(&self, range: R) -> T::Val {
+            if let Some((i, j)) = self.parse_range(range) {
+                T::op(&self.prefix_sum(j), &T::inv(&self.prefix_sum(i)))
+            } else {
+                T::E
+            }
+        }
+    }
+    impl<T: Monoid> From<&Vec<T::Val>> for BIT<T> {
+        /// ベクターの参照からBITを作成
+        fn from(src: &Vec<T::Val>) -> Self {
+            let size = src.len();
+            let mut arr = vec![T::E; size + 1];
+            for i in 1..=size {
+                let x = src[i - 1].clone();
+                arr[i] = T::op(&arr[i], &x);
+                let j = i + Self::lsb(i);
+                if j < size + 1 {
+                    arr[j] = T::op(&arr[j], &arr[i].clone());
+                }
+            }
+            Self { size, arr }
+        }
+    }
+    impl<T: OrderedMonoid> BIT<T> {
+        /// `lower_bound`/`upper_bound`を共通化した実装
+        fn binary_search<F>(&self, w: T::Val, compare: F) -> usize
+        where
+            F: Fn(&T::Val, &T::Val) -> bool,
+        {
+            let mut sum = T::E;
+            let mut idx = 0;
+            let mut d = self.size.next_power_of_two() / 2;
+            while d != 0 {
+                if idx + d <= self.size {
+                    let nxt = T::op(&sum, &self.arr[idx + d]);
+                    if compare(&nxt, &w) {
+                        sum = nxt;
+                        idx += d;
+                    }
+                }
+                d >>= 1;
+            }
+            idx
+        }
+        /// `a_0 + a_1 + ... + a_i >= w`となる最小の`i`を求める
+        pub fn lower_bound(&self, w: T::Val) -> usize {
+            self.binary_search(w, T::lt)
+        }
+        /// `a_0 + a_1 + ... + a_i > w`となる最小の`i`を求める
+        pub fn upper_bound(&self, w: T::Val) -> usize {
+            self.binary_search(w, T::le)
+        }
+    }
+    impl<T: InversableMonoid> Debug for BIT<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+            write!(f, "BIT {{ [")?;
+            for i in 0..self.size - 1 {
+                write!(f, "{:?}, ", self.sum(i..i + 1))?;
+            }
+            write!(f, "{:?}] }}", self.sum(self.size - 1..self.size))
+        }
+    }
+    pub mod Alg {
+        use super::{InversableMonoid, Monoid, OrderedMonoid};
+        #[derive(Debug)]
         pub struct Add;
         impl Monoid for Add {
             type Val = usize;
@@ -109,16 +250,24 @@ mod monoid {
                 left + right
             }
         }
-        /// 積
+        impl OrderedMonoid for Add {
+            fn lt(left: &Self::Val, right: &Self::Val) -> bool {
+                left < right
+            }
+            fn le(left: &Self::Val, right: &Self::Val) -> bool {
+                left <= right
+            }
+        }
+        #[derive(Debug)]
         pub struct Mul;
         impl Monoid for Mul {
             type Val = isize;
             const E: Self::Val = 1;
             fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                left * right
+                left + right
             }
         }
-        /// bit単位の排他的論理和
+        #[derive(Debug)]
         pub struct Xor;
         impl Monoid for Xor {
             type Val = usize;
@@ -127,218 +276,10 @@ mod monoid {
                 left ^ right
             }
         }
-        /// 最小値
-        pub struct Min;
-        impl Monoid for Min {
-            type Val = isize;
-            const E: Self::Val = (1 << 31) - 1;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                *left.min(right)
+        impl InversableMonoid for Xor {
+            fn inv(val: &Self::Val) -> Self::Val {
+                *val
             }
-        }
-        /// 最大値
-        pub struct Max;
-        impl Monoid for Max {
-            type Val = isize;
-            const E: Self::Val = -((1 << 31) - 1);
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                *left.max(right)
-            }
-        }
-        /// 最小公倍数
-        pub struct GCD;
-        impl Monoid for GCD {
-            type Val = usize;
-            const E: Self::Val = 0;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                gcd(*left, *right)
-            }
-        }
-        pub fn gcd(a: usize, b: usize) -> usize {
-            if b == 0 {
-                a
-            } else {
-                gcd(b, a % b)
-            }
-        }
-        /// アフィン変換（浮動小数点数）
-        struct Affine;
-        impl Monoid for Affine {
-            type Val = (f64, f64);
-            const E: Self::Val = (1.0, 0.0);
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                let &(a1, b1) = left;
-                let &(a2, b2) = right;
-                (a2 * a1, a2 * b1 + b2)
-            }
-        }
-    }
-}
-
-mod segment_tree {
-    //! セグメント木
-    use crate::monoid::Monoid;
-    use std::fmt::{self, Debug};
-    use std::ops::{
-        Bound::{Excluded, Included, Unbounded},
-        Deref, DerefMut, Index, RangeBounds,
-    };
-    /// # SegmentTree (Monoid)
-    /// - 抽象化セグメント木
-    pub struct SegmentTree<M: Monoid> {
-        pub size: usize,
-        offset: usize,
-        data: Vec<M::Val>,
-    }
-    impl<M: Monoid> Index<usize> for SegmentTree<M> {
-        type Output = M::Val;
-        fn index(&self, idx: usize) -> &Self::Output {
-            &self.data[self.offset + idx]
-        }
-    }
-    impl<M: Monoid> SegmentTree<M> {
-        #[inline]
-        fn parse_range<R: RangeBounds<usize>>(&self, range: &R) -> Option<(usize, usize)> {
-            let start = match range.start_bound() {
-                Unbounded => 0,
-                Excluded(&v) => v + 1,
-                Included(&v) => v,
-            };
-            let end = match range.end_bound() {
-                Unbounded => self.size,
-                Excluded(&v) => v,
-                Included(&v) => v + 1,
-            };
-            if start <= end && end <= self.size {
-                Some((start, end))
-            } else {
-                None
-            }
-        }
-        /// セグメント木を初期化する
-        pub fn new(n: usize) -> Self {
-            let offset = n;
-            Self {
-                size: n,
-                offset,
-                data: vec![M::E; offset << 1],
-            }
-        }
-        pub fn update(&mut self, index: usize, value: M::Val) {
-            let mut i = index + self.offset;
-            self.data[i] = value;
-            while i > 1 {
-                i >>= 1;
-                let lch = i << 1;
-                self.data[i] = M::op(&self.data[lch], &self.data[lch + 1]);
-            }
-        }
-        /// 可変な参照を返す
-        pub fn get_mut(&mut self, i: usize) -> Option<ValMut<'_, M>> {
-            if i < self.offset {
-                let default = self.index(i).clone();
-                Some(ValMut {
-                    segtree: self,
-                    idx: i,
-                    new_val: default,
-                })
-            } else {
-                None
-            }
-        }
-        /// 区間`range`の集約を行う
-        pub fn get_range<R: RangeBounds<usize> + Debug>(&self, range: R) -> M::Val {
-            let Some((start, end)) = self.parse_range(&range) else {
-                panic!("The given range is wrong: {:?}", range);
-            };
-            // 値の取得
-            let mut l = self.offset + start;
-            let mut r = self.offset + end;
-            let (mut res_l, mut res_r) = (M::E, M::E);
-            while l < r {
-                if l & 1 == 1 {
-                    res_l = M::op(&res_l, &self.data[l]);
-                    l += 1;
-                }
-                if r & 1 == 1 {
-                    r -= 1;
-                    res_r = M::op(&self.data[r], &res_r);
-                }
-                l >>= 1;
-                r >>= 1;
-            }
-            M::op(&res_l, &res_r)
-        }
-    }
-    impl<M: Monoid> From<&Vec<M::Val>> for SegmentTree<M> {
-        fn from(src: &Vec<M::Val>) -> Self {
-            let mut seg = Self::new(src.len());
-            for (i, v) in src.iter().enumerate() {
-                seg.data[seg.offset + i] = v.clone();
-            }
-            for i in (0..seg.offset).rev() {
-                let lch = i << 1;
-                seg.data[i] = M::op(&seg.data[lch], &seg.data[lch + 1]);
-            }
-            seg
-        }
-    }
-    impl<M: Monoid> Debug for SegmentTree<M> {
-        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            write!(f, "SegmentTree {{ [").ok();
-            for i in 0..self.size {
-                if i + 1 < self.size {
-                    write!(f, "{:?}, ", self.data[self.offset + i]).ok();
-                } else {
-                    write!(f, "{:?}", self.data[self.offset + i]).ok();
-                }
-            }
-            write!(f, "] }}")
-        }
-    }
-    pub struct ValMut<'a, M: 'a + Monoid> {
-        segtree: &'a mut SegmentTree<M>,
-        idx: usize,
-        new_val: M::Val,
-    }
-    impl<M: Monoid> Debug for ValMut<'_, M> {
-        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            f.debug_tuple("ValMut").field(&self.new_val).finish()
-        }
-    }
-    impl<M: Monoid> Drop for ValMut<'_, M> {
-        fn drop(&mut self) {
-            self.segtree.update(self.idx, self.new_val.clone());
-        }
-    }
-    impl<M: Monoid> Deref for ValMut<'_, M> {
-        type Target = M::Val;
-        fn deref(&self) -> &Self::Target {
-            &self.new_val
-        }
-    }
-    impl<M: Monoid> DerefMut for ValMut<'_, M> {
-        fn deref_mut(&mut self) -> &mut Self::Target {
-            &mut self.new_val
-        }
-    }
-    impl<M> SegmentTree<M>
-    where
-        M: Monoid,
-        M::Val: Debug,
-    {
-        /// セグ木を簡易的に表示する
-        /// **サイズが2べきのときのみ**
-        pub fn show(&self) {
-            #![cfg(debug_assertions)]
-            let mut i = 1;
-            let mut w = 1;
-            while i + w <= 2 * self.offset {
-                eprintln!("{:?}", &self.data[i..i + w]);
-                i += w;
-                w <<= 1;
-            }
-            eprintln!();
         }
     }
 }
