@@ -1,0 +1,659 @@
+// attributes
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(non_snake_case)]
+#![allow(dead_code)]
+#![allow(unused_macros)]
+
+// imports
+use itertools::Itertools;
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
+
+macro_rules! debug {
+    ( $($val:expr),* $(,)* ) => {{
+        #[cfg(debug_assertions)]
+        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
+    }};
+}
+
+use std::ops::{
+    Bound::{Excluded, Included, Unbounded},
+    RangeBounds,
+};
+/// 作用付きモノイド
+pub trait ExtMonoid {
+    /// 要素のデータ型
+    type X: Clone + PartialEq;
+    /// 作用素のデータ型
+    type M: Clone + PartialEq;
+    /// 要素Xの単位元
+    const IX: Self::X;
+    /// 作用素Mの単位元
+    const IM: Self::M;
+    /// 要素同士の演算
+    fn operate_x(x: &Self::X, y: &Self::X) -> Self::X;
+    /// 要素に対する作用
+    fn apply(x: &Self::X, y: &Self::M) -> Self::X;
+    /// 作用素同士の演算
+    fn operate_m(x: &Self::M, y: &Self::M) -> Self::M;
+    /// 作用素の集約
+    fn aggregate(x: &Self::M, p: usize) -> Self::M;
+}
+/// 遅延評価セグメント木
+#[derive(Debug)]
+pub struct LazySegmentTree<T: ExtMonoid> {
+    pub size: usize,
+    offset: usize,
+    data: Vec<T::X>,
+    lazy: Vec<T::M>,
+}
+impl<T: ExtMonoid> LazySegmentTree<T> {
+    #[inline]
+    fn parse_range<R: RangeBounds<usize>>(&self, range: R) -> Option<(usize, usize)> {
+        let start = match range.start_bound() {
+            Unbounded => 0,
+            Excluded(&v) => v + 1,
+            Included(&v) => v,
+        }
+        .min(self.size);
+        let end = match range.end_bound() {
+            Unbounded => self.size,
+            Excluded(&v) => v,
+            Included(&v) => v + 1,
+        }
+        .min(self.size);
+        if start <= end {
+            Some((start, end))
+        } else {
+            None
+        }
+    }
+    /// 遅延評価セグメント木を初期化する
+    /// - `n`: 配列サイズ
+    pub fn new(n: usize) -> Self {
+        let offset = n.next_power_of_two();
+        Self {
+            size: n,
+            offset,
+            data: vec![T::IX; offset << 1],
+            lazy: vec![T::IM; offset << 1],
+        }
+    }
+    /// 遅延値を評価
+    fn eval(&mut self, idx: usize, len: usize) {
+        if self.lazy[idx] == T::IM {
+            return;
+        }
+        // 葉でなければ子に伝搬
+        if idx < self.offset {
+            self.lazy[idx * 2] = T::operate_m(&self.lazy[idx * 2], &self.lazy[idx]);
+            self.lazy[idx * 2 + 1] = T::operate_m(&self.lazy[idx * 2 + 1], &self.lazy[idx]);
+        }
+        // 自身を更新
+        self.data[idx] = T::apply(&self.data[idx], &T::aggregate(&self.lazy[idx], len));
+        self.lazy[idx] = T::IM;
+    }
+    /// 区間に`val`を作用させる
+    /// - `range`: `[left, right)`
+    pub fn apply<R: RangeBounds<usize>>(&mut self, range: R, val: T::M) {
+        if let Some((left, right)) = self.parse_range(range) {
+            self.apply_inner(left, right, val, 0, self.offset, 1);
+        }
+    }
+    fn apply_inner(
+        &mut self,
+        left: usize,
+        right: usize,
+        val: T::M,
+        begin: usize,
+        end: usize,
+        idx: usize,
+    ) {
+        // 遅延値を評価
+        self.eval(idx, end - begin);
+        // 区間を内包するとき
+        if left <= begin && end <= right {
+            self.lazy[idx] = T::operate_m(&self.lazy[idx], &val);
+            self.eval(idx, end - begin);
+        }
+        // 区間が重なるとき
+        else if left < end && begin < right {
+            let mid = (begin + end) / 2;
+            // 左の子を更新
+            self.apply_inner(left, right, val.clone(), begin, mid, idx * 2);
+            // 右の子を更新
+            self.apply_inner(left, right, val, mid, end, idx * 2 + 1);
+            // 値を更新
+            self.data[idx] = T::operate_x(&self.data[idx * 2], &self.data[idx * 2 + 1]);
+        }
+    }
+    /// 区間を取得する
+    /// - `range`: `[left, right)`
+    pub fn get<R: RangeBounds<usize>>(&mut self, range: R) -> T::X {
+        if let Some((left, right)) = self.parse_range(range) {
+            self.get_inner(left, right, 0, self.offset, 1)
+        } else {
+            T::IX
+        }
+    }
+    fn get_inner(
+        &mut self,
+        left: usize,
+        right: usize,
+        begin: usize,
+        end: usize,
+        idx: usize,
+    ) -> T::X {
+        // 遅延値を評価
+        self.eval(idx, end - begin);
+        // 区間を含まない
+        if end <= left || right <= begin {
+            T::IX
+        }
+        // 区間を包含する
+        else if left <= begin && end <= right {
+            self.data[idx].clone()
+        }
+        // 区間が重なる
+        else {
+            let mid = (begin + end) / 2;
+            let l_val = self.get_inner(left, right, begin, mid, idx * 2);
+            let r_val = self.get_inner(left, right, mid, end, idx * 2 + 1);
+            T::operate_x(&l_val, &r_val)
+        }
+    }
+}
+impl<T: ExtMonoid> From<&Vec<T::X>> for LazySegmentTree<T> {
+    fn from(src: &Vec<T::X>) -> Self {
+        let mut seg = Self::new(src.len());
+        for (i, v) in src.iter().enumerate() {
+            seg.data[seg.offset + i] = v.clone();
+        }
+        for i in (0..seg.offset).rev() {
+            let lch = i << 1;
+            seg.data[i] = T::operate_x(&seg.data[lch], &seg.data[lch + 1]);
+        }
+        seg
+    }
+}
+
+#[derive(Debug)]
+pub struct ModDigits;
+impl ExtMonoid for ModDigits {
+    type X = (u128, usize); // (値、区間の長さ)
+    type M = Option<u128>;
+    const IX: Self::X = (0, 0);
+    const IM: Self::M = None;
+    fn operate_x(x: &Self::X, y: &Self::X) -> Self::X {
+        // 桁を揃えて足す
+        let &(xv, xd) = x;
+        let &(yv, yd) = y;
+        let v = (xv * TEN[yd] % MOD + yv) % MOD;
+        let d = xd + yd;
+        (v, d)
+    }
+    fn apply(x: &Self::X, y: &Self::M) -> Self::X {
+        ((y.unwrap() * ONE[x.1] % MOD), x.1)
+    }
+    fn operate_m(x: &Self::M, y: &Self::M) -> Self::M {
+        *y
+    }
+    fn aggregate(x: &Self::M, p: usize) -> Self::M {
+        *x
+    }
+}
+
+const SIZE: usize = 202020;
+
+const TEN: [u128; SIZE] = {
+    let mut arr = [1; SIZE];
+    let mut i = 1;
+    while i < SIZE {
+        arr[i] = arr[i - 1] * 10 % MOD;
+        i += 1;
+    }
+    arr
+};
+
+/// ## ord
+/// `A`を`0`とするascii文字(`A~Za~z`)のインデックスを返す
+pub fn ord(c: char) -> u128 {
+    let a = 'a' as u32;
+    let c = c as u32;
+    (c - a) as u128 + 2
+}
+
+const MOD: u128 = (1 << 61) - 1;
+
+const ONE: [u128; SIZE] = {
+    let mut arr = [1; SIZE];
+    let mut i = 2;
+    while i < SIZE {
+        arr[i] = (arr[i - 1] * 10 + 1) % MOD;
+        i += 1;
+    }
+    arr
+};
+
+#[fastout]
+fn main() {
+    input! {
+        N: usize,
+        Q: usize,
+        S: String,
+    }
+
+    let mut digits = S.chars().map(|c| (ord(c), 1)).collect_vec();
+
+    // 逆方向に見た文字列
+    let mut seg = LazySegmentTree::<ModDigits>::from(&digits);
+
+    digits.reverse();
+    let mut rev = LazySegmentTree::<ModDigits>::from(&digits);
+
+    debug!(&seg.data[seg.offset..]);
+    debug!(&rev.data[rev.offset..]);
+
+    // debug!(&seg);
+
+    for _ in 0..Q {
+        input! { t: usize }
+        if t == 1 {
+            input! {
+                x: Usize1,
+                c: char
+            }
+            // 更新
+            seg.apply(x..=x, Some(ord(c)));
+            let y = N - x - 1;
+            rev.apply(y..=y, Some(ord(c)));
+
+            debug!(&seg.data[seg.offset..]);
+            debug!(&rev.data[rev.offset..]);
+        } else {
+            input! {
+                l: Usize1,
+                r: Usize1,
+            }
+            // 取得
+            let forward = seg.get(l..=r).0;
+            let (ll, rr) = (N - l - 1, N - r - 1);
+            let backward = rev.get(rr..=ll).0;
+
+            debug!((l, r), (ll, rr));
+            debug!(forward, backward);
+
+            if forward == backward {
+                println!("Yes");
+            } else {
+                println!("No");
+            }
+        }
+    }
+}
+
+===== ↑ /home/powell/develop/algo/kyopro/contests/abc331/src/bin/f.rs | ↓ /home/powell/develop/algo/kyopro/atcoder_training/abc331/src/bin/f.rs =====
+// attributes
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(non_snake_case)]
+#![allow(dead_code)]
+#![allow(unused_macros)]
+
+// imports
+use itertools::Itertools;
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
+
+macro_rules! debug {
+    ( $($val:expr),* $(,)* ) => {{
+        #[cfg(debug_assertions)]
+        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
+    }};
+}
+
+fn main() {
+    input! {
+        N: usize,
+        Q: usize,
+        S: String
+    }
+
+    let digits = S
+        .chars()
+        .enumerate()
+        .map(|(i, c)| Modint::new(c as usize - 95) * Modint::new(10).pow(i))
+        .collect_vec();
+
+    let digits_rev = S
+        .chars()
+        .rev()
+        .enumerate()
+        .map(|(i, c)| Modint::new(c as usize - 95) * Modint::new(10).pow(i))
+        .collect_vec();
+
+    let mut forward = SegmentTree::<Alg::ModAdd>::from(&digits);
+    let mut backward = SegmentTree::<Alg::ModAdd>::from(&digits_rev);
+
+    debug!(forward);
+    debug!(backward);
+
+    for _ in 0..Q {
+        input! { t: usize }
+
+        if t == 1 {
+            input! {
+                x: Usize1,
+                c: char
+            }
+
+            *forward.get_mut(x).unwrap() = Modint::new(c as usize - 95) * Modint::new(10).pow(x);
+
+            let y = N - x - 1;
+            *backward.get_mut(y).unwrap() = Modint::new(c as usize - 95) * Modint::new(10).pow(y);
+
+            debug!(forward);
+            debug!(backward);
+        } else {
+            input! {
+                l: Usize1,
+                r: Usize1
+            }
+
+            let f = forward.get_range(l..=r) / Modint::new(10).pow(l);
+
+            let (ll, rr) = (N - r - 1, N - l - 1);
+            let b = backward.get_range(ll..=rr) / Modint::new(10).pow(ll);
+
+            debug!((l, r), (ll, rr), f, b);
+
+            if f == b {
+                println!("Yes");
+            } else {
+                println!("No");
+            }
+        }
+    }
+}
+
+#[rustfmt::skip]
+pub mod modint {
+    pub const MOD: usize = (1 << 61) - 1;
+    const MASK30: usize = (1 << 30) - 1;
+    const MASK31: usize = (1 << 31) - 1;
+    const MASK61: usize = MOD;
+    fn mul(a: usize, b: usize) -> usize { let (au, ad) = (a >> 31, a & MASK31); let (bu, bd) = (b >> 31, b & MASK31); let m = ad * bu + au * bd; let (mu, md) = (m >> 30, m & MASK30); calcmod(au * bu * 2 + mu + (md << 31) + ad * bd) }
+    fn calcmod(x: usize) -> usize { let xu = x >> 61; let xd = x & MASK61; let res = xu + xd; if res >= MOD { res - MOD } else { res } }
+    use std::{fmt::Display,ops::{Add, AddAssign, Div, Mul, MulAssign, Neg, Sub, SubAssign}, str::FromStr, num::ParseIntError, iter::{Sum, Product}};
+    #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)] pub struct Modint(pub usize);
+    impl Modint { pub fn new(n: usize) -> Self { Self(calcmod(n)) } }
+    impl Neg for Modint { type Output = Self; fn neg(self) -> Self { Modint(if self.0 == 0 { 0 } else { MOD - self.0 }) } }
+    impl Add for Modint { type Output = Self; fn add(self, rhs: Self) -> Self { let mut res = self.0 + rhs.0; if res >= MOD { res -= MOD; } Modint(res) } }
+    impl Sub for Modint { type Output = Self; fn sub(self, rhs: Self) -> Self { self + (- rhs) } }
+    impl Mul for Modint { type Output = Self; fn mul(self, rhs: Self) -> Self { Modint(mul(self.0, rhs.0)) } }
+    impl Div for Modint { type Output = Self; fn div(self, rhs: Self) -> Self { self * rhs.inv() } }
+    impl AddAssign for Modint { fn add_assign(&mut self, rhs: Self) { self.0 = (*self + rhs).0 } }
+    impl SubAssign for Modint { fn sub_assign(&mut self, rhs: Self) { self.0 = (*self - rhs).0 } }
+    impl MulAssign for Modint { fn mul_assign(&mut self, rhs: Self) { self.0 = (*self * rhs).0 } }
+    impl From<usize> for Modint { fn from(value: usize) -> Self { Modint::new(value) } }
+    impl Add<usize> for Modint { type Output = Self; fn add(self, rhs: usize) -> Self { let mut res = self.0 + rhs; if res >= MOD {res -= MOD;} Modint(res) } }
+    impl Sub<usize> for Modint { type Output = Self; fn sub(self, rhs: usize) -> Self { self - Modint::new(rhs) } }
+    impl Mul<usize> for Modint { type Output = Self; fn mul(self, rhs: usize) -> Self { self * Modint::new(rhs) } }
+    impl Div<usize> for Modint { type Output = Self; fn div(self, rhs: usize) -> Self { self / Modint::new(rhs) } }
+    impl AddAssign<usize> for Modint { fn add_assign(&mut self, rhs: usize) { *self += Modint::new(rhs) } }
+    impl SubAssign<usize> for Modint { fn sub_assign(&mut self, rhs: usize) { *self -= Modint::new(rhs) } }
+    impl MulAssign<usize> for Modint { fn mul_assign(&mut self, rhs: usize) { *self *= Modint::new(rhs) } }
+    impl Display for Modint { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "{}", self.0) } }
+    impl PartialEq<usize> for Modint { fn eq(&self, other: &usize) -> bool { self == &Modint::new(*other) } }
+    impl FromStr for Modint { type Err = ParseIntError; fn from_str(s: &str) -> Result<Self, Self::Err> { usize::from_str(s).map(Modint::new) } }
+    pub trait Fp { fn pow(&self, rhs: usize) -> Self; fn inv(&self) -> Self; }
+    impl Fp for Modint { fn pow(&self, rhs: usize) -> Self { let (mut a, mut b) = (self.0, rhs); let mut res = 1; while b > 0 { if b & 1 == 1 { res = mul(res, a); } a = mul(a, a); b >>= 1u32; } Modint(res) } fn inv(&self) -> Self { self.pow(MOD - 2) } }
+    impl Sum<Modint> for Modint { fn sum<I: Iterator<Item = Modint>>(iter: I) -> Self { iter.fold(Modint(0), |acc, x| acc + x) } }
+    impl Product<Modint> for Modint { fn product<I: Iterator<Item = Modint>>(iter: I) -> Self { iter.fold(Modint(1), |acc, x| acc * x) } }
+}
+use modint::*;
+
+use std::fmt;
+use std::ops::{
+    Bound::{Excluded, Included, Unbounded},
+    Deref, DerefMut, Index, RangeBounds,
+};
+/// モノイド
+pub trait Monoid {
+    /// 元の型
+    type Val: fmt::Debug + Clone + PartialEq;
+    /// 単位元
+    const E: Self::Val;
+    /// 演算
+    fn op(left: &Self::Val, right: &Self::Val) -> Self::Val;
+}
+/// # SegmentTree (Monoid)
+/// - 抽象化セグメント木
+pub struct SegmentTree<T: Monoid> {
+    pub size: usize,
+    offset: usize,
+    data: Vec<T::Val>,
+}
+impl<T: Monoid> Index<usize> for SegmentTree<T> {
+    type Output = T::Val;
+    fn index(&self, idx: usize) -> &Self::Output {
+        &self.data[self.offset + idx]
+    }
+}
+impl<T: Monoid> SegmentTree<T> {
+    #[inline]
+    fn parse_range<R: RangeBounds<usize>>(&self, range: R) -> Option<(usize, usize)> {
+        let start = match range.start_bound() {
+            Unbounded => 0,
+            Excluded(&v) => v + 1,
+            Included(&v) => v,
+        }
+        .min(self.size);
+        let end = match range.end_bound() {
+            Unbounded => self.size,
+            Excluded(&v) => v,
+            Included(&v) => v + 1,
+        }
+        .min(self.size);
+        if start <= end {
+            Some((start, end))
+        } else {
+            None
+        }
+    }
+    /// ## new
+    /// セグメント木を初期化する
+    pub fn new(n: usize) -> Self {
+        let offset = n.next_power_of_two();
+        Self {
+            size: n,
+            offset,
+            data: vec![T::E; offset << 1],
+        }
+    }
+    fn update(&mut self, index: usize, value: T::Val) {
+        let mut i = index + self.offset;
+        self.data[i] = value;
+        while i > 1 {
+            i >>= 1;
+            let lch = i << 1;
+            self.data[i] = T::op(&self.data[lch], &self.data[lch + 1]);
+        }
+    }
+    /// 可変な参照を返す
+    pub fn get_mut(&mut self, i: usize) -> Option<ValMut<'_, T>> {
+        if i < self.offset {
+            let default = self.index(i).clone();
+            Some(ValMut {
+                segtree: self,
+                idx: i,
+                new_val: default,
+            })
+        } else {
+            None
+        }
+    }
+    /// 区間`range`の集約を行う
+    pub fn get_range<R: RangeBounds<usize>>(&self, range: R) -> T::Val {
+        let parsed = self.parse_range(range);
+        if parsed.is_none() {
+            return T::E;
+        }
+        let (start, end) = parsed.unwrap();
+        // 全体の値を取得
+        if (start, end) == (0, self.size) {
+            return self.data[1].clone();
+        }
+        // 値の取得
+        let mut l = self.offset + start;
+        let mut r = self.offset + end;
+        let (mut res_l, mut res_r) = (T::E, T::E);
+        while l < r {
+            if l & 1 == 1 {
+                res_l = T::op(&res_l, &self.data[l]);
+                l += 1;
+            }
+            if r & 1 == 1 {
+                r -= 1;
+                res_r = T::op(&self.data[r], &res_r);
+            }
+            l >>= 1;
+            r >>= 1;
+        }
+        T::op(&res_l, &res_r)
+    }
+}
+impl<T: Monoid> From<&Vec<T::Val>> for SegmentTree<T> {
+    fn from(src: &Vec<T::Val>) -> Self {
+        let mut seg = Self::new(src.len());
+        for (i, v) in src.iter().enumerate() {
+            seg.data[seg.offset + i] = v.clone();
+        }
+        for i in (0..seg.offset).rev() {
+            let lch = i << 1;
+            seg.data[i] = T::op(&seg.data[lch], &seg.data[lch + 1]);
+        }
+        seg
+    }
+}
+impl<T: Monoid> std::fmt::Debug for SegmentTree<T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "SegmentTree {{ [").ok();
+        for i in 0..self.size {
+            if i + 1 < self.size {
+                write!(f, "{:?}, ", self.data[self.offset + i]).ok();
+            } else {
+                write!(f, "{:?}", self.data[self.offset + i]).ok();
+            }
+        }
+        write!(f, "] }}")
+    }
+}
+pub struct ValMut<'a, T: 'a + Monoid> {
+    segtree: &'a mut SegmentTree<T>,
+    idx: usize,
+    new_val: T::Val,
+}
+impl<T: Monoid> fmt::Debug for ValMut<'_, T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("ValMut")
+            .field(&self.segtree.index(self.idx))
+            .finish()
+    }
+}
+impl<T: Monoid> Drop for ValMut<'_, T> {
+    fn drop(&mut self) {
+        self.segtree.update(self.idx, self.new_val.clone());
+    }
+}
+impl<T: Monoid> Deref for ValMut<'_, T> {
+    type Target = T::Val;
+    fn deref(&self) -> &Self::Target {
+        &self.segtree[self.idx]
+    }
+}
+impl<T: Monoid> DerefMut for ValMut<'_, T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.new_val
+    }
+}
+/// さまざまな代数的構造
+pub mod Alg {
+    use super::Monoid;
+    /// 和
+    pub struct Add;
+    impl Monoid for Add {
+        type Val = isize;
+        const E: Self::Val = 0;
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            left + right
+        }
+    }
+    /// 積
+    pub struct Mul;
+    impl Monoid for Mul {
+        type Val = isize;
+        const E: Self::Val = 1;
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            left * right
+        }
+    }
+    /// bit単位の排他的論理和
+    pub struct Xor;
+    impl Monoid for Xor {
+        type Val = usize;
+        const E: Self::Val = 0;
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            left ^ right
+        }
+    }
+    /// 最小値
+    pub struct Min;
+    impl Monoid for Min {
+        type Val = isize;
+        const E: Self::Val = (1 << 31) - 1;
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            *left.min(right)
+        }
+    }
+    /// 最大値
+    pub struct Max;
+    impl Monoid for Max {
+        type Val = isize;
+        const E: Self::Val = -((1 << 31) - 1);
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            *left.max(right)
+        }
+    }
+    /// 最小公倍数
+    pub struct GCD;
+    impl Monoid for GCD {
+        type Val = usize;
+        const E: Self::Val = 0;
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            gcd(*left, *right)
+        }
+    }
+    pub fn gcd(a: usize, b: usize) -> usize {
+        if b == 0 {
+            a
+        } else {
+            gcd(b, a % b)
+        }
+    }
+    use super::Modint;
+    /// あまりをとる和
+    pub struct ModAdd;
+    impl Monoid for ModAdd {
+        type Val = Modint;
+        const E: Self::Val = Modint(0);
+        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
+            *left + *right
+        }
+    }
+}

@@ -100,6 +100,9 @@ def _merge_file(file_a: Path, file_b: Path, save_file: Path):
         file_b (Path): 2つめのファイル
         save_file (Path): 保存するファイル
     """
+    # 拡張子を追加
+    save_file = save_file.parent / (save_file.name + ".merge")
+
     print(f"[Merge] {save_file}")
 
     source_a = file_a.read_text()

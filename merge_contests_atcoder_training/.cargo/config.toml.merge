@@ -1,0 +1,6 @@
+[build]
+target-dir = "target"
+
+===== ↑ /home/powell/develop/algo/kyopro/contests/.cargo/config.toml | ↓ /home/powell/develop/algo/kyopro/atcoder_training/.cargo/config.toml =====
+[build]
+target-dir = "target"
