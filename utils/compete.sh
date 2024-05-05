@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # ディレクトリの移動
-cd $KYOPRO_DIR/atcoder_training
+cd $KYOPRO_DIR/contests
 
 # ファイルのコピー
 if [ -d $1 ]; then
