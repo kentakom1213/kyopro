@@ -10,8 +10,6 @@ use proconio::{
     marker::{Bytes, Chars, Usize1},
 };
 
-use crate::weighted_union_find::{Alg::Add, WeightedUnionFind};
-
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
         #[cfg(debug_assertions)]
@@ -32,7 +30,8 @@ macro_rules! debug2D {
 // constant
 const MOD1: usize = 1_000_000_007;
 const MOD9: usize = 998_244_353;
-const INF: isize = 1001001001001001001;
+const UINF: usize = 1001001001001001001;
+const IINF: isize = 1001001001001001001;
 
 fn main() {
     input! {
@@ -41,178 +40,168 @@ fn main() {
         ABC: [(Usize1, Usize1, isize); M]
     }
 
-    // 重み付きuf
-    let mut wuf = WeightedUnionFind::<Add>::new(N);
+    // グループに分解
+    let G = ABC.iter().fold(vec![vec![]; N], |mut g, &(u, v, w)| {
+        g[u].push((v, w));
+        g[v].push((u, -w));
+        g
+    });
 
-    for &(a, b, c) in &ABC {
-        wuf.unite(a, b, c);
-    }
+    // 所属するグループ，グループ内での相対順位
+    let (group_id, relative) = {
+        let mut g = vec![UINF; N];
+        let mut relative = vec![0; N];
+
+        for i in 0..N {
+            if g[i] != UINF {
+                continue;
+            }
+            let mut stack = vec![i];
+            relative[i] = 0;
+
+            while let Some(u) = stack.pop() {
+                for &(v, w) in &G[u] {
+                    if g[v] != UINF {
+                        continue;
+                    }
+                    g[v] = i;
+                    relative[v] = relative[u] + w;
+                    stack.push(v);
+                }
+            }
+        }
+
+        (g, relative)
+    };
+
+    debug!(group_id, relative);
 
     // グループに分割
-    let mut groups = vec![vec![]; N];
+    let (groups, relative) = {
+        let mut groups = vec![vec![]; N];
+        let mut mins = vec![IINF; N];
+
+        for (i, &gid) in group_id.iter().enumerate() {
+            if gid == UINF {
+                groups[i].push(i);
+                mins[i] = 0;
+            } else {
+                groups[gid].push(i);
+                mins[gid] = mins[gid].min(relative[i]);
+            }
+        }
+
+        debug!(mins);
+
+        let relative = (0..N)
+            .map(|i| {
+                if group_id[i] == UINF {
+                    0
+                } else {
+                    relative[i] - mins[group_id[i]]
+                }
+            })
+            .collect_vec();
+
+        (groups, relative)
+    };
+
+    debug!(groups, relative);
+
+    // 埋めるパターンの形状
+    let (shapes, mx) = {
+        let mut s = vec![0; N];
+        let mut mx = vec![0; N];
+
+        for g in 0..N {
+            for &i in &groups[g] {
+                s[g] |= 1 << relative[i];
+                mx[g] = mx[g].max(relative[i] as usize);
+            }
+        }
+
+        (s, mx)
+    };
+
+    debug!(mx);
+
+    if cfg!(debug_assertions) {
+        for i in 0..N {
+            eprintln!("{:>2}: {:0>16b}", i, shapes[i]);
+        }
+    }
+
+    // popcountの逆引き
+    let pcnt = (0_usize..1 << N).fold(vec![vec![]; N + 1], |mut v, i| {
+        v[i.count_ones() as usize].push(i);
+        v
+    });
+
+    // 答え
+    let mut ans = vec![IINF; N];
+
+    let solve = |i: usize, ans: &mut [isize]| {
+        if ans[i] != IINF {
+            return;
+        }
+
+        // dp[x][S] := （頂点iが含まれる連結成分を除き）
+        //     x番目までの連結成分の頂点に対応する順位の集合がSになる可能性があるか
+        let mut dp = vec![vec![false; 1 << N]; N + 1];
+
+        dp[0][0] = true;
+
+        // 現在埋まっているマスの数
+        let mut cnt = 0;
+
+        for j in 0..N {
+            if i == j {
+                // 埋めない場合
+                for &k in &pcnt[cnt] {
+                    if dp[j][k] {
+                        dp[j + 1][k] = true;
+                    }
+                }
+            } else {
+                // 埋める場合
+                for &k in &pcnt[cnt] {
+                    if dp[j][k] {
+                        for f in 0..N - mx[j] {
+                            dp[j + 1][k | (shapes[j] << f)] = true;
+                        }
+                    }
+                }
+                cnt += groups[j].len();
+            }
+        }
+
+        let mut ok = vec![];
+
+        for f in 0..N - mx[i] {
+            if dp[N][(1 << N) - 1 - (shapes[i] << f)] {
+                ok.push(f);
+            }
+        }
+
+        assert!(ok.len() > 0);
+
+        for &p in &groups[i] {
+            if ok.len() == 1 {
+                ans[p] = relative[p] + ok[0] as isize;
+            }
+        }
+    };
 
     for i in 0..N {
-        let root = wuf.root(i);
-        let w = wuf.weight(i);
-        groups[root].push((w, i));
+        solve(i, &mut ans);
     }
 
-    // 形を記録
-    let mut shapes = vec![];
-
-    for g in 0..N {
-        // ソート
-        groups[g].sort();
-        // 
-    }
-
-    debug2D!(groups);
-}
-
-mod macro_chmax {
-    //! chmaxの実装
-    /// `chmax!{x1, x2, ..., xn}`:`x1`,`x2`,...,`xn`のうち最大のものを、`x1`に代入する
-    /// - 代入があったとき、`true`を返す
-    #[macro_export]
-    macro_rules! chmax {
-        ( $a:expr, $b:expr $(,)* ) => {{
-            if $a < $b {
-                $a = $b;
-                true
-            } else {
-                false
-            }
-        }};
-        ( $a:expr, $b:expr, $c:expr $(,$other:expr)* $(,)* ) => {{
-            chmax! {
-                $a,
-                ($b).max($c)
-                $(,$other)*
-            }
-        }}
-    }
-}
-
-mod macro_chmin {
-    //! chminの実装
-    /// `chmin!{x1, x2, ..., xn}`:`x1`,`x2`,...,`xn`のうち最小のものを、`x1`に代入する
-    /// - 代入があったとき、`true`を返す
-    #[macro_export]
-    macro_rules! chmin {
-        ( $a:expr, $b:expr $(,)* ) => {{
-            if $a > $b {
-                $a = $b;
-                true
-            } else {
-                false
-            }
-        }};
-        ( $a:expr, $b:expr, $c:expr $(,$other:expr)* $(,)* ) => {{
-            chmin! {
-                $a,
-                ($b).min($c)
-                $(,$other)*
-            }
-        }};
-    }
-}
-
-mod weighted_union_find {
-    //! 重み付きUnionFind
-    use std::fmt::Debug;
-    /// ## アーベル群
-    pub trait Abel {
-        type E: Debug + Clone;
-        const I: Self::E;
-        fn op(x: &Self::E, y: &Self::E) -> Self::E;
-        fn inv(x: &Self::E) -> Self::E;
-    }
-    /// # 重み付きUnionFind
-    pub struct WeightedUnionFind<G: Abel> {
-        par: Vec<usize>,
-        rank: Vec<usize>,
-        weight: Vec<G::E>,
-        pub group_count: usize,
-    }
-    impl<G: Abel> WeightedUnionFind<G> {
-        /// UnionFindを構築
-        pub fn new(n: usize) -> Self {
-            WeightedUnionFind {
-                par: (0..n).collect(),
-                rank: vec![1; n],
-                weight: vec![G::I; n],
-                group_count: n,
-            }
-        }
-        /// 根を求める
-        pub fn root(&mut self, x: usize) -> usize {
-            if self.par[x] == x {
-                return x;
-            }
-            let r = self.root(self.par[x]);
-            let parent = self.weight[self.par[x]].clone();
-            let child = self.weight.get_mut(x).unwrap();
-            *child = G::op(child, &parent);
-            self.par[x] = r; // 経路圧縮
-            r
-        }
-        /// 重みを求める
-        pub fn weight(&mut self, x: usize) -> G::E {
-            self.root(x); // 経路圧縮
-            self.weight[x].clone()
-        }
-        /// 同一の集合に所属するか判定
-        pub fn issame(&mut self, x: usize, y: usize) -> bool {
-            self.root(x) == self.root(y)
-        }
-        /// 重みの差を求める
-        /// - 同じグループにいない場合にはNone
-        pub fn diff(&mut self, x: usize, y: usize) -> Option<G::E> {
-            if self.issame(x, y) {
-                let res = G::op(&self.weight(y), &G::inv(&self.weight(x)));
-                return Some(res);
-            }
-            None
-        }
-        /// 要素を結合
-        pub fn unite(&mut self, mut x: usize, mut y: usize, mut weight: G::E) -> bool {
-            // x,yそれぞれについて重み差分を補正
-            weight = G::op(&weight, &self.weight(x));
-            weight = G::op(&weight, &G::inv(&self.weight(y)));
-            x = self.root(x);
-            y = self.root(y);
-            if x == y {
-                return false;
-            }
-            // 要素数が大きい方を子にすることで、高さを均等に保つ
-            if self.rank[x] < self.rank[y] {
-                std::mem::swap(&mut x, &mut y);
-                weight = G::inv(&weight);
-            }
-            self.par[y] = x;
-            self.rank[x] += self.rank[y];
-            self.group_count -= 1;
-            // 重みの更新
-            self.weight[y] = weight;
-            true
-        }
-        pub fn size(&mut self, x: usize) -> usize {
-            let root = self.root(x);
-            self.rank[root]
+    for i in 0..N {
+        if ans[i] == IINF {
+            print!("-1 ");
+        } else {
+            print!("{} ", N - ans[i] as usize);
         }
     }
-    pub mod Alg {
-        use super::Abel;
-        pub struct Add;
-        impl Abel for Add {
-            type E = isize;
-            const I: Self::E = 0;
-            fn op(x: &Self::E, y: &Self::E) -> Self::E {
-                x + y
-            }
-            fn inv(x: &Self::E) -> Self::E {
-                -x
-            }
-        }
-    }
+    println!();
 }

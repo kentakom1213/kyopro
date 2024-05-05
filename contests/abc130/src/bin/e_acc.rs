@@ -25,7 +25,9 @@ use proconio::{
     marker::{Bytes, Chars, Usize1},
 };
 
-use crate::{bit_2d::BIT2D, monoid::examples::Add, monoid_mod::ModAdd};
+use crate::modint::M107;
+
+const MOD: usize = 1_000_000_007;
 
 fn main() {
     input! {
@@ -35,23 +37,33 @@ fn main() {
         T: [usize; M]
     }
 
-    let mut bit = BIT2D::<ModAdd<1_000_000_007>>::new(N + 1, M + 1);
+    let mut dp = vec![vec![M107::new(0); M + 1]; N + 1];
+    let mut sum = vec![vec![M107::new(0); M + 1]; N + 1];
 
-    bit.add(0, 0, 1.into());
+    dp[0][0] = 1.into();
+
+    for i in 0..N + 1 {
+        sum[i][0] = 1.into();
+    }
+
+    for j in 0..M + 1 {
+        sum[0][j] = 1.into();
+    }
 
     for i in 0..N {
         for j in 0..M {
-            if S[i] != T[j] {
-                continue;
+            if S[i] == T[j] {
+                dp[i + 1][j + 1] = sum[i][j];
             }
-            let tmp = bit.prefix_sum(i + 1, j + 1);
-            bit.add(i + 1, j + 1, tmp);
+            // 累積和の更新
+            sum[i + 1][j + 1] = sum[i][j + 1] + sum[i + 1][j] - sum[i][j] + dp[i + 1][j + 1];
         }
     }
 
-    let ans = bit.prefix_sum(N + 1, M + 1);
+    // debug2D!(dp);
+    // debug2D!(sum);
 
-    println!("{ans}");
+    println!("{}", sum[N][M]);
 }
 
 mod modint {
@@ -98,188 +110,5 @@ mod modint {
         impl<const MOD: usize> Fp for Modint<MOD> { fn pow(&self, rhs: usize) -> Self { let (mut a, mut b) = (self.0, rhs); let mut res = 1; while b > 0 { if b & 1 == 1 { res = (res * a) % MOD; } a = (a * a) % MOD; b >>= 1u32; } Modint(res) } fn inv(&self) -> Self { self.pow(MOD - 2) } }
         impl<const MOD: usize> Sum<Modint<MOD>> for Modint<MOD> { fn sum<I: Iterator<Item = Modint<MOD>>>(iter: I) -> Self { iter.fold(Modint::<MOD>(0), |acc, x| acc + x) } }
         impl<const MOD: usize> Product<Modint<MOD>> for Modint<MOD> { fn product<I: Iterator<Item = Modint<MOD>>>(iter: I) -> Self { iter.fold(Modint::<MOD>(1), |acc, x| acc * x) } }
-    }
-}
-
-mod monoid {
-    //! モノイド
-    use std::fmt::Debug;
-    /// モノイド
-    pub trait Monoid {
-        /// 元の型
-        type Val: Debug + Clone + PartialEq;
-        /// 単位元
-        const E: Self::Val;
-        /// 演算
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val;
-    }
-    /// 各種モノイド
-    pub mod examples {
-        use super::Monoid;
-        /// 和
-        pub struct Add;
-        impl Monoid for Add {
-            type Val = isize;
-            const E: Self::Val = 0;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                left + right
-            }
-        }
-        /// 積
-        pub struct Mul;
-        impl Monoid for Mul {
-            type Val = isize;
-            const E: Self::Val = 1;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                left * right
-            }
-        }
-        /// bit単位の排他的論理和
-        pub struct Xor;
-        impl Monoid for Xor {
-            type Val = usize;
-            const E: Self::Val = 0;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                left ^ right
-            }
-        }
-        /// 最小値
-        pub struct Min;
-        impl Monoid for Min {
-            type Val = isize;
-            const E: Self::Val = (1 << 31) - 1;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                *left.min(right)
-            }
-        }
-        /// 最大値
-        pub struct Max;
-        impl Monoid for Max {
-            type Val = isize;
-            const E: Self::Val = -((1 << 31) - 1);
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                *left.max(right)
-            }
-        }
-        /// 最小公倍数
-        pub struct GCD;
-        impl Monoid for GCD {
-            type Val = usize;
-            const E: Self::Val = 0;
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                gcd(*left, *right)
-            }
-        }
-        pub fn gcd(a: usize, b: usize) -> usize {
-            if b == 0 {
-                a
-            } else {
-                gcd(b, a % b)
-            }
-        }
-        /// アフィン変換（浮動小数点数）
-        struct Affine;
-        impl Monoid for Affine {
-            type Val = (f64, f64);
-            const E: Self::Val = (1.0, 0.0);
-            fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-                let &(a1, b1) = left;
-                let &(a2, b2) = right;
-                (a2 * a1, a2 * b1 + b2)
-            }
-        }
-    }
-}
-
-mod monoid_mod {
-    //! modを取るモノイド
-    use crate::modint::*;
-    use crate::monoid::Monoid;
-    /// あまりをとる和
-    pub struct ModAdd<const MOD: usize>;
-    impl<const MOD: usize> Monoid for ModAdd<MOD> {
-        type Val = Modint<MOD>;
-        const E: Self::Val = Modint::<MOD>(0);
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            *left + *right
-        }
-    }
-    /// あまりをとる積
-    pub struct ModMul<const MOD: usize>;
-    impl<const MOD: usize> Monoid for ModMul<MOD> {
-        type Val = Modint<MOD>;
-        const E: Self::Val = Modint::<MOD>(1);
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            *left * *right
-        }
-    }
-    /// アフィン変換
-    pub struct Affine<const MOD: usize>;
-    impl<const MOD: usize> Monoid for Affine<MOD> {
-        type Val = (Modint<MOD>, Modint<MOD>);
-        const E: Self::Val = (Modint::<MOD>(1), Modint::<MOD>(0));
-        fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-            let &(a1, b1) = left;
-            let &(a2, b2) = right;
-            (a2 * a1, a2 * b1 + b2)
-        }
-    }
-}
-
-mod bit_2d {
-    //! 2次元BIT
-    /// cfor! {}
-    macro_rules! cfor {
-        ($def:stmt ; $fin:expr ; $incr:stmt ;; $bl:block) => {{
-            $def
-            while $fin {
-                $bl
-                $incr
-            }
-        }}
-    }
-    use crate::monoid::Monoid;
-    pub struct BIT2D<M: Monoid> {
-        pub H: usize,
-        pub W: usize,
-        pub data: Vec<Vec<M::Val>>,
-    }
-    impl<M: Monoid> BIT2D<M> {
-        #[inline]
-        fn lsb(x: usize) -> usize {
-            x & x.wrapping_neg()
-        }
-        /// 2次元BITを作成する
-        pub fn new(H: usize, W: usize) -> Self {
-            Self {
-                H,
-                W,
-                data: vec![vec![M::E; W + 1]; H + 1],
-            }
-        }
-        /// 位置 (r,c) に値 `v` を加算する
-        /// - `(r, c)`: 加算を行うインデックス（`0-indexed`）
-        /// - `x`: 加算する値
-        pub fn add(&mut self, mut r: usize, mut c: usize, v: M::Val) {
-            // 0-indexedに修正
-            r += 1;
-            c += 1;
-            cfor! {let mut i = r; i <= self.H; i += Self::lsb(i) ;; {
-                cfor! {let mut j = c; j <= self.W; j += Self::lsb(j) ;; {
-                    self.data[i][j] = M::op(&self.data[i][j], &v);
-                }}
-            }}
-        }
-        /// 左上からの和を求める
-        /// - `(r,c)`: 領域 `0<=i<r, 0<=j<c` に対しての総和（`0-indexed`）
-        pub fn prefix_sum(&self, r: usize, c: usize) -> M::Val {
-            let mut res = M::E;
-            cfor! {let mut i = r; i > 0; i -= Self::lsb(i) ;; {
-                cfor! {let mut j = c; j > 0; j -= Self::lsb(j) ;; {
-                    res = M::op(&res, &self.data[i][j]);
-                }}
-            }}
-            res
-        }
     }
 }
