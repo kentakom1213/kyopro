@@ -5,9 +5,13 @@
 #![allow(dead_code)]
 #![allow(unused_macros)]
 
+use std::collections::BTreeMap;
 // imports
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}, fastout};
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -16,16 +20,34 @@ macro_rules! debug {
     }};
 }
 
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
-
 fn main() {
     input! {
         N: usize,
         A: [usize; N]
     }
 
-    
+    // Aの総xorが0でないとき，max Ai 以上の任意のkで必勝
+    if A.iter().fold(0, |acc, x| acc ^ x) != 0 {
+        println!("-1");
+        return;
+    }
+
+    // Aiの値をカウントしていく
+    let C = A.iter().fold(BTreeMap::new(), |mut map, &v| {
+        *map.entry(v).or_insert(0) += 1;
+        map
+    });
+
+    debug!(C);
+
+    // Cvが奇数となる最大のv
+    let M = C.iter().rev().find(|&(v, cv)| cv % 2 == 1);
+
+    if let Some((&M, _)) = M {
+        println!("{}", M - 1);
+    } else {
+        println!("0");
+    }
 }
+
+const INF: usize = 1001001001001001001;
