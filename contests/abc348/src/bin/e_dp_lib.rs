@@ -13,58 +13,67 @@ fn main() {
         C: [isize; N]
     }
 
-    let mut dp = RerootingDP::<Add, _, _>::new(N, |&v, i| v, |&v, i| v + C[i]);
+    let mut dp = RerootingDP::<Add, _>::new(N, |&v, i| v + C[i]);
 
     for (i, &(u, v)) in AB.iter().enumerate() {
-        dp.add_edge(u, v, i, i);
+        dp.add_edge(u, v, 0);
     }
-
-    let mut vdp = vec![0; N];
-    let mut edp = vec![vec![]; N];
-    dp.aggregate(INF, 0, &mut vdp, &mut edp);
-
-    debug!(vdp);
-    debug2D!(edp);
-
-    let mut agg = vec![0; N];
-    dp.reroot(INF, 0, &vdp, &edp, &mut agg);
-
-    debug!(agg);
 }
 
 mod rerooting {
-    use std::marker::PhantomData;
-
-    use crate::{debug, monoid::Monoid};
+    use crate::monoid::Monoid;
 
     #[derive(Debug, Clone)]
-    struct Edge {
-        // 終点
+    pub struct Edge<M>
+    where
+        M: Monoid,
+        M::Val: Clone,
+    {
+        /// 始点
+        from: usize,
+        /// 終点
         to: usize,
-        // 辺の番号
-        idx: usize,
-        // 逆辺の番号
-        ridx: usize,
+        /// 重み
+        w: M::Val,
     }
 
-    pub struct RerootingDP<M: Monoid, F, G> {
+    impl<M: Monoid> Default for Edge<M> {
+        fn default() -> Self {
+            Self {
+                from: 0,
+                to: 0,
+                w: M::E,
+            }
+        }
+    }
+
+    impl<M> Edge<M>
+    where
+        M: Monoid,
+        M::Val: Clone,
+    {
+        fn duplicate(&self) -> Self {
+            Self {
+                from: self.from,
+                to: self.to,
+                w: self.w.clone(),
+            }
+        }
+    }
+
+    pub struct RerootingDP<M: Monoid, F> {
         /// 頂点数
         N: usize,
         /// 値に辺`i`を作用させる関数
         apply_edge: F,
-        /// 値に頂点`i`を作用させる関数
-        apply_vertex: G,
         /// グラフ
-        G: Vec<Vec<Edge>>,
-        /// 幽霊型
-        phantom: PhantomData<M>,
+        G: Vec<Vec<Edge<M>>>,
     }
 
-    impl<M, F, G> RerootingDP<M, F, G>
+    impl<M, F> RerootingDP<M, F>
     where
         M: Monoid,
         F: Fn(&M::Val, usize) -> M::Val,
-        G: Fn(&M::Val, usize) -> M::Val,
     {
         /// `i`番目の値を除く累積値を求められる累積和
         pub fn accum(array: &Vec<M::Val>) -> impl Fn(Option<usize>) -> M::Val {
@@ -92,74 +101,71 @@ mod rerooting {
 
         /// 全方位木dpの初期化
         /// - `N`: グラフの頂点数
-        pub fn new(N: usize, apply_edge: F, apply_vertex: G) -> Self {
+        pub fn new(N: usize, apply_edge: F) -> Self {
             Self {
                 N,
                 apply_edge,
-                apply_vertex,
-                G: vec![vec![]; N],
-                phantom: PhantomData,
+                G: (0..N).map(|_| Vec::new()).collect(),
             }
         }
 
         /// 辺の追加
         /// - `u`: 始点
         /// - `v`: 終点
-        pub fn add_edge(&mut self, u: usize, v: usize, idx: usize, ridx: usize) {
-            self.G[u].push(Edge { to: v, idx, ridx });
-            self.G[v].push(Edge { to: u, idx, ridx });
+        /// - `weight`: 重み
+        pub fn add_edge(&mut self, u: usize, v: usize, weight: M::Val) {
+            self.G[u].push(Edge {
+                from: u,
+                to: v,
+                w: weight.clone(),
+            });
+            self.G[v].push(Edge {
+                from: v,
+                to: u,
+                w: weight,
+            });
         }
 
-        /// 頂点uに値を集約する
-        /// - `dp`: 頂点uに集約された値
-        /// - `edp[u][i]`: 頂点uのi番目の辺に集約された値
-        pub fn aggregate(
-            &self,
-            p: usize,
-            u: usize,
-            vdp: &mut Vec<M::Val>,
-            edp: &mut Vec<Vec<M::Val>>,
-        ) {
-            // 辺の集約値
-            let mut tmp = M::E;
+        /// 辺の追加（重みが異なる場合）
+        /// - `u`: 始点
+        /// - `v`: 終点
+        /// - `uv_weight`: `u -> v` の重み
+        /// - `vu_weight`: `v -> u` の重み
+        pub fn add_edge2(&mut self, u: usize, v: usize, uv_weight: M::Val, vu_weight: M::Val) {
+            self.G[u].push(Edge {
+                from: u,
+                to: v,
+                w: uv_weight,
+            });
+            self.G[v].push(Edge {
+                from: v,
+                to: u,
+                w: vu_weight,
+            });
+        }
 
-            for e in &self.G[u] {
-                if e.to == p {
-                    continue;
+        /// 全方位木DPを行う
+        ///
+        /// ### return
+        /// - 各頂点についてその頂点を根として集約したときの値
+        pub fn aggregate(&self) -> Vec<M::Val> {
+            // ===== 木の整備 =====
+            // 頂点iの親
+            let mut parent: Vec<Edge<M>> = (0..self.N).map(|_| Edge::default()).collect();
+            // BFS順の頂点列
+            let mut bfs_ordering = vec![0];
+
+            for i in 0..self.N {
+                let u = bfs_ordering[i];
+
+                for e in &self.G[u] {
+                    if parent[u].to == e.to {
+                        parent[u] = e.duplicate();
+                    }
                 }
-                self.aggregate(u, e.to, vdp, edp);
-                // 頂点e.toの値に辺eを作用
-                let val = (self.apply_edge)(&vdp[e.to], e.idx);
-                edp[u].push(val.clone());
-                // 集約
-                tmp = M::op(&tmp, &val);
             }
-            // 自分の頂点を作用
-            vdp[u] = (self.apply_vertex)(&tmp, u);
-        }
 
-        /// rerooting処理し，各頂点の値を求める
-        /// - `u`: 現在見ている頂点
-        /// - `edp[u][i]`: 頂点uのi番目の辺に集約された値
-        /// - `dp[u]`: 頂点uを親としたときに集約される値
-        pub fn reroot(
-            &self,
-            p: usize,
-            u: usize,
-            vdp: &Vec<M::Val>,
-            edp: &Vec<Vec<M::Val>>,
-            dp: &mut Vec<M::Val>,
-        ) {
-            // 両側からの累積和
-            let acc = Self::accum(&edp[u]);
-            // 頂点の値
-            dp[u] = (self.apply_vertex)(&acc(None), u);
-
-            for (i, e) in self.G[u].iter().enumerate() {
-                let nxt_val = M::op(&vdp[u], &acc(Some(i)));
-                debug!(i, e, nxt_val);
-                // 辺の値を適用
-            }
+            todo!()
         }
     }
 }
