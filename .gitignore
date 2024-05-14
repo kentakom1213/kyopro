@@ -21,6 +21,9 @@ test/
 node_modules/
 contest.acc.json
 
+# atcoder library
+ac-library/
+
 # cargo-compete
 testcases/
 target/

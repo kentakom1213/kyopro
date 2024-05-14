@@ -3,23 +3,24 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "copy file",
-      "command": "cp",
-      "args": ["${file}", "~/develop/kp/kyopro/utils/builder/src/main.rs"]
-    },
-    {
-      "type": "shell",
-      "label": "lint and build file",
-      "command": "cargo clippy && cargo build",
-      "options": {
-        "cwd": "utils/builder"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Task Sequence",
-      "dependsOrder": "sequence",
-      "dependsOn": ["copy file", "lint and build file"],
+      "label": "C/C++: g++ compile file",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=gnu++2a",
+        "-D_DEBUG",
+        "-Wall",
+        "-Wextra",
+        "-Wshadow",
+        "-Wconversion",
+        "-fsanitize=undefined,address",
+        "-ggdb",
+        "-I",
+        "${workspaceFolder}/ac-library",
+        "${file}",
+        "-o",
+        "./main"
+      ],
+      "problemMatcher": ["$gcc"],
       "group": {
         "kind": "build",
         "isDefault": true
