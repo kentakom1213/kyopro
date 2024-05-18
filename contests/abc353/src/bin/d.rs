@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
 
 use itertools::Itertools;
-use modint::{Fp, Modint, M998};
+use modint::{Fp, M998};
 use proconio::input;
 
 fn main() {
@@ -9,6 +9,15 @@ fn main() {
         N: usize,
         A: [usize; N]
     }
+
+    // Aの累積和
+    let mut SA = vec![M998::new(0)];
+
+    for i in 0..N {
+        SA.push(SA[i] + A[i]);
+    }
+
+    debug!(SA);
 
     // 10^文字列の長さ
     let L = A
@@ -18,16 +27,32 @@ fn main() {
         .collect_vec();
 
     debug!(L);
+
+    // Lの累積和
+    let mut SL = vec![M998::new(0)];
+
+    for i in 0..N {
+        SL.push(SL[i] + L[i]);
+    }
+
+    debug!(SL);
+
+    // 答え
+    let mut ans = M998::new(0);
+
+    for i in 0..N {
+        // 左側
+        let l = (SL[N] - SL[i + 1]) * A[i];
+        // 右側
+        let r = SA[N] - SA[i + 1];
+
+        debug!(l, r);
+
+        ans += l + r;
+    }
+
+    println!("{ans}");
 }
-
-// fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
-//     let &(la, na) = left;
-//     let &(lb, nb) = right;
-
-//     let nab = na * M998::new(10).pow(lb) + nb;
-
-//     (la + lb, nab)
-// }
 
 mod modint {
     #![allow(dead_code)]
@@ -49,7 +74,7 @@ mod modint {
         pub fn rational_reconstruction(&self) -> Option<(usize, usize)> { let N = sqrt(MOD / 2); let mut v = (MOD, 0); let mut w = (self.0, 1);
         while w.0 > N { let q = v.0.div_euclid(w.0); let z = (v.0 - q * w.0, v.1 + q * w.1); v = replace(&mut w, z); } (w.0 <= N && w.1 <= N).then_some(w) } }
         impl<const MOD: usize> Neg for Modint<MOD> { type Output = Self; fn neg(self) -> Self { Modint(if self.0 == 0 { 0 } else { MOD - self.0 }) } }
-        impl<const MOD: usize> Add for Modint<MOD> { type Output = Self; fn add(self, rhs: Self) -> Self { let mut res = self.0 + rhs.0; if res >= MOD { res -= MOD; } Modint(res) } }
+        impl<const MOD: usize> Add for Modint<MOD> { type Output = Self; fn add(self, rhs: Self) -> Self { let mut res = self.0 + rhs.0; while res >= MOD { res -= MOD; } Modint(res) } }
         impl<const MOD: usize> Sub for Modint<MOD> { type Output = Self; fn sub(self, rhs: Self) -> Self { self + (- rhs) } }
         impl<const MOD: usize> Mul for Modint<MOD> { type Output = Self; fn mul(self, rhs: Self) -> Self { Modint(self.0 * rhs.0 % MOD) } }
         impl<const MOD: usize> Div for Modint<MOD> { type Output = Self; fn div(self, rhs: Self) -> Self { self * rhs.inv() } }
@@ -58,7 +83,7 @@ mod modint {
         impl<const MOD: usize> MulAssign for Modint<MOD> { fn mul_assign(&mut self, rhs: Self) { self.0 = (*self * rhs).0 } }
         impl<const MOD: usize> DivAssign for Modint<MOD> { fn div_assign(&mut self, rhs: Self) { self.0 = (*self / rhs).0 } }
         impl<const MOD: usize> From<usize> for Modint<MOD> { fn from(value: usize) -> Self { Modint::new(value) } }
-        impl<const MOD: usize> Add<usize> for Modint<MOD> { type Output = Self; fn add(self, rhs: usize) -> Self { let mut res = self.0 + rhs; if res >= MOD {res -= MOD;} Modint(res) } }
+        impl<const MOD: usize> Add<usize> for Modint<MOD> { type Output = Self; fn add(self, rhs: usize) -> Self { let mut res = self.0 + rhs; while res >= MOD {res -= MOD;} Modint(res) } }
         impl<const MOD: usize> Sub<usize> for Modint<MOD> { type Output = Self; fn sub(self, rhs: usize) -> Self { self - Modint::new(rhs) } }
         impl<const MOD: usize> Mul<usize> for Modint<MOD> { type Output = Self; fn mul(self, rhs: usize) -> Self { self * Modint::new(rhs) } }
         impl<const MOD: usize> Div<usize> for Modint<MOD> { type Output = Self; fn div(self, rhs: usize) -> Self { self / Modint::new(rhs) } }

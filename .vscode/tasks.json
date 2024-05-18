@@ -12,10 +12,10 @@
         "-Wextra",
         "-Wshadow",
         "-Wconversion",
-        "-fsanitize=undefined,address",
+        // "-fsanitize=undefined,address",
         "-ggdb",
         "-I",
-        "${workspaceFolder}/ac-library",
+        "${KYPRO_DIR}/ac-library",
         "${file}",
         "-o",
         "./main"
@@ -24,6 +24,11 @@
       "group": {
         "kind": "build",
         "isDefault": true
+      },
+      "options": {
+        "env": {
+          "KYPRO_DIR": "${env:KYOPRO_DIR}"
+        }
       }
     }
   ]
