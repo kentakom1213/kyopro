@@ -6,7 +6,7 @@
         "label": "C/C++: g++ compile file",
         "command": "/usr/bin/g++",
         "args": [
-          "-std=gnu++2a",
+          "-std=gnu++20",
           "-D_DEBUG",
           "-Wall",
           "-Wextra",

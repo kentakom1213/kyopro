@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include <atcoder/all>
+// #include <atcoder/all>
 using namespace std;
 // using namespace atcoder;
 #define rep(i, a, n) for(int i = a; i < n; i++)
@@ -25,11 +25,17 @@ void solve() {
     }
 
     // LISをもとめる
+    int m = 0;
     vector<ll> dp(N, INF);
     rep(i, 0, N) {
         int idx = lower_bound(dp.begin(), dp.end(), A[i]) - dp.begin();
+        fprintf(stderr, "i:%d, A[i]:%lld, idx:%d\n", i, A[i], idx);
 
+        dp[idx] = A[i];
+        chmax(m, idx + 1);
     }
+
+    fprintf(stderr, "LIS: %d\n", m);
 }
 
 int main(){
