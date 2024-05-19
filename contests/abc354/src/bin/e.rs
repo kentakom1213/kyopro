@@ -20,9 +20,12 @@ fn main() {
 }
 
 /// 残っているカードがSで，先手番が勝てるか
-#[memoise::memoise_map(S)]
 fn rec(S: usize, AB: &Vec<(usize, usize)>, memo: &mut Vec<Option<bool>>) -> bool {
     let N = AB.len();
+
+    if let Some(x) = memo[S] {
+        return x;
+    }
 
     // カードが少ないとき
     if N < 2 {
@@ -53,6 +56,8 @@ fn rec(S: usize, AB: &Vec<(usize, usize)>, memo: &mut Vec<Option<bool>>) -> bool
             }
         }
     }
+
+    memo[S] = Some(can_win);
     can_win
 }
 

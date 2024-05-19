@@ -8,41 +8,23 @@ fn main() {
     input! {
         A: isize,
         B: isize,
-        mut C: isize,
-        mut D: isize,
+        C: isize,
+        D: isize,
     }
 
-    debug!(A, B, C, D);
+    let acc: Acc2D<usize> = Acc2D::new(&vec![vec![2, 1, 0, 1], vec![1, 2, 1, 0]]);
 
-    let acc: Acc2D<usize> = Acc2D::new(&vec![
-        vec![2, 1, 0, 1],
-        vec![1, 2, 1, 0],
-        vec![2, 1, 0, 1],
-        vec![1, 2, 1, 0],
-    ]);
-    // let acc: Acc2D<usize> = Acc2D::new(&vec![
-    //     vec![2, 1],
-    //     vec![1, 2],
-    //     vec![0, 1],
-    //     vec![1, 0]
-    // ]);
-
-    let top = B.rem_euclid(2) as usize;
-    let left = A.rem_euclid(4) as usize;
-    let height = (D - B) as usize;
-    let width = (C - A) as usize;
-
-    debug!(top, left, height, width);
-
-    let ans = acc.sum_cyclic(top, left, height, width);
+    let ans = acc.sum_cyclic(
+        B.rem_euclid(2) as usize,
+        A.rem_euclid(4) as usize,
+        (D - B) as usize,
+        (C - A) as usize,
+    );
 
     println!("{ans}");
 }
 
-const _INF: usize = 1001001001001001001;
-
 mod acc2d_cyclic {
-
     #![allow(dead_code)]
     //! トーラス上での区間和取得ができる2次元累積和
     use num_traits::Num;
@@ -54,8 +36,6 @@ mod acc2d_cyclic {
             Mul, RangeBounds,
         },
     };
-
-    use crate::{debug, macro_debug};
     /// 2次元累積和
     pub struct Acc2D<T: Num + Copy> {
         pub H: usize,
@@ -64,7 +44,7 @@ mod acc2d_cyclic {
     }
     impl<T> Acc2D<T>
     where
-        T: Num + Copy + TryFrom<usize> + Mul + Debug,
+        T: Num + Copy + TryFrom<usize> + Mul,
         <T as TryFrom<usize>>::Error: Debug,
     {
         #[inline]
@@ -129,7 +109,7 @@ mod acc2d_cyclic {
             left %= self.W;
             // 繰り返し回数
             let hrep: T = (height / self.H).try_into().unwrap();
-            let wrep: T = (width / self.H).try_into().unwrap();
+            let wrep: T = (width / self.W).try_into().unwrap();
             // 右下の座標
             let bottom = (top + height) % self.H;
             let right = (left + width) % self.W;
@@ -159,8 +139,6 @@ mod acc2d_cyclic {
                         + self.sum(..bottom, ..right)
                 }
             };
-            debug!(S_inner, S_lr, S_tb, S_edge);
-
             S_inner + S_lr + S_tb + S_edge
         }
     }

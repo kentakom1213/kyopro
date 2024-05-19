@@ -1,0 +1,14 @@
+{
+    "configurations": [
+      {
+        "name": "WSL",
+        "includePath": ["${env:KYOPRO_DIR}/**", "/usr/include/**"],
+        "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
+        "compilerPath": "/usr/bin/gcc-9",
+        "cStandard": "c11",
+        "cppStandard": "c++20",
+        "intelliSenseMode": "gcc-x64"
+      }
+    ],
+    "version": 4
+  }

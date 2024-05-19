@@ -41,5 +41,4 @@ test.txt
 
 # ワークスペースのスニペット
 .vscode/
-!./.vscode
-
+!/.vscode

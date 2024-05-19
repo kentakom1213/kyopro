@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+if [[ $(pwd) = $KYOPRO_DIR ]] then
+    echo このディレクトリでは操作できません．
+    exit 1
+fi
+
 # ディレクトリを作成
 mkdir -p .vscode
 
@@ -29,7 +34,7 @@ TARGET_FILES=(
 for target in $TARGET_FILES
 do
     # 既にファイルが存在する場合は削除
-    unlink ".vscode/$target"  2>/dev/null || :
+    unlink ".vscode/$target" 2>/dev/null || :
 
     # シンボリックリンクを作成
     ln -s "$KYOPRO_DIR/.vscode/$target" ".vscode/$target"

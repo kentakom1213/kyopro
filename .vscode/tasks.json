@@ -1,35 +1,35 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "type": "shell",
-      "label": "C/C++: g++ compile file",
-      "command": "/usr/bin/g++",
-      "args": [
-        "-std=gnu++2a",
-        "-D_DEBUG",
-        "-Wall",
-        "-Wextra",
-        "-Wshadow",
-        "-Wconversion",
-        // "-fsanitize=undefined,address",
-        "-ggdb",
-        "-I",
-        "${KYPRO_DIR}/ac-library",
-        "${file}",
-        "-o",
-        "./main"
-      ],
-      "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "options": {
-        "env": {
-          "KYPRO_DIR": "${env:KYOPRO_DIR}"
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "C/C++: g++ compile file",
+        "command": "/usr/bin/g++",
+        "args": [
+          "-std=gnu++2a",
+          "-D_DEBUG",
+          "-Wall",
+          "-Wextra",
+          "-Wshadow",
+          "-Wconversion",
+          // "-fsanitize=undefined,address",
+          "-ggdb",
+          "-I",
+          "${KYPRO_DIR}/ac-library",
+          "${file}",
+          "-o",
+          "./main"
+        ],
+        "problemMatcher": ["$gcc"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "options": {
+          "env": {
+            "KYPRO_DIR": "${env:KYOPRO_DIR}"
+          }
         }
       }
-    }
-  ]
-}
+    ]
+  }

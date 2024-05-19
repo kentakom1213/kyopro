@@ -29,6 +29,30 @@ fn main() {
 }
 
 const _INF: usize = 1001001001001001001;
+
+mod macro_debug {
+    #![allow(dead_code)]
+    //! デバッグ用マクロ
+    /// デバッグ用マクロ
+    #[macro_export]
+    macro_rules! debug {
+        ( $($val:expr),* $(,)* ) => {{
+            #[cfg(debug_assertions)]
+            eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
+        }};
+    }
+    /// 配列用マクロ
+    #[macro_export]
+    macro_rules! debug2D {
+        ( $array:expr ) => {{
+            #![cfg(debug_assertions)]
+            eprintln!("{}: ", stringify!($array));
+            for row in &$array {
+                eprintln!("{:?}", row);
+            }
+        }};
+    }
+}
 '''
 
 [template.new]
@@ -46,7 +70,7 @@ ac-library-rs = "0.1.1"
 # once_cell = "1.18.0"
 # static_assertions = "1.1.0"
 # varisat = "0.2.2"
-# memoise = "0.3.2"
+memoise = "0.3.2"
 # argio = "0.2.0"
 bitvec = "1.0.1"
 # counter = "0.5.7"
