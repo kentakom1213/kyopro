@@ -42,3 +42,7 @@ test.txt
 # ワークスペースのスニペット
 .vscode/
 !/.vscode
+
+# バーチャルコンテスト
+virtual_contest/
+virtual_participation/
