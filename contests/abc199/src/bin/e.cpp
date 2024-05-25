@@ -34,11 +34,19 @@ int N, M;
 
 int main() {
     cin >> N >> M;
-    vector<array<int, 3>> XYZ(M, {0, 0, 0});
-    for (auto &[x, y, z] : XYZ) {
+    
+    vector<vector<pair<int, int>>> YZ(N + 1);
+
+    rep(i, 0, M) {
+        int x, y, z;
         cin >> x >> y >> z;
-        // 0-indexedに変換
-        y--;
+        YZ[x].push_back({y, z});
+    }
+
+    // bitmaskの生成
+    vector<int> mask(N + 1);
+    rep(i, 0, N) {
+        mask[i + 1] = mask[i] << 1 | 1;
     }
 
     // dp[S] := 数列aを先頭から見たときの集合がSに一致しているものの中で，条件を満たすものの個数
@@ -47,35 +55,18 @@ int main() {
     dp[0] = 1;
 
     rep(S, 0, 1 << N) {
+        int x = __builtin_popcount(S);
+
+        // 条件を満たすか判定（満たさない場合は0に）
+        for (auto [y, z] : YZ[x]) {
+            if (__builtin_popcount(S & mask[y]) > z) {
+                dp[S] = 0;
+            }
+        }
+
         // 次にiを追加する場合
         rep(i, 0, N) if (!((S >> i) & 1)) {
-
-            // iを追加
-            int T = S | (1 << i);
-
-            // すべての条件を確認
-            vector<int> cnt(N + 1, 0);
-
-            rep(j, 0, N) {
-                cnt[j + 1] = cnt[j] + ((T >> j) & 1);
-            }
-
-            // cout << bitset<18>(T) << ": ";
-            // rep(j, 0, N + 1) {
-            //     cout << cnt[j] << " ";
-            // }
-            // cout << endl;
-
-            // すべての条件を満たしているか確認
-            bool isok = true;
-
-            for (auto [x, y, z] : XYZ) {
-                isok &= (__builtin_popcount(T) != x) || (cnt[y + 1] <= z);
-            }
-
-            if (isok) {
-                dp[T] += dp[S];
-            }
+            dp[S | 1 << i] += dp[S];
         }
     }
 

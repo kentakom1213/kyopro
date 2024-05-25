@@ -1,17 +1,44 @@
 #![allow(non_snake_case)]
 
-use proconio::input;
+use proconio::{input, marker::Usize1};
 
 fn main() {
     input! {
         N: usize,
-        S: [String; N]
+        T: usize,
+        A: [Usize1; T]
     }
 
-    
+    let mut rows = vec![0; N];
+    let mut cols = vec![0; N];
+    let mut X = vec![0; 2];
+
+    for (i, &a) in A.iter().enumerate() {
+        // 印をつける
+        let (r, c) = (a / N, a % N);
+
+        rows[r] += 1;
+        cols[c] += 1;
+
+        // 対角線
+        if r == c {
+            X[0] += 1;
+        }
+        if r == N - c - 1 {
+            X[1] += 1;
+        }
+
+        // 判定
+        if rows[r] == N || cols[c] == N || X[0] == N || X[1] == N {
+            println!("{}", i + 1);
+            return;
+        }
+    }
+
+    println!("-1");
 }
 
-const INF: usize = 1001001001001001001;
+const _INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]

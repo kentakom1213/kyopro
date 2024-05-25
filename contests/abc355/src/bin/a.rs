@@ -4,14 +4,21 @@ use proconio::input;
 
 fn main() {
     input! {
-        N: usize,
-        S: [String; N]
+        A: usize,
+        B: usize,
     }
 
-    
+    if A == B {
+        println!("-1");
+        return;
+    }
+
+    let ans = 6 - A - B;
+
+    println!("{ans}");
 }
 
-const INF: usize = 1001001001001001001;
+const _INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]
