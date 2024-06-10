@@ -100,3 +100,4 @@ rustc-hash = "1.1.0"
 smallvec = "1.11.0"
 
 [dev-dependencies]
+cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
