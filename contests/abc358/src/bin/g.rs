@@ -1,16 +1,10 @@
 #![allow(non_snake_case)]
 
-use proconio::input;
-
 fn main() {
-    input! {
-        N: usize,
-        P: [usize; N],
-        I: [usize; N],
-    }
-
     
 }
+
+const INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]

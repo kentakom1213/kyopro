@@ -1,16 +1,27 @@
 #![allow(non_snake_case)]
 
+use std::collections::VecDeque;
+
 use proconio::input;
 
 fn main() {
     input! {
         N: usize,
-        P: [usize; N],
-        I: [usize; N],
+        A: usize,
+        T: [usize; N]
     }
 
-    
+    let mut t = 0_usize;
+
+    for i in 0..N {
+        let wait = t.saturating_sub(T[i]);
+        t = wait + T[i] + A;
+
+        println!("{t}");
+    }
 }
+
+const INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]

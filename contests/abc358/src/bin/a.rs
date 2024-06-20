@@ -4,13 +4,18 @@ use proconio::input;
 
 fn main() {
     input! {
-        N: usize,
-        P: [usize; N],
-        I: [usize; N],
+        S: String,
+        T: String,
     }
 
-    
+    if &S == "AtCoder" && &T == "Land" {
+        println!("Yes");
+    } else {
+        println!("No");
+    }
 }
+
+const INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]
