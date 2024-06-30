@@ -1,38 +1,27 @@
 #![allow(non_snake_case)]
 
-use proconio::input;
+use proconio::{input, marker::Chars};
 
 fn main() {
     input! {
-        mut L: usize,
-        R: usize,
+        S: Chars,
+        T: Chars
     }
 
-    L -= 1;
-
-    // gcdがkであるようなx,yの組の個数
-    let mut f = vec![0; R + 1];
-
-    let mut ans = 0;
-
-    for k in (2..=R).rev() {
-        f[k] = (R / k - L / k).pow(2);
-        cfor! {let mut i = 2; k * i <= R; i += 1;; {
-            f[k] -= f[i * k];
-        }}
-        ans += f[k];
-    }
-
-    // xがyの倍数になっているようなものを除く
-
-    for i in L + 1..=R {
-        if i == 1 {
-            continue;
+    for w in 1..S.len() {
+        let mut ws = vec![vec![]; w];
+        for i in 0..S.len() {
+            ws[i % w].push(S[i]);
         }
-        ans -= R / i * 2 - 1;
+        for i in 0..w {
+            if ws[i] == T {
+                println!("Yes");
+                return;
+            }
+        }
     }
 
-    println!("{ans}");
+    println!("No");
 }
 
 mod macro_cfor {
@@ -50,6 +39,8 @@ mod macro_cfor {
         }}
     }
 }
+
+const INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]
