@@ -2,6 +2,8 @@
 
 use proconio::{input, marker::Chars};
 
+use crate::yesno::YesNo;
+
 fn main() {
     input! {
         S: Chars
@@ -18,14 +20,28 @@ fn main() {
         }
     }
 
-    if r < m {
-        println!("Yes");
-    } else {
-        println!("No");
-    }
+    println!("{}", (r < m).yesno());
 }
 
 const INF: usize = 1001001001001001001;
+
+mod yesno {
+    #![allow(dead_code)]
+    //! boolから"Yes"/"No"への変換
+    pub trait YesNo {
+        /// `true`->`"Yes"`, `false`->`"No"` に変換
+        fn yesno(&self) -> String;
+    }
+    impl YesNo for bool {
+        fn yesno(&self) -> String {
+            if *self {
+                "Yes".to_string()
+            } else {
+                "No".to_string()
+            }
+        }
+    }
+}
 
 mod macro_debug {
     #![allow(dead_code)]

@@ -1,102 +1,34 @@
 #![allow(non_snake_case)]
 
-use num_traits::{One, Zero};
-use proconio::input;
+use num_traits::Zero;
+use proconio::{input, marker::Chars};
 
-use crate::{matrix_exp::Matrix, modint::M998};
+use crate::modint::M107;
 
 fn main() {
     input! {
-        N: usize,
-        K: usize,
+        S: String
     }
 
-    debug!(M998::new(554580198));
+    let mut dp = [M107::zero(); M + 1];
+    dp[0] += 1;
 
-    // a := 左端にある
-    // b := それ以外にある
+    for c in S.chars() {
+        for (j, d) in T.chars().enumerate() {
+            if c == d {
+                dp[j + 1] += dp[j];
+            }
+        }
+    }
 
-    // P := [P(a):= 左端にある確率, P(b):= それ以外にある確率]
-    let P = [M998::one(), M998::zero()];
+    let ans = dp[M];
 
-    let ab = M998::new(2 * (N - 1)) / (N * N);
-    let aa = M998::one() - ab;
-
-    let ba = M998::new(2) / (N * N);
-    let bb = M998::one() - ba;
-
-    let M = Matrix::new([[aa, ba], [ab, bb]]);
-
-    let [Pa, Pb] = M.pow(K).apply(&P);
-
-    assert_eq!(Pa + Pb, 1);
-
-    debug!(Pa, Pb);
-
-    let ans = Pa + Pb / (N - 1) * (2..=N).sum::<usize>();
-
-    debug!(ans);
     println!("{ans}");
 }
 
-mod matrix_exp {
-    #![allow(dead_code)]
-    //! 行列累乗
-    use num_traits::{One, Zero};
-    #[derive(Debug, Clone)]
-    pub struct Matrix<const D: usize, T>([[T; D]; D]);
-    impl<const D: usize, T> Matrix<D, T>
-    where
-        T: One + Zero + Copy,
-    {
-        pub fn new(data: [[T; D]; D]) -> Self {
-            Self(data)
-        }
-        /// 単位行列を返す
-        pub fn id() -> Self {
-            let mut res = [[T::zero(); D]; D];
-            for i in 0..D {
-                res[i][i] = T::one();
-            }
-            Self(res)
-        }
-        /// ベクトル`x`と行列`A`について、`Ax`を返す
-        pub fn apply(&self, v: &[T; D]) -> [T; D] {
-            let mut res = [T::zero(); D];
-            for i in 0..D {
-                for j in 0..D {
-                    res[i] = res[i] + self.0[i][j] * v[j];
-                }
-            }
-            res
-        }
-        /// 行列の累乗を返す（繰り返し2乗法）
-        pub fn pow(&self, mut p: usize) -> Self {
-            let mut res = Self::id();
-            let mut tmp = self.clone();
-            while p > 0 {
-                if p & 1 == 1 {
-                    res = tmp.dot(&res);
-                }
-                tmp = tmp.dot(&tmp);
-                p >>= 1;
-            }
-            res
-        }
-        /// 行列のドット積
-        pub fn dot(&self, other: &Self) -> Self {
-            let mut res = [[T::zero(); D]; D];
-            for i in 0..D {
-                for j in 0..D {
-                    for k in 0..D {
-                        res[i][j] = res[i][j] + self.0[i][k] * other.0[k][j];
-                    }
-                }
-            }
-            Self(res)
-        }
-    }
-}
+const M: usize = 8;
+const T: &str = "chokudai";
+const INF: usize = 1001001001001001001;
 
 mod macro_debug {
     #![allow(dead_code)]
@@ -136,7 +68,7 @@ mod modint {
         fn sqrt(n: usize) -> usize { (n as f64).sqrt() as usize }
         use std::{fmt::{Debug, Display}, iter::{Sum, Product}, mem::replace, num::ParseIntError, ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign}, str::FromStr};
         use num_traits::{One, Zero};
-        #[derive(Clone, Copy, Default, PartialEq, Eq, Hash)] pub struct Modint<const MOD: usize>(pub usize);
+        #[derive(Clone, Copy, Default, PartialEq, Eq, Hash, Debug)] pub struct Modint<const MOD: usize>(pub usize);
         impl<const MOD: usize> Modint<MOD> { pub fn new(n: usize) -> Self { Self(if n < MOD { n } else { n % MOD }) }
         pub fn from_str(s: &str) -> Self { s.chars().fold(0.into(), |n, c| n * 10 + c.to_digit(10).unwrap() as usize) }
         pub fn from_isize(n: isize) -> Self { Self::new((MOD as isize + n % MOD as isize) as usize) }
@@ -163,7 +95,7 @@ mod modint {
         impl<const MOD: usize> Display for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "{}", self.0) } }
         impl<const MOD: usize> PartialEq<usize> for Modint<MOD> { fn eq(&self, other: &usize) -> bool { self == &Modint::new(*other) } }
         impl<const MOD: usize> FromStr for Modint<MOD> { type Err = ParseIntError; fn from_str(s: &str) -> Result<Self, Self::Err> { Ok(Self::from_str(s)) } }
-        impl<const MOD: usize> Debug for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { match self.rational_reconstruction() { Some((n, d)) => if d > 1 { write!(f, "Modint({n}/{d})") } else { write!(f, "Modint({n})") } _ => write!(f, "Modint({})", self.0) } } }
+        // impl<const MOD: usize> Debug for Modint<MOD> { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { match self.rational_reconstruction() { Some((n, d)) => if d > 1 { write!(f, "Modint({n}/{d})") } else { write!(f, "Modint({n})") } _ => write!(f, "Modint({})", self.0) } } }
         impl<const MOD: usize> Zero for Modint<MOD> { fn zero() -> Self { Modint(0) } fn is_zero(&self) -> bool { self.0 == 0 } }
         impl<const MOD: usize> One for Modint<MOD> { fn one() -> Self { Modint(1) } }
         pub trait Fp { fn pow(&self, rhs: usize) -> Self; fn inv(&self) -> Self; }
