@@ -104,6 +104,7 @@ proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
 # smallvec = "1.11.0"
+cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
 '''
 dev-dependencies = '''
 #atcoder-202004-lock = { git = "https://github.com/qryxip/atcoder-202004-lock" }
@@ -162,12 +163,24 @@ toolchain = "1.70"
 # Defaults to `"dev"`.
 #profile = "dev"
 
-[submit]
-kind = "file"
-path = "{{ src_path }}"
-language_id = "5054"
-
-# [submit.transpile]
-# kind = "command"
-# args = ["cargo", "equip", "--exclude-atcoder-crates", "--resolve-cfgs", "--remove", "docs", "--minify", "libs", "--rustfmt", "--check", "--bin", "{{ bin_name }}"]
+# [submit]
+# kind = "file"
+# path = "{{ src_path }}"
 # language_id = "5054"
+
+[submit.transpile]
+kind = "command"
+args = [
+    "cargo",
+    "run",
+    "--release",
+    "--quiet",
+    "--bin",
+    "expand",
+    "--manifest-path",
+    "../../../cp-library/expander/Cargo.toml",
+    "--",
+    "--export",
+    "{{ bin_name }}",
+]
+language_id = "5054"

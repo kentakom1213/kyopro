@@ -1,44 +1,29 @@
 [package]
-name = "abc360"
+name = "arc075"
 version = "0.1.0"
 edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc360-a = { alias = "a", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_a" }
-abc360-b = { alias = "b", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_b" }
-abc360-c = { alias = "c", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_c" }
-abc360-d = { alias = "d", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_d" }
-abc360-e = { alias = "e", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_e" }
-abc360-f = { alias = "f", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_f" }
-abc360-g = { alias = "g", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_g" }
+arc075-c = { alias = "c", problem = "https://atcoder.jp/contests/arc075/tasks/arc075_a" }
+arc075-d = { alias = "d", problem = "https://atcoder.jp/contests/arc075/tasks/arc075_b" }
+arc075-e = { alias = "e", problem = "https://atcoder.jp/contests/arc075/tasks/arc075_c" }
+arc075-f = { alias = "f", problem = "https://atcoder.jp/contests/arc075/tasks/arc075_d" }
 
 [[bin]]
-name = "abc360-a"
-path = "src/bin/a.rs"
-
-[[bin]]
-name = "abc360-b"
-path = "src/bin/b.rs"
-
-[[bin]]
-name = "abc360-c"
+name = "arc075-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc360-d"
+name = "arc075-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc360-e"
+name = "arc075-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc360-f"
+name = "arc075-f"
 path = "src/bin/f.rs"
-
-[[bin]]
-name = "abc360-g"
-path = "src/bin/g.rs"
 
 [dependencies]
 ac-library-rs = "0.1.1"
@@ -102,5 +87,7 @@ im-rc = "15.1.0"
 proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
+# smallvec = "1.11.0"
 cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
+
 [dev-dependencies]

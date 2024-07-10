@@ -1,23 +1,34 @@
-// attributes
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-// imports
-use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
-
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
+use cp_library_rs::{acc2d::acc2D, debug, debug2D};
+use proconio::input;
 
 fn main() {
-    
-}
+    input! {
+        N: usize,
+        ABCD: [(usize, usize, usize, usize); N]
+    }
 
-const INF: usize = 1001001001001001001;
+    let mut arr = vec![vec![0; 110]; 110];
+
+    for &(t, b, l, r) in &ABCD {
+        arr[l][t] += 1;
+        arr[l][b] -= 1;
+        arr[r][t] -= 1;
+        arr[r][b] += 1;
+    }
+
+    let S = acc2D(&arr);
+
+    let mut ans = 0;
+
+    for r in 0..105 {
+        for c in 0..105 {
+            if S(0, r, 0, c) > 0 {
+                ans += 1;
+            }
+        }
+    }
+
+    println!("{ans}");
+}

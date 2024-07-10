@@ -1,44 +1,49 @@
 [package]
-name = "abc360"
+name = "abc212"
 version = "0.1.0"
 edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc360-a = { alias = "a", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_a" }
-abc360-b = { alias = "b", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_b" }
-abc360-c = { alias = "c", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_c" }
-abc360-d = { alias = "d", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_d" }
-abc360-e = { alias = "e", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_e" }
-abc360-f = { alias = "f", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_f" }
-abc360-g = { alias = "g", problem = "https://atcoder.jp/contests/abc360/tasks/abc360_g" }
+abc212-a = { alias = "a", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_a" }
+abc212-b = { alias = "b", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_b" }
+abc212-c = { alias = "c", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_c" }
+abc212-d = { alias = "d", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_d" }
+abc212-e = { alias = "e", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_e" }
+abc212-f = { alias = "f", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_f" }
+abc212-g = { alias = "g", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_g" }
+abc212-h = { alias = "h", problem = "https://atcoder.jp/contests/abc212/tasks/abc212_h" }
 
 [[bin]]
-name = "abc360-a"
+name = "abc212-a"
 path = "src/bin/a.rs"
 
 [[bin]]
-name = "abc360-b"
+name = "abc212-b"
 path = "src/bin/b.rs"
 
 [[bin]]
-name = "abc360-c"
+name = "abc212-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc360-d"
+name = "abc212-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc360-e"
+name = "abc212-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc360-f"
+name = "abc212-f"
 path = "src/bin/f.rs"
 
 [[bin]]
-name = "abc360-g"
+name = "abc212-g"
 path = "src/bin/g.rs"
+
+[[bin]]
+name = "abc212-h"
+path = "src/bin/h.rs"
 
 [dependencies]
 ac-library-rs = "0.1.1"
@@ -102,5 +107,5 @@ im-rc = "15.1.0"
 proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
-cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
+
 [dev-dependencies]

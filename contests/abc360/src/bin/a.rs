@@ -1,8 +1,7 @@
 #![allow(non_snake_case)]
 
+use crate::cp_library_rs::yesno::YesNo;
 use proconio::{input, marker::Chars};
-
-use crate::yesno::YesNo;
 
 fn main() {
     input! {
@@ -23,46 +22,23 @@ fn main() {
     println!("{}", (r < m).yesno());
 }
 
-const INF: usize = 1001001001001001001;
-
-mod yesno {
+// ==================== cp-library-rs ====================
+mod cp_library_rs {
     #![allow(dead_code)]
-    //! boolから"Yes"/"No"への変換
-    pub trait YesNo {
-        /// `true`->`"Yes"`, `false`->`"No"` に変換
-        fn yesno(&self) -> String;
-    }
-    impl YesNo for bool {
-        fn yesno(&self) -> String {
-            if *self {
-                "Yes".to_string()
-            } else {
-                "No".to_string()
+    pub mod yesno {
+        //! boolから"Yes"/"No"への変換
+        pub trait YesNo {
+            /// `true`->`"Yes"`, `false`->`"No"` に変換
+            fn yesno(&self) -> String;
+        }
+        impl YesNo for bool {
+            fn yesno(&self) -> String {
+                if *self {
+                    "Yes".to_string()
+                } else {
+                    "No".to_string()
+                }
             }
         }
-    }
-}
-
-mod macro_debug {
-    #![allow(dead_code)]
-    //! デバッグ用マクロ
-    /// デバッグ用マクロ
-    #[macro_export]
-    macro_rules! debug {
-        ( $($val:expr),* $(,)* ) => {{
-            #[cfg(debug_assertions)]
-            eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-        }};
-    }
-    /// 配列用マクロ
-    #[macro_export]
-    macro_rules! debug2D {
-        ( $array:expr ) => {{
-            #![cfg(debug_assertions)]
-            eprintln!("{}: ", stringify!($array));
-            for row in &$array {
-                eprintln!("{:?}", row);
-            }
-        }};
     }
 }
