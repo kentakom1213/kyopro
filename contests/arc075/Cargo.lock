@@ -88,6 +88,7 @@ name = "cp-library-rs"
 version = "0.1.0"
 dependencies = [
  "itertools 0.12.1",
+ "num",
  "num-bigint",
  "num-traits",
  "rand",
