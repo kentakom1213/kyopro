@@ -170,15 +170,7 @@ toolchain = "1.70"
 [submit.transpile]
 kind = "command"
 args = [
-    "cargo",
-    "run",
-    "--release",
-    "--quiet",
-    "--bin",
-    "expand",
-    "--manifest-path",
-    "../../../cp-library/expander/Cargo.toml",
-    "--",
+    "/home/powell/develop/algo/cp-library/expander/target/release/expand",
     "--export",
     "{{ bin_name }}",
 ]
