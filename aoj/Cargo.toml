@@ -6,4 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+cargo-expand = "1.0.88"
 cp-library-rs = { path = "../../cp-library/cp-library-rs" }

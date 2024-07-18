@@ -1,23 +1,23 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{debug, get, rerooting::Rerooting};
+use cp_library_rs::{
+    get,
+    rerooting::{examples::Diameter, Rerooting, TreeMonoid},
+};
 
 fn main() {
     let N = get!(usize);
-    let AB = get!(usize, usize, isize; N - 1);
+    let edges = get!(usize, usize, isize; N - 1);
 
-    let mut dp: Rerooting<isize, _, _, _> = Rerooting::new(N, || 0, |a, b| *a.max(b), |x, w| x + w);
+    let mut tree: Rerooting<Diameter> = Rerooting::new(N);
 
-    for &(u, v, w) in &AB {
-        dp.add_edge2(u, v, w);
+    for &(u, v, w) in &edges {
+        tree.add_edge2(u, v, w);
     }
 
-    // 集約
-    dp.build();
+    tree.build();
 
-    debug!(dp.ans);
+    let ans = tree.ans.iter().max().unwrap();
 
-    for &x in &dp.ans {
-        println!("{}", x);
-    }
+    println!("{}", ans);
 }

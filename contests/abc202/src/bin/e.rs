@@ -8,8 +8,8 @@
 // imports
 use itertools::Itertools;
 use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1}, fastout,
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
 };
 use superslice::Ext;
 
@@ -52,7 +52,7 @@ fn main() {
     let mut out_array = vec![INF; N];
     in_array[0] = 0;
     let mut depth = vec![vec![]; N];
-    eular_tour(
+    euler_tour(
         INF,
         0,
         &mut 0,
@@ -76,7 +76,7 @@ fn main() {
     }
 }
 
-fn eular_tour(
+fn euler_tour(
     prv: usize,
     cur: usize,
     id: &mut usize,
@@ -93,7 +93,7 @@ fn eular_tour(
             continue;
         }
         *id += 1;
-        eular_tour(cur, nxt, id, d + 1, G, in_array, out_array, depth);
+        euler_tour(cur, nxt, id, d + 1, G, in_array, out_array, depth);
     }
     *id += 1;
     out_array[cur] = *id;
