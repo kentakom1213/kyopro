@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{get, scc::SCC};
+use cp_library_rs::{get, graph::scc::SCC};
 
 fn main() {
     let (N, M) = get!(usize, usize);

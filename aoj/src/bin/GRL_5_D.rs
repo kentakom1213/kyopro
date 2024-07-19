@@ -1,6 +1,10 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{bit::Alg::Add, debug, euler_tour::EulerTour, get, segment_tree::SegmentTree};
+use cp_library_rs::{
+    data_structure::{bit::Alg::Add, segment_tree::SegmentTree},
+    debug, get,
+    graph::euler_tour::EulerTour,
+};
 
 fn main() {
     let N = get!(usize);

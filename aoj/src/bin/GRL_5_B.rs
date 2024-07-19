@@ -2,7 +2,7 @@
 
 use cp_library_rs::{
     debug, get,
-    rerooting::{examples::Diameter, Rerooting},
+    graph::rerooting::{examples::Diameter, Rerooting},
 };
 
 fn main() {

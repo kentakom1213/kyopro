@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{chmin, consts::IINF, get};
+use cp_library_rs::{chmin, get, utils::consts::IINF};
 
 fn main() {
     let (N, M) = get!(usize, usize);
