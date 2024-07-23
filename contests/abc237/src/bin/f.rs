@@ -1,55 +1,66 @@
 #![allow(non_snake_case)]
 
 use crate::cp_library_rs::{
-    number_theory::modint::{Fp, M998},
-    utils::{consts::NEG1, num_traits::Zero},
+    debug, debug2D,
+    number_theory::{modint::M998, num_traits::Zero},
 };
-use itertools::Itertools;
 use proconio::input;
 
 fn main() {
     input! {
         N: usize,
-        L: usize,
-        S: [String; N]
+        M: usize,
     }
 
-    let S = S
-        .iter()
-        .map(|s| {
-            s.chars().fold(0, |mut x, c| {
-                x |= 1 << (c as usize - 'a' as usize);
-                x
-            })
-        })
-        .collect_vec();
+    // 便宜上，0 <= A[i] < M とする．
 
-    #[cfg(debug_assertions)]
+    // dp[i][a][b][c] := i個目まで見たとき，
+    //     長さ1の増加部分列の末尾の最小値がa
+    //     長さ2の増加部分列の末尾の最小値がb
+    //     長さ3の増加部分列の末尾の最小値がc
+    //     であるような数列の組合せの数
+    //     （明らかに，a <= b <= c）
+    let mut dp = vec![[[[M998::zero(); 11]; 11]; 11]; N + 1];
+
+    dp[0][M][M][M] = 1.into();
+
     for i in 0..N {
-        eprintln!("{:0>26b}", S[i]);
+        for a in 0..=M {
+            for b in 0..=M {
+                for c in 0..=M {
+                    // 新しくxを追加するとき
+                    for x in 0..M {
+                        let cur = dp[i][a][b][c];
+
+                        if x <= a {
+                            // 長さ1のLISの末尾の最小値が増える
+                            dp[i + 1][x][b][c] += cur;
+                        } else if x <= b {
+                            // 長さ2のLISの末尾の最小値が増える
+                            dp[i + 1][a][x][c] += cur;
+                        } else if x <= c {
+                            // 長さ3のLISの末尾の最小値が増える
+                            dp[i + 1][a][b][x] += cur;
+                        } else {
+                            // これ以上の数は追加できない
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    debug2D!(dp);
 
     let mut ans = M998::zero();
 
-    // 包除原理
-    for i in 1_u32..1 << N {
-        // 集合iに含まれる文字の種類
-        let s = (0..N)
-            .fold(NEG1, |mut s, j| {
-                if i >> j & 1 == 1 {
-                    s &= S[j];
-                }
-                s
-            })
-            .count_ones();
-
-        // 集合iに含まれる段を使って作ることができる文字列の個数
-        let cnt = M998::new(s as usize).pow(L);
-
-        if i.count_ones() % 2 == 1 {
-            ans += cnt;
-        } else {
-            ans -= cnt;
+    for a in 0..M {
+        for b in 0..M {
+            for c in 0..M {
+                debug!(dp[N][a][b][c]);
+                ans += dp[N][a][b][c];
+            }
         }
     }
 
@@ -72,7 +83,7 @@ mod cp_library_rs {
             pub mod modint {
                 fn sqrt(n: usize) -> usize { (n as f64).sqrt() as usize }
                 use std::{fmt::{Debug, Display}, iter::{Sum, Product}, mem::replace, num::ParseIntError, ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign}, str::FromStr};
-                use crate::cp_library_rs::utils::num_traits::{One, Zero};
+                use crate::cp_library_rs::number_theory::num_traits::{One, Zero};
                 #[derive(Clone, Copy, Default, PartialEq, Eq, Hash, Debug)] pub struct Modint<const MOD: usize>(pub usize);
                 impl<const MOD: usize> Modint<MOD> { pub fn new(n: usize) -> Self { Self(if n < MOD { n } else { n % MOD }) }
                 pub fn from_isize(n: isize) -> Self { Self::new((MOD as isize + n % MOD as isize) as usize) }
@@ -110,70 +121,43 @@ mod cp_library_rs {
                 impl<const MOD: usize> Product<Modint<MOD>> for Modint<MOD> { fn product<I: Iterator<Item = Modint<MOD>>>(iter: I) -> Self { iter.fold(Modint::<MOD>(1), |acc, x| acc * x) } }
             }
         }
-    }
-    pub mod utils {
-        pub mod consts {
-            //! 定数
-            pub const MOD998: usize = 998244353;
-            pub const MOD107: usize = 1000000007;
-            pub const INF: usize = 1001001001001001001;
-            pub const IINF: isize = 1001001001001001001;
-            pub const NEG1: usize = 1_usize.wrapping_neg();
-            /// letter of ascii lowercase
-            pub const ASCII_LOWERCASE: &str = "abcdefghijklmnopqrstuvwxyz";
-            pub const ASCII_UPPERCASE: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        }
         pub mod num_traits {
-            //! 数の性質
-            use std::ops::{Add, Mul};
-            pub trait Zero: Sized + Add<Self, Output = Self> {
-                fn zero() -> Self;
-                fn is_zero(&self) -> bool
-                where
-                    Self: PartialEq,
-                {
-                    self == &Self::zero()
-                }
+            pub use traits::*;
+            #[rustfmt::skip]
+            mod traits {
+                use std::ops::{Add, Mul};
+                pub trait Zero: Sized + Add<Self, Output = Self> { fn zero() -> Self; fn is_zero(&self) -> bool where Self: PartialEq, { self == &Self::zero() } }
+                pub trait One: Sized + Mul<Self, Output = Self> { fn one() -> Self; fn is_one(&self) -> bool where Self: PartialEq, { self == &Self::one() } }
+                impl Zero for usize { fn zero() -> Self { 0 } }    
+                impl One for usize { fn one() -> Self { 1 } }
+                impl Zero for isize { fn zero() -> Self { 0 } }
+                impl One for isize { fn one() -> Self { 1 } }
+                impl Zero for f64 { fn zero() -> Self { 0.0 } }
+                impl One for f64 { fn one() -> Self { 1.0 } }
             }
-            pub trait One: Sized + Mul<Self, Output = Self> {
-                fn one() -> Self;
-                fn is_one(&self) -> bool
-                where
-                    Self: PartialEq,
-                {
-                    self == &Self::one()
+        }
+    }
+    pub mod debug {
+        /// デバッグ用マクロ
+        #[macro_export]
+        macro_rules! debug {
+            ( $($val:expr),* $(,)* ) => {{
+                #[cfg(debug_assertions)]
+                eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
+            }};
+        }
+    }
+    pub mod debug2D {
+        /// 配列用マクロ
+        #[macro_export]
+        macro_rules! debug2D {
+            ( $array:expr ) => {{
+                #![cfg(debug_assertions)]
+                eprintln!("{}: ", stringify!($array));
+                for row in &$array {
+                    eprintln!("{:?}", row);
                 }
-            }
-            impl Zero for usize {
-                fn zero() -> Self {
-                    0
-                }
-            }
-            impl One for usize {
-                fn one() -> Self {
-                    1
-                }
-            }
-            impl Zero for isize {
-                fn zero() -> Self {
-                    0
-                }
-            }
-            impl One for isize {
-                fn one() -> Self {
-                    1
-                }
-            }
-            impl Zero for f64 {
-                fn zero() -> Self {
-                    0.0
-                }
-            }
-            impl One for f64 {
-                fn one() -> Self {
-                    1.0
-                }
-            }
+            }};
         }
     }
 }
