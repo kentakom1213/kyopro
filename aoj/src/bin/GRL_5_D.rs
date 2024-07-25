@@ -1,9 +1,8 @@
 #![allow(non_snake_case)]
 
 use cp_library_rs::{
-    data_structure::{bit::Alg::Add, segment_tree::SegmentTree},
-    debug, get,
-    graph::euler_tour::EulerTour,
+    algebraic_structure::monoid::examples::Add, data_structure::segment_tree::SegmentTree, debug,
+    get, graph::euler_tour::EulerTour,
 };
 
 fn main() {
@@ -24,7 +23,7 @@ fn main() {
     debug!(T);
 
     // セグメント木
-    let mut seg: SegmentTree<Add> = SegmentTree::<Add>::new(2 * N);
+    let mut seg = SegmentTree::<Add<isize>>::new(2 * N);
 
     // クエリ処理
     let Q = get!(usize);
