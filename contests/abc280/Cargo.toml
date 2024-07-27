@@ -1,39 +1,49 @@
 [package]
-name = "abc211"
+name = "abc280"
 version = "0.1.0"
 edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc211-a = { alias = "a", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_a" }
-abc211-b = { alias = "b", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_b" }
-abc211-c = { alias = "c", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_c" }
-abc211-d = { alias = "d", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_d" }
-abc211-e = { alias = "e", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_e" }
-abc211-f = { alias = "f", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_f" }
+abc280-a = { alias = "a", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_a" }
+abc280-b = { alias = "b", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_b" }
+abc280-c = { alias = "c", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_c" }
+abc280-d = { alias = "d", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_d" }
+abc280-e = { alias = "e", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_e" }
+abc280-ex = { alias = "ex", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_h" }
+abc280-f = { alias = "f", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_f" }
+abc280-g = { alias = "g", problem = "https://atcoder.jp/contests/abc280/tasks/abc280_g" }
 
 [[bin]]
-name = "abc211-a"
+name = "abc280-a"
 path = "src/bin/a.rs"
 
 [[bin]]
-name = "abc211-b"
+name = "abc280-b"
 path = "src/bin/b.rs"
 
 [[bin]]
-name = "abc211-c"
+name = "abc280-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc211-d"
+name = "abc280-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc211-e"
+name = "abc280-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc211-f"
+name = "abc280-ex"
+path = "src/bin/ex.rs"
+
+[[bin]]
+name = "abc280-f"
 path = "src/bin/f.rs"
+
+[[bin]]
+name = "abc280-g"
+path = "src/bin/g.rs"
 
 [dependencies]
 ac-library-rs = "0.1.1"
@@ -97,6 +107,7 @@ im-rc = "15.1.0"
 proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
+# smallvec = "1.11.0"
 cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
 
 [dev-dependencies]

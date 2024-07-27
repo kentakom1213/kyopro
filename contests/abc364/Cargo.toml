@@ -1,39 +1,44 @@
 [package]
-name = "abc211"
+name = "abc364"
 version = "0.1.0"
 edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc211-a = { alias = "a", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_a" }
-abc211-b = { alias = "b", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_b" }
-abc211-c = { alias = "c", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_c" }
-abc211-d = { alias = "d", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_d" }
-abc211-e = { alias = "e", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_e" }
-abc211-f = { alias = "f", problem = "https://atcoder.jp/contests/abc211/tasks/abc211_f" }
+abc364-a = { alias = "a", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_a" }
+abc364-b = { alias = "b", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_b" }
+abc364-c = { alias = "c", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_c" }
+abc364-d = { alias = "d", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_d" }
+abc364-e = { alias = "e", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_e" }
+abc364-f = { alias = "f", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_f" }
+abc364-g = { alias = "g", problem = "https://atcoder.jp/contests/abc364/tasks/abc364_g" }
 
 [[bin]]
-name = "abc211-a"
+name = "abc364-a"
 path = "src/bin/a.rs"
 
 [[bin]]
-name = "abc211-b"
+name = "abc364-b"
 path = "src/bin/b.rs"
 
 [[bin]]
-name = "abc211-c"
+name = "abc364-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc211-d"
+name = "abc364-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc211-e"
+name = "abc364-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc211-f"
+name = "abc364-f"
 path = "src/bin/f.rs"
+
+[[bin]]
+name = "abc364-g"
+path = "src/bin/g.rs"
 
 [dependencies]
 ac-library-rs = "0.1.1"
@@ -97,6 +102,7 @@ im-rc = "15.1.0"
 proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
+# smallvec = "1.11.0"
 cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
 
 [dev-dependencies]
