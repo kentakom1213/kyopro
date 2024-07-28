@@ -1,9 +1,10 @@
 #![allow(non_snake_case)]
 
-use crate::cp_library_rs::{debug, utils::consts::NEG1};
-use proconio::input;
+use crate::cp_library_rs::debug;
+use proconio::{fastout, input};
 use superslice::Ext;
 
+#[fastout]
 fn main() {
     input! {
         N: usize,

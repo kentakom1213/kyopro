@@ -169,9 +169,5 @@ toolchain = "1.70"
 
 [submit.transpile]
 kind = "command"
-args = [
-    "/home/powell/develop/algo/cp-library/expander/target/release/expand",
-    "--export",
-    "{{ bin_name }}",
-]
+args = ["zsh", "-c", "$BUNDLER $KYOPURO_LIBRARY_DIR --export {{ bin_name }}"]
 language_id = "5054"
