@@ -2,7 +2,7 @@
 
 use std::collections::BTreeSet;
 
-use cp_library_rs::{chmax, debug};
+use cp_library_rs::{chmax, data_structure::union_find::UnionFind, debug};
 use itertools::Itertools;
 use proconio::{input, marker::Usize1};
 
@@ -19,26 +19,29 @@ fn main() {
     }
 
     // まだ結ばれていないN側の頂点
-    let mut set = BTreeSet::from_iter(0..N);
+    let mut set = BTreeSet::from_iter(0..N - 1);
 
     // 重みが小さい方から貪欲に取る
     LRC.sort_by_key(|&(_, _, c)| c);
 
+    let mut uf = UnionFind::new(N);
+
     let mut ans = 0;
 
     for &(l, r, c) in &LRC {
-        let rm = set.range(l..=r).cloned().collect_vec();
+        let rm = set.range(l..r).cloned().collect_vec();
+        debug!(rm);
 
-        ans += c * (rm.len() + 1);
-
-        // 削除
-        for &v in &rm {
-            set.remove(&v);
+        for u in rm {
+            if uf.unite(u, u + 1) {
+                ans += c;
+                set.remove(&u);
+            }
         }
     }
 
-    // 最初の一つはいらない
-    ans -= LRC[0].2;
+    // Q側の頂点と接続
+    ans += LRC.iter().map(|(_, _, c)| c).sum::<usize>();
 
     println!("{ans}");
 }
