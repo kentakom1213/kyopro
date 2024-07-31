@@ -24,8 +24,8 @@ fn main() {
     let mut ans = M107::zero();
 
     for i in 0..=K {
-        let a = 25.pow(K - i);
-        let b = 26.pow(i);
+        let a = M107::new(25).pow(K - i);
+        let b = M107::new(26).pow(i);
         // 位置の選び方
         let c = cmb.comb(N + K - i - 1, N - 1);
 
