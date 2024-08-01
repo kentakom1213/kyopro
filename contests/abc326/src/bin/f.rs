@@ -1,70 +1,125 @@
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
-macro_rules! debug2D {
-    ( $array:expr ) => {{
-        #![cfg(debug_assertions)]
-        eprintln!("{}: ", stringify!($array));
-        for row in &$array {
-            eprintln!("{:?}", row);
-        }
-    }};
-}
-
-use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1},
-};
+use cp_library_rs::debug;
+use itertools::Itertools;
+use proconio::input;
+use rustc_hash::FxHashMap;
 
 fn main() {
     input! {
         N: usize,
         X: isize,
         Y: isize,
-        A: [isize; N],
+        A: [isize; N]
     }
 
-    // X方向，Y方向に分割
-    let (DX, DY) = A
-        .iter()
-        .enumerate()
-        .fold((vec![], vec![]), |(mut X, mut Y), (i, &a)| {
-            if i % 2 == 0 {
-                Y.push(a);
-            } else {
-                X.push(a);
-            }
-            (X, Y)
-        });
+    // 縦横に分解
+    let ay = A.iter().cloned().step_by(2).collect_vec();
+    let ax = A[1..].iter().cloned().step_by(2).collect_vec();
 
-    debug!(DX, DY);
+    debug!(ax, ay);
 
-    let route_x = find_route(&DX, X);
-    let route_y = find_route(&DY, Y);
+    // 縦横それぞれについて半分全列挙
+    let res_x = half_enumeration(&ax, X);
+    let res_y = half_enumeration(&ay, Y);
 
-    let (Some(route_x), Some(route_y)) = (route_x, route_y) else {
+    debug!(res_x, res_y);
+
+    let (Some(sx), Some(sy)) = (res_x, res_y) else {
         println!("No");
         return;
     };
+
+    eprintln!("{sx:0>20b}");
+    eprintln!("{sy:0>20b}");
+
+    // 解復元
+    let mut dir = 0; // [右, 上, 左, 下]
+    let mut ans = String::new();
+
+    for i in 0..N {
+        let i = i / 2;
+
+        match dir {
+            0 => {
+                if sy >> i & 1 == 0 {
+                    // +向き
+                    dir = 1;
+                    ans.push('L');
+                } else {
+                    // -向き
+                    dir = 3;
+                    ans.push('R');
+                }
+            }
+            1 => {
+                if sx >> i & 1 == 0 {
+                    // +向き
+                    dir = 0;
+                    ans.push('R');
+                } else {
+                    // -向き
+                    dir = 2;
+                    ans.push('L');
+                }
+            }
+            2 => {
+                if sy >> i & 1 == 0 {
+                    // +向き
+                    dir = 1;
+                    ans.push('R');
+                } else {
+                    // -向き
+                    dir = 3;
+                    ans.push('L');
+                }
+            }
+            3 => {
+                if sx >> i & 1 == 0 {
+                    // +向き
+                    dir = 0;
+                    ans.push('L');
+                } else {
+                    // -向き
+                    dir = 2;
+                    ans.push('R');
+                }
+            }
+            _ => unreachable!(),
+        }
+    }
+
+    println!("Yes");
+    println!("{ans}");
 }
 
-fn find_route(D: &[isize], T: isize) -> Option<Vec<isize>> {
-    // 半分全列挙で，実現可能性を判定
-    let mid = D.len() / 2;
-    let (L, R) = (&D[..mid], &D[mid..]);
-    let (l, r) = (L.len(), R.len());
+fn half_enumeration(arr: &[isize], k: isize) -> Option<usize> {
+    let n = arr.len();
+    let left = &arr[..n / 2];
+    let right = &arr[n / 2..];
 
-    // 右側を前列挙
-    
+    // 前計算
+    let mut map = FxHashMap::default();
 
-    todo!()
+    for S in 0..1 << left.len() {
+        let x = (0..left.len())
+            .map(|j| if S >> j & 1 == 0 { left[j] } else { -left[j] })
+            .sum::<isize>();
+        map.insert(x, S);
+    }
+
+    // 探索
+    for T in 0..1 << right.len() {
+        let y = (0..right.len())
+            .map(|j| if T >> j & 1 == 0 { right[j] } else { -right[j] })
+            .sum::<isize>();
+
+        // x + y == k になるか？
+        if let Some(S) = map.get(&(k - y)) {
+            let res = (T << left.len()) | S;
+            return Some(res);
+        }
+    }
+
+    None
 }
