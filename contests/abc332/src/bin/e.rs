@@ -17,7 +17,7 @@ fn main() {
     debug!(ave);
 
     // dp[S][i] := 集合Sに含まれる要素をiグループに分割したときの Σ(x_i - x)^2 の最小値
-    let mut dp = vec![vec![INF; D + 1]; 1 << N];
+    let mut dp = vec![[INF; 16]; 1 << N];
 
     for S in 0..1 << N {
         let sum = (0..N)
