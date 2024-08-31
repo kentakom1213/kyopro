@@ -1,11 +1,10 @@
 #![allow(non_snake_case)]
 
 use cp_library_rs::{
-    algebraic_structure::monoid::examples::Max, chmax, data_structure::segment_tree::SegmentTree,
-    debug, utils::consts::INF,
+    algebraic_structure::monoid::Monoid, data_structure::segment_tree::SegmentTree, debug,
+    utils::iterutil::IterUtil,
 };
-use itertools::Itertools;
-use proconio::{input, marker::Usize1};
+use proconio::input;
 use rustc_hash::FxHashMap;
 
 fn main() {
@@ -13,56 +12,48 @@ fn main() {
         H: usize,
         W: usize,
         N: usize,
-        RC: [(Usize1, Usize1); N],
+        mut RC: [(usize, usize); N]
     }
 
-    // i+jでソート
-    let mut rows = (0..H).map(|i| (0, (INF, INF), (i, 0))).collect::<Vec<_>>();
-    let mut cols = (0..W).map(|j| (0, (INF, INF), (0, j))).collect::<Vec<_>>();
+    RC.sort();
+    debug!(RC);
 
-    for &(i, j) in RC.iter().sorted_by_key(|&(i, j)| i + j) {
-        if rows[i] >= cols[j] {
-            // 横移動
-            let (pv, _, prv) = rows[i];
-            rows[i] = (pv + 1, prv, (i, j));
-            cols[j] = (pv + 1, prv, (i, j));
-        } else {
-            // 縦移動
-            let (pv, _, prv) = cols[j];
-            rows[i] = (pv + 1, prv, (i, j));
-            cols[j] = (pv + 1, prv, (i, j));
-        }
+    // cに関するLISとして考える
+    let mut dp = SegmentTree::<MX>::new(W + 1);
+    let mut prv = FxHashMap::default();
+
+    for &(r, c) in &RC {
+        let (maxi, pos) = dp.get_range(..=c);
+        prv.insert((r, c), pos);
+        *dp.get_mut(c).unwrap() = (maxi + 1, (r, c));
     }
 
-    let mut ans = 0;
-    let mut cur = (0, 0);
+    let (ans, (mut cr, mut cc)) = dp.get_range(..);
+    let mut path_rev = vec!["D".repeat(H - cr) + &"R".repeat(W - cc)];
 
-    for &(i, j) in &RC {
-        if chmax!(ans, rows[i].0, cols[j].0) {
-            cur = (i, j);
-        }
+    while (cr, cc) != (1, 1) {
+        let (pr, pc) = prv[&(cr, cc)];
+        path_rev.push("D".repeat(cr - pr) + &"R".repeat(cc - pc));
+        (cr, cc) = (pr, pc);
     }
 
-    debug!(rows);
-    debug!(cols);
+    path_rev.push("D".repeat(cc - 1) + &"R".repeat(cr - 1));
 
     println!("{ans}");
-    debug!(cur);
-
-    let mut path_rev = vec![];
-
-    while cur != (INF, INF) {
-        let (ci, cj) = cur;
-        let (pi, pj) = rows[cur.0].1;
-
-        if pi == ci {
-            path_rev.push("D".repeat(cj - pj));
-        } else {
-            path_rev.push("R".repeat(ci - pi));
-        }
-
-        cur = rows[pi].2;
-    }
-
     println!("{}", path_rev.iter().rev().join(""));
+}
+
+struct MX;
+impl Monoid for MX {
+    type Val = (usize, (usize, usize));
+    fn id() -> Self::Val {
+        (0, (1, 1))
+    }
+    fn op(&(lv, li): &Self::Val, &(rv, ri): &Self::Val) -> Self::Val {
+        if lv >= rv {
+            (lv, li)
+        } else {
+            (rv, ri)
+        }
+    }
 }

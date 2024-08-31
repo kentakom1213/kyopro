@@ -3,7 +3,6 @@
 use cp_library_rs::{chmin, debug, debug2D, utils::consts::INF};
 use itertools::*;
 use proconio::{fastout, input, marker::Usize1};
-use rustc_hash::FxHashSet;
 
 #[fastout]
 fn main() {
