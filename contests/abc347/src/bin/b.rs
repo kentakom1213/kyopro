@@ -1,22 +1,20 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{debug, trie::Trie};
 use proconio::input;
+use rustc_hash::FxHashSet;
 
 fn main() {
     input! {
         S: String
     }
 
-    let mut trie = Trie::new();
+    let mut set = FxHashSet::default();
 
-    for i in 0..S.len() {
-        for j in i + 1..=S.len() {
-            trie.insert(&S[i..j], ());
+    for l in 0..S.len() {
+        for r in l..S.len() {
+            set.insert(&S[l..=r]);
         }
     }
 
-    debug!(trie.traverse());
-
-    println!("{}", trie.len());
+    println!("{}", set.len());
 }

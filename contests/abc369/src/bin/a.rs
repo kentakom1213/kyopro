@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-
 use cp_library_rs::debug;
 use proconio::input;
 
