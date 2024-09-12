@@ -1,4 +1,4 @@
-//        C - String Transformation        
+//        C - String Transformation
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc110/tasks/abc110_c
@@ -11,8 +11,8 @@
 #![allow(dead_code)]
 
 // imports
-use std::collections::{HashMap, BTreeMap, VecDeque, BinaryHeap};
 use std::cmp::Reverse;
+use std::collections::{BTreeMap, BinaryHeap, HashMap, VecDeque};
 
 // input macro
 // [Rustで競技プログラミング スターターキット](https://qiita.com/hatoo@github/items/fa14ad36a1b568d14f3e)
