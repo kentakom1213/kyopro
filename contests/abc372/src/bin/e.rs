@@ -1,11 +1,13 @@
-#![allow(non_snake_case)]
+use std::cmp::Reverse;
 
-use std::{cmp::Reverse, mem};
+use cp_library_rs::{
+    data_structure::{indexedset::IndexedSet, union_find::UnionFind},
+    debug,
+};
+use proconio::{input, marker::Usize1};
 
-use cp_library_rs::{data_structure::union_find::UnionFind, debug};
-use proconio::{fastout, input, marker::Usize1};
+#[allow(non_snake_case)]
 
-#[fastout]
 fn main() {
     input! {
         N: usize,
@@ -13,48 +15,53 @@ fn main() {
     }
 
     let mut uf = UnionFind::new(N + 1);
-    let mut nodes = (0..=N).map(|i| vec![Reverse(i)]).collect::<Vec<_>>();
+    let mut nodes = (0..=N)
+        .map(|i| IndexedSet::from_iter([Reverse(i)]))
+        .collect::<Vec<_>>();
 
     for _ in 0..Q {
-        input!(t: usize);
+        input!(t: u8);
 
         match t {
             1 => {
                 input! {
-                    u: usize,
-                    v: usize,
+                    mut u: usize,
+                    mut v: usize,
                 }
 
-                let u = uf.get_root(u);
-                let v = uf.get_root(v);
-                uf.unite(u, v);
+                u = uf.root(u);
+                v = uf.root(v);
 
-                if uf.get_root(u) == v {
-                    // uがvにマージされたとき
-                    let mut removed = mem::replace(&mut nodes[u], vec![]);
-                    nodes[v].append(&mut removed);
-                    nodes[v].sort();
-                    nodes[v].truncate(10);
+                let Some(p) = uf.unite(u, v) else {
+                    continue;
+                };
+
+                if p == u {
+                    // uにマージされた場合
+                    let removed = std::mem::replace(&mut nodes[v], IndexedSet::new());
+                    for &x in &removed {
+                        nodes[u].insert(x);
+                    }
                 } else {
-                    // vがuにマージされたとき
-                    let mut removed = mem::replace(&mut nodes[v], vec![]);
-                    nodes[u].append(&mut removed);
-                    nodes[u].sort();
-                    nodes[u].truncate(10);
+                    // vにマージされた場合
+                    let removed = std::mem::replace(&mut nodes[u], IndexedSet::new());
+                    for &x in &removed {
+                        nodes[v].insert(x);
+                    }
                 }
 
                 debug!(nodes);
             }
             2 => {
                 input! {
-                    v: usize,
+                    mut v: usize,
                     k: Usize1,
                 }
 
-                let v = uf.get_root(v);
+                v = uf.root(v);
 
-                if let Some(&Reverse(res)) = nodes[v].get(k) {
-                    println!("{}", res);
+                if let Some(&Reverse(x)) = nodes[v].get_by_index(k) {
+                    println!("{x}")
                 } else {
                     println!("-1");
                 }

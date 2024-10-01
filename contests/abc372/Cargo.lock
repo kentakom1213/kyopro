@@ -298,9 +298,9 @@ dependencies = [
 
 [[package]]
 name = "proconio"
-version = "0.4.5"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0eb404616795079e2390e7115acf0ada24e9332e8476de2aada7bacb9992dc9e"
+checksum = "c10091de86d0dc939b37a115d74597cbe83af470032a1729d50c98ccee043cb0"
 dependencies = [
  "proconio-derive",
 ]
