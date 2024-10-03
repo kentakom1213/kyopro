@@ -1,7 +1,7 @@
-#![allow(non_snake_case)]
-
 use cp_library_rs::debug;
 use proconio::input;
+
+#[allow(non_snake_case)]
 
 fn main() {
     input! {
@@ -9,37 +9,35 @@ fn main() {
         A: [usize; N]
     }
 
+    // 累積XORを取る
     let mut S = vec![0; N + 1];
-    // S[0] = A[0];
+
     for i in 0..N {
         S[i + 1] = S[i] ^ A[i];
     }
 
     debug!(S);
 
-    let mut ans = 0_usize;
+    // bitごとに考える
+    let mut ans = 0;
 
-    // bitごとに平面走査
-    for b in 0..32 {
-        let mut res = 0;
-        let mut sum0 = 0;
-        let mut sum1 = 0;
-    
-        for i in 0..N {
-            if S[i + 1] >> b & 1 == 0 {
-                sum0 += 1;
+    for bit in 0..30 {
+        let (cnt0, cnt1): (usize, usize) = S.iter().fold((0, 0), |mut cnt, &a| {
+            if a >> bit & 1 == 0 {
+                cnt.0 += 1;
             } else {
-                sum1 += 1;
+                cnt.1 += 1;
             }
+            cnt
+        });
 
-            if S[i] >> b & 1 == 0 {
-                res += sum1;
-            } else {
-                res += sum0;
-            }
-        }
+        // 隣接項のXOR
+        let adj = A.iter().map(|&a| a >> bit & 1).sum::<usize>() << bit;
 
-        ans += res << b;
+        debug!(bit, cnt0, cnt1, adj);
+
+        let tmp = (cnt0 * cnt1) << bit;
+        ans += tmp - adj;
     }
 
     println!("{ans}");
