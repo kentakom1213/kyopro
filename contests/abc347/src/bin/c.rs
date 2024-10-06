@@ -1,32 +1,42 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{debug, utils::yesno::YesNo};
-use itertools::Itertools;
+use cp_library_rs::{
+    algebraic_structure::monoid::examples::Add,
+    data_structure::dynamic_segment_tree::DynamicSegmentTree,
+};
 use proconio::input;
 
 fn main() {
     input! {
         N: usize,
-        A: usize,
-        B: usize,
-        D: [usize; N]
+        A: isize,
+        B: isize,
+        mut D: [isize; N]
     }
 
-    let mut day = vec![];
+    let AB = A + B;
+
+    // modを数える
+    let mut seg = DynamicSegmentTree::<isize, Add<usize>>::default();
 
     for &d in &D {
-        let x = d % (A + B);
-        day.push(x);
-        day.push(x + A + B);
+        *seg.get_mut(d % AB) += 1;
+        *seg.get_mut(d % AB + AB) += 1;
     }
 
-    day.sort();
-    day.dedup();
+    seg.print_as_binary_tree();
 
-    debug!(day);
+    // 各日付をスタートにする
+    for &d in &D {
+        let start = d % AB;
+        let end = start + A;
+        let cnt = seg.get_range(start..end);
 
-    // 間がB日以上あるか
-    let isok = day.iter().tuple_windows::<(_, _)>().any(|(x, y)| y - x > B);
+        if cnt >= N {
+            println!("Yes");
+            return;
+        }
+    }
 
-    println!("{}", isok.yesno());
+    println!("No");
 }

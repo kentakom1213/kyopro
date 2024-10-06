@@ -1,7 +1,17 @@
 #![allow(non_snake_case)]
 
-fn main() {
-    
-}
+use itertools::Itertools;
+use proconio::input;
 
-const INF: usize = 1001001001001001001;
+fn main() {
+    input! {
+        N: usize,
+        K: usize,
+        A: [usize; N]
+    }
+
+    println!(
+        "{}",
+        A.iter().filter(|&&x| x % K == 0).map(|x| x / K).join(" ")
+    );
+}

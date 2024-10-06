@@ -7,7 +7,7 @@ cd $KYOPRO_DIR/contests
 if [ -d $1 ]; then
     if [ -f "$1/Cargo.toml" ]; then
         echo "Directory $1 is already exists."
-        code $1
+        code -r $1
         exit 0
     else
         mv $1 "tmp_$1"
@@ -18,7 +18,7 @@ fi
 cargo compete new $1
 
 # エディタを開く
-code $1
+code -r $1
 
 # 戻す
 if [ -d "tmp_$1" ]; then
