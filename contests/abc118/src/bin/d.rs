@@ -1,51 +1,9 @@
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
-macro_rules! debug2D {
-    ( $array:expr ) => {{
-        #![cfg(debug_assertions)]
-        eprintln!("{}: ", stringify!($array));
-        for row in &$array {
-            eprintln!("{:?}", row);
-        }
-    }};
-}
+use cp_library_rs::{chmax, debug, debug2D, utils::consts::INF};
+use proconio::input;
 
-/// `chmax!{x1, x2, ..., xn}`:`x1`,`x2`,...,`xn`のうち最大のものを、`x1`に代入する
-/// - 代入があったとき、`true`を返す
-#[macro_export]
-macro_rules! chmax {
-    ( $a:expr, $b:expr $(,)* ) => {{
-        if $a < $b {
-            $a = $b;
-            true
-        } else {
-            false
-        }
-    }};
-    ( $a:expr, $b:expr, $c:expr $(,$other:expr)* $(,)* ) => {{
-        chmax! {
-            $a,
-            ($b).max($c)
-            $(,$other)*
-        }
-    }}
-}
-
-use proconio::{
-    input,
-    marker::{Bytes, Chars, Usize1},
-};
-use rustc_hash::FxHashMap;
+const MATCH: [usize; 10] = [INF, 2, 5, 5, 4, 5, 6, 3, 7, 6];
 
 fn main() {
     input! {
@@ -56,44 +14,56 @@ fn main() {
 
     A.sort();
 
-    // 数と桁数
-    let D = vec![INF, 2, 5, 5, 4, 5, 6, 3, 7, 6];
+    // 作るのに必要なマッチの本数（使えない場合はINF）
+    let B: Vec<usize> = A.iter().map(|&a| MATCH[a]).collect();
 
-    // dp[i] := i本のマッチを使って作ることのできる数の個数の最大値
-    let mut dp = vec![-(INF as isize); N + 1];
-    dp[0] = 0;
+    // 部分和DP
+    // dp[i][j] := i文字目までをちょうどj本の文字を使ってつくるとき，文字数の最大値
+    let mut dp = vec![vec![-1; N + 1]; M + 1];
 
-    for i in 0..=N {
-        for &a in A.iter().rev() {
-            let d = D[a];
-            if i >= d {
+    dp[0][0] = 0;
+
+    for i in 0..M {
+        for j in 0..=N {
+            // 使わないとき
+            if dp[i][j] >= 0 {
                 chmax! {
-                    dp[i],
-                    dp[i - d] + 1
+                    dp[i + 1][j],
+                    dp[i][j],
                 };
             }
-        }
-    }
 
-    debug!(dp);
-
-    // dp復元で、各文字数を何個使えるか判定
-    let mut S = String::new();
-    let mut n = N;
-
-    while n > 0 {
-        for &a in A.iter().rev() {
-            let d = D[a];
-            if n >= d && dp[n - d] + 1 == dp[n] {
-                let c = a.to_string();
-                S += &c;
-                n -= d;
-                break;
+            // 使うとき
+            if j + B[i] <= N {
+                if dp[i][j] >= 0 {
+                    chmax! {
+                        dp[i + 1][j + B[i]],
+                        dp[i][j] + 1,
+                    };
+                }
+                if dp[i + 1][j] >= 0 {
+                    chmax! {
+                        dp[i + 1][j + B[i]],
+                        dp[i + 1][j] + 1,
+                    };
+                }
             }
         }
     }
 
-    println!("{S}");
-}
+    debug2D!(dp);
 
-const INF: usize = 1001001001001001001;
+    // 復元（大きい文字から貪欲に）
+    let mut ans = String::new();
+    let mut j = N;
+
+    for i in (0..M).rev() {
+        while j >= B[i] && dp[i + 1][j - B[i]] + 1 == dp[i + 1][j] {
+            debug!(i, j);
+            j -= B[i];
+            ans += &A[i].to_string();
+        }
+    }
+
+    println!("{ans}");
+}
