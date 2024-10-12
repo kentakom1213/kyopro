@@ -109,7 +109,6 @@ dev-dependencies = '''
 #atcoder-202004-lock = { git = "https://github.com/qryxip/atcoder-202004-lock" }
 '''
 package.metadata.cargo-equip-lib.mod-dependencies = '''
-"acc2d" = []
 '''
 
 [template.new.copy-files]
