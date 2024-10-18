@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{acc2d::acc2D, debug, debug2D};
+use cp_library_rs::data_structure::acc2d::acc2D;
 use proconio::input;
 
 fn main() {
