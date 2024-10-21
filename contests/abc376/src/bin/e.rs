@@ -2,7 +2,7 @@
 
 use std::collections::BinaryHeap;
 
-use cp_library_rs::{chmin, debug, utils::consts::INF};
+use cp_library_rs::{chmin, debug};
 use itertools::Itertools;
 use proconio::input;
 
