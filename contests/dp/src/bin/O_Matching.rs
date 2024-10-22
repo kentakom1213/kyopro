@@ -1,4 +1,4 @@
-//               O - Matching              
+//               O - Matching
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/dp/tasks/dp_o
@@ -13,7 +13,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -102,16 +105,13 @@ fn main() {
     let mut dp = vec![0; 1 << N];
     dp[0] = 1;
 
- 
     for S in 0..1_usize << N {
         // i人目の男性まで見た
         let i = S.count_ones() as usize;
-        for j in 0..N { // 女性
+        for j in 0..N {
+            // 女性
             if S >> j & 1 == 1 && A[i - 1][j] == 1 {
-                madd!(
-                    dp[S],
-                    dp[S ^ (1 << j)]
-                )
+                madd!(dp[S], dp[S ^ (1 << j)])
             }
         }
     }

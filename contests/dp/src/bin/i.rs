@@ -7,7 +7,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -16,8 +19,6 @@ macro_rules! debug {
     }};
 }
 
-fn main() {
-    
-}
+fn main() {}
 
 const INF: usize = 1001001001001001001;

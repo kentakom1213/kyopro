@@ -1,4 +1,4 @@
-//               Q - Flowers               
+//               Q - Flowers
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/dp/tasks/dp_q
@@ -13,7 +13,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -213,7 +216,7 @@ fn main() {
     for i in 0..N {
         let h = H[i];
         let a = A[i];
-        *seg.get_mut(h).unwrap() = seg.get_range(.. h) + a;
+        *seg.get_mut(h).unwrap() = seg.get_range(..h) + a;
     }
 
     let ans = seg.get_range(..);

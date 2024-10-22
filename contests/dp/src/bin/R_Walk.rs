@@ -1,4 +1,4 @@
-//                 R - Walk                
+//                 R - Walk
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/dp/tasks/dp_r
@@ -13,7 +13,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
