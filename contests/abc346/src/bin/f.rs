@@ -1,7 +1,8 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{debug, debug2D, utils::consts::NEG1};
+use cp_library_rs::{debug, debug2D, utils::consts::INF};
 use proconio::input;
+use superslice::Ext;
 
 fn main() {
     input! {
@@ -10,12 +11,23 @@ fn main() {
         T: String
     }
 
+    if {
+        let x = S.chars().map(ord).fold(0, |v, x| v | (1 << x));
+        let y = T.chars().map(ord).fold(0, |v, x| v | (1 << x));
+        // y is not subset of x
+        y & x != y
+    } {
+        println!("0");
+        return;
+    }
+
     let ns = S.len();
+    let nt = T.len();
 
     // Sの文字の累積和
     let ss = {
-        let mut ss = vec![vec![0; ns + 1]; 26];
-        for (i, c) in S.chars().enumerate() {
+        let mut ss = vec![vec![0; 2 * ns + 1]; 26];
+        for (i, c) in S.chars().chain(S.chars()).enumerate() {
             for j in 0..26 {
                 ss[j][i + 1] = ss[j][i];
             }
@@ -28,62 +40,30 @@ fn main() {
 
     // g(T, k) ⊆ f(S, N) であるか判定する
     let isok = |K: usize| -> bool {
-        // 何ループ目か
-        let mut lop = 0;
-        // 何文字目か
         let mut idx = 0;
 
         debug!(K);
 
-        for c in T.chars() {
-            let mut k = K;
-            // idx文字目以降に含まれるcの回数
-            let after_idx = ss[ord(c)][ns] - ss[ord(c)][idx];
-            if after_idx >= k {
-                let nxt = ss[ord(c)].partition_point(|&x| x < k);
-                idx = nxt + 1;
-                continue;
-            } else {
-                k -= after_idx;
-                lop += 1;
-                idx = 0;
-            }
-            debug!(after_idx, k, lop, idx);
-            // ループに含まれるtの回数
-            let par_loop = ss[ord(c)][ns];
+        for c in T.chars().map(ord) {
+            let r = (K - 1) % ss[c][ns] + 1;
+            let q = (K - r) / ss[c][ns];
+            idx += q * ns;
 
-            // 何ループするか
-            if k > 0 && par_loop == 0 {
-                return false;
-            }
+            let pos = idx % ns;
+            let pre = ss[c][pos];
+            // k個とる
+            let nxt = ss[c][pos..].lower_bound(&(pre + r));
+            idx += nxt;
 
-            lop += k / par_loop;
-            debug!(k, par_loop, k / par_loop);
-            // あまりの個数
-            k %= par_loop;
-
-            if k == 0 {
-                lop -= 1;
-                // 最後の位置に
-                let nxt = ss[ord(c)].partition_point(|&x| x < par_loop);
-                idx = nxt;
-                debug!(idx, lop);
-                continue;
-            }
-
-            debug!(k, lop);
-            let nxt = ss[ord(c)].partition_point(|&x| x < k);
-            idx = nxt + 1;
-
-            debug!(c, lop, idx);
+            debug!(c, r, q, pos, pre, nxt, idx);
         }
 
-        lop <= N
+        idx <= ns * N
     };
 
     // にぶたん
-    let mut ok = NEG1;
-    let mut ng = 1001001001001_usize;
+    let mut ok = 0;
+    let mut ng = INF;
 
     while ng.wrapping_sub(ok) > 1 {
         let mid = ok.wrapping_add(ng) / 2;
