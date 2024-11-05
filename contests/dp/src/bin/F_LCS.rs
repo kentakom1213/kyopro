@@ -1,6 +1,3 @@
-
-
-
 // https://atcoder.jp/contests/dp/tasks/dp_f
 
 // attributes
@@ -12,7 +9,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -42,17 +42,17 @@ macro_rules! chmax {
 /// ## LCS
 /// 最長共通部分列を得る
 /// 計算量：O(NM)
-fn LCS<T: std::cmp::PartialEq> (A: &[T], B: &[T]) -> usize {
+fn LCS<T: std::cmp::PartialEq>(A: &[T], B: &[T]) -> usize {
     let (la, lb) = (A.len(), B.len());
-    let mut dp = vec![vec![0; lb+1]; la+1];
+    let mut dp = vec![vec![0; lb + 1]; la + 1];
 
     for (i, a) in A.iter().enumerate() {
         for (j, b) in B.iter().enumerate() {
             if a == b {
-                chmax!(dp[i+1][j+1], dp[i][j] + 1);
+                chmax!(dp[i + 1][j + 1], dp[i][j] + 1);
             }
-            chmax!(dp[i+1][j+1], dp[i+1][j]);
-            chmax!(dp[i+1][j+1], dp[i][j+1]);
+            chmax!(dp[i + 1][j + 1], dp[i + 1][j]);
+            chmax!(dp[i + 1][j + 1], dp[i][j + 1]);
         }
     }
 
@@ -62,29 +62,29 @@ fn LCS<T: std::cmp::PartialEq> (A: &[T], B: &[T]) -> usize {
 /// ## LCS with Vector
 /// 最長共通部分列を得る
 /// 計算量：O(NM)
-fn LCS_with_Vec<T: std::cmp::PartialEq + Copy> (A: &[T], B: &[T]) -> Vec<T> {
+fn LCS_with_Vec<T: std::cmp::PartialEq + Copy>(A: &[T], B: &[T]) -> Vec<T> {
     let (la, lb) = (A.len(), B.len());
-    let mut dp = vec![vec![0; lb+1]; la+1];
+    let mut dp = vec![vec![0; lb + 1]; la + 1];
 
     for (i, a) in A.iter().enumerate() {
         for (j, b) in B.iter().enumerate() {
             if a == b {
-                chmax!(dp[i+1][j+1], dp[i][j] + 1);
+                chmax!(dp[i + 1][j + 1], dp[i][j] + 1);
             }
-            chmax!(dp[i+1][j+1], dp[i+1][j]);
-            chmax!(dp[i+1][j+1], dp[i][j+1]);
+            chmax!(dp[i + 1][j + 1], dp[i + 1][j]);
+            chmax!(dp[i + 1][j + 1], dp[i][j + 1]);
         }
     }
 
     let mut res: Vec<T> = vec![];
     let (mut r, mut c) = (la, lb);
     while r > 0 && c > 0 && res.len() < dp[la][lb] {
-        if dp[r][c] == dp[r-1][c] {
+        if dp[r][c] == dp[r - 1][c] {
             r -= 1;
-        } else if dp[r][c] == dp[r][c-1] {
+        } else if dp[r][c] == dp[r][c - 1] {
             c -= 1;
         } else {
-            res.push(A[r-1]);
+            res.push(A[r - 1]);
             r -= 1;
             c -= 1;
         }

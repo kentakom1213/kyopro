@@ -1,4 +1,4 @@
-//           P - Independent Set           
+//           P - Independent Set
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/dp/tasks/dp_p
@@ -13,7 +13,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -39,7 +42,7 @@ struct TreeDP<T: Monoid> {
     dp: Vec<T::Val>,
 }
 
-impl<T: Monoid> TreeDP<T> {    
+impl<T: Monoid> TreeDP<T> {
     pub fn new(N: usize) -> Self {
         Self {
             N,
@@ -57,12 +60,7 @@ impl<T: Monoid> TreeDP<T> {
     /// 頂点`start`に値を集約する
     pub fn aggregate(&mut self, start: usize) -> T::Val {
         let NEG1 = 1_usize.wrapping_neg();
-        Self::dfs(
-            NEG1,
-            start,
-            &self.G,
-            &mut self.dp,
-        );
+        Self::dfs(NEG1, start, &self.G, &mut self.dp);
 
         self.dp[start].clone()
     }
@@ -81,10 +79,7 @@ impl<T: Monoid> TreeDP<T> {
                 continue;
             }
             Self::dfs(u, v, G, dp);
-            acc = T::op(
-                &acc,
-                &dp[v]
-            );
+            acc = T::op(&acc, &dp[v]);
         }
         dp[u] = T::apply(&acc);
     }

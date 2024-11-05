@@ -10,6 +10,7 @@ dependencies = [
  "ascii",
  "bitvec",
  "cp-library-rs",
+ "fixedbitset",
  "im-rc",
  "itertools 0.11.0",
  "itertools-num",
@@ -99,6 +100,12 @@ name = "either"
 version = "1.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bb1f6b1ce1c140482ea30ddd3335fc0024ac7ee112895426e0a629a6c20adfe3"
+
+[[package]]
+name = "fixedbitset"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ce7134b9999ecaf8bcd65542e436736ef32ddca1b3e06094cb6ec5755203b80"
 
 [[package]]
 name = "funty"

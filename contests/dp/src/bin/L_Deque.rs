@@ -95,32 +95,20 @@ fn f(i: usize, j: usize, N: usize, A: &Vec<isize>, memo: &mut Vec<Vec<Option<isi
             // 太郎の手番
             let mut tmp = -INF;
             if i + 1 < N {
-                chmax!(
-                    tmp,
-                    f(i + 1, j, N, A, memo) + A[i]
-                );
+                chmax!(tmp, f(i + 1, j, N, A, memo) + A[i]);
             }
             if j > 0 {
-                chmax!(
-                    tmp,
-                    f(i, j - 1, N, A, memo) + A[j]
-                );
+                chmax!(tmp, f(i, j - 1, N, A, memo) + A[j]);
             }
             tmp
         } else {
             // 次郎の手番
             let mut tmp = INF;
             if i + 1 < N {
-                chmin!(
-                    tmp,
-                    f(i + 1, j, N, A, memo) - A[i]
-                );
+                chmin!(tmp, f(i + 1, j, N, A, memo) - A[i]);
             }
             if j > 0 {
-                chmin!(
-                    tmp,
-                    f(i, j - 1, N, A, memo) - A[j]
-                );
+                chmin!(tmp, f(i, j - 1, N, A, memo) - A[j]);
             }
             tmp
         }

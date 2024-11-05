@@ -1,4 +1,4 @@
-//             C - Blue Spring             
+//             C - Blue Spring
 // ----------------------------------------
 // 問題
 // https://atcoder.jp/contests/abc318/tasks/abc318_c
@@ -13,7 +13,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{

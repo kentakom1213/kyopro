@@ -97,7 +97,7 @@ itertools-num = "0.1.3"
 # maplit = "1.0.2"
 # either = "1.8.1"
 im-rc = "15.1.0"
-# fixedbitset = "0.4.2"
+fixedbitset = "0.4.2"
 # bitset-fixed = "0.1.0"
 proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
