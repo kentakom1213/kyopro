@@ -1,26 +1,39 @@
-// attributes
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-// imports
-use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+use cp_library_rs::{
+    debug,
+    number_theory::{comb::Comb, modint::M107},
+    utils::num_traits::Zero,
+};
+use proconio::{fastout, input};
 
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
-
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
-
+#[fastout]
 fn main() {
-    
+    input! {
+        N: usize,
+    }
+
+    let cmb = Comb::<M107>::new(202020);
+
+    for k in 1..=N {
+        let mut ans = M107::zero();
+
+        for i in 1..=N {
+            // i個のボールを選択する
+            if i + (i - 1) * (k - 1) > N {
+                // 選べない場合
+                break;
+            }
+
+            // 選択できるスペース
+            let n = N - (i - 1) * (k - 1);
+            let tmp = cmb.comb(n, i);
+
+            debug!(k, i, n, tmp);
+
+            ans += tmp;
+        }
+
+        println!("{ans}");
+    }
 }

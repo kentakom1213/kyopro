@@ -13,7 +13,10 @@
 
 // imports
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 
 macro_rules! debug {
     ( $($val:expr),* $(,)* ) => {{
@@ -112,10 +115,7 @@ fn main() {
         for j in 0..=K {
             for k in 1..=M {
                 if j + k <= K {
-                    madd!(
-                        dp[i + 1][j + k],
-                        dp[i][j]
-                    )
+                    madd!(dp[i + 1][j + k], dp[i][j])
                 }
             }
         }

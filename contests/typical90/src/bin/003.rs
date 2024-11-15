@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{debug, rerooting::Rerooting};
+use cp_library_rs::{debug, graph::dynamic_rerooting::Rerooting};
 use proconio::{input, marker::Usize1};
 
 fn main() {
@@ -9,11 +9,11 @@ fn main() {
         AB: [(Usize1, Usize1); N - 1]
     }
 
-    let mut dp: Rerooting<isize, _, _, _> = Rerooting::new(N, || 0, |a, b| *a.max(b), |x, w| x + w);
+    let mut dp: Rerooting<usize, _, _, _> =
+        Rerooting::new(N, 0, |a, b| *a.max(b), |x, _| x + 1, |x, _| *x);
 
     for &(u, v) in &AB {
-        dp.add_edge(u, v, 1);
-        dp.add_edge(v, u, 1);
+        dp.add_edge2(u, v);
     }
 
     // 集約
