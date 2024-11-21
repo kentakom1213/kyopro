@@ -5,7 +5,10 @@
 #![allow(unused_macros)]
 
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}, fastout};
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Usize1},
+};
 use rustc_hash::FxHashSet;
 
 macro_rules! debug {
