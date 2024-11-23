@@ -1,15 +1,9 @@
 #![allow(non_snake_case)]
 
 use cp_library_rs::{
-    algebraic_structure::monoid::Monoid,
-    chmax,
-    data_structure::{segment_tree::SegmentTree, segment_tree_mutable::SegmentTreeMut},
-    debug,
+    algebraic_structure::operation::Add, data_structure::segment_tree::SegmentTree, debug,
 };
-use proconio::{
-    input,
-    marker::{Chars, Usize1},
-};
+use proconio::{input, marker::Usize1};
 
 fn main() {
     input! {
@@ -19,57 +13,59 @@ fn main() {
         LR: [(Usize1, usize); Q],
     }
 
-    let seg = S
+    let seg1 = S
         .chars()
-        .map(|c| match c {
-            '1' => (1, 0, 0, 0, 0),
-            '2' => (0, 1, 0, 0, 0),
-            '/' => (0, 0, 1, 1, 1),
-            _ => unreachable!(),
-        })
-        .collect::<SegmentTree<S1122>>();
+        .map(|x| (x == '1') as usize)
+        .collect::<SegmentTree<Add<usize>>>();
 
-    debug!(seg);
-    seg.show();
+    let seg2 = S
+        .chars()
+        .map(|x| (x == '2') as usize)
+        .collect::<SegmentTree<Add<usize>>>();
+
+    let mut T = vec![0; N + 1];
+    for (i, c) in S.chars().enumerate() {
+        T[i + 1] = T[i];
+        if c == '/' {
+            T[i + 1] += 1;
+        }
+    }
+
+    debug!(seg1);
+    debug!(seg2);
+    debug!(T);
+
+    // 長さ 2k+1 の '1..1/2..2' が存在するか
+    let isok = |l: usize, r: usize, k: usize| -> bool {
+        let (_, ll) = seg1.max_right(l, |x| x < k);
+        let (_, rr) = seg2.min_left(r, |x| x < k);
+
+        debug!(l, r, k, ll, rr);
+
+        // ll..rr の間に / が存在するか
+        T[ll] < T[rr]
+    };
 
     for (l, r) in LR {
-        let ans = seg.get_range(l..r);
-        debug!(l, r, ans);
-        println!("{}", ans.4);
-    }
-}
+        // l..rの間に'/'が存在しない → 0
+        if T[r] - T[l] == 0 {
+            println!("0");
+            continue;
+        }
 
-struct S1122;
+        let mut ok = 0;
+        let mut ng = N;
 
-impl Monoid for S1122 {
-    type Val = (
-        usize, // 1 の個数
-        usize, // 2 の個数
-        usize, // 最大の '11..1/'
-        usize, // 最大の '/2..22'
-        usize, // 最大の '11..1/2..22'
-    );
-    fn id() -> Self::Val {
-        (0, 0, 0, 0, 0)
-    }
-    fn op(lval: &Self::Val, rval: &Self::Val) -> Self::Val {
-        let &(l_n1, l_n2, l_11, l_22, l_res) = lval;
-        let &(r_n1, r_n2, r_11, r_22, r_res) = rval;
-
-        let m_11 = if r_11 > 0 { l_n1 + r_11 } else { l_11 };
-        let m_22 = if l_22 > 0 { l_22 + r_n2 } else { r_22 };
-
-        let res = l_res.max(r_res).max({
-            let mut ans = 0;
-            if l_11 > 0 {
-                chmax!(ans, (l_11 - 1).min(r_n2) * 2 + 1);
+        while ng - ok > 1 {
+            let mid = (ok + ng) / 2;
+            if isok(l, r, mid) {
+                ok = mid;
+            } else {
+                ng = mid;
             }
-            if r_22 > 0 {
-                chmax!(ans, (r_22 - 1).min(r_n1) * 2 + 1);
-            }
-            ans
-        });
+        }
 
-        (l_n1 + r_n1, l_n2 + r_n2, m_11, m_22, res)
+        let ans = ok * 2 + 1;
+        println!("{ans}");
     }
 }
