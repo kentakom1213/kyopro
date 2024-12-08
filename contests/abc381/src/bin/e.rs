@@ -2,9 +2,11 @@
 
 use cp_library_rs::{
     algebraic_structure::operation::Add, data_structure::segment_tree::SegmentTree, debug,
+    utils::show_tree::ShowBinaryTree,
 };
-use proconio::{input, marker::Usize1};
+use proconio::{fastout, input, marker::Usize1};
 
+#[fastout]
 fn main() {
     input! {
         N: usize,
@@ -31,8 +33,8 @@ fn main() {
         }
     }
 
-    debug!(seg1);
-    debug!(seg2);
+    seg1.print_as_binary_tree();
+    seg2.print_as_binary_tree();
     debug!(T);
 
     // 長さ 2k+1 の '1..1/2..2' が存在するか
