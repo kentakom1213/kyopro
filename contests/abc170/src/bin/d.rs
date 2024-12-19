@@ -1,26 +1,37 @@
-// attributes
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-// imports
+use cp_library_rs::{debug, utils::run_length::RunLength};
 use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
-
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
-
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
+use proconio::input;
 
 fn main() {
-    
+    input! {
+        N: usize,
+        A: [usize; N]
+    }
+
+    let a_max = *A.iter().max().unwrap();
+
+    let mut B = vec![false; a_max + 1];
+
+    for (&a, n) in A.iter().sorted().run_length_encode() {
+        if n == 1 {
+            B[a] = true;
+        }
+    }
+
+    for &a in &A {
+        for k in 2.. {
+            if a * k > a_max {
+                break;
+            }
+            B[a * k] = false;
+        }
+    }
+
+    debug!(B);
+
+    let ans = B.iter().filter(|&&x| x).count();
+
+    println!("{ans}");
 }
