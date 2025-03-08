@@ -1,23 +1,19 @@
-// attributes
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-// imports
-use itertools::Itertools;
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
-
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
+use proconio::input;
 
 fn main() {
-    
-}
+    input! {
+        N: usize,
+        K: usize,
+        X: [usize; N]
+    }
 
-const INF: usize = 1001001001001001001;
+    let mut ans = 0;
+
+    for &x in &X {
+        ans += x.min(K - x) * 2;
+    }
+
+    println!("{ans}");
+}

@@ -7,41 +7,83 @@ use proconio::{input, marker::Usize1};
 fn main() {
     input! {
         N: usize,
-        Mg: usize,
-        UV: [(Usize1, Usize1); Mg],
-        Mh: usize,
-        AB: [(Usize1, Usize1); Mh],
+        MG: usize,
+        UV: [(Usize1, Usize1); MG],
+        MH: usize,
+        AB: [(Usize1, Usize1); MH],
     }
 
-    let mut A = vec![vec![INF; N]; N];
-    for i in 0..N {
-        input! {
-            row: [usize; N - i - 1]
-        }
-        for (j, &a) in row.iter().enumerate() {
-            A[i][i + j + 1] = a;
-            A[i + j + 1][i] = a;
-        }
-    }
+    let A = (1..N)
+        .rev()
+        .map(|i| {
+            input! {a: [usize; i]};
+            a
+        })
+        .collect_vec();
+
     debug2D!(A);
 
-    let G = UV.iter().fold(vec![vec![false; N]; N], |mut g, &(u, v)| {
-        g[u][v] = true;
-        g[v][u] = true;
+    // 隣接リストを構築
+    let G = {
+        let mut g = vec![vec![false; N]; N];
+        for &(u, v) in &UV {
+            g[u][v] = true;
+            g[v][u] = true;
+        }
         g
-    });
-
-    let H = AB.iter().fold(vec![vec![false; N]; N], |mut h, &(a, b)| {
-        h[a][b] = true;
-        h[b][a] = true;
+    };
+    let H = {
+        let mut h = vec![vec![false; N]; N];
+        for &(a, b) in &AB {
+            h[a][b] = true;
+            h[b][a] = true;
+        }
         h
-    });
+    };
 
-    debug2D!(G);
-    debug2D!(H);
+    let cmb = {
+        let mut cmb = vec![];
+        for i in 0..N {
+            for j in i + 1..N {
+                cmb.push((i, j));
+            }
+        }
+        cmb
+    };
 
-    // 順列全探索
+    let cost = {
+        let mut c = vec![vec![INF; N]; N];
+        for i in 0..N - 1 {
+            for j in i + 1..N {
+                c[i][j] = A[i][j - i - 1];
+                c[j][i] = A[i][j - i - 1];
+            }
+        }
+        c
+    };
+
+    debug2D!(cost);
+    debug!(cmb);
+
+    // Hを全探索
     let mut ans = INF;
 
-    
+    for perm in (0..N).permutations(N) {
+        let mut tmp = 0;
+
+        for a in 0..N {
+            for b in a + 1..N {
+                let u = perm[a];
+                let v = perm[b];
+
+                if H[u][v] != G[a][b] {
+                    tmp += cost[u][v];
+                }
+            }
+        }
+
+        chmin!(ans, tmp);
+    }
+
+    println!("{ans}");
 }
