@@ -8,8 +8,6 @@ use cp_library_rs::{
 use itertools::Itertools;
 use proconio::{fastout, input};
 
-const MOD: u64 = 998244353;
-
 #[fastout]
 fn main() {
     input! {
