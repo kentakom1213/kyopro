@@ -1,0 +1,24 @@
+#![allow(non_snake_case)]
+
+use cp_library_rs::{number_theory::modint::M998, utils::num_traits::Zero};
+use proconio::input;
+
+fn main() {
+    input! {
+        N: usize,
+    }
+
+    let mut ans = M998::zero();
+
+    for c in 1..N {
+        for b in c + 1.. {
+            let k = (N - c) / b;
+            if k == 0 {
+                break;
+            }
+            ans += k;
+        }
+    }
+
+    println!("{ans}");
+}
