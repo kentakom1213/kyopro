@@ -1,8 +1,9 @@
 #![allow(non_snake_case)]
 
 use ac_library::maxflow;
-use cp_library_rs::utils::consts::INF;
 use proconio::input;
+
+const INF: usize = usize::MAX;
 
 fn main() {
     input! {
@@ -26,7 +27,11 @@ fn main() {
             if i == j {
                 continue;
             }
-            if (S[i] == S[j] && i < j) || S[j].contains(&S[i]) {
+            if S[i] == S[j] {
+                if i < j {
+                    flow.add_edge(i, j + N, INF);
+                }
+            } else if S[j].contains(&S[i]) {
                 flow.add_edge(i, j + N, INF);
             }
         }
