@@ -1,0 +1,9 @@
+[package]
+name = "abc440"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
+itertools = "0.14.0"
+proconio = "0.5.0"
