@@ -17,6 +17,7 @@ fn main() {
 
     for _ in 0..X {
         let (val, pos, prv, cur) = pq.pop().unwrap();
+        println!("{val}");
 
         if prv > 0 {
             // 末尾に移動
@@ -24,7 +25,7 @@ fn main() {
         }
         if pos + 1 < N {
             // 末尾を移動
-            pq.push((val - A[pos] + A[pos + 1], pos + 1, prv - 1, 0));
+            pq.push((val - A[pos] + A[pos + 1], pos + 1, cur - 1, 1));
         }
     }
 }
