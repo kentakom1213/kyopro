@@ -1,7 +1,5 @@
 #![allow(non_snake_case)]
 
-use std::collections::BTreeSet;
-
 use cp_library_rs::{
     algebraic_structure::operation::Add, data_structure::segment_tree::SegmentTree, debug,
     utils::consts::INF,

@@ -3,7 +3,8 @@
 use std::cmp::Reverse;
 
 use cp_library_rs::{
-    algebraic_structure::operation::Max, data_structure::balanced_binary_tree::BalancedBinaryTree,
+    algebraic_structure::operation::Max, data_structure::dynamic_segment_tree::DynamicSegmentTree,
+    utils::show_binary_tree::ShowBinaryTree,
 };
 use proconio::input;
 
@@ -16,11 +17,11 @@ fn main() {
     AB.sort_by_key(|&(a, b)| (a, Reverse(b)));
 
     // B の LIS を求める
-    let mut seg = BalancedBinaryTree::<usize, Max<usize>>::default();
+    let mut seg = DynamicSegmentTree::<usize, Max<usize>>::new(0, 1001001001);
 
     for &(_, b) in &AB {
         let max = seg.get_range(..b);
-        *seg.get_mut(b) = max + 1;
+        *seg.get_mut(b).unwrap() = max + 1;
 
         seg.print_as_binary_tree();
     }
