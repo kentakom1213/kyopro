@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{debug, utils::run_length::run_length_encode_from};
+use cp_library_rs::{debug, utils::run_length::RunLength};
 use proconio::{input, marker::Usize1};
 
 fn main() {
@@ -10,7 +10,7 @@ fn main() {
         S: String
     }
 
-    let mut rle = run_length_encode_from(S.chars());
+    let mut rle = S.chars().run_length_encode();
 
     debug!(rle);
 

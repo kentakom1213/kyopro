@@ -4,7 +4,6 @@ use std::{collections::BTreeMap, usize};
 
 use cp_library_rs::debug;
 use proconio::input;
-use rustc_hash::FxHashMap;
 
 fn main() {
     input! {
