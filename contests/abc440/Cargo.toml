@@ -4,7 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.2.0" }
 itertools = "0.14.0"
-proconio = "0.5.0"
+proconio = { version = "0.5.0", features = ["derive"] }
 rustc-hash = "2.1.1"
+# cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
+cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.1" }

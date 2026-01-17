@@ -19,6 +19,8 @@ fn main() {
     // B の LIS を求める
     let mut seg = DynamicSegmentTree::<usize, Max<usize>>::new(0, 1001001001);
 
+    seg.print_as_binary_tree();
+
     for &(_, b) in &AB {
         let max = seg.get_range(..b);
         *seg.get_mut(b).unwrap() = max + 1;
