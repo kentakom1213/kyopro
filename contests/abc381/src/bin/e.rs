@@ -2,7 +2,7 @@
 
 use cp_library_rs::{
     algebraic_structure::operation::Add, data_structure::segment_tree::SegmentTree, debug,
-    utils::show_tree::ShowBinaryTree,
+    utils::show_binary_tree::ShowBinaryTree,
 };
 use proconio::{fastout, input, marker::Usize1};
 
