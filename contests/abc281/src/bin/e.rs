@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
 
 use cp_library_rs::{
-    algebraic_structure::{monoid::Monoid, ordered_monoid::OrderedMonoid},
+    algebraic_structure::monoid::Monoid,
     data_structure::segment_tree::SegmentTree,
     debug,
     utils::{coordinate_compression::Compression, show_binary_tree::ShowBinaryTree},
@@ -61,19 +61,10 @@ struct CntSum;
 impl Monoid for CntSum {
     /// (count, sum)
     type Val = (usize, usize);
-    fn id() -> Self::Val {
+    fn e() -> Self::Val {
         (0, 0)
     }
     fn op(left: &Self::Val, right: &Self::Val) -> Self::Val {
         (left.0 + right.0, left.1 + right.1)
-    }
-}
-
-impl OrderedMonoid for CntSum {
-    fn le(left: &Self::Val, right: &Self::Val) -> bool {
-        left.0 <= right.0
-    }
-    fn lt(left: &Self::Val, right: &Self::Val) -> bool {
-        left.0 < right.0
     }
 }

@@ -1,37 +1,48 @@
 #![allow(non_snake_case)]
 
+use std::cmp::Reverse;
+
 use cp_library_rs::{
-    algebraic_structure::actedmonoid::examples::UpdateMax,
-    data_structure::dynamic_segment_tree_2d::DynamicSegmentTree2D,
+    algebraic_structure::{operation::Max, to_acted::ToActed},
+    chmax,
+    data_structure::dynamic_segment_tree::DynamicSegmentTree,
+    debug,
 };
+use itertools::Itertools;
 use proconio::input;
 
 fn main() {
     input! {
         N: usize,
-        mut HWD: [(usize, usize, usize); N]
+        HWD: [(usize, usize, usize); N]
     }
 
-    let mut seg =
-        DynamicSegmentTree2D::<usize, UpdateMax<usize>>::new((0, 1001001001), (0, 1001001001));
+    let HWD = HWD
+        .into_iter()
+        // h <= w <= d
+        .map(|(h, w, d)| {
+            let mut arr = [h, w, d];
+            arr.sort();
+            arr
+        })
+        // d の降順にソート
+        .sorted_by_key(|&[h, w, d]| (Reverse(d), w, h))
+        .collect_vec();
 
-    for &(h, w, d) in &HWD {
-        seg.apply(h..=h, w..=w, d);
-        seg.apply(h..=h, d..=d, w);
-        seg.apply(w..=w, h..=h, d);
-        seg.apply(w..=w, d..=d, h);
-        seg.apply(d..=d, h..=h, w);
-        seg.apply(d..=d, w..=w, h);
-    }
+    let mut seg = DynamicSegmentTree::<usize, ToActed<Max<usize>>>::new(0, 1001001001);
 
-    // 判定
-    for &(h, w, d) in &HWD {
-        let max_d = seg.get_range(h + 1.., w + 1..);
+    for &[h, w, _d] in &HWD {
+        let max_h = seg.get_range(w + 1..);
 
-        if max_d > d {
+        debug!(h, w, _d, max_h);
+
+        if max_h > h {
             println!("Yes");
             return;
         }
+
+        // 追加
+        chmax!(*seg.get_mut(w).unwrap(), h);
     }
 
     println!("No");
