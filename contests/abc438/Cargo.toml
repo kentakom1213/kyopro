@@ -103,7 +103,6 @@ proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
 # smallvec = "1.11.0"
-# cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.6" }
-cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
+cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.6" }
 
 [dev-dependencies]

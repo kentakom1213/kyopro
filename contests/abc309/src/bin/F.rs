@@ -1,56 +1,49 @@
-// attributes
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-use std::collections::BTreeSet;
+use std::cmp::Reverse;
 
-// imports
+use cp_library_rs::{
+    algebraic_structure::{operation::Max, to_acted::ToActed},
+    chmax,
+    data_structure::dynamic_segment_tree::DynamicSegmentTree,
+    debug,
+};
 use itertools::Itertools;
-use proconio::{input, fastout, marker::{Chars, Bytes, Usize1}};
+use proconio::input;
 
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
-
-// constant
-const MOD1: usize = 1_000_000_007;
-const MOD9: usize = 998_244_353;
-const INF: usize = 1001001001001001001;
-
-// main
 fn main() {
     input! {
         N: usize,
-        boxes: [(usize, usize, usize); N],
+        HWD: [(usize, usize, usize); N]
     }
 
-    // 座標圧縮
-    let mut comp = vec![];
-    for &(x, y, z) in &boxes {
-        comp.push(x);
-        comp.push(y);
-        comp.push(z);
+    let HWD = HWD
+        .into_iter()
+        // h <= w <= d
+        .map(|(h, w, d)| {
+            let mut arr = [h, w, d];
+            arr.sort();
+            arr
+        })
+        // d の降順にソート
+        .sorted_by_key(|&[h, w, d]| (Reverse(d), w, h))
+        .collect_vec();
+
+    let mut seg = DynamicSegmentTree::<usize, ToActed<Max<usize>>>::new(0, 1001001001);
+
+    for &[h, w, _d] in &HWD {
+        let max_h = seg.get_range(w + 1..);
+
+        debug!(h, w, _d, max_h);
+
+        if max_h > h {
+            println!("Yes");
+            return;
+        }
+
+        // 追加
+        chmax!(*seg.get_mut(w).unwrap(), h);
     }
-    comp.sort();
-    comp.dedup();
 
-    debug!(&comp);
-
-    // let mut set = BTreeSet::new();
-    // for &(x, y, z) in &boxes {
-    //     set.insert((x, y, z));
-    //     set.insert((x, z, y));
-    //     set.insert((y, x, z));
-    //     set.insert((y, z, x));
-    //     set.insert((z, x, y));
-    //     set.insert((z, y, z));
-    // }
-
-
+    println!("No");
 }

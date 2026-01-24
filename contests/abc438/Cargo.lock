@@ -86,6 +86,7 @@ checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 [[package]]
 name = "cp-library-rs"
 version = "0.3.6"
+source = "git+https://github.com/kentakom1213/cp-library?tag=v0.3.6#dfb200944572d9f71c8d0b58ac1fa71138ab376d"
 dependencies = [
  "itertools 0.14.0",
  "itertools-num",
