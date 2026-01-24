@@ -1,5 +1,7 @@
 #![allow(non_snake_case)]
 
+use cp_library_rs::utils::run_length::RunLength;
+use itertools::Itertools;
 use proconio::input;
 
 fn main() {
@@ -7,41 +9,15 @@ fn main() {
         S: String
     }
 
-    let N = S.len();
+    let rle = S.chars().map(|x| x as u8 - '0' as u8).run_length_encode();
+
     let mut ans = 0;
 
-    for l in 0..N {
-        for r in (l..=N).step_by(2) {
-            if l == r {
-                continue;
-            }
-
-            let mid = (l + r) / 2;
-
-            let left = &S[l..mid];
-            let right = &S[mid..r];
-
-            let x = left.chars().next().unwrap();
-            let y = right.chars().next().unwrap();
-
-            if !left.chars().all(|c| c == x) {
-                continue;
-            }
-            if !right.chars().all(|c| c == y) {
-                continue;
-            }
-
-            if to_digit(x) + 1 != to_digit(y) {
-                continue;
-            }
-
-            ans += 1;
+    for ((l, nl), (r, nr)) in rle.into_iter().tuple_windows() {
+        if l + 1 == r {
+            ans += nl.min(nr);
         }
     }
-    
-    println!("{ans}");
-}
 
-fn to_digit(c: char) -> usize {
-    c as usize - '0' as usize
+    println!("{ans}");
 }

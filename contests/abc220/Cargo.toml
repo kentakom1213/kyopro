@@ -70,8 +70,6 @@ glidesort = "0.1.2"
 tap = "1.0.1"
 omniswap = "0.1.0"
 multiversion = "0.7.2"
-num = "0.4.1"
-num-bigint = "0.4.3"
 num-complex = "0.4.3"
 num-integer = "0.1.45"
 num-iter = "0.1.43"
@@ -108,5 +106,8 @@ proconio = { version = "0.4.5", features = ["derive"] }
 text_io = "0.1.12"
 rustc-hash = "1.1.0"
 smallvec = "1.11.0"
+cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.8" }
+num = "0.4.3"
+
 
 [dev-dependencies]
