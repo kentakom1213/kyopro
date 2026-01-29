@@ -1,43 +1,43 @@
 [package]
-name = "abc351"
+name = "abc389"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc351-a = { alias = "a", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_a" }
-abc351-b = { alias = "b", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_b" }
-abc351-c = { alias = "c", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_c" }
-abc351-d = { alias = "d", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_d" }
-abc351-e = { alias = "e", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_e" }
-abc351-f = { alias = "f", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_f" }
-abc351-g = { alias = "g", problem = "https://atcoder.jp/contests/abc351/tasks/abc351_g" }
+abc389-a = { alias = "a", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_a" }
+abc389-b = { alias = "b", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_b" }
+abc389-c = { alias = "c", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_c" }
+abc389-d = { alias = "d", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_d" }
+abc389-e = { alias = "e", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_e" }
+abc389-f = { alias = "f", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_f" }
+abc389-g = { alias = "g", problem = "https://atcoder.jp/contests/abc389/tasks/abc389_g" }
 
 [[bin]]
-name = "abc351-a"
+name = "abc389-a"
 path = "src/bin/a.rs"
 
 [[bin]]
-name = "abc351-b"
+name = "abc389-b"
 path = "src/bin/b.rs"
 
 [[bin]]
-name = "abc351-c"
+name = "abc389-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc351-d"
+name = "abc389-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc351-e"
+name = "abc389-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc351-f"
+name = "abc389-f"
 path = "src/bin/f.rs"
 
 [[bin]]
-name = "abc351-g"
+name = "abc389-g"
 path = "src/bin/g.rs"
 
 [dependencies]
@@ -45,7 +45,7 @@ ac-library-rs = "0.1.1"
 # once_cell = "1.18.0"
 # static_assertions = "1.1.0"
 # varisat = "0.2.2"
-# memoise = "0.3.2"
+memoise = "0.3.2"
 # argio = "0.2.0"
 bitvec = "1.0.1"
 # counter = "0.5.7"
@@ -65,7 +65,7 @@ bitvec = "1.0.1"
 # tap = "1.0.1"
 # omniswap = "0.1.0"
 # multiversion = "0.7.2"
-num = "0.4.3"
+num = "0.4.1"
 num-bigint = "0.4.3"
 num-complex = "0.4.3"
 num-integer = "0.1.45"
@@ -102,6 +102,8 @@ im-rc = "15.1.0"
 proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
-cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.11" }
+# smallvec = "1.11.0"
+# cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.11" }
+cp-library-rs = { path = "../../../cp-library/cp-library-rs" }
 
 [dev-dependencies]
