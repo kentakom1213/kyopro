@@ -2,7 +2,7 @@
 
 use cp_library_rs::{
     algebraic_structure::actedmonoid::ActedMonoid, data_structure::implicit_treap::ImplicitTreap,
-    debug, utils::show_binary_tree::ShowBinaryTree,
+    utils::show_binary_tree::ShowBinaryTree,
 };
 use itertools::Itertools;
 use proconio::input;
