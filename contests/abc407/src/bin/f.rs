@@ -1,12 +1,11 @@
 #![allow(non_snake_case)]
 
 use cp_library_rs::{
-    algebraic_structure::{actedmonoid::ActedMonoid, operation::Max},
+    algebraic_structure::{actedmonoid::examples::AddSum, operation::Max},
     data_structure::{lazy_segment_tree::LazySegmentTree, segment_tree::SegmentTree},
+    debug,
 };
 use proconio::{fastout, input};
-
-use crate::monoids::AddArithSum;
 
 #[fastout]
 fn main() {
@@ -15,71 +14,34 @@ fn main() {
         A: [i64; N]
     }
 
-    let mut seg = SegmentTree::<Max<i64>>::from_vec(A.clone());
+    let seg = SegmentTree::<Max<(i64, usize)>>::from_vec(A.iter().copied().zip(0..).collect());
 
-    let mut ans = LazySegmentTree::<AddArithSum<i64>>::new(N + 1);
-}
+    // いもす法
+    let mut ans = LazySegmentTree::<AddSum<i64>>::from_vec(vec![(0, 1); N + 2]);
 
-mod monoids {
-    use std::marker::PhantomData;
-    use std::ops::{Add, Mul, Sub};
+    for (i, &a) in A.iter().enumerate() {
+        let (_, l) = seg.min_left(i, |v| v <= (a, i));
+        let (_, r) = seg.max_right(i, |v| v <= (a, i));
 
-    use num::{FromPrimitive, Zero};
+        debug!(a, l, r, &A[l..r]);
 
-    use super::ActedMonoid;
+        let llen = i - l;
+        let rlen = r - i - 1;
 
-    /// 等差数列加算（一次式加算）+ 区間和
-    ///
-    /// Act = (p, q): すべての i に対し a[i] += p*i + q
-    ///
-    /// Val = (sum, cnt, sum_i)
-    ///   sum   = 区間の a の総和
-    ///   cnt   = 区間長
-    ///   sum_i = 区間内の添字 i の総和
-    #[derive(Debug)]
-    pub struct AddArithSum<T>(PhantomData<T>);
+        let x = llen.min(rlen);
+        let y = llen.max(rlen);
 
-    impl<T> ActedMonoid for AddArithSum<T>
-    where
-        T: Zero
-            + Clone
-            + PartialEq
-            + Add<Output = T>
-            + Sub<Output = T>
-            + Mul<Output = T>
-            + FromPrimitive,
-    {
-        type Val = (T, usize, T);
-        type Act = (T, T); // (p, q)
+        // 長さ 1 <= i <= x+1 の区間は i 個含まれる（それぞれ a ）
+        ans.apply(1..=x + 1, a);
 
-        fn e() -> Self::Val {
-            (T::zero(), 0, T::zero())
-        }
-        fn id() -> Self::Act {
-            (T::zero(), T::zero())
-        }
+        // 長さ x+1 < i <= y+1 の区間は x+1 個含まれる
+        // （いもす法なので追加しない）
 
-        fn op(x: &Self::Val, y: &Self::Val) -> Self::Val {
-            let (sx, cx, ix) = x.clone();
-            let (sy, cy, iy) = y.clone();
-            (sx + sy, cx + cy, ix + iy)
-        }
+        // 長さ y+1 < i <= x+y+1 の区間は (x+y+1)-i+1 = x+y-i 個含まれる
+        ans.apply(y + 2..=x + y + 2, -a);
+    }
 
-        fn mapping(x: &Self::Val, f: &Self::Act) -> Self::Val {
-            let (sum, cnt, sum_i) = x.clone();
-            let (p, q) = f.clone();
-            let cnt_t = T::from_usize(cnt).unwrap();
-            // sum += p * (sum_i) + q * cnt
-            (sum + p * sum_i + q * cnt_t, cnt, sum_i)
-        }
-
-        fn compose(old: &Self::Act, add: &Self::Act) -> Self::Act {
-            // apply_lazy で lazy[k] = compose(lazy[k], f) なので
-            // 「既存 old のあとに新しい add を足す」合成になっている必要がある
-            // 今回は加算なので単純に足し算でよい
-            let (p1, q1) = old.clone();
-            let (p2, q2) = add.clone();
-            (p1 + p2, q1 + q2)
-        }
+    for i in 1..=N {
+        println!("{}", ans.get(..=i).0);
     }
 }
