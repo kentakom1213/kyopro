@@ -1,29 +1,38 @@
-#![allow(unused_imports)]
-#![allow(unused_variables)]
 #![allow(non_snake_case)]
-#![allow(dead_code)]
-#![allow(unused_macros)]
 
-macro_rules! debug {
-    ( $($val:expr),* $(,)* ) => {{
-        #[cfg(debug_assertions)]
-        eprintln!( concat!($(stringify!($val), " = {:?}, "),*), $($val),* );
-    }};
-}
-macro_rules! debug2D {
-    ( $array:expr ) => {{
-        #![cfg(debug_assertions)]
-        eprintln!("{}: ", stringify!($array));
-        for row in &$array {
-            eprintln!("{:?}", row);
-        }
-    }};
-}
+use cp_library_rs::{debug, debug2D, utils::consts::INF};
+use itertools::Itertools;
+use proconio::{input, marker::Chars};
 
-use proconio::{input, marker::{Chars, Bytes, Usize1}};
+const D: usize = 20;
 
 fn main() {
-    
-}
+    input! {
+        S: Chars
+    }
+    let N = S.len();
 
-const INF: usize = 1001001001001001001;
+    // ダブリング
+    let mut dp = vec![vec![INF; N]; D];
+
+    for i in 0..N {
+        dp[0][i] = if S[i] == 'L' { i - 1 } else { i + 1 };
+    }
+
+    for d in 0..D - 1 {
+        for i in 0..N {
+            dp[d + 1][i] = dp[d][dp[d][i]];
+        }
+    }
+
+    debug2D!(dp);
+
+    // 十分大きな偶数回移動すればよい
+    let mut ans = vec![0; N];
+
+    for i in 0..N {
+        ans[dp[D - 1][i]] += 1;
+    }
+
+    println!("{}", ans.iter().join(" "));
+}

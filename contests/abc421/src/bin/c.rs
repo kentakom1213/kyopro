@@ -2,56 +2,29 @@
 
 use std::collections::VecDeque;
 
-use cp_library_rs::debug;
+use cp_library_rs::{debug, utils::run_length::RunLength};
 use proconio::input;
 
 fn main() {
     input! {
         N: usize,
-        S: String
+        S: String,
     }
 
-    let ans = solve(N, &S);
+    let mut acnt = 0;
+    let mut ans1 = 0;
+    let mut ans2 = 0;
 
-    println!("{ans}");
-}
-
-/// 左端を A にするまでの最短手数
-fn solve(n: usize, S: &str) -> usize {
-    let mut a = Vec::default();
-    let mut b = Vec::default();
     for (i, c) in S.chars().enumerate() {
         match c {
-            'A' => a.push(i),
-            'B' => b.push(i),
-            _ => unreachable!(),
-        }
-    }
-
-    debug!(a, b);
-
-    // マージ
-    let mut ans = 0;
-    let mut i = 0;
-    let mut j = 0;
-
-    let mut qa = VecDeque::default();
-    let mut qb = VecDeque::default();
-
-    while i < n && j < n {
-        if j == n || a[i] < b[j] {
-            if let Some(bf) = qb.pop_front() {
-                debug!(bf);
-                ans += a[i] - bf;
-            } else {
-                
+            'A' => {
+                ans1 += i.abs_diff(acnt * 2);
+                ans2 += i.abs_diff(acnt * 2 + 1);
+                acnt += 1;
             }
-            i += 1;
-        } else {
-            j += 1;
+            _ => {}
         }
-        debug!(&a[i..], &b[j..]);
     }
 
-    ans
+    println!("{}", ans1.min(ans2));
 }

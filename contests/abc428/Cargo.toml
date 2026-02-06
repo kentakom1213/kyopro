@@ -1,39 +1,44 @@
 [package]
-name = "abc136"
+name = "abc428"
 version = "0.1.0"
 edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc136-a = { alias = "a", problem = "https://atcoder.jp/contests/abc136/tasks/abc136_a" }
-abc136-b = { alias = "b", problem = "https://atcoder.jp/contests/abc136/tasks/abc136_b" }
-abc136-c = { alias = "c", problem = "https://atcoder.jp/contests/abc136/tasks/abc136_c" }
-abc136-d = { alias = "d", problem = "https://atcoder.jp/contests/abc136/tasks/abc136_d" }
-abc136-e = { alias = "e", problem = "https://atcoder.jp/contests/abc136/tasks/abc136_e" }
-abc136-f = { alias = "f", problem = "https://atcoder.jp/contests/abc136/tasks/abc136_f" }
+abc428-a = { alias = "a", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_a" }
+abc428-b = { alias = "b", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_b" }
+abc428-c = { alias = "c", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_c" }
+abc428-d = { alias = "d", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_d" }
+abc428-e = { alias = "e", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_e" }
+abc428-f = { alias = "f", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_f" }
+abc428-g = { alias = "g", problem = "https://atcoder.jp/contests/abc428/tasks/abc428_g" }
 
 [[bin]]
-name = "abc136-a"
+name = "abc428-a"
 path = "src/bin/a.rs"
 
 [[bin]]
-name = "abc136-b"
+name = "abc428-b"
 path = "src/bin/b.rs"
 
 [[bin]]
-name = "abc136-c"
+name = "abc428-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc136-d"
+name = "abc428-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc136-e"
+name = "abc428-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc136-f"
+name = "abc428-f"
 path = "src/bin/f.rs"
+
+[[bin]]
+name = "abc428-g"
+path = "src/bin/g.rs"
 
 [dependencies]
 ac-library-rs = "0.1.1"
@@ -98,7 +103,6 @@ proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
 # smallvec = "1.11.0"
-cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.14" }
-
+cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.8" }
 
 [dev-dependencies]

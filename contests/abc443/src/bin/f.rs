@@ -1,44 +1,47 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::debug2D;
-use proconio::input;
+use std::collections::VecDeque;
 
-const MAX: usize = 20;
+use cp_library_rs::{debug2D, utils::consts::INF};
+use itertools::Itertools;
+use proconio::input;
 
 fn main() {
     input! {
         N: usize,
     }
 
-    // i 桁で末尾が d の N で割ったあまりが p であるような良い整数が存在するか．
-    let mut dp = vec![vec![vec![false; N]; 10]; MAX];
+    let mut prv = vec![[(INF, INF); 10]; N];
+    let mut dp = vec![[INF; 10]; N];
+    dp[0][0] = 0;
+    let mut q = VecDeque::from([(0, 0)]);
 
-    for d in 1..=9 {
-        dp[0][d][d % N] = true;
-    }
-
-    debug2D!(dp[0]);
-
-    for i in 1..MAX {
-        for p in 0..N {
-            for c in 0..=9 {
-                if !dp[i - 1][c][p] {
-                    continue;
-                }
-                for d in 0..=c {
-                    let nxt = (p * 10 + d) % N;
-                    dp[i][d][nxt] = true;
-                }
+    while let Some((x, c)) = q.pop_front() {
+        for d in 1.max(c)..=9 {
+            let y = (x * 10 + d) % N;
+            if dp[y][d] < INF {
+                continue;
             }
-        }
+            dp[y][d] = dp[x][c] + 1;
+            prv[y][d] = (x, c);
+            q.push_back((y, d));
 
-        debug2D!(dp[i + 1]);
+            if y == 0 {
+                debug2D!(dp);
+                debug2D!(prv);
 
-        for d in 0..=9 {
-            if dp[i][d][0] {
-                println!("OK: {}, {}", i, d);
+                // DP 復元
+                let mut ans = vec![];
+                let mut cur = (y, d);
+                while cur != (0, 0) {
+                    ans.push(cur.1);
+                    cur = prv[cur.0][cur.1];
+                }
+                println!("{}", ans.iter().rev().join(""));
                 return;
             }
         }
     }
+
+    println!("-1");
 }
