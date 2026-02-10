@@ -4,9 +4,9 @@ use cp_library_rs::{
     algebraic_structure::operation::Add,
     data_structure::segment_tree::SegmentTree,
     number_theory::{comb::Comb, modint::M998},
-    utils::num_traits::One,
 };
 use itertools::Itertools;
+use num::One;
 use proconio::input;
 
 /// 観察:
@@ -23,7 +23,7 @@ fn main() {
         for &a in &A {
             cnt[a] += 1;
         }
-        SegmentTree::<Add<usize>>::from(cnt)
+        SegmentTree::<Add<usize>>::from_vec(cnt)
     };
     let cmb = Comb::<M998>::new(2001001);
 
