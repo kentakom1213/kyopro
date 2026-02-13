@@ -1,6 +1,9 @@
 #![allow(non_snake_case)]
 
-use cp_library_rs::{chmax, number_theory::comb_no_mod, utils::enum_comb::comb_with_rep};
+use std::collections::HashMap;
+
+use cp_library_rs::chmax;
+use itertools::iproduct;
 use proconio::input;
 
 fn main() {
@@ -8,77 +11,76 @@ fn main() {
         A: [usize; 6]
     }
 
-    let mut cnt1 = 0;
-    let mut ans = 0.0;
-
-    // 1ターン目を列挙
-    for comb1 in comb_with_rep(6, 5) {
-        let n_comb1 = n_comb(&comb1);
-        let mut score_max = 0.0;
-
-        // キープの仕方を列挙
-        for keep in enum_keep(&comb1) {
-            let mut score_sum = 0;
-            let mut cnt2 = 0;
-
-            // 2ターン目を列挙
-            let used = keep.iter().sum::<usize>();
-
-            for mut comb2 in comb_with_rep(6, 5 - used) {
-                let n_comb2 = n_comb(&comb2);
-
-                // スコアを計算
-                for i in 0..6 {
-                    comb2[i] += keep[i];
-                }
-
-                let score = (0..6).map(|i| A[i] * comb2[i]).max().unwrap();
-
-                score_sum += score * n_comb2;
-                cnt2 += n_comb2;
-            }
-
-            // スコアの平均値
-            let score_ave = score_sum as f64 / cnt2 as f64;
-
-            chmax!(score_max, score_ave);
-        }
-
-        ans += score_max * n_comb1 as f64;
-        cnt1 += n_comb1;
-    }
-
-    ans /= cnt1 as f64;
+    // DP
+    let ans = rec(3, vec![], &A, &mut HashMap::default());
 
     println!("{ans}");
 }
 
-/// 重複組合せが出る場合の数
-fn n_comb(cmb: &[usize]) -> usize {
-    let mut rem = 5;
-    let mut res = 1;
-    for i in 0..6 {
-        res *= comb_no_mod::comb(rem, cmb[i]);
-        rem -= cmb[i];
+/// あと k 回ダイスを振ることができる時点で，キープしている出目が S であるときの，期待値の最大値
+fn rec(
+    rest_turn: usize,
+    mut keep_idxs: Vec<usize>,
+    A: &[usize],
+    memo: &mut HashMap<(usize, Vec<usize>), f64>,
+) -> f64 {
+    keep_idxs.sort_unstable();
+
+    // メモを復元
+    if let Some(&ans) = memo.get(&(rest_turn, keep_idxs.clone())) {
+        return ans;
     }
-    res
+
+    if keep_idxs.len() == 5 {
+        let mut cnt = [0; 101];
+        for &i in &keep_idxs {
+            cnt[A[i]] += 1;
+        }
+        let ans = (0..101).map(|i| i * cnt[i]).max().unwrap() as f64;
+
+        memo.insert((rest_turn, keep_idxs), ans);
+        return ans;
+    }
+
+    let rest_dices = 5 - keep_idxs.len();
+    let mut ans = 0.0;
+
+    for deme_idxs in gen_comb(rest_dices) {
+        let mut max = 0.0;
+
+        for keep in if rest_turn == 1 {
+            (1 << rest_dices) - 1..(1 << rest_dices)
+        } else {
+            0..1 << rest_dices
+        } {
+            let mut T: Vec<_> = deme_idxs
+                .iter()
+                .enumerate()
+                .filter(|(i, _)| keep >> i & 1 == 1)
+                .map(|(_, &v)| v)
+                .collect();
+            T.extend_from_slice(&keep_idxs);
+            let exp = rec(rest_turn - 1, T, A, memo);
+
+            chmax!(max, exp);
+        }
+
+        ans += max / 6_usize.pow(rest_dices as u32) as f64;
+    }
+
+    memo.insert((rest_turn, keep_idxs), ans);
+    ans
 }
 
-/// キープする数を列挙
-fn enum_keep(v: &[usize]) -> Vec<[usize; 6]> {
-    let mut res = vec![];
-    for a in 0..=v[0] {
-        for b in 0..=v[1] {
-            for c in 0..=v[2] {
-                for d in 0..=v[3] {
-                    for e in 0..=v[4] {
-                        for f in 0..=v[5] {
-                            res.push([a, b, c, d, e, f]);
-                        }
-                    }
-                }
-            }
-        }
+fn gen_comb(n: usize) -> Box<dyn Iterator<Item = Vec<usize>>> {
+    match n {
+        1 => Box::new((0..6).map(|a| vec![a])),
+        2 => Box::new(iproduct!(0..6, 0..6).map(|(a, b)| vec![a, b])),
+        3 => Box::new(iproduct!(0..6, 0..6, 0..6).map(|(a, b, c)| vec![a, b, c])),
+        4 => Box::new(iproduct!(0..6, 0..6, 0..6, 0..6).map(|(a, b, c, d)| vec![a, b, c, d])),
+        5 => Box::new(
+            iproduct!(0..6, 0..6, 0..6, 0..6, 0..6).map(|(a, b, c, d, e)| vec![a, b, c, d, e]),
+        ),
+        _ => unreachable!(),
     }
-    res
 }
