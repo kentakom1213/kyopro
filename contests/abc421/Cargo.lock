@@ -85,7 +85,7 @@ checksum = "2fd1289c04a9ea8cb22300a459a72a385d7c73d3259e2ed7dcb2af674838cfa9"
 
 [[package]]
 name = "cp-library-rs"
-version = "0.3.15"
+version = "0.3.17"
 dependencies = [
  "itertools 0.14.0",
  "itertools-num",
@@ -100,6 +100,7 @@ dependencies = [
  "rand 0.9.2",
  "rand_xorshift",
  "rustc-hash 2.1.1",
+ "superslice",
 ]
 
 [[package]]
