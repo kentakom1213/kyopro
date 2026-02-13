@@ -1,18 +1,22 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::OnceLock};
 
 use cp_library_rs::chmax;
 use itertools::iproduct;
 use proconio::input;
+
+static _A: OnceLock<Vec<usize>> = OnceLock::new();
 
 fn main() {
     input! {
         A: [usize; 6]
     }
 
+    _A.set(A);
+
     // DP
-    let ans = rec(3, vec![], &A, &mut HashMap::default());
+    let ans = rec(3, vec![], &mut HashMap::default());
 
     println!("{ans}");
 }
@@ -21,9 +25,9 @@ fn main() {
 fn rec(
     rest_turn: usize,
     mut keep_idxs: Vec<usize>,
-    A: &[usize],
     memo: &mut HashMap<(usize, Vec<usize>), f64>,
 ) -> f64 {
+    let A = _A.get().unwrap();
     keep_idxs.sort_unstable();
 
     // メモを復元
@@ -60,7 +64,7 @@ fn rec(
                 .map(|(_, &v)| v)
                 .collect();
             T.extend_from_slice(&keep_idxs);
-            let exp = rec(rest_turn - 1, T, A, memo);
+            let exp = rec(rest_turn - 1, T, memo);
 
             chmax!(max, exp);
         }
