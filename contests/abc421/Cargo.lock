@@ -85,7 +85,8 @@ checksum = "2fd1289c04a9ea8cb22300a459a72a385d7c73d3259e2ed7dcb2af674838cfa9"
 
 [[package]]
 name = "cp-library-rs"
-version = "0.3.17"
+version = "0.3.16"
+source = "git+https://github.com/kentakom1213/cp-library?tag=v0.3.16#599f6cd99d301836ede0f6ec8f88faf96ecc72d6"
 dependencies = [
  "itertools 0.14.0",
  "itertools-num",
@@ -100,7 +101,6 @@ dependencies = [
  "rand 0.9.2",
  "rand_xorshift",
  "rustc-hash 2.1.1",
- "superslice",
 ]
 
 [[package]]
