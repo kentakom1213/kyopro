@@ -1,43 +1,43 @@
 [package]
-name = "abc421"
+name = "abc401"
 version = "0.1.0"
 edition = "2021"
 
 [package.metadata.cargo-compete.bin]
-abc421-a = { alias = "a", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_a" }
-abc421-b = { alias = "b", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_b" }
-abc421-c = { alias = "c", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_c" }
-abc421-d = { alias = "d", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_d" }
-abc421-e = { alias = "e", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_e" }
-abc421-f = { alias = "f", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_f" }
-abc421-g = { alias = "g", problem = "https://atcoder.jp/contests/abc421/tasks/abc421_g" }
+abc401-a = { alias = "a", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_a" }
+abc401-b = { alias = "b", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_b" }
+abc401-c = { alias = "c", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_c" }
+abc401-d = { alias = "d", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_d" }
+abc401-e = { alias = "e", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_e" }
+abc401-f = { alias = "f", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_f" }
+abc401-g = { alias = "g", problem = "https://atcoder.jp/contests/abc401/tasks/abc401_g" }
 
 [[bin]]
-name = "abc421-a"
+name = "abc401-a"
 path = "src/bin/a.rs"
 
 [[bin]]
-name = "abc421-b"
+name = "abc401-b"
 path = "src/bin/b.rs"
 
 [[bin]]
-name = "abc421-c"
+name = "abc401-c"
 path = "src/bin/c.rs"
 
 [[bin]]
-name = "abc421-d"
+name = "abc401-d"
 path = "src/bin/d.rs"
 
 [[bin]]
-name = "abc421-e"
+name = "abc401-e"
 path = "src/bin/e.rs"
 
 [[bin]]
-name = "abc421-f"
+name = "abc401-f"
 path = "src/bin/f.rs"
 
 [[bin]]
-name = "abc421-g"
+name = "abc401-g"
 path = "src/bin/g.rs"
 
 [dependencies]
@@ -103,6 +103,6 @@ proconio = { version = "0.4.5", features = ["derive"] }
 # text_io = "0.1.12"
 rustc-hash = "1.1.0"
 # smallvec = "1.11.0"
-cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.16" }
+cp-library-rs = { git = "https://github.com/kentakom1213/cp-library", tag = "v0.3.15" }
 
 [dev-dependencies]
